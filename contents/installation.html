@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prerequisites &mdash; Milady  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/fav.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input files" href="ml/input.html" />
+    <link rel="prev" title="MiLaDy" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#build">Build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-setting-environment-variables">Step 1: Setting environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-compilation">Step 2: Compilation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration and usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ml/input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/model.html">ML models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weight.html">Optimization of weights using genetic algorithm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Milady</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Prerequisites</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contents/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prerequisites">
+<span id="sec-insta"></span><h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h1>
+<p>The current version of <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> requires:</p>
+<ul class="simple">
+<li><p>A fortran compiler (tested ifort &gt; 2019.x.x, gfortran &gt; 10.x.x)</p></li>
+<li><p>The LAPACK / SCALAPACK library (tested MKL distribution &gt; 19.x.x)</p></li>
+<li><p>An MPI library  (tested OpenMPI &gt; 4.x.x or IntelMPI &gt; 2019.x.x)</p></li>
+<li><p>CMake (tested &gt; 3.18.x)</p></li>
+</ul>
+</section>
+<section id="compilation-modes">
+<h1>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a></h1>
+<p>MILADY has three compilation modes:</p>
+<dl class="glossary simple">
+<dt id="term-MILADY-INTEL">MILADY-INTEL<a class="headerlink" href="#term-MILADY-INTEL" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<li><p>intel compilers included in oneAPI distribution</p></li>
+<li><p>MKL with ScaLapack support both of them included in the oneAPI distribution</p></li>
+<li><p>intelmpi equally included in oneAPI distribution.</p></li>
+</ul>
+</dd>
+<dt id="term-MILADY-GNU">MILADY-GNU<a class="headerlink" href="#term-MILADY-GNU" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<li><p>GNU compilers (min V9)</p></li>
+<li><p>MKL or LAPACK/ScaLapack support for GNU.</p></li>
+<li><p>openmpi user-compiled, or system, gnu-compiled</p></li>
+</ul>
+</dd>
+<dt id="term-MILADY-MIX">MILADY-MIX<a class="headerlink" href="#term-MILADY-MIX" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<li><p>intel compilers (2022.0.1)</p></li>
+<li><p>MKL with ScaLapack support</p></li>
+<li><p>openmpi user-compiled, or system, compatible with intel compilers ( &gt; 4.x.x)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Our preference is MILADY-MIX, using the intel fortran compiler and MKL / SCALAPACK provided by oneAPI (&gt; 2022.x.x). OpenMPI (&gt; 4.x.x) is compiled by our means using ifort compiler.</p>
+</div>
+</section>
+<section id="build">
+<h1>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h1>
+<section id="step-1-setting-environment-variables">
+<h2>Step 1: Setting environment variables<a class="headerlink" href="#step-1-setting-environment-variables" title="Permalink to this heading"></a></h2>
+<p>Will note by <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> the github repository.</p>
+<ol class="arabic">
+<li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">MLD</span></code> and copy <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> in that location.
+Hereafter, we will call <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> the location of MLD directory.</p></li>
+<li><p>Your environment should contain the following 9 variables compulsory for the compilation <code class="docutils literal notranslate"><span class="pre">MILADY</span></code></p>
+<p>The first six variables:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
+<span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
+<span class="nb">export</span> <span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
+<span class="nb">export</span> <span class="nv">MLD_TESDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_testdir
+<span class="nb">export</span> <span class="nv">MLD_SETENV</span><span class="o">=</span>ON
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">mld_build</span></code> and <code class="docutils literal notranslate"><span class="pre">mld_install</span></code> will be created by the installation procedure whilst
+<code class="docutils literal notranslate"><span class="pre">mld_testdir</span></code> is a directory of tests that is not compulsory (more details later).</p>
+</div>
+<p>The last 3, plus a redefinition of <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">OMP_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi
+<span class="nb">export</span> <span class="nv">OMP_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">OMP_INSDIR</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">MKL_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">OMP_INSDIR</span></code> should contain the installation path to <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and openMPI, respectively.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>(Optional) It can be more convenient to set the environment variable using a bash function:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady_marinica <span class="o">{</span>
+  <span class="c1"># example of milady compilation directories: all under $MLD_ROODIR</span>
+  <span class="nb">unset</span> MLD_ROODIR
+  <span class="nb">unset</span> MLD_SCRDIR
+  <span class="nb">unset</span> MLD_SRCDIR
+  <span class="nb">unset</span> MLD_BUIDIR
+  <span class="nb">unset</span> MLD_INSDIR
+  <span class="nb">unset</span> MLD_TESDIR
+  <span class="nb">unset</span> MLD_SETENV
+  <span class="nb">unset</span> OMP_INSDIR
+  <span class="nb">unset</span> OMP_ROOT
+  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/MLD&quot;</span>
+
+  <span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
+  <span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
+  <span class="nb">export</span> <span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
+  <span class="nb">export</span> <span class="nv">MLD_TESDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_testdir
+  <span class="nb">export</span> <span class="nv">MLD_SETENV</span><span class="o">=</span>ON
+
+  <span class="nb">export</span> <span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
+  <span class="nb">export</span> <span class="nv">OMP_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi
+  <span class="nb">export</span> <span class="nv">OMP_ROOT</span><span class="o">=</span>/usr/local/iopenmpi.4.1.2/
+
+  <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+</section>
+<section id="step-2-compilation">
+<h2>Step 2: Compilation<a class="headerlink" href="#step-2-compilation" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Charge many bash functionalities:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> <span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
+</pre></div>
+</div>
+<p>with a typical output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Now you could type:
+f_setenv_milady
+f_compile_milady_mix or
+f_compile_milady_intel or
+f_compile_milady_gnu
+</pre></div>
+</div>
+</li>
+<li><p>Invoke CMake (here in MILADY-MIX mode):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_compile_milady_mix</span>
+</pre></div>
+</div>
+<p>with a typical output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Now you could type:
+make -j6
+make install
+f_ctest_milady
+f_explore_milady
+</pre></div>
+</div>
+</li>
+<li><p>Compile the code (as suggested by the output of 2.)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -j6 <span class="c1"># will use 6 parallel jobs</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>THAT’S ALL FOLKS !!!</p>
+<p>In order to test please run step-by-step examples provided in the <a class="reference external" href="examples.html">Examples section</a>. And please ask us.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="MiLaDy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ml/input.html" class="btn btn-neutral float-right" title="Input files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

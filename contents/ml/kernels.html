@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kernels &mdash; Milady  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/fav.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Atomic systems" href="system.html" />
+    <link rel="prev" title="ML models" href="model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#build">Build</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration and usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">ML models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of weights using genetic algorithm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Milady</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kernels</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contents/ml/kernels.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kernels">
+<span id="sec-kernel"></span><h1>Kernels<a class="headerlink" href="#kernels" title="Permalink to this heading"></a></h1>
+<p>The kernels are active if milady is run in kernel mode i.e.
+<code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code>. The generation of a kernel potential needs a two steps
+process as it is described in Appendix. <strong>REF</strong>: (i) firstly, using an
+appropriate algorithm we choose the points that define the kernel and (ii)
+the parametrization of the kernel. Here we will note the options for the
+first step as <span class="math notranslate nohighlight">\(k_1\)</span> whilst for the second <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-kernel_type">
+<span id="cmdoption-arg-kernel-type"></span><span class="sig-name descname"><span class="pre">kernel_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer),</span></span><a class="headerlink" href="#cmdoption-arg-kernel_type" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">1</span></code> Square-exponential kernel</p>
+<div class="math notranslate nohighlight">
+\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \exp{-\frac{|\mathbf{D}^{s,a} - \mathbf{x}^m |^2}{2l_{SE}^2}}
+       \label{kernel:se}\]</div>
+<p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> and <span class="math notranslate nohighlight">\(l_{SE}\)</span>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel</p>
+<div class="math notranslate nohighlight">
+\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p
+    \label{kernel:po}\]</div>
+<p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span>, <span class="math notranslate nohighlight">\(l_{SE}\)</span> and
+<span class="math notranslate nohighlight">\(p\)</span>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">6</span></code> Mahalanobis - Batchattarya kernel</p>
+<div class="math notranslate nohighlight">
+\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p
+       \label{kernel:maha}\]</div>
+<p><span class="math notranslate nohighlight">\(p\)</span> should be defined. For the case <span class="math notranslate nohighlight">\(p=1/2\)</span> there is
+Mahalanobis distance.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">7</span></code> Square-exponential kernel for which the covariance matrix is sampled randomly on
+some linear basis. The only parameter to define is <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span></code>
+( typical value is `` sigma_kernel = 0.05`` but try more values to be sure that it is adapted for
+your descriptor).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">44</span></code> Polynomial kernel for which the covariance matrix is sampled randomly on
+some linear basis. The only parameter to define is <code class="docutils literal notranslate"><span class="pre">kernel_power</span></code>. Usually <code class="docutils literal notranslate"><span class="pre">kernel_power=4</span></code> it is a
+resonable value (at least on what we have tested, such as, Fe, W, some HEA and aspirin)</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">Defalut <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code></div>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-length_kernel">
+<span id="cmdoption-arg-length-kernel"></span><span class="sig-name descname"><span class="pre">length_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-length_kernel" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
+<span class="math notranslate nohighlight">\(l_{SE}\)</span> from Eqs. <a class="reference external" href="#kernel:se">[kernel:se]</a> and
+<a class="reference external" href="#kernel:po">[kernel:po]</a>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">length_kernel</span> <span class="pre">=</span> <span class="pre">1.d0</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-sigma_kernel">
+<span id="cmdoption-arg-sigma-kernel"></span><span class="sig-name descname"><span class="pre">sigma_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-sigma_kernel" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
+<span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> from Eqs. <a class="reference external" href="#kernel:se">[kernel:se]</a> and
+<a class="reference external" href="#kernel:po">[kernel:po]</a>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">1.d0</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-kernel_power">
+<span id="cmdoption-arg-kernel-power"></span><span class="sig-name descname"><span class="pre">kernel_power</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_power" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines <span class="math notranslate nohighlight">\(p\)</span>
+from Eqs. <a class="reference external" href="#kernel:po">[kernel:po]</a>,
+<a class="reference external" href="#kernel:dist">[kernel:dist]</a> and
+<a class="reference external" href="#kernel:maha">[kernel:maha]</a>. The recommended values are 3, 1
+and 1/2, respectively.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">2.d0</span></code></p>
+</dd></dl>
+
+<ul>
+<li><p><em>kernel_dump</em>:<code class="docutils literal notranslate"><span class="pre">integer</span></code></p>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Selection of the
+kernel from the database using various algorithms.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_dump=1</span></code> dump by draft classes. For this option it should
+be set <code class="docutils literal notranslate"><span class="pre">classes_for_kernel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_dump=2</span></code> dump by MCD classes / distances NOT YET FULLY
+ACTIVE</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_dump=3</span></code> dump using Mahalanobis distance. There are few
+parameters that should be set: <code class="docutils literal notranslate"><span class="pre">power_mcd</span></code>, <code class="docutils literal notranslate"><span class="pre">np_kernel_ref</span></code>
+and <code class="docutils literal notranslate"><span class="pre">np_kernel_full</span></code> and reference classes given by
+<code class="docutils literal notranslate"><span class="pre">classes_for_mcd</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-classes_for_kernel">
+<span id="cmdoption-arg-classes-for-kernel"></span><span class="sig-name descname"><span class="pre">classes_for_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(character)</span></span><a class="headerlink" href="#cmdoption-arg-classes_for_kernel" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. It defines
+the classes that define the kernel e.g.
+<code class="docutils literal notranslate"><span class="pre">classes_for_kernel=&quot;10</span> <span class="pre">11&quot;</span></code> defines all the atomic environements
+from the classes 10 and 11 as the kernel.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">classes_for_kernel=</span> <span class="pre">&quot;</span> <span class="pre">01</span> <span class="pre">&quot;</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-np_kernel_full">
+<span id="cmdoption-arg-np-kernel-full"></span><span class="sig-name descname"><span class="pre">np_kernel_full</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_full" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of points
+selected from the whole databse, except the reference. However,
+depending on the selection algorithm the final number of selected
+points can be lower that the initial value.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">np_kernel_full=</span> <span class="pre">400</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-np_kernel_ref">
+<span id="cmdoption-arg-np-kernel-ref"></span><span class="sig-name descname"><span class="pre">np_kernel_ref</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_ref" title="Permalink to this definition"></a></dt>
+<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of points
+selected from the reference. However, depending on the selection
+algorithm the number of final points can be lower.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">np_kernel_ref=</span> <span class="pre">800</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-write_kernel_matrix">
+<span id="cmdoption-arg-write-kernel-matrix"></span><span class="sig-name descname"><span class="pre">write_kernel_matrix</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_kernel_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Writes or not a parameters from
+kernel that will be used for subsequent calculations. It is written
+in the file <code class="docutils literal notranslate"><span class="pre">kernel_matrix.dat</span></code> than has the shape
+<code class="docutils literal notranslate"><span class="pre">number_of_data_kernel</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> + 3 TO BE
+COMPLETED ONCE PROGRAMMED.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">.false.</span></code></p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model.html" class="btn btn-neutral float-left" title="ML models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="system.html" class="btn btn-neutral float-right" title="Atomic systems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

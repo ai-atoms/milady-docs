@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descriptors &mdash; Milady  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/fav.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Databases" href="database.html" />
+    <link rel="prev" title="Atomic systems" href="system.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#build">Build</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration and usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">ML models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">Atomic systems</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Descriptors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#g2">G2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#g3">G3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#behler">Behler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#afs">AFS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#soap">SOAP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#power-spectrum-so3">Power Spectrum SO3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#power-spectrum-so3-3body">Power Spectrum SO3 3body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bispectrum-so3">Bispectrum SO3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bispectrum-so4">Bispectrum SO4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mtp">MTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of weights using genetic algorithm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Milady</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Descriptors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contents/ml/descriptors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="descriptors">
+<h1>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h1>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut">
+<span id="cmdoption-arg-r-cut"></span><span class="sig-name descname"><span class="pre">r_cut</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut" title="Permalink to this definition"></a></dt>
+<dd><p>The cut-off of the descriptor (in Å).</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r_cut=5.0</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-desc_forces">
+<span id="cmdoption-arg-desc-forces"></span><span class="sig-name descname"><span class="pre">desc_forces</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-desc_forces" title="Permalink to this definition"></a></dt>
+<dd><p>Compute or not the force descriptors.
+Also the writting of the force descriptors is desactivated. Active
+for all descriptors. In the case <code class="docutils literal notranslate"><span class="pre">desc_forces=.false.</span></code> only the
+positions are read.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">desc_forces=.true.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-descriptor_type">
+<span id="cmdoption-arg-descriptor-type"></span><span class="sig-name descname"><span class="pre">descriptor_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-descriptor_type" title="Permalink to this definition"></a></dt>
+<dd><p>Type of descriptor to be used.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=1</span></code> G2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=2</span></code> G3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=3</span></code> Behler</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=4</span></code> Angular Fourier Series (AFS)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=5</span></code> Smooth Overlap of Atomic Positions (SOAP)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=6</span></code> Power Spectrum SO3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=7</span></code> Bispectrum SO3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=8</span></code> Power Spectrum SO4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=9</span></code> bispectrum SO4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=14</span></code> hybrid G2 + AFS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=19</span></code> hybrid G2 + bispectrum SO4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=100</span></code> MTP<span class="math notranslate nohighlight">\(^3\)</span> (up to order
+<span class="math notranslate nohighlight">\(M_{\mu,\nu}\)</span>, with <span class="math notranslate nohighlight">\(\nu \le 3\)</span>)</p></li>
+</ol>
+<p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd></dl>
+
+<section id="g2">
+<h2>G2<a class="headerlink" href="#g2" title="Permalink to this heading"></a></h2>
+<p>To use G2, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=1</span></code>.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-eta_max_g2">
+<span id="cmdoption-arg-eta-max-g2"></span><span class="sig-name descname"><span class="pre">eta_max_g2</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-eta_max_g2" title="Permalink to this definition"></a></dt>
+<dd><p>The max value of <span class="math notranslate nohighlight">\(\eta\)</span>. The grid will be taken between <span class="math notranslate nohighlight">\(10^{-2}\)</span> and this value.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">eta_max_g2=0.8</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_g2_eta">
+<span id="cmdoption-arg-n-g2-eta"></span><span class="sig-name descname"><span class="pre">n_g2_eta</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_eta" title="Permalink to this definition"></a></dt>
+<dd><p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
+<div class="math notranslate nohighlight">
+\[\eta_p = 10^{-2} + \frac{p-1}{\textrm{n_g2_eta}}( \textrm{eta_max_g2}- 10^{-2})\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> range strats to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_eta</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">3</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_g2_rs">
+<span id="cmdoption-arg-n-g2-rs"></span><span class="sig-name descname"><span class="pre">n_g2_rs</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_rs" title="Permalink to this definition"></a></dt>
+<dd><p>The grid for <span class="math notranslate nohighlight">\(r_s\)</span> with the following generating formulae:</p>
+<div class="math notranslate nohighlight">
+\[r_s^p = p-1\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_rs</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="g3">
+<h2>G3<a class="headerlink" href="#g3" title="Permalink to this heading"></a></h2>
+<p>To use G3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=2</span></code>.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_g3_eta">
+<span id="cmdoption-arg-n-g3-eta"></span><span class="sig-name descname"><span class="pre">n_g3_eta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_eta" title="Permalink to this definition"></a></dt>
+<dd><p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
+<div class="math notranslate nohighlight">
+\[\eta_p = 10^{-2} + \frac{p-1}{\textrm{n_g2_eta}}(1 - 10^{-2})\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> range strats to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_eta</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">3</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_g3_lambda">
+<span id="cmdoption-arg-n-g3-lambda"></span><span class="sig-name descname"><span class="pre">n_g3_lambda</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_lambda" title="Permalink to this definition"></a></dt>
+<dd><p>the grid for <span class="math notranslate nohighlight">\(\lambda\)</span> with the following generating formulae:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_p = -1 + 2(p-1)\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g3_lambda</span></code>. Is
+highly recommended the value <code class="docutils literal notranslate"><span class="pre">n_g3_lambda</span></code><span class="math notranslate nohighlight">\(=2\)</span> i. e.
+<span class="math notranslate nohighlight">\(\lambda\)</span> will have the value <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_g3_zeta">
+<span id="cmdoption-arg-n-g3-zeta"></span><span class="sig-name descname"><span class="pre">n_g3_zeta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_zeta" title="Permalink to this definition"></a></dt>
+<dd><p>The grid for <span class="math notranslate nohighlight">\(\zeta\)</span> with the following generating formulae:</p>
+<div class="math notranslate nohighlight">
+\[\zeta_p = 2^{p-1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g3_zeta</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="behler">
+<h2>Behler<a class="headerlink" href="#behler" title="Permalink to this heading"></a></h2>
+<p>To use Behler, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=3</span></code>.</p>
+<section id="id2">
+<h3>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptors are controlled by the options of the case <span class="math notranslate nohighlight">\(G2\)</span> and <span class="math notranslate nohighlight">\(G3\)</span>. Additional options are available:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-strict_behler">
+<span id="cmdoption-arg-strict-behler"></span><span class="sig-name descname"><span class="pre">strict_behler</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-strict_behler" title="Permalink to this definition"></a></dt>
+<dd><p>All the parameters are set-up
+automatically following one of the Behler’s paper.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">F</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="afs">
+<h2>AFS<a class="headerlink" href="#afs" title="Permalink to this heading"></a></h2>
+<p>To use  AFS, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=4</span></code>.</p>
+<section id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptors are controlled by the options of the number of radial
+channels and Tchbychev polynomials. There are two types of AFS
+descriptors introduced by the option <code class="docutils literal notranslate"><span class="pre">afs_type</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-afs_type">
+<span id="cmdoption-arg-afs-type"></span><span class="sig-name descname"><span class="pre">afs_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-afs_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">afs_type=1</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates the orginal AFS
+published in the PRB paper <cite>cite{bartok2013}</cite>:</p>
+<div class="math notranslate nohighlight">
+\[\textrm{AFS}_{n,l}^j = \sum_{i,k} g_n(r_{ji}) g_n(r_{jk}) T_l (\cos{\theta_{ijk}})\]</div>
+<p>and has the dimension equal to <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code> <span class="math notranslate nohighlight">\(\times\)</span>
+<code class="docutils literal notranslate"><span class="pre">(n_cheb</span> <span class="pre">+</span> <span class="pre">1)</span></code>. The <span class="math notranslate nohighlight">\(g_n\)</span> and <span class="math notranslate nohighlight">\(T_l\)</span> are the radial
+channels and Tchebychev polynomials, respectivelly.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">afs_type=2</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates a new AFS
+descriptor with strong coupling between the radial channels:</p>
+<div class="math notranslate nohighlight">
+\[\textrm{AFS}_{n,n^\prime, l}^j = \sum_{i,k} g_n(r_{ji}) g_{n^{\prime}}(r_{jk}) T_l (\cos{\theta_{ijk}})\]</div>
+<p>The dimension of this descriptor is equal to <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code><span class="math notranslate nohighlight">\(^2\)</span>
+<span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">(n_cheb</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p>
+</li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">afs_type</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_rbf">
+<span id="cmdoption-arg-n-rbf"></span><span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_rbf" title="Permalink to this definition"></a></dt>
+<dd><p>The number of radial channels.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_cheb">
+<span id="cmdoption-arg-n-cheb"></span><span class="sig-name descname"><span class="pre">n_cheb</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_cheb" title="Permalink to this definition"></a></dt>
+<dd><p>The number of Tchebychev polynomials.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_cheb=5</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="soap">
+<h2>SOAP<a class="headerlink" href="#soap" title="Permalink to this heading"></a></h2>
+<p>To use  SOAP, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=5</span></code>.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptor are controlled by the options of the number of Gaussian
+radial functions <code class="docutils literal notranslate"><span class="pre">n_soap</span></code> and maximum of the spherical harmonics
+<code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
+If the <code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code> is set, the number of components
+are, if <code class="docutils literal notranslate"><span class="pre">lsoap_diag=.true.</span></code>: <code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code> <span class="math notranslate nohighlight">\(\times\)</span>
+<code class="docutils literal notranslate"><span class="pre">n_soap</span></code> <span class="math notranslate nohighlight">\(\cdot\)</span> <code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code><span class="math notranslate nohighlight">\(\times\)</span>
+(<code class="docutils literal notranslate"><span class="pre">n_soap</span></code> <span class="math notranslate nohighlight">\(\cdot\)</span> <code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code> +1)/2, whilst, if
+<code class="docutils literal notranslate"><span class="pre">lsoap_diag=.false.</span></code> the number of components is much less
+<code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">n_soap</span></code> <span class="math notranslate nohighlight">\(\times\)</span>
+<code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code><span class="math notranslate nohighlight">\(\times\)</span> (<code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code> +1)/2.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-n_soap">
+<span id="cmdoption-arg-n-soap"></span><span class="sig-name descname"><span class="pre">n_soap</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_soap" title="Permalink to this definition"></a></dt>
+<dd><p>The number of Gaussians.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_soap=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-l_max">
+<span id="cmdoption-arg-l-max"></span><span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-l_max" title="Permalink to this definition"></a></dt>
+<dd><p>The max l of the spherical harmonics.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_max=5</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lsoap_diag">
+<span id="cmdoption-arg-lsoap-diag"></span><span class="sig-name descname"><span class="pre">lsoap_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_diag" title="Permalink to this definition"></a></dt>
+<dd><p>The SOAP descriptor is diagonal in radial functions.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_diag=.false.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lsoap_lnorm">
+<span id="cmdoption-arg-lsoap-lnorm"></span><span class="sig-name descname"><span class="pre">lsoap_lnorm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_lnorm" title="Permalink to this definition"></a></dt>
+<dd><p>The SOAP descriptor is normalized in each <span class="math notranslate nohighlight">\(l\)</span>-angular channel by a factor <span class="math notranslate nohighlight">\(1/(2l+1)\)</span>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_lnorm=.false.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lsoap_norm">
+<span id="cmdoption-arg-lsoap-norm"></span><span class="sig-name descname"><span class="pre">lsoap_norm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_norm" title="Permalink to this definition"></a></dt>
+<dd><p>The SOAP descriptor is normalized.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_norm=.false.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_width_soap">
+<span id="cmdoption-arg-r-cut-width-soap"></span><span class="sig-name descname"><span class="pre">r_cut_width_soap</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(double</span> <span class="pre">precision)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width_soap" title="Permalink to this definition"></a></dt>
+<dd><p>The intermediate regime for the cutoff function.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r_cut_width_soap=0.5d0</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="power-spectrum-so3">
+<h2>Power Spectrum SO3<a class="headerlink" href="#power-spectrum-so3" title="Permalink to this heading"></a></h2>
+<p>To use  power spectrum SO3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=6</span></code>.</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>The parameters of this descriptor are controlled by the
+number of radial functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and the angular momentum of spherical harmonics <code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
+This descriptor has two radial function choices given by <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span></code> flag.
+The
+dimension of the descriptor will be: <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code> <span class="math notranslate nohighlight">\(\times\)</span>
+<code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code> if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">n_rbf</span> <span class="pre">+</span> <span class="pre">1</span></code> <span class="math notranslate nohighlight">\(\times\)</span>
+<code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code> if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code></p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-radial_pow_so3">
+<span id="cmdoption-arg-radial-pow-so3"></span><span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-radial_pow_so3" title="Permalink to this definition"></a></dt>
+<dd><p>The type of radial function. <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code> is the default choice and give the original polynomial radial basis
+(the same as the default basis of AFS descritor) whilst <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code> gives the radial basis based on Chebyshev polynomials
+described in refXXX. This option is common and acitve for others two descriptors: Power Spectrum SO3-3body and Bispectrum SO3 descriptors.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-0">
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-0" title="Permalink to this definition"></a></dt>
+<dd><p>The number of Gaussian (radial) functions.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1">
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-1" title="Permalink to this definition"></a></dt>
+<dd><p>The max values of the angular moment.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
+</dd></dl>
+
+<p>The <span class="math notranslate nohighlight">\(n_{rbf} \times (1 + l_{\textrm{max}})\)</span> or <span class="math notranslate nohighlight">\((n_{rbf} + 1) \times (1 + l_{\textrm{max}})\)</span> components of the power
+spectrum SO(3) descriptor of the <span class="math notranslate nohighlight">\(j^{th}\)</span> atom is written:</p>
+<div class="math notranslate nohighlight">
+\[p_{nl}^j = \sum_{m=-l_{\textrm{max}}}^{l_{\textrm{max}}} c_{nlm}^{j*}c_{nlm}^j
+         \nonumber\]</div>
+<p>with <span class="math notranslate nohighlight">\(n\)</span> in the range <span class="math notranslate nohighlight">\(0/1\)</span> to <span class="math notranslate nohighlight">\(n_{rbf}\)</span>, whilst
+<span class="math notranslate nohighlight">\(l = 0, \ldots l_{max}\)</span>. The Wigner coefficients can be
+written:</p>
+<div class="math notranslate nohighlight">
+\[c_{nlm}^j = w_j g_n(r=0) Y_{lm}(x,y,z \equiv \mathbf{0}) + \sum_{i \in v(j)} w_i g_n(r_{ij}) \cdotp Y_{lm}(x,y,z \equiv \mathbf{r}_{ij})
+         \nonumber\]</div>
+<p>the functions <span class="math notranslate nohighlight">\(g_n(r_{ij})\)</span> are polynomial basis functions (the same as the radial function on which AFS is built) or
+Chebyshev polynomials from refXXX.
+<span class="math notranslate nohighlight">\(Y_{lm}\)</span> is the spherical function in the Cartesian form.</p>
+</section>
+</section>
+<section id="power-spectrum-so3-3body">
+<h2>Power Spectrum SO3 3body<a class="headerlink" href="#power-spectrum-so3-3body" title="Permalink to this heading"></a></h2>
+<p>To use  power spectrum SO3 3body, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=603</span></code>. This descriptor follows the ideea
+of 3 body descriptor proposed by refXXXdeGironcoli.</p>
+<section id="id6">
+<h3>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>The parameters of this descriptor are controlled by the
+number of radial functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and the angular momentum of spherical harmonics <code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
+This descriptor has two radial function choices given by <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span></code> flag.
+The dimension of the descriptor will be: <span class="math notranslate nohighlight">\(n_{\textrm{rbf}}^2 \times (l_{\textrm{max}})\)</span>
+if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code> or  <span class="math notranslate nohighlight">\((1 + n_{\textrm{rbf}})^2  \times (l_{\textrm{max}})\)</span>
+if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code></p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-2">
+<span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-2" title="Permalink to this definition"></a></dt>
+<dd><p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-3">
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-3" title="Permalink to this definition"></a></dt>
+<dd><p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-4">
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-4" title="Permalink to this definition"></a></dt>
+<dd><p>The max values of the angular moment.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
+</dd></dl>
+
+<p>The <span class="math notranslate nohighlight">\(n_{rbf}^2 \times (1 + l_{\textrm{max}})\)</span> or <span class="math notranslate nohighlight">\((n_{rbf} + 1)^2 \times (1 + l_{\textrm{max}})\)</span> components of the power
+spectrum SO(3) 3 body descriptor of the <span class="math notranslate nohighlight">\(j^{th}\)</span> atom is written:</p>
+<div class="math notranslate nohighlight">
+\[p_{n_1 n_2 l}^j = \sum_{m=-l_{\textrm{max}}}^{l_{\textrm{max}}} c_{n_1 l -m}^{j*}c_{n_2 lm}^j
+         \nonumber\]</div>
+<p>with <span class="math notranslate nohighlight">\(n_{1,é}\)</span> are in the range of <span class="math notranslate nohighlight">\(0/1\)</span> to <span class="math notranslate nohighlight">\(n_{rbf}\)</span>, whilst
+<span class="math notranslate nohighlight">\(l = 0, \ldots l_{max}\)</span>. The Wigner coefficients are the same described for Power Spectrum SO3.</p>
+</section>
+</section>
+<section id="bispectrum-so3">
+<h2>Bispectrum SO3<a class="headerlink" href="#bispectrum-so3" title="Permalink to this heading"></a></h2>
+<p>To use bispectrum SO3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=7</span></code>.</p>
+<section id="id7">
+<h3>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptor are controlled by the number of Gaussian radial
+functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and maximal angular momentum of spherical
+harmonics, <code class="docutils literal notranslate"><span class="pre">(l_max</span></code>. The bispectrum SO3 descriptor components of
+the <span class="math notranslate nohighlight">\(i^{th}\)</span> atom are obtained from the power spectrum SO3
+coefficients <span class="math notranslate nohighlight">\(c_{nlm}^i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[b_{n l l_1 l_2}^i = \sum_{m=-l}^{l}\sum_{m_1=-l_1}^{l_1} \sum_{m_2=-l_2}^{l_2} c_{ n l m}^{*i}C_{m m_1 m_2}^{l l_1 l_2} c_{n l_1 m_1}^i c_{n l_2 m_2}^i
+                  \nonumber\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_{m m_1 m_2}^{l l_1 l_2}\)</span> is the 3-dimensional
+Clebsch-Gordan coefficients. The dimension of this desriptor is
+difficult to know beforehand. The naive estimation of the dimension
+is <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code><span class="math notranslate nohighlight">\(^3\)</span>. However, the
+selection rules of the Clebsch-Gordan coefficients reduce drastically
+this number e.g. for <code class="docutils literal notranslate"><span class="pre">n_rbf=7</span></code> and <code class="docutils literal notranslate"><span class="pre">l_max=5</span></code> the number of
+components is <code class="docutils literal notranslate"><span class="pre">140</span></code> (instead ). This number follow the GC/Karakala
+convention and take only the diagonal CG coefficients i.e.
+<span class="math notranslate nohighlight">\(l_1=l_2\)</span> in previous equation. This condition can be released
+using <code class="docutils literal notranslate"><span class="pre">lbso3_diag=.false.</span></code> (in the above mentioned the dimension
+becomes <code class="docutils literal notranslate"><span class="pre">483</span></code>). For numerical reasons, is highly recommended to use
+ONLY the diagonal form.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-5">
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-5" title="Permalink to this definition"></a></dt>
+<dd><p>The number of Gaussian (radial) functions.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-6">
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-6" title="Permalink to this definition"></a></dt>
+<dd><p>The max values of the angular moment.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lbso3_diag">
+<span id="cmdoption-arg-lbso3-diag"></span><span class="sig-name descname"><span class="pre">lbso3_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso3_diag" title="Permalink to this definition"></a></dt>
+<dd><p>If are taken the full bispectrum coeffcient (overcomplete), <code class="docutils literal notranslate"><span class="pre">.false.</span></code> or only diagonal
+<span class="math notranslate nohighlight">\(l_1=l_2\)</span> <code class="docutils literal notranslate"><span class="pre">.true.</span></code></p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lbso3_diag=.false.</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="bispectrum-so4">
+<h2>Bispectrum SO4<a class="headerlink" href="#bispectrum-so4" title="Permalink to this heading"></a></h2>
+<p>To use bispectrum SO4, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=9</span></code>.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptors are controlled by maximum angular moment <span class="math notranslate nohighlight">\(j_{max}\)</span>.
+The dimension is not easy to guess. Moreover, it depends on the
+choice on diagonal (<span class="math notranslate nohighlight">\(j_1=j_2\)</span>) or full the complete set of
+<span class="math notranslate nohighlight">\(j_1, j_2\)</span>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-j_max">
+<span id="cmdoption-arg-j-max"></span><span class="sig-name descname"><span class="pre">j_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-j_max" title="Permalink to this definition"></a></dt>
+<dd><p>The maximum componenet of the spectral
+function.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">j_max=1.5</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv_r0_input">
+<span id="cmdoption-arg-inv-r0-input"></span><span class="sig-name descname"><span class="pre">inv_r0_input</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-inv_r0_input" title="Permalink to this definition"></a></dt>
+<dd><p>The value of the maximum projection
+at north pole in <span class="math notranslate nohighlight">\(\pi\)</span> units. The final value that will be
+used in code will be multiplied by <span class="math notranslate nohighlight">\(\pi\)</span>. The value should
+be slightly lower that 1 but strictly positive. The default
+value is suggested by the brilliant paper of Bartok et al. If
+you do not have ideea about the <span class="math notranslate nohighlight">\(SO(4)\)</span> theory, trust the
+default value.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">inv_r0_input=</span></code> <code class="docutils literal notranslate"><span class="pre">1.d0</span> <span class="pre">-</span> <span class="pre">0.02/</span></code><span class="math notranslate nohighlight">\(\pi\)</span></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lbso4_diag">
+<span id="cmdoption-arg-lbso4-diag"></span><span class="sig-name descname"><span class="pre">lbso4_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso4_diag" title="Permalink to this definition"></a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> only the diagonal
+components are selected (as in GAP). If <code class="docutils literal notranslate"><span class="pre">.false.</span></code> is SNAP-like
+way and all the components are selected. It should be notted
+that the bi-spectrum is overcomplete descriptor and only
+diagonal components are mathematically justified. However, in
+the original SNAP potential of Thompsson is was used in full
+version.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lbso4_diag=.false.</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="mtp">
+<h2>MTP<a class="headerlink" href="#mtp" title="Permalink to this heading"></a></h2>
+<p>To use MTP, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=100</span></code>.</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<p>The parameters of the descriptors are controlled by minimum and the maximum degree of the
+polynomials <code class="docutils literal notranslate"><span class="pre">mtp_poly_min</span></code> and <code class="docutils literal notranslate"><span class="pre">mtp_poly_max</span></code>. The degree of the
+generating radial function will be the internal parameter
+<code class="docutils literal notranslate"><span class="pre">mtp_rad_order</span> <span class="pre">=mtp_poly_max</span> <span class="pre">-</span> <span class="pre">mtp_poly_min</span> <span class="pre">+1</span></code>. The dimension of
+the descriptor i.e. number of basis function is given by
+<code class="docutils literal notranslate"><span class="pre">mtp_dim=mtp_rad_order</span> <span class="pre">+</span> <span class="pre">2*mtp_rad_order**2</span> <span class="pre">+</span> <span class="pre">mtp_rad_order**3</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-mtp_poly_min">
+<span id="cmdoption-arg-mtp-poly-min"></span><span class="sig-name descname"><span class="pre">mtp_poly_min</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_min" title="Permalink to this definition"></a></dt>
+<dd><p>The minimum degree of the radial function</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">mtp_poly_min=2</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-mtp_poly_max">
+<span id="cmdoption-arg-mtp-poly-max"></span><span class="sig-name descname"><span class="pre">mtp_poly_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_max" title="Permalink to this definition"></a></dt>
+<dd><p>The minimum degree of the radial function</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">mtp_poly_max=4</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lambda_krr">
+<span id="cmdoption-arg-lambda-krr"></span><span class="sig-name descname"><span class="pre">lambda_krr</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-lambda_krr" title="Permalink to this definition"></a></dt>
+<dd><p>The regularization using <span class="math notranslate nohighlight">\(L^2\)</span> or
+<span class="math notranslate nohighlight">\(L^1\)</span> norm. It is active only for cases <code class="docutils literal notranslate"><span class="pre">snap_fit_type=0</span></code>
+(for a fixed positive value of <code class="docutils literal notranslate"><span class="pre">lambda_krr</span></code> and
+<code class="docutils literal notranslate"><span class="pre">snap_fit_type=10</span></code> (for a grid). For details see the correspoding
+documentation. For negative values this option is skipped and
+standard fit is performed.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">lambda_krr=-1.d0</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="system.html" class="btn btn-neutral float-left" title="Atomic systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral float-right" title="Databases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
