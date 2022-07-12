@@ -4,7 +4,7 @@
 
 ## Contents
 
-This repository hosts the documentation of the Milady software package.
+This repository hosts the documentation of the `Milady 2.0` software package.
 
 ## Local build instructions
 
