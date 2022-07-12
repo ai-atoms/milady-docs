@@ -1,0 +1,340 @@
+{
+  "descriptors": {
+    "r_cut": {
+      "type": "real",
+      "doc string": "The cut-off of the descriptor (in \u00c5). ",
+      "value": "5.0"
+    },
+    "desc_forces": {
+      "type": "logical",
+      "doc string": "Compute or not the force descriptors. Also the writting of the force descriptors is desactivated. Active for all descriptors. In the case ``desc_forces=.false.`` only the positions are read. ",
+      "value": ".true."
+    },
+    "descriptor_type": {
+      "type": "integer",
+      "doc string": "Type of descriptor to be used. #. ``descriptor_type=1`` G2 #. ``descriptor_type=2`` G3 #. ``descriptor_type=3`` Behler #. ``descriptor_type=4`` Angular Fourier Series (AFS) #. ``descriptor_type=5`` Smooth Overlap of Atomic Positions (SOAP) #. ``descriptor_type=6`` Power Spectrum SO3 #. ``descriptor_type=7`` Bispectrum SO3 #. ``descriptor_type=8`` Power Spectrum SO4 #. ``descriptor_type=9`` bispectrum SO4 #. ``descriptor_type=14`` hybrid G2 + AFS #. ``descriptor_type=19`` hybrid G2 + bispectrum SO4 #. ``descriptor_type=100`` MTP\\ :math:`^3` (up to order :math:`M_{\\mu,\\nu}`, with :math:`\\nu \\le 3`) ",
+      "value": "1"
+    },
+    "eta_max_g2": {
+      "type": "integer",
+      "doc string": "The max value of :math:`\\eta`. The grid will be taken between :math:`10^{-2}` and this value. ",
+      "value": "0.8"
+    },
+    "n_g2_eta": {
+      "type": "integer",
+      "doc string": "The grid for :math:`\\eta` with the following generatig formulae: .. math:: \\eta_p = 10^{-2} + \\frac{p-1}{\\textrm{n_g2_eta}}( \\textrm{eta_max_g2}- 10^{-2}) where :math:`p` range strats to 1 up to ``n_g2_eta``. ",
+      "value": "3"
+    },
+    "n_g2_rs": {
+      "type": "integer",
+      "doc string": "The grid for :math:`r_s` with the following generating formulae: .. math:: r_s^p = p-1 where :math:`p` range starts to 1 up to ``n_g2_rs``. ",
+      "value": "1"
+    },
+    "n_g3_eta": {
+      "type": "integer",
+      "doc string": "The grid for :math:`\\eta` with the following generatig formulae: .. math:: \\eta_p = 10^{-2} + \\frac{p-1}{\\textrm{n_g2_eta}}(1 - 10^{-2}) where :math:`p` range strats to 1 up to ``n_g2_eta``. ",
+      "value": "3"
+    },
+    "n_g3_lambda": {
+      "type": "integer",
+      "doc string": "the grid for :math:`\\lambda` with the following generating formulae: .. math:: \\lambda_p = -1 + 2(p-1) where :math:`p` range starts to 1 up to ``n_g3_lambda``. Is highly recommended the value ``n_g3_lambda``\\ :math:`=2` i. e. :math:`\\lambda` will have the value :math:`1` and :math:`-1`. ",
+      "value": "2"
+    },
+    "n_g3_zeta": {
+      "type": "integer",
+      "doc string": "The grid for :math:`\\zeta` with the following generating formulae: .. math:: \\zeta_p = 2^{p-1} where :math:`p` range starts to 1 up to ``n_g3_zeta``. ",
+      "value": "2"
+    },
+    "strict_behler": {
+      "type": "logical",
+      "doc string": "All the parameters are set-up automatically following one of the Behler\u2019s paper. ",
+      "value": "F"
+    },
+    "afs_type": {
+      "type": "integer",
+      "doc string": "- ``afs_type=1``: ``integer`` this option activates the orginal AFS published in the PRB paper `\\cite{bartok2013}`: .. math:: \\textrm{AFS}_{n,l}^j = \\sum_{i,k} g_n(r_{ji}) g_n(r_{jk}) T_l (\\cos{\\theta_{ijk}}) and has the dimension equal to ``n_rbf`` :math:`\\times` ``(n_cheb + 1)``. The :math:`g_n` and :math:`T_l` are the radial channels and Tchebychev polynomials, respectivelly. - ``afs_type=2``: ``integer`` this option activates a new AFS descriptor with strong coupling between the radial channels: .. math:: \\textrm{AFS}_{n,n^\\prime, l}^j = \\sum_{i,k} g_n(r_{ji}) g_{n^{\\prime}}(r_{jk}) T_l (\\cos{\\theta_{ijk}}) The dimension of this descriptor is equal to ``n_rbf``\\ :math:`^2` :math:`\\times` ``(n_cheb + 1)``. ",
+      "value": " 1"
+    },
+    "n_rbf": {
+      "type": "integer",
+      "doc string": "The number of Gaussian (radial) functions. ",
+      "value": "4"
+    },
+    "n_cheb": {
+      "type": "integer",
+      "doc string": "The number of Tchebychev polynomials. ",
+      "value": "5"
+    },
+    "n_soap": {
+      "type": "integer",
+      "doc string": "The number of Gaussians. ",
+      "value": "4"
+    },
+    "l_max": {
+      "type": "integer",
+      "doc string": "The max values of the angular moment. ",
+      "value": "4"
+    },
+    "lsoap_diag": {
+      "type": "logical",
+      "doc string": "The SOAP descriptor is diagonal in radial functions. ",
+      "value": ".false."
+    },
+    "lsoap_lnorm": {
+      "type": "logical",
+      "doc string": "The SOAP descriptor is normalized in each :math:`l`-angular channel by a factor :math:`1/(2l+1)`. ",
+      "value": ".false."
+    },
+    "lsoap_norm": {
+      "type": "logical",
+      "doc string": "The SOAP descriptor is normalized. ",
+      "value": ".false."
+    },
+    "r_cut_width_soap": {
+      "type": "double precision",
+      "doc string": "The intermediate regime for the cutoff function. ",
+      "value": "0.5d0"
+    },
+    "lbso3_diag": {
+      "type": "logical",
+      "doc string": "If are taken the full bispectrum coeffcient (overcomplete), ``.false.`` or only diagonal :math:`l_1=l_2` ``.true.`` ",
+      "value": ".false."
+    },
+    "j_max": {
+      "type": "integer",
+      "doc string": "The maximum componenet of the spectral function. ",
+      "value": "1.5"
+    },
+    "inv_r0_input": {
+      "type": "real",
+      "doc string": "The value of the maximum projection at north pole in :math:`\\pi` units. The final value that will be used in code will be multiplied by :math:`\\pi`. The value should be slightly lower that 1 but strictly positive. The default value is suggested by the brilliant paper of Bartok et al. If you do not have ideea about the :math:`SO(4)` theory, trust the default value. Default ``inv_r0_input=`` ``1.d0 - 0.02/``\\ :math:`\\pi` .. option:: lbso4_diag (logical) If ``.true.`` only the diagonal components are selected (as in GAP). If ``.false.`` is SNAP-like way and all the components are selected. It should be notted that the bi-spectrum is overcomplete descriptor and only diagonal components are mathematically justified. However, in the original SNAP potential of Thompsson is was used in full version. ",
+      "value": ".false."
+    },
+    "mtp_poly_min": {
+      "type": "integer",
+      "doc string": "The minimum degree of the radial function ",
+      "value": "2"
+    },
+    "mtp_poly_max": {
+      "type": "integer",
+      "doc string": "The minimum degree of the radial function ",
+      "value": "4"
+    },
+    "lambda_krr": {
+      "type": "real",
+      "doc string": "The regularization using :math:`L^2` or :math:`L^1` norm. It is active only for cases ``snap_fit_type=0`` (for a fixed positive value of ``lambda_krr`` and ``snap_fit_type=10`` (for a grid). For details see the correspoding documentation. For negative values this option is skipped and standard fit is performed. ",
+      "value": "-1.d0"
+    },
+    "weighted": {
+      "type": "logical",
+      "doc string": "If ``.true.`` there are computed weighted descriptors. The weight factor is the ``atomic_mass`` of each element devided by ``factor_weight_mass``. In the case ``weighted=.false.`` the weight is 1. ",
+      "value": ".false."
+    },
+    "factor_weight_mass": {
+      "type": "real",
+      "doc string": "The weight factor in computing descriptors. The ``atomic_mass`` of each element is devided by ``factor_weight_mass``. Active only in the case ``weighted=.true.``. The values should be chossen in such way that ``atomic_mass`` / ``factor_weight_mass`` should be as much as possible close to 1 (usually, 50.d0 is a good choice) ",
+      "value": "50.d0"
+    }
+  },
+  "database": {
+    "db_file": {
+      "type": "character(len=80)",
+      "doc string": "The file that design the database chosen for the potential fitting. each line has the syntax: ``class KLM number_of_files number_of_selected_files`` ",
+      "value": "\"db_model_in\""
+    },
+    "dim_data": {
+      "type": "integer",
+      "doc string": "Number of elements of the database. This variable is extrenal (imposed by the user) only in the case ``toy_model=.true.``. Otherwise, this variable is an internal variable that depends on the design of the database (i.e. the file ``db_file.in`` ",
+      "value": "100"
+    },
+    "n_frac": {
+      "type": "real",
+      "doc string": "Fraction of database used for testing ( ``dim_data_test = dim_data * n`` ) and ``1.0-n_frac`` fraction is used for trainning (``dim_data_train``). ::math`0.0 \\le n_frac \\le 1.0`. Set 0 for no prediction. Other possibility to split the database in train and test is given by the desing of the database. ",
+      "value": "0.d0"
+    },
+    "selection_type": {
+      "type": "integer",
+      "doc string": "Inside each ``class`` and ``KLM`` subdatabase mentioned in ``db_file`` #. ``1`` selects first \"ns\" elements of the database; #. ``2`` selects last \"ns\" elements of the database; #. | ``3`` selects randomly \"ns\" subsets of \"kelem\" elements of the database #. | ``4`` selects first \"ns\" subsets of \"kelem\" elements of the database from a starting configuration defined in the ``db_file`` | In the case of new type of input, using ``db_file`` \"ns\" is given by ``number_of_selected_files`` inside ``class``.\\ ``KLM`` | ",
+      "value": "3"
+    },
+    "seed": {
+      "type": "integer",
+      "doc string": "Seed for random number generator. ",
+      "value": "11"
+    },
+    "db_path": {
+      "type": "character(len=60)",
+      "doc string": "Path to the database where the poscar are located. ",
+      "value": "\"./DB/\""
+    },
+    "build_subdata": {
+      "type": "logical",
+      "doc string": "Build a sub database from the whole database. ",
+      "value": ".false."
+    },
+    "pref": {
+      "type": "character(len=2)",
+      "doc string": "The prefix of subdatabase name. ",
+      "value": "\"00\""
+    },
+    "nd_data": {
+      "type": "integer",
+      "doc string": "Number of ``mlposcar`` files included in the repository from which the database is extracted. ",
+      "value": "0"
+    },
+    "ns_data": {
+      "type": "integer",
+      "doc string": "How many mlposcar files are used in order to build the database. ",
+      "value": "100"
+    },
+    "i_begin": {
+      "type": "integer",
+      "doc string": "Start to read poscar from ``i_begin+1``. ",
+      "value": "0"
+    },
+    "kelem": {
+      "type": "integer",
+      "doc string": "Random selection of ``ns_data``. Subset of ``kelem`` elements of database Default 100. .. option:: path (character(len=60)), Path to the database where the poscar are located. ",
+      "value": "\"/home/marinica/test_ml/data/\""
+    },
+    "write_desc": {
+      "type": "logical",
+      "doc string": "Writing or not the descriptors. The directory ``descDB`` should be created previously. Active for all descriptors. ",
+      "value": ".false."
+    },
+    "write_design_matrix": {
+      "type": "logical",
+      "doc string": "Dump the descriptors and weigths in the from of design matix that has the dimension ``number_of_data`` :math:`\\times` ``dim_desc`` + 5, where number_of_data are the number of data points (energy, force or stress) used to fit the potential and ``dim_desc`` is the dimension of descriptor. The file ``design_matrix.dat`` is created. This option is active for normal trainning (``ml_type >= 0``). **Format :** - The first column indicates the number of atoms (number of atoms for energy descriptor, 0 for force or stress line), from 2nd column up to the ``dim_desc`` + 1 column it is stored the descriptor components, ``dim_desc`` being the dimension of descriptor. - The ``dim_desc+2`` column is for target (energy, force or stress). - The ``dim_desc+3`` column indicates if that line comes from energy (1); force (2); or stress (3). . - The ``dim_desc+4`` column indicates the weight used for that data point in loss function. - The ``dim_desc+5`` column indicates from which file comes that data point. ",
+      "value": ".false."
+    },
+    "length_kernel": {
+      "type": "real",
+      "doc string": ":math:`k_2` option. It defines :math:`l_{SE}` from Eqs. `[kernel:se] <#kernel:se>`__ and `[kernel:po] <#kernel:po>`__. ",
+      "value": " 1.d0"
+    },
+    "sigma_kernel": {
+      "type": "real",
+      "doc string": ":math:`k_2` option. It defines :math:`\\sigma_{SE}` from Eqs. `[kernel:se] <#kernel:se>`__ and `[kernel:po] <#kernel:po>`__. ",
+      "value": " 1.d0"
+    },
+    "kernel_power": {
+      "type": "real",
+      "doc string": ":math:`k_2` option. It defines :math:`p` from Eqs. `[kernel:po] <#kernel:po>`__, `[kernel:dist] <#kernel:dist>`__ and `[kernel:maha] <#kernel:maha>`__. The recommended values are 3, 1 and 1/2, respectively. ",
+      "value": " 2.d0"
+    },
+    "classes_for_kernel": {
+      "type": "character",
+      "doc string": ":math:`k_1` option. It defines the classes that define the kernel e.g. ``classes_for_kernel=\"10 11\"`` defines all the atomic environements from the classes 10 and 11 as the kernel. ",
+      "value": " \" 01 \""
+    },
+    "np_kernel_full": {
+      "type": "integer",
+      "doc string": ":math:`k_1` option. Number of points selected from the whole databse, except the reference. However, depending on the selection algorithm the final number of selected points can be lower that the initial value. ",
+      "value": " 400"
+    },
+    "np_kernel_ref": {
+      "type": "integer",
+      "doc string": ":math:`k_1` option. Number of points selected from the reference. However, depending on the selection algorithm the number of final points can be lower. ",
+      "value": " 800"
+    },
+    "write_kernel_matrix": {
+      "type": "logical",
+      "doc string": "Writes or not a parameters from kernel that will be used for subsequent calculations. It is written in the file ``kernel_matrix.dat`` than has the shape ``number_of_data_kernel`` :math:`\\times` ``dim_desc`` + 3 TO BE COMPLETED ONCE PROGRAMMED. ",
+      "value": ".false."
+    }
+  },
+  "model": {
+    "ml_type": {
+      "type": "integer",
+      "doc string": "Machine learning algo. The options are: #. ``ml_type = -2`` analyze the data and, if required, made an intelligent choice of kernel used for mode ``ml_type=1``. #. ``ml_type=-1`` Just compute the descriptors (please pay attention to activate the writting with ``write_desc=.true.``) #. ``ml_type=0`` basis function (e.g. SNAP, SNAP 2) or other variants #. ``ml_type=1`` kernel ridge regression #. ``ml_type=2`` **not yet** GP ",
+      "value": "0"
+    },
+    "snap_order": {
+      "type": "integer",
+      "doc string": "The order of fit. This can have the values of 1 or 2 for linear (1 + :math:`D` parameters) or quadratic regression (1 + :math:`D` + :math:`D^2` parameters), respectivelly, in the descriptor space. For the case ``snap_order = 2`` it should be set also the type of the quadratic regression. ",
+      "value": "1"
+    },
+    "snap_type_quadratic": {
+      "type": "integer",
+      "doc string": "The type of quadratic fit. For the case 1 the solution is preconditionned by the linear fit i.e. the first 1 + :math:`D` are exactelly set to the LML solution and only the remaining :math:`D^2` parameters are fitted quadratically. For the case 2 the full quadratic solution is provided, all the parameters are fitted without preconditionning. ",
+      "value": "1"
+    },
+    "snap_fit_type": {
+      "type": "integer",
+      "doc string": "The type of subroutine used in order to solve least square (LS) problem :math:`\\mathbf{A} \\beta= \\mathbf{b}`. :math:`\\mathbf{A}` is :math:`m \\times d` matrix, :math:`m` being the number of observations and :math:`d` the number of parameters (in the case of linear ML the dimension of descriptor + 1), :math:`\\beta` the parameter matrix :math:`d \\times 1` and :math:`\\mathbf{b}` the observations matrix :math:`m \\times 1`. Actually in the MiLaDy implementation we build :math:`\\mathbf{Amat}` matrix that has the dimensions :math:`d \\times m` being in fact :math:`\\mathbf{A}^T` (with the notation used for this manual): #. ``snap_fit_type=0``: home made subroutine based on Lapack subroutines ``dsytri`` and ``dsytrf``: inversion of a symmetric real matrix ( :math:`\\mathbf{A}^T \\mathbf{A}`) using Bunch-Kaufman diagonal pivoting method. #. ``snap_fit_type=1``: Lapack solution of LS based on QR decomposition. Adapted for fulll rank matrix :math:`\\mathbf{A}`. In :math:`\\mathbf{A}` is not full rank the inversion stop with a error. This option use Lapack routine ``xGELS`` on the assumption that :math:`\\textrm{rank}(A) = \\min(m,b)`, in other words, :math:`A` has full rank, finding a least squares solution of an overdetermined system when :math:`m > d`, and a minimum norm solution of an underdetermined system when :math:`m < d`. ``xGELS`` uses a QR or LQ factorization of :math:`\\mathbf{A}`. #. ``snap_fit_type=2``: Lapack solution of LS problem with constraints. The constraints are of form :math:`\\mathbf{B}x=\\mathbf{d}`. The matrix :math:`\\mathbf{B}` and the vector :math:`\\mathbf{d}` are filled with all the data (input and target for energy, force or stress) contained in the class fixed by ``snap_class_constraints``. The solution of constrained LS problem is rovided by the Lapack subroutine ``dgles``. #. ``snap_fit_type=3``: In the general case when we may have :math:`\\textrm{rank}(\\mathbf{A}) < \\min(m,b)`, in other words, :math:`\\mathbf{A}` may be rank-deficient, we seek the minimum norm least squares solution :math:`\\beta` which minimizes both :math:`\\left| \\beta \\right|^2` and :math:`\\left| b - A \\beta \\right|^2`. With this option we use the Lapack routine ``xGELSY`` that use a complete orthogonal factorization of :math:`\\mathbf{A}`. The subroutine ``xGELSY`` is a faster version of ``xGELSX``, but requires more workspace since it calls blocked algorithms to perform the complete orthogonal factorization. ``xGELSX`` has been retained for compatibility with Release 2.0 of LAPACK. With this option a rank estimation is possible. #. ``snap_fit_type=4``: In the general case when we may have :math:`\\textrm{rank}(\\mathbf{A}) < \\min(m,b)`, in other words, :math:`\\mathbf{A}` may be rank-deficient, we seek the minimum norm least squares solution :math:`\\beta` which minimizes both :math:`\\left| \\beta \\right|^2` and :math:`\\left| b - A \\beta \\right|^2`. With this option we use the Lapack routine ``xGELSD`` that uses the singular value decomposition of :math:`\\mathbf{A}` with an algorithm based on divide and conquer. The subroutine ``xGELSD`` is a faster version and up-to-date version of older ``xGELSS``. XWith this option a rank estimation is possible. ",
+      "value": "0"
+    },
+    "snap_class_constraints": {
+      "type": "string(len=2)",
+      "doc string": "The class that imposes the constraints on fit. Is active only if ``snap_fit_type=2``. All the configuration mentioned in this class will fill the constraints matrix :math:`\\mathbf{B}` and the target vector :math:`\\mathbf{d}`. ",
+      "value": "\"07\""
+    },
+    "snap_regularization_type": {
+      "type": "integer",
+      "doc string": "#. ``snap_regularization_type``\\ =0: no regularization #. ``snap_regularization_type``\\ =1: applies the regularized solution of parameters, :math:`\\mathbf{w}(\\lambda_{krr})` found by the Moore-Penrose inversion: .. math:: \\mathbf{w}(\\lambda_{krr})= \\left( \\mathbf{A}^T \\mathbf{A} + \\lambda_{rr} \\mathbf{I} \\right)^{-1} \\mathbf{A}^T \\mathbf{y} The properties of the logarithmic search grid of :math:`\\lambda_{krr}` are defined by the following parameters: - | ``real``, ``min_lambda_krr`` and ``max_lambda_krr`` the min and max of the logarithmic grid. If one of them is negative then an automatic grid with 21 points is set-up between ``1.d-10`` and ``1.d+10``. | Default ``min_lambda_krr =1.d-10`` and ``max_lambda_krr =1.d+10``. - | ``integer``, ``n_values_lambda_krr`` the number of points on grid. | ",
+      "value": "21"
+    },
+    "train_only": {
+      "type": "loginal",
+      "doc string": "Only the trainning is performed. No tests at all. This option is tested only in the case of ``ml_type=0``. target vector :math:`d`. ",
+      "value": ".false."
+    },
+    "iread_ml": {
+      "type": "integer",
+      "doc string": "0 compute on the fly, 1 read from previous run. ",
+      "value": "0"
+    },
+    "isave_ml": {
+      "type": "integer",
+      "doc string": "0 do nothing, 1 write on the HDD and run, 2 MPI and threading. ",
+      "value": "0"
+    },
+    "kcross": {
+      "type": "logical",
+      "doc string": "Default is ``.false.``. .. option:: marginal_likelihood (logical) ",
+      "value": ".false."
+    },
+    "sparsification": {
+      "type": "logical",
+      "doc string": "Default is ``.false.``. .. option:: n_kcross (integer) ",
+      "value": "0"
+    },
+    "target_type": {
+      "type": "integer",
+      "doc string": "1 - energy, 2 - force. ",
+      "value": "1"
+    },
+    "force_comp": {
+      "type": "integer",
+      "doc string": "1 - x component of forces, 2 - y component of forces, 3 - z component of forces. ",
+      "value": "1"
+    },
+    "toy_model": {
+      "type": "logical",
+      "doc string": "Type of the database: #. ``toy_model=.true.`` Database is generated using an analytical function on which is applied some noise (:math:`L` being a parameter and D the dimensionality of one point of the data): .. math:: f(\\mathbf{x}, L) = \\begin{cases} \\sin \\left( \\frac{2 \\pi x_1 }{L} \\right) & \\text{if } \\mathbf{x} \\in \\mathbb{R}^1 \\\\ \\sin \\left( \\frac{2 \\pi x_1 }{L} \\right) + \\cos \\left( \\frac{2 \\pi x_2 }{L} \\right) & \\text{if } \\mathbf{x} \\in \\mathbb{R}^2 \\\\ \\sin \\left( \\frac{2 \\pi x_1 }{L} \\right) + \\cos \\left( \\frac{2 \\pi x_2 }{L} \\right) + \\sum_{i=3}^D \\exp{ \\frac{1}{2 L} \\left(x_i-\\frac{L}{i-2} \\right)^2 } & \\text{if } \\mathbf{x} \\in \\mathbb{R}^D, \\text{with D $\\ge$ 3} \\\\ \\end{cases} \\nonumber #. ``toy_model=.false.`` Database was already computed. In order to manage the database input please read the section `4 <#sec:odatafiles>`__. ",
+      "value": ".false."
+    }
+  },
+  "system": {
+    "fix_no_of_elements": {
+      "type": "integer",
+      "doc string": "The number of elements in the input list. This list should be exhaustive and should contains all the elements of the database. This number should be equal to the numbers of chemical symbols (and correspondings weigths in ``chemical_elements`` and ``weigth_per_element``) ",
+      "value": "1"
+    },
+    "chemical_elements": {
+      "type": "character(len=80)",
+      "doc string": "The chemical symbols of the elements contained in the database. The elements should be among the 109 elements of the periodic table. E.g. for there elements should be like that: ``chemical_elements= \u201d Fe W Re \u201d``. The custom weigths associated with those elements are defined in ``weigth_per_element``. ",
+      "value": " \u201d \u201d"
+    },
+    "chemical_elements_invisible": {
+      "type": "character(len=80)",
+      "doc string": "The chemical symbols of the elements that will be invisible by the other atoms i.e. any information of then will not be included in the computation of descriptors. ",
+      "value": " \u201d \u201d"
+    },
+    "weight_per_element": {
+      "type": "character(len=80)",
+      "doc string": "The weigths associated with the chemical elements defined in the list ``chemical_elements``. This list should be formatted as: ``weight_per_element= \u201d 1.0 2.0 3.0 \u201d`` i.e. for the example given in the examle given above ``chemical_elements= \u201d Fe W Re \u201d`` the weigths are ``1.0``, ``2.0`` and ``3.0``, respectivelly. For the particular case when the ``weight_per_element= \u201d \u201d`` is empty list the weight of the atoms of :math:`i^{th}` type are automatically put to square root of the mass of that type :math:`\\sqrt(m_i)`. ",
+      "value": " \" \""
+    }
+  }
+}
