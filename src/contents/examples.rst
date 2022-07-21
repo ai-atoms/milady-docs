@@ -232,7 +232,7 @@ Let’s look to the ``vacancy.ml_03`` file.
 
 
 .. code-block:: fortran
-   :emphasize-lines: 30-34
+   :emphasize-lines: 5,20,30-34
 
    &input_ml
    debug=.false.
@@ -253,7 +253,7 @@ Let’s look to the ``vacancy.ml_03`` file.
    j_max=4.0                  !angular moment for bispectrum SO4
 
    !Kernel dump settings   
-   write_kernel_matrix=.true. !write or not the selected kernel.!set 3 (default)
+   write_kernel_matrix=.false. !write or not the selected kernel.!set 3 (default)
    n_pca=3                    !set 3 (default)
    classes_for_mcd="07 08 13" !classes used for the MCD reference.
    
