@@ -290,8 +290,8 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 <span class="c">!ML model</span>
-<span class="n">ml_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                  </span><span class="c">!set 1 to perform kernel fit</span>
-<span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">               </span><span class="c">!set 1 for linear regression</span>
+<span class="hll"><span class="n">ml_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                  </span><span class="c">!set 1 to perform kernel fit</span>
+</span><span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">               </span><span class="c">!set 1 for linear regression</span>
 <span class="n">snap_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
 
@@ -305,8 +305,8 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 <span class="n">j_max</span><span class="o">=</span><span class="mf">4.0</span><span class="w">                  </span><span class="c">!angular moment for bispectrum SO4</span>
 
 <span class="c">!Kernel dump settings</span>
-<span class="n">write_kernel_matrix</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"> </span><span class="c">!write or not the selected kernel.!set 3 (default)</span>
-<span class="n">n_pca</span><span class="o">=</span><span class="mi">3</span><span class="w">                    </span><span class="c">!set 3 (default)</span>
+<span class="hll"><span class="n">write_kernel_matrix</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"> </span><span class="c">!write or not the selected kernel.!set 3 (default)</span>
+</span><span class="n">n_pca</span><span class="o">=</span><span class="mi">3</span><span class="w">                    </span><span class="c">!set 3 (default)</span>
 <span class="n">classes_for_mcd</span><span class="o">=</span><span class="s2">&quot;07 08 13&quot;</span><span class="w"> </span><span class="c">!classes used for the MCD reference.</span>
 
 <span class="c">!Choose the classes more close to the bulk, MD bulk, deformed bulk etc</span>
