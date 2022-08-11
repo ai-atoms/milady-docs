@@ -1,6 +1,6 @@
 ![](src/static/logo.png)
 
-[![](https://img.shields.io/github/workflow/status/arn-all/milady-docs/CI?label=docs%20build&style=for-the-badge)](https://arn-all.github.io/milady-docs/)
+[![](https://img.shields.io/github/workflow/status/ai-atoms/milady-docs/CI?label=docs%20build&style=for-the-badge)](https://ai-atoms.github.io/milady-docs/)
 
 ## Contents
 
