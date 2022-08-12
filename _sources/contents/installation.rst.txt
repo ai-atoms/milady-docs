@@ -14,7 +14,7 @@ The current version of ``MILADY`` requires:
 Compilation modes
 -----------------
 
-MILADY has three compilation modes:
+``MILADY`` has three compilation modes:
 
 .. glossary::
   MILADY-MIX
@@ -48,7 +48,7 @@ Step 1: Setting environment variables
 Will note by ``MILADY`` the github repository. 
 
 1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
-    Hereafter, we will call ``${MLD}`` the location of MLD directory. 
+    Hereafter, we will call ``${MLD}`` the location of ``MLD`` directory. 
 
 2.  Your environment should contain the following 9 variables compulsory for the compilation ``MILADY``
 
@@ -84,7 +84,6 @@ Will note by ``MILADY`` the github repository.
       .. code-block:: bash
 
         function f_setenv_milady_marinica {
-          # example of milady compilation directories: all under $MLD_ROODIR
           unset MLD_ROODIR
           unset MLD_SCRDIR
           unset MLD_SRCDIR
@@ -103,8 +102,8 @@ Will note by ``MILADY`` the github repository.
           export MLD_SETENV=ON
 
           export MKL_ROOT=${MKLROOT}
-          export OMP_INSDIR=/usr/local/iopenmpi
-          export OMP_ROOT=/usr/local/iopenmpi.4.1.2/
+          export OMP_INSDIR=/usr/local/iopenmpi/
+          export OMP_ROOT=/usr/local/iopenmpi/
 
           export PATH=${MLD_SRCDIR}/scripts:${PATH}
         }
@@ -162,9 +161,9 @@ Build on Marconi
 Here we provide some particular build on well known and wide used plarfrom across the world 
 on which some users have built ``MILADY``. Here is about the italian 
 supercomputer `MARCONI <https://www.hpc.cineca.it/hardware/marconi>`_ .
-Probably there are other more perfomant way to install ``MILADY`` on MARCONI but here we describe the 
-one that works and we use. If you know  better way we are happy to share youe experience and send us an 
-email. 
+Probably there are others, more perfomant, ways to install ``MILADY`` on MARCONI but here we describe the 
+one that works and we use. If you know  better ways we are happy to share your experience and send us an 
+email to update the present procedure.  
 
 Step 1: Loading modules and setting some bash  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -173,10 +172,10 @@ Will note again by ``MILADY`` the github repository and we preserve the same str
 directories as in previous examples.   
 
 1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
-    Hereafter, we will call ``${MLD}`` the location of MLD directory. 
+    Hereafter, we will call ``${MLD}`` the location of ``MLD`` directory. 
 
 2.  Set properly the  ``bash`` environement. My ``${HOME}/.bashrc`` file contains the 
-    following modules ans variables: 
+    following modules and variables: 
 
     .. code-block:: bash
 
@@ -196,12 +195,11 @@ directories as in previous examples.
       ``mld_testdir`` is a directory of tests that is not compulsory. 
 
 3.  Define in your environement the following ``bash`` function (I'm lazy and I add that at the end 
-    of my ``${HOME}/.bashrc``  )
+    of my ``${HOME}/.bashrc`` )
   
       .. code-block:: bash
 
        function f_setenv_milady{
-         # example of milady compilation directories: all under $MLD_ROODIR
          unset MLD_ROODIR
          unset MLD_SCRDIR
          unset MLD_SRCDIR
@@ -229,14 +227,16 @@ directories as in previous examples.
 Step 2: Installation  
 ^^^^^^^^^^^^^^^^^^^^
 
-1. Charge the ``MILADY`` bash environement(do not forget to source your .bashrc file) 
+1. Charge the ``MILADY`` bash environement (do not forget, before,  to source your ``$HOME/.bashrc`` file) 
 
     .. code-block:: bash
 
      f_setenv_milady
-     source ${MLD}/MILASY/scripts/compile_milady.bash
+     source ${MLD}/MILADY/scripts/compile_milady.bash
 
-Also do not forget that ``${MLD}`` is your definition where you have put ${MLD} directory. 
+    .. note::
+
+    Also do not forget that ``${MLD}`` is your definition: should contains the path where you have put the  ``${MLD}`` directory. 
 
 2.  Repeat the same steps for installation as previous. Here, for lazy persons:  
 
@@ -245,4 +245,4 @@ Also do not forget that ``${MLD}`` is your definition where you have put ${MLD} 
       f_compile_milady_intel
       make -j6 
 
-And that it is !!!! The exacutable is in ``bin/milady_main.exe``.
+And that it is !!!! The executable is located at ``bin/milady_main.exe``.
