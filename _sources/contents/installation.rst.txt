@@ -17,6 +17,13 @@ Compilation modes
 MILADY has three compilation modes:
 
 .. glossary::
+  MILADY-MIX
+
+    - intel compilers (2022.0.1)
+    - MKL with ScaLapack support
+    - openmpi user-compiled, or system, compatible with intel compilers ( > 4.x.x)
+
+
   MILADY-INTEL
 
     - intel compilers included in oneAPI distribution 
@@ -29,12 +36,6 @@ MILADY has three compilation modes:
     - GNU compilers (min V9)
     - MKL or LAPACK/ScaLapack support for GNU.
     - openmpi user-compiled, or system, gnu-compiled
-
-  MILADY-MIX
-
-    - intel compilers (2022.0.1)  
-    - MKL with ScaLapack support  
-    - openmpi user-compiled, or system, compatible with intel compilers ( > 4.x.x)
 
 .. Hint:: Our preference is MILADY-MIX, using the intel fortran compiler and MKL / SCALAPACK provided by oneAPI (> 2022.x.x). OpenMPI (> 4.x.x) is compiled by our means using ifort compiler.
 
@@ -153,3 +154,95 @@ Step 2: Compilation
 THAT'S ALL FOLKS !!! 
 
 In order to test please run step-by-step examples provided in the `Examples section <examples.html>`__. And please ask us.
+
+
+Build on Marconi
+----------------
+
+Here we provide some particular build on well known and wide used plarfrom across the world 
+on which some users have built ``MILADY``. Here is about the italian 
+supercomputer `MARCONI <https://www.hpc.cineca.it/hardware/marconi>`_ .
+Probably there are other more perfomant way to install ``MILADY`` on MARCONI but here we describe the 
+one that works and we use. If you know  better way we are happy to share youe experience and send us an 
+email. 
+
+Step 1: Loading modules and setting some bash  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Will note again by ``MILADY`` the github repository and we preserve the same structure of the 
+directories as in previous examples.   
+
+1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
+    Hereafter, we will call ``${MLD}`` the location of MLD directory. 
+
+2.  Set properly the  ``bash`` environement. My ``${HOME}/.bashrc`` file contains the 
+    following modules ans variables: 
+
+    .. code-block:: bash
+
+      module load env-skl
+      module load intel/pe-xe-2020--binary
+      module load mkl/2020--binary
+      module load intelmpi/2020--binary
+      module load cmake/3.18.2
+      export I_MPI_FC=ifort
+      export I_MPI_F90=ifort
+      export I_PMI_CXX=g++
+      export I_MPI_CC=gcc
+
+    .. note::
+
+      ``mld_build`` and ``mld_install`` will be created by the installation procedure whilst 
+      ``mld_testdir`` is a directory of tests that is not compulsory. 
+
+3.  Define in your environement the following ``bash`` function (I'm lazy and I add that at the end 
+    of my ``${HOME}/.bashrc``  )
+  
+      .. code-block:: bash
+
+       function f_setenv_milady{
+         # example of milady compilation directories: all under $MLD_ROODIR
+         unset MLD_ROODIR
+         unset MLD_SCRDIR
+         unset MLD_SRCDIR
+         unset MLD_BUIDIR
+         unset MLD_INSDIR
+         unset MLD_TESDIR
+         unset MLD_SETENV
+         unset OMP_INSDIR
+         unset OMP_ROOT
+       
+         export MLD_ROODIR="${MLD}/"
+        
+         export MLD_SRCDIR=${MLD_ROODIR}/MILADY
+         export MLD_BUIDIR=${MLD_ROODIR}/mld_build
+         export MLD_INSDIR=${MLD_ROODIR}/mld_install
+         export MLD_TESDIR=${MLD_ROODIR}/mld_testdir
+         export MLD_SETENV=ON
+         export MKL_ROOT=${MKLROOT}
+         export OMP_INSDIR=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
+         export OMP_ROOT=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
+     
+         export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
+       }
+
+Step 2: Installation  
+^^^^^^^^^^^^^^^^^^^^
+
+1. Charge the ``MILADY`` bash environement(do not forget to source your .bashrc file) 
+
+    .. code-block:: bash
+
+     f_setenv_milady
+     source ${MLD}/MILASY/scripts/compile_milady.bash
+
+Also do not forget that ``${MLD}`` is your definition where you have put ${MLD} directory. 
+
+2.  Repeat the same steps for installation as previous. Here, for lazy persons:  
+
+    .. code-block:: bash
+        
+      f_compile_milady_intel
+      make -j6 
+
+And that it is !!!! The exacutable is in ``bin/milady_main.exe``.
