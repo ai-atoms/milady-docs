@@ -210,14 +210,14 @@ elastic deformations etc). Finally the kernel is written
 .. option::  cur_rval (integer)
 
    :math:`k_1` option. Defines the number of rows selection in CUR decomposition as it was introduced by  
-   **REF Mahoney**. If you are nor wure about what you do choose a negative value.   
+   **REF Mahoney**. If you are nor sure about your choice, choose the default a negative value.   
 
    Default ``cur_rval = -1``   
 
 .. option::  cur_eps (real)
 
    :math:`k_1` option. Defines the error of sampling in CUR decomposition as it was introduced by  
-   **REF Mahoney**. If you are nor wure about what you do choose 1.   
+   **REF Mahoney**. If you are nor sure about your choise, choose the default value  i.e. 1.   
 
    Default ``cur_eps = 1.d0`` 
 
