@@ -129,15 +129,15 @@ uses SVD with rank estimation. Other available settings for
 
 .. _`ex:kernel-poly`:
 
-Kernel fit in W using polynomial kernel
----------------------------------------
+Kernel regression using polynomial kernel
+-----------------------------------------
 
 Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
 ``Examples/KERNEL_POLY_W_BSO4``.
 
 For the models like kernel are performed using ``ml_type=1``. However,
-any kernel fit requires one pre-processing stet, which actually are two
+any kernel fit requires one pre-processing step, which actually are two
 :). Here are listed all three:
 
 #. perfrom a LML fit with the same descriptor that you intend to perform
