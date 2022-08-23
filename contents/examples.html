@@ -64,7 +64,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#performing-fit-using-basis-functions">Performing fit using basis functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lml-fit-in-bcc-fe">LML fit in bcc Fe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qnml-fit-in-hea">QNML fit in HEA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kernel-fit-in-w-using-polynomial-kernel">Kernel fit in W using polynomial kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-regression-using-polynomial-kernel">Kernel regression using polynomial kernel</a></li>
 </ul>
 </li>
 </ul>
@@ -201,13 +201,13 @@ uses SVD with rank estimation. Other available settings for
 </pre></div>
 </div>
 </section>
-<section id="kernel-fit-in-w-using-polynomial-kernel">
-<span id="ex-kernel-poly"></span><h2>Kernel fit in W using polynomial kernel<a class="headerlink" href="#kernel-fit-in-w-using-polynomial-kernel" title="Permalink to this heading"></a></h2>
+<section id="kernel-regression-using-polynomial-kernel">
+<span id="ex-kernel-poly"></span><h2>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a></h2>
 <p>Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
 <code class="docutils literal notranslate"><span class="pre">Examples/KERNEL_POLY_W_BSO4</span></code>.</p>
 <p>For the models like kernel are performed using <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code>. However,
-any kernel fit requires one pre-processing stet, which actually are two
+any kernel fit requires one pre-processing step, which actually are two
 :). Here are listed all three:</p>
 <ol class="arabic simple">
 <li><p>perfrom a LML fit with the same descriptor that you intend to perform

@@ -108,7 +108,7 @@ cementite with known energies and forces (but no stress tensor) is:
 
 .. code-block:: python
 
-   110 2 Fe 26 C 12 -15.7255500 0.7884238 0``
+   110 2 Fe 26 C 12 -15.7255500 0.7884238 0
 
 and the sixth line for the 4-atom Fe\ :math:`_{3}`\ C system is
 
@@ -136,7 +136,7 @@ extended ``.xyz`` format can be performed using ``DB\_poscar2xyz.py``.
 The inverse conversion from ``.xyz`` to ``.poscar`` can be done with
 ``DB\_xyz2poscar.py``.
 
-.. _bd-names:
+.. _`sec:dbnames`:
 
 Database file names
 -------------------
