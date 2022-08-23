@@ -236,7 +236,7 @@ Step 2: Installation
 
     .. note::
 
-    Also do not forget that ``${MLD}`` is your definition: should contains the path where you have put the  ``${MLD}`` directory. 
+      Also do not forget that ``${MLD}`` is your definition: should contains the path where you have put the  ``${MLD}`` directory. 
 
 2.  Repeat the same steps for installation as previous. Here, for lazy persons:  
 
