@@ -45,12 +45,12 @@ Build
 Step 1: Setting environment variables 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the following, ``MILADY`` refers to the github repository.
+Will note by ``MILADY`` the github repository. 
 
 1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
-    Hereafter, ``${MLD}`` is the location of ``MLD`` directory.
+    Hereafter, we will call ``${MLD}`` the location of ``MLD`` directory. 
 
-2.  Your environment should contain the following 9 variables, which are compulsory for the compilation ``MILADY``
+2.  Your environment should contain the following 9 variables compulsory for the compilation ``MILADY``
 
     The first six variables:
 
@@ -65,10 +65,10 @@ In the following, ``MILADY`` refers to the github repository.
 
     .. note::
 
-      ``mld_build`` and ``mld_install`` will be created by the installation procedure, whilst
+      ``mld_build`` and ``mld_install`` will be created by the installation procedure whilst 
       ``mld_testdir`` is a directory of tests that is not compulsory (more details later). 
 
-    The last 3 variables, followed by a redefinition of ``PATH``:
+    The last 3, plus a redefinition of ``PATH``:
 
     .. code-block:: bash
 
@@ -77,7 +77,7 @@ In the following, ``MILADY`` refers to the github repository.
       export OMP_ROOT=${OMP_INSDIR}
       export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
 
-    ``MKL_ROOT`` and ``OMP_INSDIR`` should contain the installation path to ``MKL`` and ``openMPI``, respectively.
+    ``MKL_ROOT`` and ``OMP_INSDIR`` should contain the installation path to ``MKL`` and openMPI, respectively. 
 
     .. Tip:: (Optional) It can be more convenient to set the environment variable using a bash function:
       
@@ -112,7 +112,7 @@ Step 2: Compilation
 ^^^^^^^^^^^^^^^^^^^^
 
 
-1.  Charge the bash functionalities:
+1.  Charge many bash functionalities:
 
     .. code-block:: bash
 
@@ -150,32 +150,31 @@ Step 2: Compilation
 
       make -j6 # will use 6 parallel jobs
 
-THAT'S ALL FOLKS !!! The executable is in ``bin/milady_main.exe``.
+THAT'S ALL FOLKS !!! 
 
-In order to test, run the step-by-step examples provided in the `Examples section <examples.html>`__.
+In order to test please run step-by-step examples provided in the `Examples section <examples.html>`__. And please ask us.
 
 
 Build on Marconi
 ----------------
 
-Here we provide the instructions for building ``MILADY``on the widely used
+Here we provide some particular build on well known and wide used plarfrom across the world 
+on which some users have built ``MILADY``. Here is about the italian 
 supercomputer `MARCONI <https://www.hpc.cineca.it/hardware/marconi>`_ .
+Probably there are others, more perfomant, ways to install ``MILADY`` on MARCONI but here we describe the 
+one that works and we use. If you know  better ways we are happy to share your experience and send us an 
+email to update the present procedure.  
 
-    .. note::
-      We describe here the way that we use and we know that it works.
-      If you know a better precedure, we are happy to learn about your experience.
-      You can send us an email to update the present documentation.
+Step 1: Loading modules and setting some bash  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 1: Loading modules and setting bash environement
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In the following, ``MILADY`` refers to the github repository. We preserve here the same structure of the
+Will note again by ``MILADY`` the github repository and we preserve the same structure of the 
 directories as in previous examples.   
 
 1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
-    Hereafter, ``${MLD}`` is the location of ``MLD`` directory.
+    Hereafter, we will call ``${MLD}`` the location of ``MLD`` directory. 
 
-2.  Set your ``bash`` environement. My ``${HOME}/.bashrc`` file contains the
+2.  Set properly the  ``bash`` environement. My ``${HOME}/.bashrc`` file contains the 
     following modules and variables: 
 
     .. code-block:: bash
@@ -192,59 +191,58 @@ directories as in previous examples.
 
     .. note::
 
-      ``mld_build`` and ``mld_install`` will be created by the installation procedure, whilst
-      ``mld_testdir`` is a directory with tests that is not compulsory.
+      ``mld_build`` and ``mld_install`` will be created by the installation procedure whilst 
+      ``mld_testdir`` is a directory of tests that is not compulsory. 
 
-3.  Define in your environement the following ``bash`` function (can be added at the end
-    of your ``${HOME}/.bashrc`` file)
+3.  Define in your environement the following ``bash`` function (I'm lazy and I add that at the end 
+    of my ``${HOME}/.bashrc`` )
   
-    .. code-block:: bash
+      .. code-block:: bash
 
-      function f_setenv_milady{
-        unset MLD_ROODIR
-        unset MLD_SCRDIR
-        unset MLD_SRCDIR
-        unset MLD_BUIDIR
-        unset MLD_INSDIR
-        unset MLD_TESDIR
-        unset MLD_SETENV
-        unset OMP_INSDIR
-        unset OMP_ROOT
+       function f_setenv_milady{
+         unset MLD_ROODIR
+         unset MLD_SCRDIR
+         unset MLD_SRCDIR
+         unset MLD_BUIDIR
+         unset MLD_INSDIR
+         unset MLD_TESDIR
+         unset MLD_SETENV
+         unset OMP_INSDIR
+         unset OMP_ROOT
        
-        export MLD_ROODIR="${MLD}/"
+         export MLD_ROODIR="${MLD}/"
         
-        export MLD_SRCDIR=${MLD_ROODIR}/MILADY
-        export MLD_BUIDIR=${MLD_ROODIR}/mld_build
-        export MLD_INSDIR=${MLD_ROODIR}/mld_install
-        export MLD_TESDIR=${MLD_ROODIR}/mld_testdir
-        export MLD_SETENV=ON
-        export MKL_ROOT=${MKLROOT}
-        export OMP_INSDIR=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
-        export OMP_ROOT=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
+         export MLD_SRCDIR=${MLD_ROODIR}/MILADY
+         export MLD_BUIDIR=${MLD_ROODIR}/mld_build
+         export MLD_INSDIR=${MLD_ROODIR}/mld_install
+         export MLD_TESDIR=${MLD_ROODIR}/mld_testdir
+         export MLD_SETENV=ON
+         export MKL_ROOT=${MKLROOT}
+         export OMP_INSDIR=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
+         export OMP_ROOT=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
      
-        export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
-      }
+         export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
+       }
 
 Step 2: Installation  
 ^^^^^^^^^^^^^^^^^^^^
 
-1.  Charge the ``MILADY`` bash environement (do not forget to source your ``$HOME/.bashrc`` file before it):
+1. Charge the ``MILADY`` bash environement (do not forget, before,  to source your ``$HOME/.bashrc`` file) 
 
     .. code-block:: bash
 
-      f_setenv_milady
-      source ${MLD}/MILADY/scripts/compile_milady.bash
-
+     f_setenv_milady
+     source ${MLD}/MILADY/scripts/compile_milady.bash
 
     .. note::
-      Do not forget that ``${MLD}`` is defined by you. It is the path to the  ``MLD`` directory.
 
-2.  Install MILADY:
+    Also do not forget that ``${MLD}`` is your definition: should contains the path where you have put the  ``${MLD}`` directory. 
+
+2.  Repeat the same steps for installation as previous. Here, for lazy persons:  
 
     .. code-block:: bash
-
+        
       f_compile_milady_intel
-      make -j6
+      make -j6 
 
-
-And that it is !!!! The executable is in ``bin/milady_main.exe``.
+And that it is !!!! The executable is located at ``bin/milady_main.exe``.
