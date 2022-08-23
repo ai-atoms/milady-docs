@@ -27,6 +27,7 @@ They appreciate and use MiLaDy
 
 .. image:: logos/eurofusion.png
    :width: 200
+   :target: https://www.euro-fusion.org/
 .. image:: logos/ensulm.jpg
    :width: 200
 .. image:: logos/la_rochelle.png 
@@ -41,3 +42,4 @@ They appreciate and use MiLaDy
    :width: 200
 .. image:: logos/cea.png 
    :width: 200
+   :target: http://www.cea.fr/ 
