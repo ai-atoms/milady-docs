@@ -4,24 +4,34 @@
 ML models
 =================
 
+Here we describe the key words controlling the settings of ML models in ``input.ml`` file.
+
+
+
 .. option:: ml_type (integer)
 
-   Machine learning algo. The options are:
+  The type of of ML task.
+  The following options are possible:
 
-   #. ``ml_type = -2`` analyze the data and, if required, made an
-      intelligent choice of kernel used for mode ``ml_type=1``.
+  +---------------+--------------------------------------------+
+  | ``ml_type=0`` | Regression using basis functions           |
+  |               | (e.g. LML, QNML, polynomial chaos, etc.)   |
+  +---------------+--------------------------------------------+
+  | ``ml_type=1`` | Kernel ridge regression                    |
+  +---------------+--------------------------------------------+
+  | ``ml_type=2`` | *Reserved only for advanced users*         |
+  +---------------+--------------------------------------------+
+  | ``ml_type=-1``| Compute the descriptors without any fit    |
+  +---------------+--------------------------------------------+
+  | ``ml_type=-2``| Analyze the data and, if required, make    |
+  |               | a choice of kernel to use in ``ml_type=1`` |
+  +---------------+--------------------------------------------+
 
-   #. ``ml_type=-1`` Just compute the descriptors (please pay attention
-      to activate the writting with ``write_desc=.true.``)
 
-   #. ``ml_type=0`` basis function (e.g. LML, QNML, polynomial chaos, 
-   Sobol series etc)
+  Default is ``ml_type=0``.
 
-   #. ``ml_type=1`` kernel ridge regression
-
-   #. ``ml_type=2`` **reserved only for advanced users**
-
-   Default is ``0``.
+  .. warning::
+    When using ``ml_type=-1``, consider setting ``write_desc=.true.`` to activate the writing of files with descriptors
 
 .. option::  snap_order (integer)
 
