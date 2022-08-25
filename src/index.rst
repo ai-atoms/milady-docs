@@ -5,7 +5,7 @@
 
 
 .. image:: static/logo.png
-  :width: 400
+  :width: 800
   :alt: Milady
 
 .. include:: contents/general.rst
