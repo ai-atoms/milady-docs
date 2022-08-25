@@ -49,7 +49,7 @@ Coupling ``MILADY`` with ``LAMMPS`` is performed by
 Contact 
 -------
 
-You can send us an email `email link`_ we will be hapopy to answer. 
+You can send us an `email`_ we will be happy to answer. 
 
 .. _email link: ai.unseen.group@gmail.com
 
