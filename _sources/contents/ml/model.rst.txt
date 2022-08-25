@@ -207,7 +207,7 @@ ML models
    Default is ``.false.``.
 
    .. warning::
-      Not fully tested
+      This option is not fully tested.  In case of weird results, you can share your experience and report an issue.
 
 
 .. option::  iread_ml (integer)
@@ -217,7 +217,7 @@ ML models
    Default is ``0``.
 
    .. warning::
-      Not fully tested
+      This option is not fully tested.  In case of weird results, you can share your experience and report an issue.
 
 
 .. option:: isave_ml (integer)
@@ -227,7 +227,7 @@ ML models
    Default is ``0``.
 
    .. warning::
-      Not fully tested
+      This option is not fully tested.  In case of weird results, you can share your experience and report an issue.
 
 .. option::  kcross (logical)
 

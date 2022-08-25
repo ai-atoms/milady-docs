@@ -6,12 +6,12 @@ Kernels
 
 
 
-The regressions based on kernels are active if ``Milady`` is executed in the mode 
-``ml_type=1``. The generation of a kernel potential is made in two steps as it is described 
+Kernel regression is activated when ``MILADY`` is executed in the mode ``ml_type=1``.
+The generation of a kernel potential is made in two steps as it is described
 in :ref:`Examples<ex:kernel-poly>` : (i) firstly, using ``ml_type=-2`` mode with an
 appropriate algorithm we choose the sparse points that define the kernel and (ii)
 the parametrization of the kernel using the mode ``ml_type=1``. Here we will note the options for the
-first step as :math:`k_1` whilst for the second :math:`k_2`.
+first step as :math:`k_1`, whilst for the second :math:`k_2`.
 
 Kernels definitions
 ^^^^^^^^^^^^^^^^^^^
@@ -79,7 +79,7 @@ Kernels definitions
 
    .. warning::
 
-     Pay attetion that  ``sigma_kernel = 0.d0`` for square-exponential kernel has no any sense !!! 
+     Pay attetion that  ``sigma_kernel = 0.d0`` for square-exponential kernel has no sense !!!
 
 .. option::  kernel_power (real)
 
