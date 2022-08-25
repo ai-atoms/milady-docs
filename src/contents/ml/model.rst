@@ -33,13 +33,14 @@ Here we describe the key words controlling the settings of ML models in ``input.
   .. warning::
     When using ``ml_type=-1``, consider setting ``write_desc=.true.`` to activate the writing of files with descriptors
 
+
 .. _`sec: regression`:
 
 Regression models  
 =================
 
 
-Type of regression
+type of regression
 ^^^^^^^^^^^^^^^^^^ 
 
 
@@ -147,6 +148,7 @@ solving algorithm
    vector :math:`\mathbf{d}`.
 
    Default is ``"07"``.
+
 
 regularization and loss 
 ^^^^^^^^^^^^^^^^^^^^^^^
