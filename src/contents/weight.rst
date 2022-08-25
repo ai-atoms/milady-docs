@@ -3,8 +3,9 @@ Optimization of hyperparameters
 
 .. warning::
 
-  This optionality is not very used by us and conequnetly is was not properly tested. However, if you are 
-  interested repport us any weird behaviour we are happy to answer you.    
+  This optionality is not very used by us and consequnetly is was not properly tested. However, if you are 
+  interested pleased repport us any weird behaviour and we are happy to answer you, share your experience and 
+  help you.     
 
 The weights of the various componenets in the database can be optimized,
 using an genetic algorithm, through the following objective function:
