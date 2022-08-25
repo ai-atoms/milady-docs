@@ -14,7 +14,8 @@ The main functionalities of ``MILADY 2.0`` include:
 - Representation of structures in the feature space of atomic descriptors
 - Analysis, sparcification, and optimization of training databases
 
-We are open source we are interesteds if want to contribute to the developement, we provide a large choice in 
+We are open source and if are interested to implement new facilities, participate and contribute to the developememnts, we are happy to share with 
+you this experience. We provide a large choice in 
 the :ref:`descriptors<sec:descriptors>`, many type of regression :ref:`models<sec:models>` from linear, quadratic, polynomial chaos to 
 :ref:`kernel<sec:kernel>`. ``MILADY`` is designed for High Performance Computing (HPC) calculations with many level of parallelism using 
 MPI, PBLAS and ScaLapack technologies.      
@@ -49,9 +50,9 @@ Coupling ``MILADY`` with ``LAMMPS`` is performed by
 Contact 
 -------
 
-You can send us an `email`_ we will be happy to answer. 
+You can send us `an email`_ we will be happy to answer. 
 
-.. _email link: ai.unseen.group@gmail.com
+.. _an email: ai.unseen.group@gmail.com
 
 They appreciate and use MiLaDy
 ------------------------------
