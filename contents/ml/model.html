@@ -54,6 +54,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ML models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#regression-models">Regression models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#type-of-regression">Type of regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solving-algorithm">solving algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regularization-and-loss">regularization and loss</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="kernels.html">Kernels</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system.html">Atomic systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="descriptors.html">Descriptors</a></li>
@@ -130,12 +136,21 @@ a choice of kernel to use in <code class="docutils literal notranslate"><span cl
 </div>
 </dd></dl>
 
+</section>
+<section id="regression-models">
+<span id="sec-regression"></span><h1>Regression models<a class="headerlink" href="#regression-models" title="Permalink to this heading"></a></h1>
+<section id="type-of-regression">
+<h2>Type of regression<a class="headerlink" href="#type-of-regression" title="Permalink to this heading"></a></h2>
+<p>The following options concern the linear in parameters models with basis functions or SNAP like models
+<code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_order">
 <span id="cmdoption-arg-snap-order"></span><span class="sig-name descname"><span class="pre">snap_order</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_order" title="Permalink to this definition"></a></dt>
-<dd><p>The order of fit. This can have the
-values of 1 or 2 for linear (1 + <span class="math notranslate nohighlight">\(D\)</span> parameters) or quadratic
-regression (1 + <span class="math notranslate nohighlight">\(D\)</span> + <span class="math notranslate nohighlight">\(D^2\)</span> parameters), respectivelly,
+<dd><p>1 LML
+2 QML/ QNML the distionction os made with <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span></code> option
+3 poly chaos
+This can have the values of 1 2 or 3 for linear (1 + <span class="math notranslate nohighlight">\(D\)</span> parameters) or quadratic
+regression (1 + <span class="math notranslate nohighlight">\(D\)</span> + <span class="math notranslate nohighlight">\(D^2\)</span> parameters) and polynomial chaos (a lot lot of parameters) regression, respectivelly,
 in the descriptor space. For the case <code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">2</span></code> it should
 be set also the type of the quadratic regression.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
@@ -144,7 +159,8 @@ be set also the type of the quadratic regression.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_type_quadratic">
 <span id="cmdoption-arg-snap-type-quadratic"></span><span class="sig-name descname"><span class="pre">snap_type_quadratic</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_type_quadratic" title="Permalink to this definition"></a></dt>
-<dd><p>The type of quadratic fit. For
+<dd><p>1 - QNML  2 - QML
+The type of quadratic fit. For
 the case 1 the solution is preconditionned by the linear fit i.e.
 the first 1 + <span class="math notranslate nohighlight">\(D\)</span> are exactelly set to the LML solution and
 only the remaining <span class="math notranslate nohighlight">\(D^2\)</span> parameters are fitted quadratically.
@@ -153,6 +169,23 @@ parameters are fitted without preconditionning.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-polyc_n_poly">
+<span id="cmdoption-arg-polyc-n-poly"></span><span class="sig-name descname"><span class="pre">polyc_n_poly</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-polyc_n_poly" title="Permalink to this definition"></a></dt>
+<dd><p>active for snap_order 3. Is the order of Poly chaos from 1 to 3</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-polyc_n_hermite">
+<span id="cmdoption-arg-polyc-n-hermite"></span><span class="sig-name descname"><span class="pre">polyc_n_hermite</span></span><span class="sig-prename descclassname"> <span class="pre">=</span> <span class="pre">2</span></span><a class="headerlink" href="#cmdoption-arg-polyc_n_hermite" title="Permalink to this definition"></a></dt>
+<dd><p>Max Hermite degree of poly chaos regression:  1(identity) to 4</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="solving-algorithm">
+<h2>solving algorithm<a class="headerlink" href="#solving-algorithm" title="Permalink to this heading"></a></h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_fit_type">
 <span id="cmdoption-arg-snap-fit-type"></span><span class="sig-name descname"><span class="pre">snap_fit_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_fit_type" title="Permalink to this definition"></a></dt>
@@ -213,6 +246,9 @@ vector <span class="math notranslate nohighlight">\(\mathbf{d}\)</span>.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">&quot;07&quot;</span></code>.</p>
 </dd></dl>
 
+</section>
+<section id="regularization-and-loss">
+<h2>regularization and loss<a class="headerlink" href="#regularization-and-loss" title="Permalink to this heading"></a></h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_regularization_type">
 <span id="cmdoption-arg-snap-regularization-type"></span><span class="sig-name descname"><span class="pre">snap_regularization_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_regularization_type" title="Permalink to this definition"></a></dt>
@@ -309,6 +345,7 @@ case of <code class="docutils literal notranslate"><span class="pre">ml_type=0</
 <p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
 </dd></dl>
 
+</section>
 </section>
 
 
