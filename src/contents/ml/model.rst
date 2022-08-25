@@ -2,7 +2,7 @@
 .. _`sec:models`:
 
 ML models
-=================
+=========
 
 Here we describe the key words controlling the settings of ML models in ``input.ml`` file.
 
@@ -33,11 +33,26 @@ Here we describe the key words controlling the settings of ML models in ``input.
   .. warning::
     When using ``ml_type=-1``, consider setting ``write_desc=.true.`` to activate the writing of files with descriptors
 
+.. _`sec: regression`:
+
+Regression models  
+=================
+
+
+Type of regression
+^^^^^^^^^^^^^^^^^^ 
+
+
+The following options concern the linear in parameters models with basis functions or SNAP like models 
+``ml_type=0``.   
+
 .. option::  snap_order (integer)
 
-   The order of fit. This can have the
-   values of 1 or 2 for linear (1 + :math:`D` parameters) or quadratic
-   regression (1 + :math:`D` + :math:`D^2` parameters), respectivelly,
+   1 LML 
+   2 QML/ QNML the distionction os made with ``snap_type_quadratic`` option 
+   3 poly chaos 
+   This can have the values of 1 2 or 3 for linear (1 + :math:`D` parameters) or quadratic
+   regression (1 + :math:`D` + :math:`D^2` parameters) and polynomial chaos (a lot lot of parameters) regression, respectivelly,
    in the descriptor space. For the case ``snap_order = 2`` it should
    be set also the type of the quadratic regression.
 
@@ -45,6 +60,7 @@ Here we describe the key words controlling the settings of ML models in ``input.
 
 .. option::  snap_type_quadratic (integer)
 
+   1 - QNML  2 - QML 
    The type of quadratic fit. For
    the case 1 the solution is preconditionned by the linear fit i.e.
    the first 1 + :math:`D` are exactelly set to the LML solution and
@@ -53,6 +69,23 @@ Here we describe the key words controlling the settings of ML models in ``input.
    parameters are fitted without preconditionning.
 
    Default is ``1``.
+
+.. option:: polyc_n_poly 
+
+   active for snap_order 3. Is the order of Poly chaos from 1 to 3
+
+   Default is ``3``.  
+
+.. option::  polyc_n_hermite = 2 
+   
+    Max Hermite degree of poly chaos regression:  1(identity) to 4    
+
+    Default is ``2``.
+
+
+solving algorithm  
+^^^^^^^^^^^^^^^^^
+
 
 .. option::  snap_fit_type (integer)
 
@@ -114,6 +147,11 @@ Here we describe the key words controlling the settings of ML models in ``input.
    vector :math:`\mathbf{d}`.
 
    Default is ``"07"``.
+
+regularization and loss 
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 .. option::  snap_regularization_type (integer)
 
