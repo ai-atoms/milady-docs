@@ -1,11 +1,10 @@
 
 .. _`sec:models`:
 
-ML models
+ML tasks
 =========
 
-Here we describe the key words controlling the settings of ML models in ``input.ml`` file.
-
+Here we describe the key words controlling the settings of models in ``input.ml`` file.
 
 
 .. option:: ml_type (integer)
@@ -13,6 +12,8 @@ Here we describe the key words controlling the settings of ML models in ``input.
   The type of of ML task.
   The following options are possible:
 
+  +------------------------------------------------------------+
+  |                **Regression models**                       |
   +---------------+--------------------------------------------+
   | ``ml_type=0`` | Regression using basis functions           |
   |               | (e.g. LML, QNML, polynomial chaos, etc.)   |
@@ -21,7 +22,9 @@ Here we describe the key words controlling the settings of ML models in ``input.
   +---------------+--------------------------------------------+
   | ``ml_type=2`` | *Reserved only for advanced users*         |
   +---------------+--------------------------------------------+
-  | ``ml_type=-1``| Compute the descriptors without any fit    |
+  |                    **Other tasks**                         |
+  +---------------+--------------------------------------------+
+  | ``ml_type=-1``| Compute descriptors only without any fit   |
   +---------------+--------------------------------------------+
   | ``ml_type=-2``| Analyze the data and, if required, make    |
   |               | a choice of kernel to use in ``ml_type=1`` |
@@ -30,8 +33,35 @@ Here we describe the key words controlling the settings of ML models in ``input.
 
   Default is ``ml_type=0``.
 
-  .. warning::
-    When using ``ml_type=-1``, consider setting ``write_desc=.true.`` to activate the writing of files with descriptors
+.. _`sec: desc_only`:
+
+Descriptors only
+^^^^^^^^^^^^^^^^
+
+The following keywords are useful for the tasks with ``ml_type=-1``, where descriptors are computed and written into files without performing regression. Other types of ``ml_type`` do not exclude using these options. For the descriptor-specific settings, see the :ref:`Descriptors section<sec:descriptors>`.
+
+.. option::  desc_forces (logical)
+
+  This key word controlls wheather the descriptors of forces are computed or not. When setting ``desc_forces=.true.``, please verify that descriptors of forces are implemented for the :ref:`descriptor<sec:descriptors>` that you choose.
+
+  Default is ``desc_forces=.false.``
+
+.. option::  write_desc (logical)
+
+  This key word activates writing descriptors into files. When using ``ml_type=-1``, consider setting ``write_desc=.true.``
+
+  Default is ``write_desc=.false.``
+
+**Example:** typical commands for the task of computing descriptors (e.g. for structural analysis)
+
+.. code-block:: fortran
+
+   ml_type=-1
+   write_desc=.true.
+   desc_forces=.false.
+
+More examples can be found in the :ref:`Examples section<ex:write-desc>`
+
 
 
 .. _`sec: regression`:
@@ -40,12 +70,11 @@ Regression models
 =================
 
 
-type of regression
-^^^^^^^^^^^^^^^^^^ 
+Type of regression
+^^^^^^^^^^^^^^^^^^
 
 
-The following options concern the linear in parameters models with basis functions or SNAP like models 
-``ml_type=0``.   
+The following options are relevant for the ``ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).
 
 .. option::  snap_order (integer)
 
@@ -84,7 +113,7 @@ The following options concern the linear in parameters models with basis functio
     Default is ``2``.
 
 
-solving algorithm  
+Solving algorithm
 ^^^^^^^^^^^^^^^^^
 
 
@@ -150,7 +179,7 @@ solving algorithm
    Default is ``"07"``.
 
 
-regularization and loss 
+Regularization and loss
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ML models &mdash; Milady  documentation</title>
+  <title>ML tasks &mdash; Milady  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -53,11 +53,14 @@
 <p class="caption" role="heading"><span class="caption-text">Configuration and usage</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input files</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ML models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ML tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descriptors-only">Descriptors only</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#regression-models">Regression models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#type-of-regression">type of regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#solving-algorithm">solving algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#regularization-and-loss">regularization and loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#type-of-regression">Type of regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solving-algorithm">Solving algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regularization-and-loss">Regularization and loss</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kernels.html">Kernels</a></li>
@@ -86,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>ML models</li>
+      <li>ML tasks</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/contents/ml/model.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,9 +99,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ml-models">
-<span id="sec-models"></span><h1>ML models<a class="headerlink" href="#ml-models" title="Permalink to this heading"></a></h1>
-<p>Here we describe the key words controlling the settings of ML models in <code class="docutils literal notranslate"><span class="pre">input.ml</span></code> file.</p>
+  <section id="ml-tasks">
+<span id="sec-models"></span><h1>ML tasks<a class="headerlink" href="#ml-tasks" title="Permalink to this heading"></a></h1>
+<p>Here we describe the key words controlling the settings of models in <code class="docutils literal notranslate"><span class="pre">input.ml</span></code> file.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-ml_type">
 <span id="cmdoption-arg-ml-type"></span><span class="sig-name descname"><span class="pre">ml_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ml_type" title="Permalink to this definition"></a></dt>
@@ -110,18 +113,22 @@ The following options are possible:</p>
 <col style="width: 75%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code></p></td>
+<tr class="row-odd"><td colspan="2"><p><strong>Regression models</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code></p></td>
 <td><p>Regression using basis functions
 (e.g. LML, QNML, polynomial chaos, etc.)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code></p></td>
 <td><p>Kernel ridge regression</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=2</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=2</span></code></p></td>
 <td><p><em>Reserved only for advanced users</em></p></td>
 </tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Other tasks</strong></p></td>
+</tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code></p></td>
-<td><p>Compute the descriptors without any fit</p></td>
+<td><p>Compute descriptors only without any fit</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code></p></td>
 <td><p>Analyze the data and, if required, make
@@ -130,19 +137,39 @@ a choice of kernel to use in <code class="docutils literal notranslate"><span cl
 </tbody>
 </table>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When using <code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code>, consider setting <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code> to activate the writing of files with descriptors</p>
-</div>
 </dd></dl>
 
+<section id="descriptors-only">
+<span id="sec-desc-only"></span><h2>Descriptors only<a class="headerlink" href="#descriptors-only" title="Permalink to this heading"></a></h2>
+<p>The following keywords are useful for the tasks with <code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code>, where descriptors are computed and written into files without performing regression. Other types of <code class="docutils literal notranslate"><span class="pre">ml_type</span></code> do not exclude using these options. For the descriptor-specific settings, see the <a class="reference internal" href="descriptors.html#sec-descriptors"><span class="std std-ref">Descriptors section</span></a>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-desc_forces">
+<span id="cmdoption-arg-desc-forces"></span><span class="sig-name descname"><span class="pre">desc_forces</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-desc_forces" title="Permalink to this definition"></a></dt>
+<dd><p>This key word controlls wheather the descriptors of forces are computed or not. When setting <code class="docutils literal notranslate"><span class="pre">desc_forces=.true.</span></code>, please verify that descriptors of forces are implemented for the <a class="reference internal" href="descriptors.html#sec-descriptors"><span class="std std-ref">descriptor</span></a> that you choose.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">desc_forces=.false.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-write_desc">
+<span id="cmdoption-arg-write-desc"></span><span class="sig-name descname"><span class="pre">write_desc</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_desc" title="Permalink to this definition"></a></dt>
+<dd><p>This key word activates writing descriptors into files. When using <code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code>, consider setting <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code></p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">write_desc=.false.</span></code></p>
+</dd></dl>
+
+<p><strong>Example:</strong> typical commands for the task of computing descriptors (e.g. for structural analysis)</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">ml_type</span><span class="o">=-</span><span class="mi">1</span><span class="w"></span>
+<span class="n">write_desc</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+</div>
+<p>More examples can be found in the <a class="reference internal" href="../examples.html#ex-write-desc"><span class="std std-ref">Examples section</span></a></p>
+</section>
 </section>
 <section id="regression-models">
 <span id="sec-regression"></span><h1>Regression models<a class="headerlink" href="#regression-models" title="Permalink to this heading"></a></h1>
 <section id="type-of-regression">
-<h2>type of regression<a class="headerlink" href="#type-of-regression" title="Permalink to this heading"></a></h2>
-<p>The following options concern the linear in parameters models with basis functions or SNAP like models
-<code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>.</p>
+<h2>Type of regression<a class="headerlink" href="#type-of-regression" title="Permalink to this heading"></a></h2>
+<p>The following options are relevant for the <a href="#id1"><span class="problematic" id="id2">``</span></a>ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_order">
 <span id="cmdoption-arg-snap-order"></span><span class="sig-name descname"><span class="pre">snap_order</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_order" title="Permalink to this definition"></a></dt>
@@ -185,7 +212,7 @@ parameters are fitted without preconditionning.</p>
 
 </section>
 <section id="solving-algorithm">
-<h2>solving algorithm<a class="headerlink" href="#solving-algorithm" title="Permalink to this heading"></a></h2>
+<h2>Solving algorithm<a class="headerlink" href="#solving-algorithm" title="Permalink to this heading"></a></h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_fit_type">
 <span id="cmdoption-arg-snap-fit-type"></span><span class="sig-name descname"><span class="pre">snap_fit_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_fit_type" title="Permalink to this definition"></a></dt>
@@ -248,7 +275,7 @@ vector <span class="math notranslate nohighlight">\(\mathbf{d}\)</span>.</p>
 
 </section>
 <section id="regularization-and-loss">
-<h2>regularization and loss<a class="headerlink" href="#regularization-and-loss" title="Permalink to this heading"></a></h2>
+<h2>Regularization and loss<a class="headerlink" href="#regularization-and-loss" title="Permalink to this heading"></a></h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_regularization_type">
 <span id="cmdoption-arg-snap-regularization-type"></span><span class="sig-name descname"><span class="pre">snap_regularization_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_regularization_type" title="Permalink to this definition"></a></dt>
