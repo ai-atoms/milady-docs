@@ -52,7 +52,7 @@ Kernels definitions
 
    -  ``kernel_type = 7`` Square-exponential kernel for which the covariance matrix is sampled randomly on
       some linear basis. The only parameter to define is ``sigma_kernel``
-      ( typical value is `` sigma_kernel = 0.05`` but try more values to be sure that it is adapted for
+      ( typical value is ``sigma_kernel = 0.05`` but try more values to be sure that it is adapted for
       your descriptor).
 
    -  ``kernel_type = 44`` Polynomial kernel for which the covariance matrix is sampled randomly on
@@ -79,7 +79,7 @@ Kernels definitions
 
    .. warning::
 
-     Pay attetion that  ``sigma_kernel = 0.d0`` for square-exponential kernel has no sense !!!
+     Pay attetion that ``sigma_kernel = 0.d0`` for square-exponential kernel has no sense !!!
 
 .. option::  kernel_power (real)
 
