@@ -220,7 +220,7 @@ define the MCD class and the exponent Please note: ``ml_type=-2`` and
    power_mcd=0.05d0           !exponent used for the grid of selction of kernel.
    np_kernel_ref=1000         !number of proposed points in the MCD class
    np_kernel_full=4000        !number of points outside the MCD class
-   kernel_dump=3              !set 3 dump by MCD/MAHALANOBIS
+   kernel_dump=2              !set 2 for MCD/MAHALANOBIS
    &end
 
 **3. kernel fit.**
