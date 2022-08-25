@@ -59,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="descriptors.html">Descriptors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced options</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -306,98 +307,6 @@ and <span class="math notranslate nohighlight">\(\sigma_{s, \alpha}\)</span> is 
 No tests at all. This option is tested only in the
 case of <code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>. target vector <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This option is not fully tested.  In case of weird results, you can share your experience and report an issue.</p>
-</div>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-iread_ml">
-<span id="cmdoption-arg-iread-ml"></span><span class="sig-name descname"><span class="pre">iread_ml</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-iread_ml" title="Permalink to this definition"></a></dt>
-<dd><p>0 compute on the fly, 1 read from previous run.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This option is not fully tested.  In case of weird results, you can share your experience and report an issue.</p>
-</div>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-isave_ml">
-<span id="cmdoption-arg-isave-ml"></span><span class="sig-name descname"><span class="pre">isave_ml</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-isave_ml" title="Permalink to this definition"></a></dt>
-<dd><p>0 do nothing, 1 write on the HDD and run, 2 MPI and threading.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This option is not fully tested.  In case of weird results, you can share your experience and report an issue.</p>
-</div>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-kcross">
-<span class="sig-name descname"><span class="pre">kcross</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-kcross" title="Permalink to this definition"></a></dt>
-<dd><p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-marginal_likelihood">
-<span id="cmdoption-arg-marginal-likelihood"></span><span class="sig-name descname"><span class="pre">marginal_likelihood</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-marginal_likelihood" title="Permalink to this definition"></a></dt>
-<dd><p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-sparsification">
-<span class="sig-name descname"><span class="pre">sparsification</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-sparsification" title="Permalink to this definition"></a></dt>
-<dd><p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-n_kcross">
-<span id="cmdoption-arg-n-kcross"></span><span class="sig-name descname"><span class="pre">n_kcross</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_kcross" title="Permalink to this definition"></a></dt>
-<dd><p>Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-target_type">
-<span id="cmdoption-arg-target-type"></span><span class="sig-name descname"><span class="pre">target_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-target_type" title="Permalink to this definition"></a></dt>
-<dd><p>1 - energy, 2 - force.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-force_comp">
-<span id="cmdoption-arg-force-comp"></span><span class="sig-name descname"><span class="pre">force_comp</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-force_comp" title="Permalink to this definition"></a></dt>
-<dd><p>1 - x component of forces, 2 - y
-component of forces, 3 - z component of forces.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-toy_model">
-<span id="cmdoption-arg-toy-model"></span><span class="sig-name descname"><span class="pre">toy_model</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-toy_model" title="Permalink to this definition"></a></dt>
-<dd><p>Type of the database:</p>
-<ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">toy_model=.true.</span></code> Database is generated using an analytical
-function on which is applied some noise (<span class="math notranslate nohighlight">\(L\)</span> being a
-parameter and D the dimensionality of one point of the data):</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}f(\mathbf{x}, L) =
-                \begin{cases}
-                 \sin \left( \frac{2 \pi x_1 }{L} \right) &amp; \text{if } \mathbf{x} \in  \mathbb{R}^1 \\
-                 \sin \left( \frac{2 \pi x_1 }{L} \right)  +
-                  \cos \left( \frac{2 \pi x_2 }{L} \right)  &amp; \text{if }  \mathbf{x} \in  \mathbb{R}^2 \\
-                   \sin \left( \frac{2 \pi x_1 }{L} \right)  +
-                   \cos \left( \frac{2 \pi x_2 }{L} \right) +
-                   \sum_{i=3}^D \exp{ \frac{1}{2 L} \left(x_i-\frac{L}{i-2} \right)^2 } &amp; \text{if }  \mathbf{x} \in  \mathbb{R}^D, \text{with D $\ge$ 3}  \\
-                \end{cases}
-              \nonumber\end{split}\]</div>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">toy_model=.false.</span></code> Database was already computed. In order to
-manage the database input please read the section
-<a class="reference external" href="#sec:odatafiles">4</a>.</p></li>
-</ol>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">.false.</span></code></p>
 </dd></dl>
 
 </section>

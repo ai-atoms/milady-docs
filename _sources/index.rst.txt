@@ -31,6 +31,7 @@
    contents/ml/descriptors
    contents/ml/database
    contents/weight
+   contents/ml/advanced
 
 .. toctree::
    :caption: Examples
