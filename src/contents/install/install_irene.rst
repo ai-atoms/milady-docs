@@ -67,7 +67,7 @@ directories as in previous examples.
         export OAP_ROODIR=/ccc/products/ifx-21.4.0/system/default/
         export OMP_INSDIR=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
         export OMP_ROOT=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
-        MLD_SETENV=ON
+        export MLD_SETENV=ON
      
         export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
       }
