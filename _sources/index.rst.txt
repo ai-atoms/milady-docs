@@ -15,7 +15,9 @@
    :maxdepth: 2
    :hidden:
 
-   contents/installation
+   contents/install/installation
+   contents/install/install_marconi
+   contents/install/install_irene
 
 .. toctree::
    :caption: Configuration and usage
