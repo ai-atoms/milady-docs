@@ -1,3 +1,6 @@
+
+.. _`sec:descriptors`:
+
 Descriptors
 ===================
 

@@ -1,7 +1,12 @@
-Optimization of weights using genetic algorithm
-===============================================
+Optimization of hyperparameters
+===============================
 
-The weights of the various componenets in the database are optimized,
+.. warning::
+
+  This optionality is not very used by us and conequnetly is was not properly tested. However, if you are 
+  interested repport us any weird behaviour we are happy to answer you.    
+
+The weights of the various componenets in the database can be optimized,
 using an genetic algorithm, through the following objective function:
 
 .. math::

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Optimization of weights using genetic algorithm &mdash; Milady  documentation</title>
+  <title>Optimization of hyperparameters &mdash; Milady  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -57,7 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ml/system.html">Atomic systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ml/descriptors.html">Descriptors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ml/database.html">Databases</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Optimization of weights using genetic algorithm</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Optimization of hyperparameters</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -78,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Optimization of weights using genetic algorithm</li>
+      <li>Optimization of hyperparameters</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/contents/weight.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,9 +88,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="optimization-of-weights-using-genetic-algorithm">
-<h1>Optimization of weights using genetic algorithm<a class="headerlink" href="#optimization-of-weights-using-genetic-algorithm" title="Permalink to this heading"></a></h1>
-<p>The weights of the various componenets in the database are optimized,
+  <section id="optimization-of-hyperparameters">
+<h1>Optimization of hyperparameters<a class="headerlink" href="#optimization-of-hyperparameters" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This optionality is not very used by us and conequnetly is was not properly tested. However, if you are
+interested repport us any weird behaviour we are happy to answer you.</p>
+</div>
+<p>The weights of the various componenets in the database can be optimized,
 using an genetic algorithm, through the following objective function:</p>
 <div class="math notranslate nohighlight">
 \[J(\mathbf{w}) = f_e \textrm{MAE}_e (\mathbf{w})+ f_f \textrm{MAE}_f (\mathbf{w})+ f_s \textrm{MAE}_s(\mathbf{w})

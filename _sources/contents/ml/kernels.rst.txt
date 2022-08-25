@@ -8,9 +8,9 @@ Kernels
 
 The regressions based on kernels are active if ``Milady`` is executed in the mode 
 ``ml_type=1``. The generation of a kernel potential is made in two steps as it is described 
-in :ref:`Examples<ex:kernel-poly>` : (i) firstly, using an
+in :ref:`Examples<ex:kernel-poly>` : (i) firstly, using ``ml_type=-2`` mode with an
 appropriate algorithm we choose the sparse points that define the kernel and (ii)
-the parametrization of the kernel. Here we will note the options for the
+the parametrization of the kernel using the mode ``ml_type=1``. Here we will note the options for the
 first step as :math:`k_1` whilst for the second :math:`k_2`.
 
 Kernels definitions
@@ -210,7 +210,7 @@ elastic deformations etc). Finally the kernel is written
 .. option::  cur_rval (integer)
 
    :math:`k_1` option. Defines the number of rows selection in CUR decomposition as it was introduced by  
-   **REF Mahoney**. If you are nor sure about your choice, choose the default a negative value.   
+   **REF Mahoney**. If you are not sure about your choice, choose the default value i.e. -1.    
 
    Default ``cur_rval = -1``   
 
