@@ -90,23 +90,42 @@
              
   <section id="ml-models">
 <span id="sec-models"></span><h1>ML models<a class="headerlink" href="#ml-models" title="Permalink to this heading"></a></h1>
+<p>Here we describe the key words controlling the settings of ML models in <code class="docutils literal notranslate"><span class="pre">input.ml</span></code> file.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-ml_type">
 <span id="cmdoption-arg-ml-type"></span><span class="sig-name descname"><span class="pre">ml_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ml_type" title="Permalink to this definition"></a></dt>
-<dd><p>Machine learning algo. The options are:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ml_type</span> <span class="pre">=</span> <span class="pre">-2</span></code> analyze the data and, if required, made an
-intelligent choice of kernel used for mode <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code> Just compute the descriptors (please pay attention
-to activate the writting with <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code>)</p></li>
-</ol>
-<p>#. <code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code> basis function (e.g. LML, QNML, polynomial chaos,
-Sobol series etc)</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code> kernel ridge regression</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ml_type=2</span></code> <strong>reserved only for advanced users</strong></p></li>
-</ol>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dd><p>The type of of ML task.
+The following options are possible:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code></p></td>
+<td><p>Regression using basis functions
+(e.g. LML, QNML, polynomial chaos, etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code></p></td>
+<td><p>Kernel ridge regression</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=2</span></code></p></td>
+<td><p><em>Reserved only for advanced users</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code></p></td>
+<td><p>Compute the descriptors without any fit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code></p></td>
+<td><p>Analyze the data and, if required, make
+a choice of kernel to use in <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code>, consider setting <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code> to activate the writing of files with descriptors</p>
+</div>
 </dd></dl>
 
 <dl class="std option">
