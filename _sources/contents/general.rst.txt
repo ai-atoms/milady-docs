@@ -1,38 +1,40 @@
 
 
 What is MILADY?
----------------
+~~~~~~~~~~~~~~~
 
-Machine Lerning DYnamics package ``MILADY`` is an open-souce code created by scientists for the scientists.
-Our main goal is to improve the accuracy and predictive power of atomistic simulations.
-``MILADY`` uses Machine Learning algorithms and prioritises the methods with a reasonable computational cost
+Machine Lerning DYnamics package ``MILADY 2.0`` is an open-souce code created by scientists for scientists.
+Our goal is to improve the accuracy and predictive power of atomistic simulations.
+The code uses Machine Learning algorithms and prioritises the methods with a reasonable computational cost.
 
-The main functionalities of ``MILADY 2.0`` include:
 
-- Development of ML force fields, suitable for Molecular Dynamics simulations
+``MILADY 2.0`` is an open-souce package, distributed under Academic Software Licence (ASL).
+
+**Main functionalities:**
+
+- Development of ML force fields, suitable for Molecular Dynamics simulations.
 - Development of regression models (metamodels) for prediction of materials properties, like vibrational entropy, HUMO-LUMO energies, etc.
 - Representation of structures in the feature space of atomic descriptors
 - Analysis, sparcification, and optimization of training databases
 
-We are open source and if are interested to implement new facilities, participate and contribute to the developememnts, we are happy to share with 
-you this experience. We provide a large choice in 
-the :ref:`descriptors<sec:descriptors>`, many type of regression :ref:`models<sec:models>` from linear, quadratic, polynomial chaos to 
-:ref:`kernel<sec:kernel>`. ``MILADY`` is designed for High Performance Computing (HPC) calculations with many level of parallelism using 
-MPI, PBLAS and ScaLapack technologies.      
+**Advantages of MILADY**
 
-``MILADY`` is an open souce package, distributed under Academic Software Licence ("ASL").
+- ``MILADY`` is designed for High Performance Computing (HPC). The code is well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
+- We provide a large choice of atomic :ref:`descriptors<sec:descriptors>`.
+- We provide a possibility to perform various types of :ref:`regression<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernel<sec:kernel>` models.
+- ``MILADY`` is open-source package and we are happy to include your contributins to the code.
+
 
 
 Contributors
--------------
+~~~~~~~~~~~~
 
 The present architecture is designed by M.-C. Marinica and A. M. Goryaeva.
 
-The numerical development of ``MILADY`` package started in 2015
-at SRMP, CEA Saclay, France.
+The development of ``MILADY`` package started in 2015 at SRMP, CEA Saclay, France.
 
 Main contributors (in chronological order):
-M.-C. Marinica (2015-present at SRMP, CEA Saclay)
+M.-C. Marinica (2015-present at SRMP, CEA Saclay),
 W. Unn-Toc (2015-2016 at SRMP, CEA Saclay),
 A. M. Goryaeva (2018-present at SRMP, CEA Saclay),
 C. Lapointe (2018-2021 at SRMP, CEA Saclay),
@@ -48,14 +50,15 @@ Coupling ``MILADY`` with ``LAMMPS`` is performed by
 `Thomas D. Swinburne <https://tomswinburne.github.io/>`_ (CINaM, Marseille)
 
 Contact 
--------
+~~~~~~~
 
-You can send us `an email`_ we will be happy to answer. 
+The questions and suggestions can be sent to our `email`_ .
+We will be happy to answer!
 
-.. _an email: ai.unseen.group@gmail.com
+.. _email: ai.unseen.group@gmail.com
 
-They appreciate and use MiLaDy
-------------------------------
+They appreciate and use MILADY
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. image:: logos/cea.png
    :width: 100
