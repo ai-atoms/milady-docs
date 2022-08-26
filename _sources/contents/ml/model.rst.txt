@@ -117,7 +117,7 @@ section :ref:`Kernel section<sec:kernel>`.
 
 .. option::  polyc_n_hermite (integer) 
    
-    The maxiumum degree for Hermite polynomials for the polynomial chaos regression. ``Milady`` handle Hermite basis up to the 4:sup:`th` order.      
+    The maxiumum degree for Hermite polynomials for the polynomial chaos regression. ``Milady`` handle Hermite basis up to the 4 :sup:`th` order.      
 
     Default is ``polyc_n_hermite=2``.
 
