@@ -23,18 +23,16 @@ Kernels definitions
    -  ``kernel_type = 1`` Square-exponential kernel
 
       .. math::
-
          \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \exp{-\frac{|\mathbf{D}^{s,a} - \mathbf{x}^m |^2}{2l_{SE}^2}}
-                \label{kernel:se}
+         :label: kSE       
 
       the values to define are :math:`\sigma_{SE}` and :math:`l_{SE}`.
 
    -  ``kernel_type = 4`` Polynomial kernel
 
       .. math::
-
          \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p
-             \label{kernel:po}
+         :label: kPO
 
       the values to define are :math:`\sigma_{SE}`, :math:`l_{SE}` and
       :math:`p`.
@@ -43,9 +41,8 @@ Kernels definitions
    -  ``kernel_type = 6`` Mahalanobis - Batchattarya kernel
 
       .. math::
-
          \tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p
-                \label{kernel:maha}
+         :label: kMAHA
 
       :math:`p` should be defined. For the case :math:`p=1/2` there is
       Mahalanobis distance.
@@ -64,16 +61,15 @@ Kernels definitions
 .. option::  length_kernel (real)
 
    :math:`k_2` option. It defines
-   :math:`l_{SE}` from Eqs. `[kernel:se] <#kernel:se>`__ and
-   `[kernel:po] <#kernel:po>`__.
+   :math:`l_{SE}` from Eqs. :math:numref:`kSE` and :math:numref:`kPO`.
 
    Default ``length_kernel = 0.05d0``
 
 .. option::  sigma_kernel (real)
 
    :math:`k_2` option. It defines
-   :math:`\sigma_{SE}` from Eqs. `[kernel:se] <#kernel:se>`__ and
-   `[kernel:po] <#kernel:po>`__. In ``Milady`` for polynomial kernel is optimal 0.d0. 
+   :math:`\sigma_{SE}` from from Eqs. :math:numref:`kSE` and :math:numref:`kPO`. 
+   In ``Milady`` for polynomial kernel is optimal 0.d0. 
 
    Default ``sigma_kernel = 0.d0``
 
@@ -84,9 +80,7 @@ Kernels definitions
 .. option::  kernel_power (real)
 
    :math:`k_2` option. It defines :math:`p`
-   from Eqs. `[kernel:po] <#kernel:po>`__,
-   `[kernel:dist] <#kernel:dist>`__ and
-   `[kernel:maha] <#kernel:maha>`__. The recommended values are 3, 1
+   from Eqs. :math:numref:`kMAHA`. The recommended values are 3, 1
    and 1/2, respectively.
 
    Default ``kernel_power = 2.d0``

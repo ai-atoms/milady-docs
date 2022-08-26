@@ -111,22 +111,19 @@ first step as <span class="math notranslate nohighlight">\(k_1\)</span>, whilst 
 <dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">1</span></code> Square-exponential kernel</p>
-<div class="math notranslate nohighlight">
-\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \exp{-\frac{|\mathbf{D}^{s,a} - \mathbf{x}^m |^2}{2l_{SE}^2}}
-       \label{kernel:se}\]</div>
+<div class="math notranslate nohighlight" id="equation-kse">
+<span class="eqno">(1)<a class="headerlink" href="#equation-kse" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \exp{-\frac{|\mathbf{D}^{s,a} - \mathbf{x}^m |^2}{2l_{SE}^2}}\]</div>
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> and <span class="math notranslate nohighlight">\(l_{SE}\)</span>.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel</p>
-<div class="math notranslate nohighlight">
-\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p
-    \label{kernel:po}\]</div>
+<div class="math notranslate nohighlight" id="equation-kpo">
+<span class="eqno">(2)<a class="headerlink" href="#equation-kpo" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p\]</div>
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span>, <span class="math notranslate nohighlight">\(l_{SE}\)</span> and
 <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">6</span></code> Mahalanobis - Batchattarya kernel</p>
-<div class="math notranslate nohighlight">
-\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p
-       \label{kernel:maha}\]</div>
+<div class="math notranslate nohighlight" id="equation-kmaha">
+<span class="eqno">(3)<a class="headerlink" href="#equation-kmaha" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p\]</div>
 <p><span class="math notranslate nohighlight">\(p\)</span> should be defined. For the case <span class="math notranslate nohighlight">\(p=1/2\)</span> there is
 Mahalanobis distance.</p>
 </li>
@@ -147,8 +144,7 @@ resonable value (at least on what we have tested, such as, Fe, W, some HEA and a
 <dt class="sig sig-object std" id="cmdoption-arg-length_kernel">
 <span id="cmdoption-arg-length-kernel"></span><span class="sig-name descname"><span class="pre">length_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-length_kernel" title="Permalink to this definition"></a></dt>
 <dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
-<span class="math notranslate nohighlight">\(l_{SE}\)</span> from Eqs. <a class="reference external" href="#kernel:se">[kernel:se]</a> and
-<a class="reference external" href="#kernel:po">[kernel:po]</a>.</p>
+<span class="math notranslate nohighlight">\(l_{SE}\)</span> from Eqs. <a class="reference internal" href="#equation-kse">(1)</a> and <a class="reference internal" href="#equation-kpo">(2)</a>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">length_kernel</span> <span class="pre">=</span> <span class="pre">0.05d0</span></code></p>
 </dd></dl>
 
@@ -156,8 +152,8 @@ resonable value (at least on what we have tested, such as, Fe, W, some HEA and a
 <dt class="sig sig-object std" id="cmdoption-arg-sigma_kernel">
 <span id="cmdoption-arg-sigma-kernel"></span><span class="sig-name descname"><span class="pre">sigma_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-sigma_kernel" title="Permalink to this definition"></a></dt>
 <dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
-<span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> from Eqs. <a class="reference external" href="#kernel:se">[kernel:se]</a> and
-<a class="reference external" href="#kernel:po">[kernel:po]</a>. In <code class="docutils literal notranslate"><span class="pre">Milady</span></code> for polynomial kernel is optimal 0.d0.</p>
+<span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> from from Eqs. <a class="reference internal" href="#equation-kse">(1)</a> and <a class="reference internal" href="#equation-kpo">(2)</a>.
+In <code class="docutils literal notranslate"><span class="pre">Milady</span></code> for polynomial kernel is optimal 0.d0.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">0.d0</span></code></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -169,9 +165,7 @@ resonable value (at least on what we have tested, such as, Fe, W, some HEA and a
 <dt class="sig sig-object std" id="cmdoption-arg-kernel_power">
 <span id="cmdoption-arg-kernel-power"></span><span class="sig-name descname"><span class="pre">kernel_power</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_power" title="Permalink to this definition"></a></dt>
 <dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines <span class="math notranslate nohighlight">\(p\)</span>
-from Eqs. <a class="reference external" href="#kernel:po">[kernel:po]</a>,
-<a class="reference external" href="#kernel:dist">[kernel:dist]</a> and
-<a class="reference external" href="#kernel:maha">[kernel:maha]</a>. The recommended values are 3, 1
+from Eqs. <a class="reference internal" href="#equation-kmaha">(3)</a>. The recommended values are 3, 1
 and 1/2, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">2.d0</span></code></p>
 </dd></dl>
