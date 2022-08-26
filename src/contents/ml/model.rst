@@ -128,7 +128,7 @@ Solving algorithm
 
 .. option::  snap_fit_type (integer)
 
-   The type of subroutine used in order to
+   The type of algorithm used in order to
    solve least square (LS) problem :math:`\mathbf{A} \beta= \mathbf{b}`.
    We recommend without any hesitation ``snap_fit_type = 4``. 
 
