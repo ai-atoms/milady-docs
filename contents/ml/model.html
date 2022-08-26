@@ -230,54 +230,64 @@ See Goryaeva et al. 2021 for more details.</p>
 <span id="cmdoption-arg-snap-fit-type"></span><span class="sig-name descname"><span class="pre">snap_fit_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_fit_type" title="Permalink to this definition"></a></dt>
 <dd><p>The type of subroutine used in order to
 solve least square (LS) problem <span class="math notranslate nohighlight">\(\mathbf{A} \beta= \mathbf{b}\)</span>.
-<span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\(m \times d\)</span> matrix, <span class="math notranslate nohighlight">\(m\)</span> being the
-number of observations and <span class="math notranslate nohighlight">\(d\)</span> the number of parameters (in the
+We recommend without any hesitation <code class="docutils literal notranslate"><span class="pre">snap_fit_type</span> <span class="pre">=</span> <span class="pre">4</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\(M \times D\)</span> matrix, <span class="math notranslate nohighlight">\(M\)</span> being the
+number of observations and <span class="math notranslate nohighlight">\(D\)</span> the number of parameters (in the
 case of linear ML the dimension of descriptor + 1), <span class="math notranslate nohighlight">\(\beta\)</span> the
-parameter matrix <span class="math notranslate nohighlight">\(d \times 1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> the
-observations matrix <span class="math notranslate nohighlight">\(m \times 1\)</span>. Actually in the MiLaDy
+parameter matrix <span class="math notranslate nohighlight">\(D \times 1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> the
+observations matrix <span class="math notranslate nohighlight">\(M \times 1\)</span>. Actually in the <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>
 implementation we build <span class="math notranslate nohighlight">\(\mathbf{Amat}\)</span> matrix that has the
 dimensions <span class="math notranslate nohighlight">\(d \times m\)</span> being in fact <span class="math notranslate nohighlight">\(\mathbf{A}^T\)</span>
-(with the notation used for this manual):</p>
-<ol class="arabic simple">
+(with the notation used for this documentation):</p>
+<ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=0</span></code>: home made subroutine based on inversion of a
 symmetric real matrix ( <span class="math notranslate nohighlight">\(\mathbf{A}^T \mathbf{A}\)</span>) using Bunch-Kaufman
-diagonal pivoting method.</p></li>
+diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and
+adapted for compact descritors and low non-linarity (to have diesign matrix close
+to full rank)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=1</span></code>: solution based on QR
-decomposition. Adapted for full rank matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.
-In <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is not full rank the inversion stop with a
-error. This option use the assumption
-that <span class="math notranslate nohighlight">\(\textrm{rank}(A) = \min(m,b)\)</span>, in other words,
-<span class="math notranslate nohighlight">\(A\)</span> has full rank, finding a least squares solution of an
-overdetermined system when <span class="math notranslate nohighlight">\(m &gt; d\)</span>, and a minimum norm
-solution of an underdetermined system when <span class="math notranslate nohighlight">\(m &lt; d\)</span>.
-Uses a QR or LQ factorization of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p></li>
+decomposition for serial and ScaLapack version.
+Adapted for full rank matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and use the assumption
+that <span class="math notranslate nohighlight">\(\textrm{rank}(A) = \min(M,D)\)</span>, in other words,
+<span class="math notranslate nohighlight">\(A\)</span> has full rank.
+In serial version,  if <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is not full rank the inversion will stop with a
+error. Uses a QR or LQ factorization of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=2</span></code>: <strong>restricted only for advanced users</strong>
 Solution with constraints. The constraints are of form
 <span class="math notranslate nohighlight">\(\mathbf{B}x=\mathbf{d}\)</span>. The matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> and
 the vector <span class="math notranslate nohighlight">\(\mathbf{d}\)</span> are filled with all the data (input
 and target for energy, force or stress) contained in the class
 fixed by <code class="docutils literal notranslate"><span class="pre">snap_class_constraints</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=3</span></code>: In the general case when we may have
-<span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A}) &lt; \min(m,b)\)</span>, in other words,
+<li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=3</span></code>: For serial version this is adapted for the general case when we
+may have <span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A}) &lt; \min(M,D)\)</span>, in other words,
 <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> may be rank-deficient, we seek the minimum norm
 least squares solution <span class="math notranslate nohighlight">\(\beta\)</span> which minimizes both
 <span class="math notranslate nohighlight">\(\left| \beta \right|^2\)</span> and
 <span class="math notranslate nohighlight">\(\left| b - A \beta \right|^2\)</span>. With this option a rank
-estimation is possible.</p></li>
+estimation is possible. The ScaLapack version uses Cholesky decomposition for symlmetric and
+positive definite matrix consequnetly should be avoided.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Avoid this solution for Scalapack version. Is very likely to obtain weird results in the
+most favorable cases but probably you will have segmetation fault and or <code class="docutils literal notranslate"><span class="pre">NaN</span></code> as
+parameters :)).</p>
+</div>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">snap_fit_type=4</span></code>: In the general case when we may have
-<span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A}) &lt; \min(m,b)\)</span>, in other words,
+<span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A}) &lt; \min(M,D)\)</span>, in other words,
 <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> may be rank-deficient, we seek the minimum norm
 least squares solution <span class="math notranslate nohighlight">\(\beta\)</span> which minimizes both
 <span class="math notranslate nohighlight">\(\left| \beta \right|^2\)</span> and
-<span class="math notranslate nohighlight">\(\left| b - A \beta \right|^2\)</span>. With this option a
-rank estimation is possible.</p></li>
+<span class="math notranslate nohighlight">\(\left| b - A \beta \right|^2\)</span>. Is the slowest but is by far mathematically
+most complete solution based on SVD decomposition.
+With this option a rank estimation (via SVD and driven by the option <code class="docutils literal notranslate"><span class="pre">svd_recond</span></code>).</p></li>
 </ol>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_class_constraints">
-<span id="cmdoption-arg-snap-class-constraints"></span><span class="sig-name descname"><span class="pre">snap_class_constraints</span></span><span class="sig-prename descclassname"> <span class="pre">(string(len=2))</span></span><a class="headerlink" href="#cmdoption-arg-snap_class_constraints" title="Permalink to this definition"></a></dt>
+<span id="cmdoption-arg-snap-class-constraints"></span><span class="sig-name descname"><span class="pre">snap_class_constraints</span></span><span class="sig-prename descclassname"> <span class="pre">(character)</span></span><a class="headerlink" href="#cmdoption-arg-snap_class_constraints" title="Permalink to this definition"></a></dt>
 <dd><p>The class that imposes the constraints on fit. Is active only if
 <code class="docutils literal notranslate"><span class="pre">snap_fit_type=2</span></code>. All the configuration mentioned in this class
 will fill the constraints matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> and the target
