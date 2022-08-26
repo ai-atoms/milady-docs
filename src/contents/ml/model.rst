@@ -74,8 +74,10 @@ Type of regression
 ^^^^^^^^^^^^^^^^^^
 
 
-The following options are relevant for the ``ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).
-The options of kernel models, because they require separate treatment are presented in :ref:`Kernel section<sec:kernel>`. 
+The following options are relevant for the ``ml_type=0`` regression models with basis functions (linear in parameters models) namely:
+linear (LML), quandratic (QNML, QML) or polynomial chaos. 
+The kernel regressions require separate treatment threfore the options for kernel models are presented in separate 
+section :ref:`Kernel section<sec:kernel>`. 
 
 .. option::  snap_order (integer)
 
