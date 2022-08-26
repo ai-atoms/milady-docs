@@ -20,9 +20,9 @@
    contents/install/install_irene
 
 .. toctree::
-   :caption: Configuration and usage
+   :caption: User manual
    :hidden:
-   :maxdepth: 1
+   :maxdepth: 2
 
    contents/ml/input
    contents/ml/model
@@ -39,3 +39,10 @@
    :hidden:
 
    contents/examples
+
+.. toctree::
+   :caption: Publications
+   :maxdepth: 2
+   :hidden:
+
+   contents/publications
