@@ -280,9 +280,21 @@ least squares solution <span class="math notranslate nohighlight">\(\beta\)</spa
 <span class="math notranslate nohighlight">\(\left| \beta \right|^2\)</span> and
 <span class="math notranslate nohighlight">\(\left| b - A \beta \right|^2\)</span>. Is the slowest but is by far mathematically
 most complete solution based on SVD decomposition.
-With this option a rank estimation (via SVD and driven by the option <code class="docutils literal notranslate"><span class="pre">svd_recond</span></code>).</p></li>
+With this option a rank estimation (via SVD and driven by the option <code class="docutils literal notranslate"><span class="pre">svd_rcond</span></code>).</p></li>
 </ol>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
+</dd></dl>
+
+<p>Default is <code class="docutils literal notranslate"><span class="pre">snap_fit_type=4</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-svd_rcond">
+<span id="cmdoption-arg-svd-rcond"></span><span class="sig-name descname"><span class="pre">svd_rcond</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-svd_rcond" title="Permalink to this definition"></a></dt>
+<dd><p>The  value of the limit from which the singular eigenvalues of the design
+matrix <span class="math notranslate nohighlight">\((\mathbf{A})\)</span> (or any matrix) are zero. Any eigenvalue lower that this limit is
+treated as zero. Obviously the value of <code class="docutils literal notranslate"><span class="pre">svd_rcond</span></code> has an impact on
+the <span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A})\)</span>.
+If a negative value is choosen then <code class="docutils literal notranslate"><span class="pre">Milady</span></code> fix <code class="docutils literal notranslate"><span class="pre">svd_rcond=100.d0*epsilon(1.d0)</span></code> where
+epsilon is the Lapack machine precision function (around <code class="docutils literal notranslate"><span class="pre">1.d-15</span></code> in most of the cases).</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">svd_rcond=-1</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
