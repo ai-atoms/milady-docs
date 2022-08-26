@@ -128,64 +128,78 @@ Solving algorithm
 
 .. option::  snap_fit_type (integer)
 
-   The type of algorithm used in order to
-   solve least square (LS) problem :math:`\mathbf{A} \beta= \mathbf{b}`.
-   We recommend without any hesitation ``snap_fit_type = 4``. 
+  The type of algorithm used in order to
+  solve least square (LS) problem :math:`\mathbf{A} \beta= \mathbf{b}`.
+  We recommend without any hesitation ``snap_fit_type = 4``. 
 
-   :math:`\mathbf{A}` is :math:`M \times D` matrix, :math:`M` being the
-   number of observations and :math:`D` the number of parameters (in the
-   case of linear ML the dimension of descriptor + 1), :math:`\beta` the
-   parameter matrix :math:`D \times 1` and :math:`\mathbf{b}` the
-   observations matrix :math:`M \times 1`. Actually in the ``MiLaDy``
-   implementation we build :math:`\mathbf{Amat}` matrix that has the
-   dimensions :math:`d \times m` being in fact :math:`\mathbf{A}^T`
-   (with the notation used for this documentation):
+  :math:`\mathbf{A}` is :math:`M \times D` matrix, :math:`M` being the
+  number of observations and :math:`D` the number of parameters (in the
+  case of linear ML the dimension of descriptor + 1), :math:`\beta` the
+  parameter matrix :math:`D \times 1` and :math:`\mathbf{b}` the
+  observations matrix :math:`M \times 1`. Actually in the ``MiLaDy``
+  implementation we build :math:`\mathbf{Amat}` matrix that has the
+  dimensions :math:`d \times m` being in fact :math:`\mathbf{A}^T`
+  (with the notation used for this documentation):  
 
-   #. ``snap_fit_type=0``: home made subroutine based on inversion of a 
-      symmetric real matrix ( :math:`\mathbf{A}^T \mathbf{A}`) using Bunch-Kaufman
-      diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and 
-      adapted for compact descritors and low non-linarity (to have diesign matrix close 
-      to full rank)  
+  #. ``snap_fit_type=0``: home made subroutine based on inversion of a 
+     symmetric real matrix ( :math:`\mathbf{A}^T \mathbf{A}`) using Bunch-Kaufman
+     diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and 
+     adapted for compact descritors and low non-linarity (to have diesign matrix close 
+     to full rank)   
 
-   #. ``snap_fit_type=1``: solution based on QR
-      decomposition for serial and ScaLapack version.  
-      Adapted for full rank matrix :math:`\mathbf{A}` and use the assumption
-      that :math:`\textrm{rank}(A) = \min(M,D)`, in other words,
-      :math:`A` has full rank. 
-      In serial version,  if :math:`\mathbf{A}` is not full rank the inversion will stop with a
-      error. Uses a QR or LQ factorization of :math:`\mathbf{A}`.
+  #. ``snap_fit_type=1``: solution based on QR
+     decomposition for serial and ScaLapack version.  
+     Adapted for full rank matrix :math:`\mathbf{A}` and use the assumption
+     that :math:`\textrm{rank}(A) = \min(M,D)`, in other words,
+     :math:`A` has full rank. 
+     In serial version,  if :math:`\mathbf{A}` is not full rank the inversion will stop with a
+     error. Uses a QR or LQ factorization of :math:`\mathbf{A}`. 
 
-   #. ``snap_fit_type=2``: **restricted only for advanced users** 
-      Solution with constraints. The constraints are of form
-      :math:`\mathbf{B}x=\mathbf{d}`. The matrix :math:`\mathbf{B}` and
-      the vector :math:`\mathbf{d}` are filled with all the data (input
-      and target for energy, force or stress) contained in the class
-      fixed by ``snap_class_constraints``. 
+  #. ``snap_fit_type=2``: **restricted only for advanced users** 
+     Solution with constraints. The constraints are of form
+     :math:`\mathbf{B}x=\mathbf{d}`. The matrix :math:`\mathbf{B}` and
+     the vector :math:`\mathbf{d}` are filled with all the data (input
+     and target for energy, force or stress) contained in the class
+     fixed by ``snap_class_constraints``.   
 
-   #. ``snap_fit_type=3``: For serial version this is adapted for the general case when we 
-      may have :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
-      :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
-      least squares solution :math:`\beta` which minimizes both
-      :math:`\left| \beta \right|^2` and
-      :math:`\left| b - A \beta \right|^2`. With this option a rank 
-      estimation is possible. The ScaLapack version uses Cholesky decomposition for symlmetric and 
-      positive definite matrix consequnetly should be avoided. 
+  #. ``snap_fit_type=3``: For serial version this is adapted for the general case when we 
+     may have :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
+     :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
+     least squares solution :math:`\beta` which minimizes both
+     :math:`\left| \beta \right|^2` and
+     :math:`\left| b - A \beta \right|^2`. With this option a rank 
+     estimation is possible. The ScaLapack version uses Cholesky decomposition for symlmetric and 
+     positive definite matrix consequnetly should be avoided.   
 
-      .. warning:: 
-         Avoid this solution for Scalapack version. Is very likely to obtain weird results in the 
-         most favorable cases but probably you will have segmetation fault and or ``NaN`` as 
-         parameters :)).    
+     .. warning:: 
+        Avoid this solution for Scalapack version. Is very likely to obtain weird results in the 
+        most favorable cases but probably you will have segmetation fault and or ``NaN`` as 
+        parameters :)).      
 
-   #. ``snap_fit_type=4``: In the general case when we may have
-      :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
-      :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
-      least squares solution :math:`\beta` which minimizes both
-      :math:`\left| \beta \right|^2` and
-      :math:`\left| b - A \beta \right|^2`. Is the slowest but is by far mathematically 
-      most complete solution based on SVD decomposition. 
-      With this option a rank estimation (via SVD and driven by the option ``svd_recond``).
+  #. ``snap_fit_type=4``: In the general case when we may have
+     :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
+     :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
+     least squares solution :math:`\beta` which minimizes both
+     :math:`\left| \beta \right|^2` and
+     :math:`\left| b - A \beta \right|^2`. Is the slowest but is by far mathematically 
+     most complete solution based on SVD decomposition. 
+     With this option a rank estimation (via SVD and driven by the option ``svd_rcond``).
 
-   Default is ``4``.
+Default is ``snap_fit_type=4``.
+
+
+
+.. option::  svd_rcond (real)
+
+   The  value of the limit from which the singular eigenvalues of the design 
+   matrix :math:`(\mathbf{A})` (or any matrix) are zero. Any eigenvalue lower that this limit is 
+   treated as zero. Obviously the value of ``svd_rcond`` has an impact on 
+   the :math:`\textrm{rank}(\mathbf{A})`. 
+   If a negative value is choosen then ``Milady`` fix ``svd_rcond=100.d0*epsilon(1.d0)`` where 
+   epsilon is the Lapack machine precision function (around ``1.d-15`` in most of the cases).   
+
+   Default is ``svd_rcond=-1``.
+
 
 .. option::  snap_class_constraints (character)
 
@@ -195,6 +209,8 @@ Solving algorithm
    vector :math:`\mathbf{d}`.
 
    Default is ``"07"``.
+
+
 
 
 Regularization and loss
