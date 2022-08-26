@@ -8,7 +8,7 @@ Our goal is to improve the accuracy and predictive power of atomistic simulation
 The code uses Machine Learning algorithms and prioritises the methods with a reasonable computational cost.
 
 
-``MILADY 2.0`` is an open-souce package, distributed under Academic Software Licence (ASL).
+``MILADY 2.0`` is distributed under Academic Software Licence (ASL).
 
 **Main functionalities:**
 
@@ -17,7 +17,7 @@ The code uses Machine Learning algorithms and prioritises the methods with a rea
 - Representation of structures in the feature space of atomic descriptors
 - Analysis, sparcification, and optimization of training databases
 
-**Advantages of MILADY**
+**Advantages of MILADY:**
 
 - ``MILADY`` is designed for High Performance Computing (HPC). The code is well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
 - We provide a large choice of atomic :ref:`descriptors<sec:descriptors>`.
