@@ -173,45 +173,51 @@ a choice of kernel to use in <code class="docutils literal notranslate"><span cl
 <span id="sec-regression"></span><h1>Regression models<a class="headerlink" href="#regression-models" title="Permalink to this heading"></a></h1>
 <section id="type-of-regression">
 <h2>Type of regression<a class="headerlink" href="#type-of-regression" title="Permalink to this heading"></a></h2>
-<p>The following options are relevant for the <a href="#id1"><span class="problematic" id="id2">``</span></a>ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).</p>
+<p>The following options are relevant for the <a href="#id1"><span class="problematic" id="id2">``</span></a>ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).
+The options of kernel models, because they require separate treatment are presented in <a class="reference internal" href="kernels.html#sec-kernel"><span class="std std-ref">Kernel section</span></a>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_order">
 <span id="cmdoption-arg-snap-order"></span><span class="sig-name descname"><span class="pre">snap_order</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_order" title="Permalink to this definition"></a></dt>
-<dd><p>1 LML
-2 QML/ QNML the distionction os made with <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span></code> option
-3 poly chaos
-This can have the values of 1 2 or 3 for linear (1 + <span class="math notranslate nohighlight">\(D\)</span> parameters) or quadratic
-regression (1 + <span class="math notranslate nohighlight">\(D\)</span> + <span class="math notranslate nohighlight">\(D^2\)</span> parameters) and polynomial chaos (a lot lot of parameters) regression, respectivelly,
-in the descriptor space. For the case <code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">2</span></code> it should
-be set also the type of the quadratic regression.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<dd><p>Define the type of regression the descriptor space:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">1</span></code> this enable a linear fit (known also as LML) and will gives <span class="math notranslate nohighlight">\(1+D\)</span> parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">2</span></code> this enable a quandratic fit and will gives  <span class="math notranslate nohighlight">\(1 + D + D^2\)</span> parameters. In this case
+there is a supplementary choice about the type of quandratic model by the option  <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span></code>.
+About the quadratic fit see Goryaeva et al. 2021 for more details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">3</span></code>  this enable a polynomial chaos type of fitting. Two others parameters should be set: <code class="docutils literal notranslate"><span class="pre">polyc_n_poly</span></code>
+and <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code>. The number of paramters is very large given by this formulae:
+1 + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D\)</span> + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D^2\)</span> +
++ … + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D\)</span> <sup>polyc_n_poly</sup></p></li>
+</ul>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-snap_type_quadratic">
 <span id="cmdoption-arg-snap-type-quadratic"></span><span class="sig-name descname"><span class="pre">snap_type_quadratic</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_type_quadratic" title="Permalink to this definition"></a></dt>
-<dd><p>1 - QNML  2 - QML
-The type of quadratic fit. For
+<dd><p>The type of quadratic fit. For
 the case 1 the solution is preconditionned by the linear fit i.e.
 the first 1 + <span class="math notranslate nohighlight">\(D\)</span> are exactelly set to the LML solution and
 only the remaining <span class="math notranslate nohighlight">\(D^2\)</span> parameters are fitted quadratically.
 For the case 2 the full quadratic solution is provided, all the
-parameters are fitted without preconditionning.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+parameters are fitted without preconditionning. Shortly speaking
+<code class="docutils literal notranslate"><span class="pre">snap_type_quadratic=1</span></code> is for  QNML and <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic=2</span></code> is for QML.
+See Goryaeva et al. 2021 for more details.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-polyc_n_poly">
-<span id="cmdoption-arg-polyc-n-poly"></span><span class="sig-name descname"><span class="pre">polyc_n_poly</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-polyc_n_poly" title="Permalink to this definition"></a></dt>
-<dd><p>active for snap_order 3. Is the order of Poly chaos from 1 to 3</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<span id="cmdoption-arg-polyc-n-poly"></span><span class="sig-name descname"><span class="pre">polyc_n_poly</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-polyc_n_poly" title="Permalink to this definition"></a></dt>
+<dd><p>active for polynomial chaos regression i.e. <code class="docutils literal notranslate"><span class="pre">snap_order=3</span></code>. Is the order of polynomial degree.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">polyc_n_poly=3</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-polyc_n_hermite">
-<span id="cmdoption-arg-polyc-n-hermite"></span><span class="sig-name descname"><span class="pre">polyc_n_hermite</span></span><span class="sig-prename descclassname"> <span class="pre">=</span> <span class="pre">2</span></span><a class="headerlink" href="#cmdoption-arg-polyc_n_hermite" title="Permalink to this definition"></a></dt>
-<dd><p>Max Hermite degree of poly chaos regression:  1(identity) to 4</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<span id="cmdoption-arg-polyc-n-hermite"></span><span class="sig-name descname"><span class="pre">polyc_n_hermite</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-polyc_n_hermite" title="Permalink to this definition"></a></dt>
+<dd><p>The maxiumum degree for Hermite polynomials for the polynomial chaos regression. <code class="docutils literal notranslate"><span class="pre">Milady</span></code> handle Hermite basis up to the 4:sup:<cite>th</cite> order.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite=2</span></code>.</p>
 </dd></dl>
 
 </section>

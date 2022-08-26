@@ -75,42 +75,49 @@ Type of regression
 
 
 The following options are relevant for the ``ml_type=0``regression models with basis functions (linear in parameters SNAP-like models).
+The options of kernel models, because they require separate treatment are presented in :ref:`Kernel section<sec:kernel>`. 
 
 .. option::  snap_order (integer)
 
-   1 LML 
-   2 QML/ QNML the distionction os made with ``snap_type_quadratic`` option 
-   3 poly chaos 
-   This can have the values of 1 2 or 3 for linear (1 + :math:`D` parameters) or quadratic
-   regression (1 + :math:`D` + :math:`D^2` parameters) and polynomial chaos (a lot lot of parameters) regression, respectivelly,
-   in the descriptor space. For the case ``snap_order = 2`` it should
-   be set also the type of the quadratic regression.
+   Define the type of regression the descriptor space: 
 
-   Default is ``1``.
+   - ``snap_order = 1`` this enable a linear fit (known also as LML) and will gives :math:`1+D` parameters
+
+   - ``snap_order = 2`` this enable a quandratic fit and will gives  :math:`1 + D + D^2` parameters. In this case 
+     there is a supplementary choice about the type of quandratic model by the option  ``snap_type_quadratic``.  
+     About the quadratic fit see Goryaeva et al. 2021 for more details. 
+
+   - ``snap_order = 3``  this enable a polynomial chaos type of fitting. Two others parameters should be set: ``polyc_n_poly`` 
+     and ``polyc_n_hermite``. The number of paramters is very large given by this formulae: 
+     1 + ``polyc_n_hermite`` :math:`\times D` + ``polyc_n_hermite`` :math:`\times D^2` + 
+     + ... + ``polyc_n_hermite`` :math:`\times D` :sup:`polyc\_n\_poly`  
+
+   Default is ``snap_order = 1``.
 
 .. option::  snap_type_quadratic (integer)
 
-   1 - QNML  2 - QML 
    The type of quadratic fit. For
    the case 1 the solution is preconditionned by the linear fit i.e.
    the first 1 + :math:`D` are exactelly set to the LML solution and
    only the remaining :math:`D^2` parameters are fitted quadratically.
    For the case 2 the full quadratic solution is provided, all the
-   parameters are fitted without preconditionning.
+   parameters are fitted without preconditionning. Shortly speaking   
+   ``snap_type_quadratic=1`` is for  QNML and ``snap_type_quadratic=2`` is for QML.
+   See Goryaeva et al. 2021 for more details. 
 
-   Default is ``1``.
+   Default is ``snap_type_quadratic = 1``.
 
-.. option:: polyc_n_poly 
+.. option:: polyc_n_poly (integer)
 
-   active for snap_order 3. Is the order of Poly chaos from 1 to 3
+   active for polynomial chaos regression i.e. ``snap_order=3``. Is the order of polynomial degree.
 
-   Default is ``3``.  
+   Default is ``polyc_n_poly=3``.  
 
-.. option::  polyc_n_hermite = 2 
+.. option::  polyc_n_hermite (integer) 
    
-    Max Hermite degree of poly chaos regression:  1(identity) to 4    
+    The maxiumum degree for Hermite polynomials for the polynomial chaos regression. ``Milady`` handle Hermite basis up to the 4:sup:`th` order.      
 
-    Default is ``2``.
+    Default is ``polyc_n_hermite=2``.
 
 
 Solving algorithm
