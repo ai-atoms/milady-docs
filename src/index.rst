@@ -38,7 +38,10 @@
    :maxdepth: 2
    :hidden:
 
-   contents/examples
+   contents/examples/01_ex_write
+   contents/examples/02_ex_lmlfe
+   contents/examples/03_ex_qnmlhea
+   contents/examples/04_ex_kernel
 
 .. toctree::
    :caption: Publications
