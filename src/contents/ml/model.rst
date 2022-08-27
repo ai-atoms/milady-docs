@@ -245,11 +245,11 @@ Regularization and loss
 
 
 
-.. option::  snap_regularization_type (integer)
+.. option::  mld_regularization_type (integer)
 
-   #. ``snap_regularization_type``\ =0: no regularization
+   #. ``mld_regularization_type``\ =0: no regularization
 
-   #. ``snap_regularization_type``\ =1: applies the regularized solution
+   #. ``mld_regularization_type``\ =1: applies the regularized solution
       of parameters, :math:`\mathbf{w}(\lambda_{krr})` found by the
       Moore-Penrose inversion:
 
