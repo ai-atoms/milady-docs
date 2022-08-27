@@ -96,7 +96,7 @@ section :ref:`Kernel section<sec:kernel>`.
 
    Default is ``snap_order = 1``.
 
-.. option::  snap_type_quadratic (integer)
+.. option::  mld_type_quadratic (integer)
 
    The type of quadratic fit. For
    the case 1 the solution is preconditionned by the linear fit i.e.
@@ -104,10 +104,10 @@ section :ref:`Kernel section<sec:kernel>`.
    only the remaining :math:`D^2` parameters are fitted quadratically.
    For the case 2 the full quadratic solution is provided, all the
    parameters are fitted without preconditionning. Shortly speaking   
-   ``snap_type_quadratic=1`` is for  QNML and ``snap_type_quadratic=2`` is for QML.
+   ``mld_type_quadratic=1`` is for  QNML and ``mld_type_quadratic=2`` is for QML.
    See Goryaeva et al. 2021 for more details. 
 
-   Default is ``snap_type_quadratic = 1``.
+   Default is ``mld_type_quadratic = 1``.
 
 .. option:: polyc_n_poly (integer)
 
@@ -210,7 +210,34 @@ Default is ``snap_fit_type=4``.
 
    Default is ``"07"``.
 
+.. option::  write_design_matrix (logical)
 
+   Dump the design matrix, which contains the descriptors (energy, force and stress if 
+   mentioned in  ``db_model.in``) and
+   the weigths. The writen design matix that has the dimension
+   ``number_of_data`` :math:`\times` ``dim_desc`` + 5, where
+   number_of_data are the number of data points (energy, force or
+   stress) used to fit the potential and ``dim_desc`` is the dimension
+   of descriptor.
+   The file ``design_matrix.dat`` is created.
+
+   This option is active for normal trainning (``ml_type >= 0``).
+
+   **Format :**
+
+   -  The first column indicates the number of atoms (number of atoms for energy
+      descriptor, 0 for force or stress line), from 2nd column up to the
+      ``dim_desc`` + 1 column it is stored the descriptor components,
+      ``dim_desc`` being the dimension of descriptor.
+   -  The ``dim_desc+2``
+      column is for target (energy, force or stress).
+   -  The ``dim_desc+3`` column indicates if that line comes from energy (1); force (2); or
+      stress (3). .
+   -  The ``dim_desc+4`` column indicates the weight used
+      for that data point in loss function.
+   -  The ``dim_desc+5`` column indicates from which file comes that data point.
+
+   Default ``write_design_matrix=.false.``
 
 
 Regularization and loss
