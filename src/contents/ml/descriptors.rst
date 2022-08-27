@@ -484,9 +484,9 @@ the descriptor i.e. number of basis function is given by
 .. option:: lambda_krr (real)
 
    The regularization using :math:`L^2` or
-   :math:`L^1` norm. It is active only for cases ``snap_fit_type=0``
+   :math:`L^1` norm. It is active only for cases ``mld_fit_type=0``
    (for a fixed positive value of ``lambda_krr`` and
-   ``snap_fit_type=10`` (for a grid). For details see the correspoding
+   ``mld_fit_type=10`` (for a grid). For details see the correspoding
    documentation. For negative values this option is skipped and
    standard fit is performed.
 

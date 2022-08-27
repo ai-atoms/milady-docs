@@ -126,11 +126,11 @@ Solving algorithm
 ^^^^^^^^^^^^^^^^^
 
 
-.. option::  snap_fit_type (integer)
+.. option::  mld_fit_type (integer)
 
   The type of algorithm used in order to
   solve least square (LS) problem :math:`\mathbf{A} \beta= \mathbf{b}`.
-  We recommend without any hesitation ``snap_fit_type = 4``. 
+  We recommend without any hesitation ``mld_fit_type = 4``. 
 
   :math:`\mathbf{A}` is :math:`M \times D` matrix, :math:`M` being the
   number of observations and :math:`D` the number of parameters (in the
@@ -141,13 +141,13 @@ Solving algorithm
   dimensions :math:`d \times m` being in fact :math:`\mathbf{A}^T`
   (with the notation used for this documentation):  
 
-  #. ``snap_fit_type=0``: home made subroutine based on inversion of a 
+  #. ``mld_fit_type=0``: home made subroutine based on inversion of a 
      symmetric real matrix ( :math:`\mathbf{A}^T \mathbf{A}`) using Bunch-Kaufman
      diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and 
      adapted for compact descritors and low non-linarity (to have diesign matrix close 
      to full rank)   
 
-  #. ``snap_fit_type=1``: solution based on QR
+  #. ``mld_fit_type=1``: solution based on QR
      decomposition for serial and ScaLapack version.  
      Adapted for full rank matrix :math:`\mathbf{A}` and use the assumption
      that :math:`\textrm{rank}(A) = \min(M,D)`, in other words,
@@ -155,14 +155,14 @@ Solving algorithm
      In serial version,  if :math:`\mathbf{A}` is not full rank the inversion will stop with a
      error. Uses a QR or LQ factorization of :math:`\mathbf{A}`. 
 
-  #. ``snap_fit_type=2``: **restricted only for advanced users** 
+  #. ``mld_fit_type=2``: **restricted only for advanced users** 
      Solution with constraints. The constraints are of form
      :math:`\mathbf{B}x=\mathbf{d}`. The matrix :math:`\mathbf{B}` and
      the vector :math:`\mathbf{d}` are filled with all the data (input
      and target for energy, force or stress) contained in the class
      fixed by ``snap_class_constraints``.   
 
-  #. ``snap_fit_type=3``: For serial version this is adapted for the general case when we 
+  #. ``mld_fit_type=3``: For serial version this is adapted for the general case when we 
      may have :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
      :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
      least squares solution :math:`\beta` which minimizes both
@@ -176,7 +176,7 @@ Solving algorithm
         most favorable cases but probably you will have segmetation fault and or ``NaN`` as 
         parameters :)).      
 
-  #. ``snap_fit_type=4``: In the general case when we may have
+  #. ``mld_fit_type=4``: In the general case when we may have
      :math:`\textrm{rank}(\mathbf{A}) < \min(M,D)`, in other words,
      :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
      least squares solution :math:`\beta` which minimizes both
@@ -185,7 +185,7 @@ Solving algorithm
      most complete solution based on SVD decomposition. 
      With this option a rank estimation (via SVD and driven by the option ``svd_rcond``).
 
-Default is ``snap_fit_type=4``.
+Default is ``mld_fit_type=4``.
 
 
 
@@ -204,7 +204,7 @@ Default is ``snap_fit_type=4``.
 .. option::  snap_class_constraints (character)
 
    The class that imposes the constraints on fit. Is active only if
-   ``snap_fit_type=2``. All the configuration mentioned in this class
+   ``mld_fit_type=2``. All the configuration mentioned in this class
    will fill the constraints matrix :math:`\mathbf{B}` and the target
    vector :math:`\mathbf{d}`.
 
