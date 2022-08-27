@@ -195,17 +195,17 @@ and <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-snap_type_quadratic">
-<span id="cmdoption-arg-snap-type-quadratic"></span><span class="sig-name descname"><span class="pre">snap_type_quadratic</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_type_quadratic" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object std" id="cmdoption-arg-mld_type_quadratic">
+<span id="cmdoption-arg-mld-type-quadratic"></span><span class="sig-name descname"><span class="pre">mld_type_quadratic</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mld_type_quadratic" title="Permalink to this definition"></a></dt>
 <dd><p>The type of quadratic fit. For
 the case 1 the solution is preconditionned by the linear fit i.e.
 the first 1 + <span class="math notranslate nohighlight">\(D\)</span> are exactelly set to the LML solution and
 only the remaining <span class="math notranslate nohighlight">\(D^2\)</span> parameters are fitted quadratically.
 For the case 2 the full quadratic solution is provided, all the
 parameters are fitted without preconditionning. Shortly speaking
-<code class="docutils literal notranslate"><span class="pre">snap_type_quadratic=1</span></code> is for  QNML and <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic=2</span></code> is for QML.
+<code class="docutils literal notranslate"><span class="pre">mld_type_quadratic=1</span></code> is for  QNML and <code class="docutils literal notranslate"><span class="pre">mld_type_quadratic=2</span></code> is for QML.
 See Goryaeva et al. 2021 for more details.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">mld_type_quadratic</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -305,6 +305,35 @@ epsilon is the Lapack machine precision function (around <code class="docutils l
 will fill the constraints matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> and the target
 vector <span class="math notranslate nohighlight">\(\mathbf{d}\)</span>.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">&quot;07&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-write_design_matrix">
+<span id="cmdoption-arg-write-design-matrix"></span><span class="sig-name descname"><span class="pre">write_design_matrix</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_design_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Dump the design matrix, which contains the descriptors (energy, force and stress if
+mentioned in  <code class="docutils literal notranslate"><span class="pre">db_model.in</span></code>) and
+the weigths. The writen design matix that has the dimension
+<code class="docutils literal notranslate"><span class="pre">number_of_data</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> + 5, where
+number_of_data are the number of data points (energy, force or
+stress) used to fit the potential and <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> is the dimension
+of descriptor.
+The file <code class="docutils literal notranslate"><span class="pre">design_matrix.dat</span></code> is created.</p>
+<p>This option is active for normal trainning (<code class="docutils literal notranslate"><span class="pre">ml_type</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code>).</p>
+<p><strong>Format :</strong></p>
+<ul class="simple">
+<li><p>The first column indicates the number of atoms (number of atoms for energy
+descriptor, 0 for force or stress line), from 2nd column up to the
+<code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> + 1 column it is stored the descriptor components,
+<code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> being the dimension of descriptor.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+2</span></code>
+column is for target (energy, force or stress).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+3</span></code> column indicates if that line comes from energy (1); force (2); or
+stress (3). .</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+4</span></code> column indicates the weight used
+for that data point in loss function.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+5</span></code> column indicates from which file comes that data point.</p></li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">write_design_matrix=.false.</span></code></p>
 </dd></dl>
 
 </section>
