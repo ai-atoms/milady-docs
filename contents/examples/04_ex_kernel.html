@@ -4,25 +4,25 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; Milady  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/fav.png"/>
+  <title>Kernel regression using polynomial kernel &mdash; Milady  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/fav.png"/>
   <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
+    <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Articles" href="publications.html" />
-    <link rel="prev" title="Advanced options" href="ml/advanced.html" /> 
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Articles" href="../publications.html" />
+    <link rel="prev" title="QNML fit in HEA" href="03_ex_qnmlhea.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,11 +30,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+            <a href="../../index.html">
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -43,38 +43,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install/installation.html">Prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/installation.html#compilation-modes">Compilation modes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/installation.html#build">Build</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/install_marconi.html">Build on Marconi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/install_irene.html">Build on Irene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/installation.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/installation.html#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/installation.html#build">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_marconi.html">Build on Marconi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_irene.html">Build on Irene</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ml/input.html">Input files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/model.html">ML tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/model.html#regression-models">Regression models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/kernels.html">Kernels</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/system.html">Atomic systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/descriptors.html">Descriptors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/database.html">Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weight.html">Optimization of hyperparameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/advanced.html">Advanced options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html">ML tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html#regression-models">Regression models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/advanced.html">Advanced options</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#compute-and-write-descriptors-without-further-fit">Compute and write descriptors without further fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#performing-fit-using-basis-functions">Performing fit using basis functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lml-fit-in-bcc-fe">LML fit in bcc Fe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qnml-fit-in-hea">QNML fit in HEA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kernel-regression-using-polynomial-kernel">Kernel regression using polynomial kernel</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="01_ex_write.html">Compute and write descriptors without further fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_ex_lmlfe.html">LML fit in bcc Fe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ex_qnmlhea.html">QNML fit in HEA</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kernel regression using polynomial kernel</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Publications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="publications.html">Articles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Articles</a></li>
 </ul>
 
         </div>
@@ -83,17 +79,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Milady</a>
+          <a href="../../index.html">Milady</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Examples</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kernel regression using polynomial kernel</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/contents/examples.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/contents/examples/04_ex_kernel.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,116 +97,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
-<p>Here we provide the inputs for some common tasks that involve different
-types of fit, working with single-element and multi-component systems,
-writing descriptors to the files, saving design matrix, etc. The input
-files listed here are also provided in <code class="docutils literal notranslate"><span class="pre">Examples</span></code>.</p>
-<section id="compute-and-write-descriptors-without-further-fit">
-<span id="ex-write-desc"></span><h2>Compute and write descriptors without further fit<a class="headerlink" href="#compute-and-write-descriptors-without-further-fit" title="Permalink to this heading"></a></h2>
-<p>This section provides an example of input to write atomic descriptors
-into files, without performing further fit (task with <code class="docutils literal notranslate"><span class="pre">ml_type=-1</span></code>).
-This option is useful for structural analysis based on atomic
-descriptors <a href="#id1"><span class="problematic" id="id2">:raw-latex:`\cite{Goryaeva_NatComm_2020}`</span></a>, visualization of
-atomic systems in the descriptor space, or for using the computed
-descriptors in conjunction with ML models not implemented in <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>,
-e.g. as in Ref. <a href="#id3"><span class="problematic" id="id4">:raw-latex:`\cite{MESSINA_2020}`</span></a>. The relevant files can
-be found in <code class="docutils literal notranslate"><span class="pre">Examples/Compute_desc_only</span></code>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
-<span class="n">ml_type</span><span class="o">=-</span><span class="mi">1</span><span class="w">                 </span><span class="c">!set -1 to compute descriptors only</span>
-<span class="n">write_desc</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">          </span><span class="c">!set true to write the files to descDB/</span>
-<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">        </span><span class="c">!set true to compute the descriptors of forces</span>
-
-<span class="c">!Define your system</span>
-<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; Fe &quot;</span><span class="w">   </span><span class="c">!provide the system composition</span>
-
-<span class="c">!Descriptor settings</span>
-<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
-<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">9</span><span class="w">          </span><span class="c">!set 9 for bispectrum SO4</span>
-<span class="n">j_max</span><span class="o">=</span><span class="mf">4.0</span><span class="w">                  </span><span class="c">!angular moment for bispectrum SO4</span>
-
-<span class="p">&amp;</span><span class="k">end</span><span class="w"></span>
-</pre></div>
-</div>
-<p>To rescale the descriptor components between within the certain range of
-values, e.g. [0,1], see the option <code class="docutils literal notranslate"><span class="pre">rescale=.true.</span></code> in Section
-<a class="reference external" href="#sec:keywords">3.1</a>.</p>
-</section>
-<section id="performing-fit-using-basis-functions">
-<h2>Performing fit using basis functions<a class="headerlink" href="#performing-fit-using-basis-functions" title="Permalink to this heading"></a></h2>
-<p>This section provides the examples of the regressin tasks using basis
-functions (fit with <code class="docutils literal notranslate"><span class="pre">ml_type=0</span></code>), like linear ML (LML), quadratic ML
-(QML), and quadratic noise ML (QNML).</p>
-</section>
-<section id="lml-fit-in-bcc-fe">
-<span id="ex-lml-fe"></span><h2>LML fit in bcc Fe<a class="headerlink" href="#lml-fit-in-bcc-fe" title="Permalink to this heading"></a></h2>
-<p>This section provides an example input an input file for performing
-linear ML (LML) fit with AFS descriptors for bcc Fe. The relevant files
-are provided in <code class="docutils literal notranslate"><span class="pre">Examples/LML_Fe_AFS</span></code>.</p>
-<p>We note that in this example, the fit is performed using a default
-home-made subroutine solving the least square problem. In order to set a
-different subroutine, see the available settings for <code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code>
-in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
-<span class="c">!ML model</span>
-<span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 for the fit using basis functions</span>
-<span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">               </span><span class="c">!set 1 for linear regression</span>
-<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
-
-<span class="c">!Define your system</span>
-<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; Fe &quot;</span><span class="w">   </span><span class="c">!provide the system composition</span>
-
-<span class="c">!Descriptor settings</span>
-<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distance Rc</span>
-<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">4</span><span class="w">          </span><span class="c">!4 for AFS</span>
-<span class="n">afs_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                 </span><span class="c">!1 for standard AFS, 2 for modified AFS</span>
-<span class="n">n_rbf</span><span class="o">=</span><span class="mi">10</span><span class="w">                   </span><span class="c">!Number of radial channels</span>
-<span class="n">n_cheb</span><span class="o">=</span><span class="mi">8</span><span class="w">                   </span><span class="c">!Number of Chebyshev polynomials</span>
-
-<span class="p">&amp;</span><span class="k">end</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
-<section id="qnml-fit-in-hea">
-<span id="ex-qnml-hae"></span><h2>QNML fit in HEA<a class="headerlink" href="#qnml-fit-in-hea" title="Permalink to this heading"></a></h2>
-<p>Here we provide an example of input file to perform quadratic noise ML
-(QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
-are provided in <code class="docutils literal notranslate"><span class="pre">Examples/QNML_HEA_bSO4</span></code>.</p>
-<p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">mld_fit_type=4</span></code>, which
-uses SVD with rank estimation. Other available settings for
-<code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
-<span class="c">!ML model</span>
-<span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 to perform the fit using basis functions</span>
-<span class="n">snap_order</span><span class="o">=</span><span class="mi">2</span><span class="w">               </span><span class="c">!set 2 for quadratic regression</span>
-<span class="n">mld_type_quadratic</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!set 1 for QNML; 2 for conventional QML</span>
-<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
-<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
-
-<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">            </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">4</span><span class="w">       </span><span class="c">!number of chemical species in the system</span>
-
-<span class="c">!system composition, ordered as in DB files</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; Ta Ti V W &quot;</span><span class="w"></span>
-
-<span class="c">!weights applied for each element. Keep close to 1</span>
-<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">&quot; 1.56 0.41 0.44 1.59 &quot;</span><span class="w"></span>
-
-<span class="c">!Descriptor settings</span>
-<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
-<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">9</span><span class="w">          </span><span class="c">!set 9 for bispectrum SO4</span>
-<span class="n">j_max</span><span class="o">=</span><span class="mf">3.5</span><span class="w">                  </span><span class="c">!angular moment for bispectrum SO4</span>
-</pre></div>
-</div>
-</section>
-<section id="kernel-regression-using-polynomial-kernel">
-<span id="ex-kernel-poly"></span><h2>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a></h2>
+  <section id="kernel-regression-using-polynomial-kernel">
+<span id="ex-kernel-poly"></span><h1>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a></h1>
 <p>Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
 <code class="docutils literal notranslate"><span class="pre">Examples/KERNEL_POLY_W_BSO4</span></code>.</p>
@@ -334,14 +222,13 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 </pre></div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ml/advanced.html" class="btn btn-neutral float-left" title="Advanced options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="publications.html" class="btn btn-neutral float-right" title="Articles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03_ex_qnmlhea.html" class="btn btn-neutral float-left" title="QNML fit in HEA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../publications.html" class="btn btn-neutral float-right" title="Articles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
