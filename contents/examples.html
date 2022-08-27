@@ -152,7 +152,7 @@ linear ML (LML) fit with AFS descriptors for bcc Fe. The relevant files
 are provided in <code class="docutils literal notranslate"><span class="pre">Examples/LML_Fe_AFS</span></code>.</p>
 <p>We note that in this example, the fit is performed using a default
 home-made subroutine solving the least square problem. In order to set a
-different subroutine, see the available settings for <code class="docutils literal notranslate"><span class="pre">snap_fit_type</span></code>
+different subroutine, see the available settings for <code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code>
 in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
@@ -181,16 +181,16 @@ in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
 <p>Here we provide an example of input file to perform quadratic noise ML
 (QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
 are provided in <code class="docutils literal notranslate"><span class="pre">Examples/QNML_HEA_bSO4</span></code>.</p>
-<p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">snap_fit_type=4</span></code>, which
+<p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">mld_fit_type=4</span></code>, which
 uses SVD with rank estimation. Other available settings for
-<code class="docutils literal notranslate"><span class="pre">snap_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
+<code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 <span class="c">!ML model</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 to perform the fit using basis functions</span>
 <span class="n">snap_order</span><span class="o">=</span><span class="mi">2</span><span class="w">               </span><span class="c">!set 2 for quadratic regression</span>
 <span class="n">mld_type_quadratic</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!set 1 for QNML; 2 for conventional QML</span>
-<span class="n">snap_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
 
 <span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">            </span><span class="c">!set true for multicomponent systems</span>
@@ -241,7 +241,7 @@ all of them in <code class="docutils literal notranslate"><span class="pre">vaca
 <span class="c">!ML model</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">               </span><span class="c">!set 0 to perform the fit using basis functions</span>
 <span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">            </span><span class="c">!set 1 for linear regression</span>
-<span class="n">snap_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">         </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">         </span><span class="c">!lapack full SVD with rank estimation</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">      </span><span class="c">!set true to fit the forces</span>
 
 <span class="c">!Define your system</span>
@@ -266,7 +266,7 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 <span class="c">!ML model</span>
 <span class="hll"><span class="n">ml_type</span><span class="o">=-</span><span class="mi">2</span><span class="w">                 </span><span class="c">!set -2 to perform kernel selection</span>
 </span><span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">               </span><span class="c">!set 1 for linear regression</span>
-<span class="n">snap_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
 
 <span class="c">!Define your system</span>
@@ -301,7 +301,7 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 <span class="c">!ML model</span>
 <span class="hll"><span class="n">ml_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                  </span><span class="c">!set 1 to perform kernel fit</span>
 </span><span class="n">snap_order</span><span class="o">=</span><span class="mi">1</span><span class="w">               </span><span class="c">!set 1 for linear regression</span>
-<span class="n">snap_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
 
 <span class="c">!Define your system</span>

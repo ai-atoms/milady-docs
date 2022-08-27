@@ -62,7 +62,7 @@ are provided in ``Examples/LML_Fe_AFS``.
 
 We note that in this example, the fit is performed using a default
 home-made subroutine solving the least square problem. In order to set a
-different subroutine, see the available settings for ``snap_fit_type``
+different subroutine, see the available settings for ``mld_fit_type``
 in Section `3.1 <#sec:keywords>`__.
 
 .. code-block:: fortran
@@ -97,9 +97,9 @@ Here we provide an example of input file to perform quadratic noise ML
 (QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
 are provided in ``Examples/QNML_HEA_bSO4``.
 
-For the models like QNML we recommend setting ``snap_fit_type=4``, which
+For the models like QNML we recommend setting ``mld_fit_type=4``, which
 uses SVD with rank estimation. Other available settings for
-``snap_fit_type`` can be found in Section `3.1 <#sec:keywords>`__.
+``mld_fit_type`` can be found in Section `3.1 <#sec:keywords>`__.
 
 .. code-block:: fortran
 
@@ -109,7 +109,7 @@ uses SVD with rank estimation. Other available settings for
    ml_type=0                  !set 0 to perform the fit using basis functions
    snap_order=2               !set 2 for quadratic regression
    mld_type_quadratic=1       !set 1 for QNML; 2 for conventional QML
-   snap_fit_type=4            !lapack full SVD with rank estimation
+   mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces
 
    weighted=.true.            !set true for multicomponent systems
@@ -170,7 +170,7 @@ all of them in ``vacancy.ml``
    !ML model               
    ml_type=0               !set 0 to perform the fit using basis functions
    snap_order=1            !set 1 for linear regression
-   snap_fit_type=4         !lapack full SVD with rank estimation
+   mld_fit_type=4         !lapack full SVD with rank estimation
    desc_forces=.true.      !set true to fit the forces
 
    !Define your system
@@ -199,7 +199,7 @@ define the MCD class and the exponent Please note: ``ml_type=-2`` and
    !ML model               
    ml_type=-2                 !set -2 to perform kernel selection
    snap_order=1               !set 1 for linear regression
-   snap_fit_type=4            !lapack full SVD with rank estimation
+   mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces
 
    !Define your system
@@ -240,7 +240,7 @@ Let’s look to the ``vacancy.ml_03`` file.
    !ML model               
    ml_type=1                  !set 1 to perform kernel fit
    snap_order=1               !set 1 for linear regression
-   snap_fit_type=4            !lapack full SVD with rank estimation
+   mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces
 
    !Define your system
