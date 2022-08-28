@@ -98,6 +98,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id9">Parameters</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#pip">PiP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Parameters</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
@@ -177,6 +181,7 @@ positions are read.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=19</span></code> hybrid G2 + bispectrum SO4</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=100</span></code> MTP<span class="math notranslate nohighlight">\(^3\)</span> (up to order
 <span class="math notranslate nohighlight">\(M_{\mu,\nu}\)</span>, with <span class="math notranslate nohighlight">\(\nu \le 3\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code> PiP permutationally invariant polynomials.</p></li>
 </ol>
 <p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 </dd></dl>
@@ -598,6 +603,65 @@ the descriptor i.e. number of basis function is given by
 documentation. For negative values this option is skipped and
 standard fit is performed.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lambda_krr=-1.d0</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="pip">
+<h2>PiP<a class="headerlink" href="#pip" title="Permalink to this heading"></a></h2>
+<p>To use PiP (permutationally invariant polynomials), set <code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The current implementation of PiP treat only one single type of atoms</p>
+</div>
+<section id="id10">
+<h3>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<p>This descriptors is based by a cluster expansion of the system energy:</p>
+<div class="math notranslate nohighlight">
+\[E = \sum_i V_1 (r_i)  + \frac{1}{2} \sum_{i,j} V_2(r_{i}, r_{j}) +  \frac{1}{3!} \sum_{i,j,k}   V_3(r_{i}, r_{j}, r_{k} ) + \ldots\]</div>
+<p>The total energy is expressed as a sum of one-atom <span class="math notranslate nohighlight">\(V_1\)</span> ,
+pair <span class="math notranslate nohighlight">\(V_2\)</span>, threeatom (angle) <span class="math notranslate nohighlight">\(V_3\)</span>  terms, and so forth. The order of expansion, or even a
+combination of expantion terms are driven by <code class="docutils literal notranslate"><span class="pre">l_body_order</span></code>. This version of <code class="docutils literal notranslate"><span class="pre">Milady</span></code> enables a developement
+up to the fourth order.  The number of PiP terms for each term are driven by <code class="docutils literal notranslate"><span class="pre">body_D_max</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bond_dist_transform</span></code>, <code class="docutils literal notranslate"><span class="pre">bond_beta</span></code> and <code class="docutils literal notranslate"><span class="pre">bond_dist_ann</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-l_body_order">
+<span id="cmdoption-arg-l-body-order"></span><span class="sig-name descname"><span class="pre">l_body_order</span></span><span class="sig-prename descclassname"> <span class="pre">(logical</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-l_body_order" title="Permalink to this definition"></a></dt>
+<dd><p>This logical vertor of dimention 4 design the order of cluster expension. For example
+<code class="docutils literal notranslate"><span class="pre">l_body_order(2)=.true.</span></code>, <code class="docutils literal notranslate"><span class="pre">l_body_order(3)=.true.</span></code>, <code class="docutils literal notranslate"><span class="pre">l_body_order(4)=.false.</span></code>
+enable a cluster expension up to the third order.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_body_order(:)=.true.</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-body_D_max">
+<span id="cmdoption-arg-body-d-max"></span><span class="sig-name descname"><span class="pre">body_D_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-body_D_max" title="Permalink to this definition"></a></dt>
+<dd><p>This integer vector fix the number of PiP terms for each term of expansion.
+<code class="docutils literal notranslate"><span class="pre">body_D_max(2)</span></code> for <span class="math notranslate nohighlight">\(V_2\)</span>, <code class="docutils literal notranslate"><span class="pre">body_D_max(3)</span></code> for <span class="math notranslate nohighlight">\(V_3\)</span> and
+<code class="docutils literal notranslate"><span class="pre">body_D_max(4)</span></code> for <span class="math notranslate nohighlight">\(V_4\)</span>. A reasonable choice can be 20, 9, 7. Try more less
+depending on th design that you made for your expension.</p>
+<p>Default   <code class="docutils literal notranslate"><span class="pre">body_D_max(i)=i</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-bond_dist_transform">
+<span id="cmdoption-arg-bond-dist-transform"></span><span class="sig-name descname"><span class="pre">bond_dist_transform</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-bond_dist_transform" title="Permalink to this definition"></a></dt>
+<dd><p>TODO: choose 3</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">bond_dist_transform=3</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-bond_beta">
+<span id="cmdoption-arg-bond-beta"></span><span class="sig-name descname"><span class="pre">bond_beta</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-bond_beta" title="Permalink to this definition"></a></dt>
+<dd><p>TODO:  choose 2.0</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">bond_beta=2.0</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-bond_dist_ann">
+<span id="cmdoption-arg-bond-dist-ann"></span><span class="sig-name descname"><span class="pre">bond_dist_ann</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-bond_dist_ann" title="Permalink to this definition"></a></dt>
+<dd><p>TODO: choose   bond_dist_ann=1.0</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">bond_dist_ann=1.0</span></code></p>
 </dd></dl>
 
 </section>

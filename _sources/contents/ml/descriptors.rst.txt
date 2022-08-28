@@ -48,6 +48,9 @@ Descriptors
    #. ``descriptor_type=100`` MTP\ :math:`^3` (up to order
       :math:`M_{\mu,\nu}`, with :math:`\nu \le 3`)
 
+   #. ``descriptor_type=200`` PiP permutationally invariant polynomials.
+
+
    Default ``1``.
 
 G2
@@ -491,3 +494,66 @@ the descriptor i.e. number of basis function is given by
    standard fit is performed.
 
    Default ``lambda_krr=-1.d0``
+
+
+PiP
+----
+
+To use PiP (permutationally invariant polynomials), set ``descriptor_type=200``.
+
+.. note::
+  The current implementation of PiP treat only one single type of atoms 
+
+
+Parameters
+""""""""""
+
+
+This descriptors is based by a cluster expansion of the system energy:
+
+
+.. math:: 
+
+  E = \sum_i V_1 (r_i)  + \frac{1}{2} \sum_{i,j} V_2(r_{i}, r_{j}) +  \frac{1}{3!} \sum_{i,j,k}   V_3(r_{i}, r_{j}, r_{k} ) + \ldots 
+
+
+The total energy is expressed as a sum of one-atom :math:`V_1` , 
+pair :math:`V_2`, threeatom (angle) :math:`V_3`  terms, and so forth. The order of expansion, or even a 
+combination of expantion terms are driven by ``l_body_order``. This version of ``Milady`` enables a developement 
+up to the fourth order.  The number of PiP terms for each term are driven by ``body_D_max``, 
+``bond_dist_transform``, ``bond_beta`` and ``bond_dist_ann``. 
+
+.. option:: l_body_order (logical vector)
+
+   This logical vertor of dimention 4 design the order of cluster expension. For example
+   ``l_body_order(2)=.true.``, ``l_body_order(3)=.true.``, ``l_body_order(4)=.false.`` 
+   enable a cluster expension up to the third order. 
+
+   Default ``l_body_order(:)=.true.``
+
+.. option:: body_D_max (integer vector)
+
+   This integer vector fix the number of PiP terms for each term of expansion. 
+   ``body_D_max(2)`` for :math:`V_2`, ``body_D_max(3)`` for :math:`V_3` and 
+   ``body_D_max(4)`` for :math:`V_4`. A reasonable choice can be 20, 9, 7. Try more less 
+   depending on th design that you made for your expension. 
+
+   Default   ``body_D_max(i)=i``
+
+.. option:: bond_dist_transform (integer)
+
+   TODO: choose 3
+
+   Default: ``bond_dist_transform=3``
+
+.. option:: bond_beta (real) 
+
+   TODO:  choose 2.0
+
+   Default: ``bond_beta=2.0``
+
+.. option::   bond_dist_ann
+
+   TODO: choose   bond_dist_ann=1.0
+
+   Default: ``bond_dist_ann=1.0``
