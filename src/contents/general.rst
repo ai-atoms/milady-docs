@@ -3,9 +3,9 @@
 What is MILADY?
 ~~~~~~~~~~~~~~~
 
-Machine Lerning DYnamics package ``MILADY 2.0`` is an open-souce code created by scientists for scientists.
+The Machine Learning DYnamics package ``MILADY 2.0`` is an open-souce code created by scientists for scientists.
 Our goal is to improve the accuracy and predictive power of atomistic simulations.
-The code uses Machine Learning algorithms and prioritises the methods with a reasonable computational cost.
+The code uses Machine Learning (ML) algorithms and prioritises the methods with a reasonable computational cost.
 
 
 ``MILADY 2.0`` is distributed under Academic Software Licence (ASL).
