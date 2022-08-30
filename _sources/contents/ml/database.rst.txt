@@ -183,7 +183,7 @@ the ``EFS-tag`` in the ``.poscar`` file is ``110`` and ``TFF`` in the
 ``db_model.in``, the fit will be performed only for the energies.
 
 The last six numbers in each line define the three ranges:
-:math:`[w^{min}_E; w^{max}_E], [w^{min}_F; w^{max}_F], [w^{min}_S; w^{max}_S]`
+:math:`[w^{min}_E, w^{min}_F, w^{min}_S], [w^{max}_E, w^{max}_F, w^{max}_S]`
 within which the regression weights will be varied for energies, forces
 and stress, respectively. The search of optimum regression errors is
 performed using evolutionary algorithm. In the example of the
