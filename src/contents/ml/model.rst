@@ -79,22 +79,22 @@ linear (LML), quandratic (QNML, QML) or polynomial chaos.
 The kernel regressions require separate treatment threfore the options for kernel models are presented in separate 
 section :ref:`Kernel section<sec:kernel>`. 
 
-.. option::  snap_order (integer)
+.. option::  mld_order (integer)
 
    Define the type of regression the descriptor space: 
 
-   - ``snap_order = 1`` this enable a linear fit (known also as LML) and will gives :math:`1+D` parameters
+   - ``mld_order = 1`` this enable a linear fit (known also as LML) and will gives :math:`1+D` parameters
 
-   - ``snap_order = 2`` this enable a quandratic fit and will gives  :math:`1 + D + D^2` parameters. In this case 
+   - ``mld_order = 2`` this enable a quandratic fit and will gives  :math:`1 + D + D^2` parameters. In this case 
      there is a supplementary choice about the type of quandratic model by the option  ``snap_type_quadratic``.  
      About the quadratic fit see Goryaeva et al. 2021 for more details. 
 
-   - ``snap_order = 3``  this enable a polynomial chaos type of fitting. Two others parameters should be set: ``polyc_n_poly`` 
+   - ``mld_order = 3``  this enable a polynomial chaos type of fitting. Two others parameters should be set: ``polyc_n_poly`` 
      and ``polyc_n_hermite``. The number of paramters is very large given by this formulae: 
      1 + ``polyc_n_hermite`` :math:`\times D` + ``polyc_n_hermite`` :math:`\times D^2` + 
      + ... + ``polyc_n_hermite`` :math:`\times D` :sup:`polyc\_n\_poly`  
 
-   Default is ``snap_order = 1``.
+   Default is ``mld_order = 1``.
 
 .. option::  mld_type_quadratic (integer)
 
@@ -111,7 +111,7 @@ section :ref:`Kernel section<sec:kernel>`.
 
 .. option:: polyc_n_poly (integer)
 
-   active for polynomial chaos regression i.e. ``snap_order=3``. Is the order of polynomial degree.
+   active for polynomial chaos regression i.e. ``mld_order=3``. Is the order of polynomial degree.
 
    Default is ``polyc_n_poly=3``.  
 
