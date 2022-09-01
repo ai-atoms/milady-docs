@@ -19,7 +19,7 @@ in Section `3.1 <#sec:keywords>`__.
    debug=.false.
    !ML model
    ml_type=0                  !set 0 for the fit using basis functions
-   snap_order=1               !set 1 for linear regression
+   mld_order=1               !set 1 for linear regression
    desc_forces=.true.         !set true to fit the forces
    
    !Define your system

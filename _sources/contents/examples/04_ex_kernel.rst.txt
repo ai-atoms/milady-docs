@@ -41,7 +41,7 @@ all of them in ``vacancy.ml``
 
    !ML model               
    ml_type=0               !set 0 to perform the fit using basis functions
-   snap_order=1            !set 1 for linear regression
+   mld_order=1            !set 1 for linear regression
    mld_fit_type=4         !lapack full SVD with rank estimation
    desc_forces=.true.      !set true to fit the forces
 
@@ -70,7 +70,7 @@ define the MCD class and the exponent Please note: ``ml_type=-2`` and
 
    !ML model               
    ml_type=-2                 !set -2 to perform kernel selection
-   snap_order=1               !set 1 for linear regression
+   mld_order=1               !set 1 for linear regression
    mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces
 
@@ -111,7 +111,7 @@ Let’s look to the ``vacancy.ml_03`` file.
 
    !ML model               
    ml_type=1                  !set 1 to perform kernel fit
-   snap_order=1               !set 1 for linear regression
+   mld_order=1               !set 1 for linear regression
    mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces
 

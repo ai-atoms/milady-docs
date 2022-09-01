@@ -18,7 +18,7 @@ uses SVD with rank estimation. Other available settings for
    debug=.false.
    !ML model
    ml_type=0                  !set 0 to perform the fit using basis functions
-   snap_order=2               !set 2 for quadratic regression
+   mld_order=2               !set 2 for quadratic regression
    mld_type_quadratic=1       !set 1 for QNML; 2 for conventional QML
    mld_fit_type=4            !lapack full SVD with rank estimation
    desc_forces=.true.         !set true to fit the forces

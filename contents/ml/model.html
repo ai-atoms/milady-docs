@@ -181,20 +181,20 @@ linear (LML), quandratic (QNML, QML) or polynomial chaos.
 The kernel regressions require separate treatment threfore the options for kernel models are presented in separate
 section <a class="reference internal" href="kernels.html#sec-kernel"><span class="std std-ref">Kernel section</span></a>.</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-arg-snap_order">
-<span id="cmdoption-arg-snap-order"></span><span class="sig-name descname"><span class="pre">snap_order</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-snap_order" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object std" id="cmdoption-arg-mld_order">
+<span id="cmdoption-arg-mld-order"></span><span class="sig-name descname"><span class="pre">mld_order</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mld_order" title="Permalink to this definition"></a></dt>
 <dd><p>Define the type of regression the descriptor space:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">1</span></code> this enable a linear fit (known also as LML) and will gives <span class="math notranslate nohighlight">\(1+D\)</span> parameters</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">2</span></code> this enable a quandratic fit and will gives  <span class="math notranslate nohighlight">\(1 + D + D^2\)</span> parameters. In this case
+<li><p><code class="docutils literal notranslate"><span class="pre">mld_order</span> <span class="pre">=</span> <span class="pre">1</span></code> this enable a linear fit (known also as LML) and will gives <span class="math notranslate nohighlight">\(1+D\)</span> parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mld_order</span> <span class="pre">=</span> <span class="pre">2</span></code> this enable a quandratic fit and will gives  <span class="math notranslate nohighlight">\(1 + D + D^2\)</span> parameters. In this case
 there is a supplementary choice about the type of quandratic model by the option  <code class="docutils literal notranslate"><span class="pre">snap_type_quadratic</span></code>.
 About the quadratic fit see Goryaeva et al. 2021 for more details.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">3</span></code>  this enable a polynomial chaos type of fitting. Two others parameters should be set: <code class="docutils literal notranslate"><span class="pre">polyc_n_poly</span></code>
+<li><p><code class="docutils literal notranslate"><span class="pre">mld_order</span> <span class="pre">=</span> <span class="pre">3</span></code>  this enable a polynomial chaos type of fitting. Two others parameters should be set: <code class="docutils literal notranslate"><span class="pre">polyc_n_poly</span></code>
 and <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code>. The number of paramters is very large given by this formulae:
 1 + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D\)</span> + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D^2\)</span> +
 + … + <code class="docutils literal notranslate"><span class="pre">polyc_n_hermite</span></code> <span class="math notranslate nohighlight">\(\times D\)</span> <sup>polyc_n_poly</sup></p></li>
 </ul>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">snap_order</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">mld_order</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -214,7 +214,7 @@ See Goryaeva et al. 2021 for more details.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-polyc_n_poly">
 <span id="cmdoption-arg-polyc-n-poly"></span><span class="sig-name descname"><span class="pre">polyc_n_poly</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-polyc_n_poly" title="Permalink to this definition"></a></dt>
-<dd><p>active for polynomial chaos regression i.e. <code class="docutils literal notranslate"><span class="pre">snap_order=3</span></code>. Is the order of polynomial degree.</p>
+<dd><p>active for polynomial chaos regression i.e. <code class="docutils literal notranslate"><span class="pre">mld_order=3</span></code>. Is the order of polynomial degree.</p>
 <p>Default is <code class="docutils literal notranslate"><span class="pre">polyc_n_poly=3</span></code>.</p>
 </dd></dl>
 
