@@ -194,10 +194,10 @@ fit without regression weights.
 
 .. code-block::
 
-   01 120 614 425 T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-   02 110 22  15  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-   02 120 22  15  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-   02 130 22  15  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
+   01 120 614 425 T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+   02 110 22  15  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+   02 120 22  15  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+   02 130 22  15  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
 
 
 .. warning::
@@ -210,10 +210,10 @@ fit without regression weights.
 
    .. code-block::
 
-      01 120 614 425 10 T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-      02 110 22  15  1  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-      02 120 22  15  1  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
-      02 130 22  15  2  T F T 1.e2 1.e6 1.e1 1.e3 1.e2 1.e4
+      01 120 614 425 10 T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+      02 110 22  15  1  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+      02 120 22  15  1  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
+      02 130 22  15  2  T F T 1.e2 1.e1 1.e2 1.e6 1.e2 1.e4
 
 
 Database in descriptor space: writing outputs.
