@@ -233,10 +233,10 @@ Database in descriptor space: writing outputs.
       However, not all the database is writen. It is writen only the configuration that 
       are asked in ``db_model.in``   
 
-.. option::  type_of_eml_file (integer)
+.. option::  desc_file_format (integer)
 
    The type of descriptor file, which is written if ``write_desc=.true.``. Depending on the 
-   value of ``type_of_eml_file``, which can be ``1``, ``2`` or ``3`` the descriptor files written in 
+   value of ``desc_file_format``, which can be ``1``, ``2`` or ``3`` the descriptor files written in 
    ``descDB`` has the extension ``eml``, ``csv`` and ``npz`` respectively.
 
    - ``1`` The name of files is of the form ``descDB/CC_KLM_XXXXXX.eml`` and the format 
@@ -252,7 +252,7 @@ Database in descriptor space: writing outputs.
    - | ``3`` ensures that the binary format ``npz`` is ``descDB/CC_KLM_XXXXXX.npz``. 
      The shape of the data is the same as for option ``1``. 
    
-   Default ``type_of_eml_file=1``
+   Default ``desc_file_format=1``
    
 .. note::
 
