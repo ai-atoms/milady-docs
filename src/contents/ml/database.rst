@@ -72,11 +72,12 @@ Database manipulation
    ``MiLaDy`` target energy will be given by equation: 
    
    .. math::
-      E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}
-      :label: eneref    
+      E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}  
    
-   The number of values should be equal to ``fix_no_of_elements`` (this option is described in 
-   :ref:`Atomic systems <sec:atomicsys>`) otherwise ``MiLaDy`` ends into a fatal error.  
+   The number of values provided by ``ref_energy_per_element`` should be equal to ``fix_no_of_elements`` (this option is described in 
+   :ref:`Atomic systems <sec:atomicsys>`) otherwise ``MiLaDy`` ends into a fatal error.  For example 
+   ``ref_energy_per_element="" -3.d0 2.12d0 -1.d0"`` provide three 
+   values ``-3.d0``, ``2.12d0`` and ``1.d0`` for the species 1, 2 and 3, respectively.   
 
 
    Default ``ref_energy_per_element="0.d0"``.
