@@ -188,10 +188,12 @@ option <code class="docutils literal notranslate"><span class="pre">iread_energy
 species has <span class="math notranslate nohighlight">\(n_1\)</span>, <span class="math notranslate nohighlight">\(n_2\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(n_S\)</span> atoms.
 If for each species we have a reference energy  <span class="math notranslate nohighlight">\(E_{\textrm{ref},s}\)</span> with <span class="math notranslate nohighlight">\(s=1, \ldots, S\)</span>. Then the
 <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> target energy will be given by equation:</p>
-<div class="math notranslate nohighlight" id="equation-eneref">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eneref" title="Permalink to this equation"></a></span>\[E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}\]</div>
-<p>The number of values should be equal to <code class="docutils literal notranslate"><span class="pre">fix_no_of_elements</span></code> (this option is described in
-<a class="reference internal" href="system.html#sec-atomicsys"><span class="std std-ref">Atomic systems</span></a>) otherwise <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> ends into a fatal error.</p>
+<div class="math notranslate nohighlight">
+\[E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}\]</div>
+<p>The number of values provided by <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element</span></code> should be equal to <code class="docutils literal notranslate"><span class="pre">fix_no_of_elements</span></code> (this option is described in
+<a class="reference internal" href="system.html#sec-atomicsys"><span class="std std-ref">Atomic systems</span></a>) otherwise <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> ends into a fatal error.  For example
+<code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=&quot;&quot;</span> <span class="pre">-3.d0</span> <span class="pre">2.12d0</span> <span class="pre">-1.d0&quot;</span></code> provide three
+values <code class="docutils literal notranslate"><span class="pre">-3.d0</span></code>, <code class="docutils literal notranslate"><span class="pre">2.12d0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.d0</span></code> for the species 1, 2 and 3, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=&quot;0.d0&quot;</span></code>.</p>
 </dd></dl>
 
