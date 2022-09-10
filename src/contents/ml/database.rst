@@ -44,6 +44,44 @@ Database manipulation
 
    Default ``11``.
 
+.. option::  iread_energy (integer)
+
+   This option fixes which energy from the database is taken as target by ``MiLaDy``. 
+   Each ``.poscar`` format has in the first line  three energies, as it is described in Section :ref:`Database files<db-format>`. A value between 1, 2 and 3
+   choose the first, second or third energy, respectively.
+
+   Default ``2``.
+
+.. option::  ref_energy_per_element (character(len=80))
+
+   This option fixes the reference energy of each species. 
+   These reference energies are useful when we intend to apply a shift of the total energy 
+   read by ``MiLaDy`` from ``.poscar``. 
+
+   This change of reference can be very useful in many situation, from which we exemplify two: 
+   (i) when we want to lower the absolute value of the DFT total energy by a rigid shift towards 
+   lower numbers (some ab-intio codes provide large numbers for total energy). Those large numbers 
+   can induce numerical instabilities in the fitting procedure. (ii) for physical consideration 
+   we want to have clean atomization energies for molecules and for the atoms separated at the infinite 
+   the energy is zero. There are many others situation when this rigid shif can be useful. 
+
+   How ot works? Let's take the case of a target energy :math:`E_{\textrm{DFT}}` read by ``MiLaDy`` using the 
+   option ``iread_energy``. We supose that this system has N atoms distributed over S species and each 
+   species has :math:`n_1`, :math:`n_2`, :math:`\ldots`, :math:`n_S` atoms. 
+   If for each species we have a reference energy  :math:`E_{\textrm{ref},s}` with :math:`s=1, \ldots, S`. Then the 
+   ``MiLaDy`` target energy will be given by equation: 
+   
+   .. math::
+      E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}
+      :label: eneref    
+   
+   The number of values should be equal to ``fix_no_of_elements`` (this option is described in 
+   :ref:`Atomic systems <sec:atomicsys>`) otherwise ``MiLaDy`` ends into a fatal error.  
+
+
+   Default ``ref_energy_per_element="0.d0"``.
+
+
 Database files
 ==============
 
