@@ -162,6 +162,39 @@ by <code class="docutils literal notranslate"><span class="pre">number_of_select
 <p>Default <code class="docutils literal notranslate"><span class="pre">11</span></code>.</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-iread_energy">
+<span id="cmdoption-arg-iread-energy"></span><span class="sig-name descname"><span class="pre">iread_energy</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-iread_energy" title="Permalink to this definition"></a></dt>
+<dd><p>This option fixes which energy from the database is taken as target by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>.
+Each <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format has in the first line  three energies, as it is described in Section <a class="reference internal" href="#db-format"><span class="std std-ref">Database files</span></a>. A value between 1, 2 and 3
+choose the first, second or third energy, respectively.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ref_energy_per_element">
+<span id="cmdoption-arg-ref-energy-per-element"></span><span class="sig-name descname"><span class="pre">ref_energy_per_element</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=80))</span></span><a class="headerlink" href="#cmdoption-arg-ref_energy_per_element" title="Permalink to this definition"></a></dt>
+<dd><p>This option fixes the reference energy of each species.
+These reference energies are useful when we intend to apply a shift of the total energy
+read by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> from <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>.</p>
+<p>This change of reference can be very useful in many situation, from which we exemplify two:
+(i) when we want to lower the absolute value of the DFT total energy by a rigid shift towards
+lower numbers (some ab-intio codes provide large numbers for total energy). Those large numbers
+can induce numerical instabilities in the fitting procedure. (ii) for physical consideration
+we want to have clean atomization energies for molecules and for the atoms separated at the infinite
+the energy is zero. There are many others situation when this rigid shif can be useful.</p>
+<p>How ot works? Let’s take the case of a target energy <span class="math notranslate nohighlight">\(E_{\textrm{DFT}}\)</span> read by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> using the
+option <code class="docutils literal notranslate"><span class="pre">iread_energy</span></code>. We supose that this system has N atoms distributed over S species and each
+species has <span class="math notranslate nohighlight">\(n_1\)</span>, <span class="math notranslate nohighlight">\(n_2\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(n_S\)</span> atoms.
+If for each species we have a reference energy  <span class="math notranslate nohighlight">\(E_{\textrm{ref},s}\)</span> with <span class="math notranslate nohighlight">\(s=1, \ldots, S\)</span>. Then the
+<code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> target energy will be given by equation:</p>
+<div class="math notranslate nohighlight" id="equation-eneref">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eneref" title="Permalink to this equation"></a></span>\[E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}\]</div>
+<p>The number of values should be equal to <code class="docutils literal notranslate"><span class="pre">fix_no_of_elements</span></code> (this option is described in
+<a class="reference internal" href="system.html#sec-atomicsys"><span class="std std-ref">Atomic systems</span></a>) otherwise <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> ends into a fatal error.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=&quot;0.d0&quot;</span></code>.</p>
+</dd></dl>
+
 </section>
 <section id="database-files">
 <h2>Database files<a class="headerlink" href="#database-files" title="Permalink to this heading"></a></h2>
