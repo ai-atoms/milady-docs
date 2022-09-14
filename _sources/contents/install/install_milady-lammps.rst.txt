@@ -53,8 +53,8 @@ this as ``milady_lammps``.
 
 The current version of ``milady_lammps`` requires:
 
-- Fortran compiler: `gfortran` OR `ifort`
-- C++ compiler: `g++` 
+- Fortran compiler: ``gfortran`` OR ``ifort``
+- C++ compiler: ``g++`` 
 - MKL library from Intel (for this installation) or any other 
   Lapack/ScaLapack distribution.   
 

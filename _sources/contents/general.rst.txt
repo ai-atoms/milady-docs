@@ -38,7 +38,8 @@ M.-C. Marinica (2015-present at SRMP, CEA Saclay),
 W. Unn-Toc (2015-2016 at SRMP, CEA Saclay),
 A. M. Goryaeva (2018-present at SRMP, CEA Saclay),
 C. Lapointe (2018-2021 at SRMP, CEA Saclay),
-J. Baima (2019 - 2022 at SRMP, CEA Saclay),
+J. Deres (2019-2021 at SRMP, CEA Saclay),
+J. Baima (2020 - 2022 at SRMP, CEA Saclay),
 A. Allera (2022 - present, at SRMP, CEA Saclay),
 A. Zhong (2022 - present, at SRMP, CEA Saclay).
 
