@@ -12,7 +12,7 @@ full ``Lammps + MILADY`` installation.
 
 .. _`sec:using_lammps`:
 
-Using MILADY pontetials 
+Using MILADY potentials 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 
