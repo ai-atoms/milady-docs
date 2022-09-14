@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MILADY potentials in Lammps &mdash; Milady  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/fav.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Input files" href="../ml/input.html" />
+    <link rel="prev" title="Build on Irene" href="install_irene.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#build">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_irene.html">Build on Irene</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MILADY potentials in Lammps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-milady-pontetials">Using MILADY pontetials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-lammps-and-milady">Installing Lammps and MILADY</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ml/input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html">ML tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html#regression-models">Regression models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/advanced.html">Advanced options</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/01_ex_write.html">Compute and write descriptors without further fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/02_ex_lmlfe.html">LML fit in bcc Fe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/03_ex_qnmlhea.html">QNML fit in HEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Publications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Articles</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Milady</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MILADY potentials in Lammps</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contents/install/install_milady-lammps.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="milady-potentials-in-lammps">
+<span id="sec-insta-lammps"></span><h1>MILADY potentials in Lammps<a class="headerlink" href="#milady-potentials-in-lammps" title="Permalink to this heading"></a></h1>
+<p>In order to use <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> potentials with <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> you should compile
+<code class="docutils literal notranslate"><span class="pre">Lammps``with</span> <span class="pre">``Milady</span></code> library.
+The next <a class="reference internal" href="#sec-using-lammps"><span class="std std-ref">section Using</span></a> briefly summarizes how to
+employ in <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> our potentials while the  <a class="reference internal" href="#sec-install-lammps"><span class="std std-ref">section Installing</span></a> details the
+full <code class="docutils literal notranslate"><span class="pre">Lammps</span> <span class="pre">+</span> <span class="pre">MILADY</span></code> installation.</p>
+<section id="using-milady-pontetials">
+<span id="sec-using-lammps"></span><h2>Using MILADY pontetials<a class="headerlink" href="#using-milady-pontetials" title="Permalink to this heading"></a></h2>
+<p>Running <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> with <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> potentials is easy:
+set in <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> input file the <code class="docutils literal notranslate"><span class="pre">pair_style</span></code> as <code class="docutils literal notranslate"><span class="pre">milady</span></code> and indicate
+the name of your potential file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pair_style milady
+pair_coeff * * Fe_LML.pot Fe
+</pre></div>
+</div>
+<p>For many elements you should just provide the elements for which your elements
+where designed. E.g. for one potential designed for a TaTiVW HEA the <code class="docutils literal notranslate"><span class="pre">pair_coeff</span></code>
+line is as follow:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pair_coeff * * hea.pot Ta Ti V W
+</pre></div>
+</div>
+<p>The ready-to-use input files can be found in Examples of this repository</p>
+</section>
+<section id="installing-lammps-and-milady">
+<span id="sec-install-lammps"></span><h2>Installing Lammps and MILADY<a class="headerlink" href="#installing-lammps-and-milady" title="Permalink to this heading"></a></h2>
+<p>Here we provide the steps for building <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> with <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> patch will call
+this as <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> installation is similar to <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> regular
+installation for which the  library <code class="docutils literal notranslate"><span class="pre">ml-milady</span></code> is on. So far,
+for the users, which have experience with <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation they
+can go directly to <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> part.</p>
+</div>
+<p>The current version of <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> requires:</p>
+<ul class="simple">
+<li><p>Fortran compiler: <cite>gfortran</cite> OR <cite>ifort</cite></p></li>
+<li><p>C++ compiler: <cite>g++</cite></p></li>
+<li><p>MKL library from Intel (for this installation) or any other
+Lapack/ScaLapack distribution.</p></li>
+</ul>
+<p>We have tested installations with following versions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++        <span class="o">(</span>version &gt;<span class="o">=</span> <span class="m">9</span>.0.0<span class="o">)</span>
+gfortran   <span class="o">(</span>version &gt;<span class="o">=</span> <span class="m">9</span>.0.0<span class="o">)</span>
+ifort      <span class="o">(</span>version &gt;<span class="o">=</span> <span class="m">2018</span>.0.0<span class="o">)</span>
+MKL        <span class="o">(</span>version &gt;<span class="o">=</span> <span class="m">2018</span>.0.0<span class="o">)</span> with gfortran support
+</pre></div>
+</div>
+<p>We describe here the way that we use and we know that it works.
+If you know a better precedure, we are happy to learn about your experience.
+You can send us an <a class="reference external" href="mailto:ai&#46;unseen&#46;group&#37;&#52;&#48;gmail&#46;com">email</a>   to update the present documentation.</p>
+<ol class="arabic simple">
+<li><p>Clone our repository of <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recursive git@github.com:tomswinburne/milady_lammps.git milady_lammps.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>turn on  <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library in <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> milady_lammps.git/src
+make yes-ml-milady
+</pre></div>
+</div>
+<p>3. Choose the compilator for <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>: <code class="docutils literal notranslate"><span class="pre">intel</span></code> or <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.
+Note that there is no restriction in the choice that you have for the
+compilation of <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> (we use default parameters and <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler).
+Below, we provide the 2-step example using Intel Fortran <code class="docutils literal notranslate"><span class="pre">ifort</span></code>.
+The case of <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> is similar.</p>
+<p>3a. Edit the appropiate  <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.intel</span></code> for your architecture.
+<code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> library uses <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and some other Intel libraries from
+<code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code> compiler. You need to localize the root directory
+for <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and <code class="docutils literal notranslate"><span class="pre">intel64</span></code> libraries.
+We use <code class="docutils literal notranslate"><span class="pre">oneAPI</span> <span class="pre">Intel</span></code> free distribution. Here are our choices:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MKLROOT</span><span class="o">=</span>/opt/intel/oneapi/mkl/latest/
+<span class="nv">LIBCOMP</span><span class="o">=</span>/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64/
+</pre></div>
+</div>
+<p>The paths will be similar for any older distribution of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code>,  such as <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Composer</span></code>, <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Parallel</span> <span class="pre">Studio</span></code>,  etc.
+If you have doubts: write us <a class="reference external" href="mailto:ai&#46;unseen&#46;group&#37;&#52;&#48;gmail&#46;com">here</a> . We are happy to help you !!!!</p>
+<p>3b. Compile <code class="docutils literal notranslate"><span class="pre">milady</span></code> library in <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> milady_lammps.git/lib/milady
+make -f Makefile.mpi_intel  clean
+make -f Makefile.mpi_intel
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> final compilation …. ouufff:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> milady_lammps.git/src
+make mpi
+</pre></div>
+</div>
+<p>That’s it! We know … compilations are painful!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>IMPORTANT:  Many thanks to users that have reported some typos, errors in
+Makefile. In particular many thanks to  Marie Landeiro Dos Reis and Antoine Kraych !</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install_irene.html" class="btn btn-neutral float-left" title="Build on Irene" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ml/input.html" class="btn btn-neutral float-right" title="Input files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
