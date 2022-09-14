@@ -18,6 +18,7 @@
    contents/install/installation
    contents/install/install_marconi
    contents/install/install_irene
+   contents/install/install_milady-lammps
 
 .. toctree::
    :caption: User manual
