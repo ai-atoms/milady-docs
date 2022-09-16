@@ -13,7 +13,7 @@ The code uses Machine Learning (ML) algorithms and prioritises the methods with 
 **Main functionalities:**
 
 - Development of ML force fields, suitable for Molecular Dynamics simulations.
-- Development of regression models (metamodels) for prediction of materials properties, like vibrational entropy, HUMO-LUMO energies, etc.
+- Development of surrogate regression models for prediction of materials properties, like vibrational entropy, HUMO-LUMO energies, etc.
 - Representation of structures in the feature space of atomic descriptors
 - Analysis, sparcification, and optimization of training databases
 
