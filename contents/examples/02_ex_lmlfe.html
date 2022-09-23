@@ -100,7 +100,8 @@
            <div itemprop="articleBody">
              
   <section id="lml-fit-in-bcc-fe">
-<span id="ex-lml-fe"></span><h1>LML fit in bcc Fe<a class="headerlink" href="#lml-fit-in-bcc-fe" title="Permalink to this heading"></a></h1>
+<span id="ex-lml-fe"></span><h1>LML fit in bcc Fe<a class="headerlink" href="#lml-fit-in-bcc-fe" title="Permalink to this heading"></a>
+</h1>
 <p>This section provides an example input an input file for performing
 linear ML (LML) fit with AFS descriptors for bcc Fe. The relevant files
 are provided in <code class="docutils literal notranslate"><span class="pre">Examples/LML_Fe_AFS</span></code>.</p>
@@ -108,7 +109,8 @@ are provided in <code class="docutils literal notranslate"><span class="pre">Exa
 home-made subroutine solving the least square problem. In order to set a
 different subroutine, see the available settings for <code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code>
 in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 <span class="c">!ML model</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 for the fit using basis functions</span>
@@ -117,7 +119,7 @@ in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
 
 <span class="c">!Define your system</span>
 <span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; Fe &quot;</span><span class="w">   </span><span class="c">!provide the system composition</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Fe "</span><span class="w">   </span><span class="c">!provide the system composition</span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distance Rc</span>
@@ -130,6 +132,7 @@ in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
 </pre></div>
 </div>
 </section>
+
 
 
            </div>

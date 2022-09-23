@@ -104,27 +104,33 @@
            <div itemprop="articleBody">
              
   <section id="build-on-marconi">
-<span id="sec-insta-marconi"></span><h1>Build on Marconi<a class="headerlink" href="#build-on-marconi" title="Permalink to this heading"></a></h1>
+<span id="sec-insta-marconi"></span><h1>Build on Marconi<a class="headerlink" href="#build-on-marconi" title="Permalink to this heading"></a>
+</h1>
 <p>Here we provide the instructions for building <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> on the widely used
 supercomputer <a class="reference external" href="https://www.hpc.cineca.it/hardware/marconi">MARCONI</a> .</p>
 <blockquote>
-<div><div class="admonition note">
+<div>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We describe here the way that we use and we know that it works.
 If you know a better precedure, we are happy to learn about your experience.
 You can send us an email to update the present documentation.</p>
 </div>
-</div></blockquote>
+</div>
+</blockquote>
 <section id="step-1-loading-modules-and-setting-bash-environement">
-<h2>Step 1: Loading modules and setting bash environement<a class="headerlink" href="#step-1-loading-modules-and-setting-bash-environement" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Loading modules and setting bash environement<a class="headerlink" href="#step-1-loading-modules-and-setting-bash-environement" title="Permalink to this heading"></a>
+</h2>
 <p>In the following, <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> refers to the github repository. We preserve here the same structure of the
 directories as in previous examples.</p>
 <ol class="arabic">
 <li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">MLD</span></code> and copy <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> in that location.
 Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> is the location of <code class="docutils literal notranslate"><span class="pre">MLD</span></code> directory.</p></li>
-<li><p>Set your <code class="docutils literal notranslate"><span class="pre">bash</span></code> environement. My <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file contains the
+<li>
+<p>Set your <code class="docutils literal notranslate"><span class="pre">bash</span></code> environement. My <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file contains the
 following modules and variables:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load env-skl
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>module load env-skl
 module load intel/pe-xe-2020--binary
 module load mkl/2020--binary
 module load intelmpi/2020--binary
@@ -141,9 +147,11 @@ module load cmake/3.18.2
 <code class="docutils literal notranslate"><span class="pre">mld_testdir</span></code> is a directory with tests that is not compulsory.</p>
 </div>
 </li>
-<li><p>Define in your environement the following <code class="docutils literal notranslate"><span class="pre">bash</span></code> function (can be added at the end
+<li>
+<p>Define in your environement the following <code class="docutils literal notranslate"><span class="pre">bash</span></code> function (can be added at the end
 of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady<span class="o">{</span>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady<span class="o">{</span>
   <span class="nb">unset</span> MLD_ROODIR
   <span class="nb">unset</span> MLD_SCRDIR
   <span class="nb">unset</span> MLD_SRCDIR
@@ -154,7 +162,7 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
   <span class="nb">unset</span> OMP_INSDIR
   <span class="nb">unset</span> OMP_ROOT
 
-  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span><span class="s2">/&quot;</span>
+  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span><span class="s2">/"</span>
 
   <span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
   <span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
@@ -173,10 +181,13 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 </ol>
 </section>
 <section id="step-2-installation">
-<h2>Step 2: Installation<a class="headerlink" href="#step-2-installation" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Installation<a class="headerlink" href="#step-2-installation" title="Permalink to this heading"></a>
+</h2>
 <ol class="arabic">
-<li><p>Charge the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> bash environement (do not forget to source your <code class="docutils literal notranslate"><span class="pre">$HOME/.bashrc</span></code> file before it):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f_setenv_milady
+<li>
+<p>Charge the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> bash environement (do not forget to source your <code class="docutils literal notranslate"><span class="pre">$HOME/.bashrc</span></code> file before it):</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>f_setenv_milady
 <span class="nb">source</span> <span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>/MILADY/scripts/compile_milady.bash
 </pre></div>
 </div>
@@ -185,8 +196,10 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 <p>Do not forget that <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> is defined by you. It is the path to the  <code class="docutils literal notranslate"><span class="pre">MLD</span></code> directory.</p>
 </div>
 </li>
-<li><p>Install MILADY:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f_compile_milady_intel
+<li>
+<p>Install MILADY:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>f_compile_milady_intel
 make -j6
 </pre></div>
 </div>
@@ -195,6 +208,7 @@ make -j6
 <p>And that it is !!!! The executable is in <code class="docutils literal notranslate"><span class="pre">bin/milady_main.exe</span></code>.</p>
 </section>
 </section>
+
 
 
            </div>

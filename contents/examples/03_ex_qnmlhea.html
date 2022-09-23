@@ -100,14 +100,16 @@
            <div itemprop="articleBody">
              
   <section id="qnml-fit-in-hea">
-<span id="ex-qnml-hae"></span><h1>QNML fit in HEA<a class="headerlink" href="#qnml-fit-in-hea" title="Permalink to this heading"></a></h1>
+<span id="ex-qnml-hae"></span><h1>QNML fit in HEA<a class="headerlink" href="#qnml-fit-in-hea" title="Permalink to this heading"></a>
+</h1>
 <p>Here we provide an example of input file to perform quadratic noise ML
 (QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
 are provided in <code class="docutils literal notranslate"><span class="pre">Examples/QNML_HEA_bSO4</span></code>.</p>
 <p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">mld_fit_type=4</span></code>, which
 uses SVD with rank estimation. Other available settings for
 <code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 <span class="c">!ML model</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 to perform the fit using basis functions</span>
@@ -120,10 +122,10 @@ uses SVD with rank estimation. Other available settings for
 <span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">4</span><span class="w">       </span><span class="c">!number of chemical species in the system</span>
 
 <span class="c">!system composition, ordered as in DB files</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; Ta Ti V W &quot;</span><span class="w"></span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Ta Ti V W "</span><span class="w"></span>
 
 <span class="c">!weights applied for each element. Keep close to 1</span>
-<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">&quot; 1.56 0.41 0.44 1.59 &quot;</span><span class="w"></span>
+<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">" 1.56 0.41 0.44 1.59 "</span><span class="w"></span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
@@ -132,6 +134,7 @@ uses SVD with rank estimation. Other available settings for
 </pre></div>
 </div>
 </section>
+
 
 
            </div>

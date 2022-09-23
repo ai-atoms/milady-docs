@@ -147,28 +147,37 @@
            <div itemprop="articleBody">
              
   <section id="descriptors">
-<span id="sec-descriptors"></span><h1>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a></h1>
+<span id="sec-descriptors"></span><h1>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this heading"></a>
+</h1>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-r_cut">
-<span id="cmdoption-arg-r-cut"></span><span class="sig-name descname"><span class="pre">r_cut</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut" title="Permalink to this definition"></a></dt>
-<dd><p>The cut-off of the descriptor (in Å).</p>
+<span id="cmdoption-arg-r-cut"></span><span class="sig-name descname"><span class="pre">r_cut</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The cut-off of the descriptor (in Å).</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">r_cut=5.0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-desc_forces">
-<span id="cmdoption-arg-desc-forces"></span><span class="sig-name descname"><span class="pre">desc_forces</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-desc_forces" title="Permalink to this definition"></a></dt>
-<dd><p>Compute or not the force descriptors.
+<span id="cmdoption-arg-desc-forces"></span><span class="sig-name descname"><span class="pre">desc_forces</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-desc_forces" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Compute or not the force descriptors.
 Also the writting of the force descriptors is desactivated. Active
 for all descriptors. In the case <code class="docutils literal notranslate"><span class="pre">desc_forces=.false.</span></code> only the
 positions are read.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">desc_forces=.true.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-descriptor_type">
-<span id="cmdoption-arg-descriptor-type"></span><span class="sig-name descname"><span class="pre">descriptor_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-descriptor_type" title="Permalink to this definition"></a></dt>
-<dd><p>Type of descriptor to be used.</p>
+<span id="cmdoption-arg-descriptor-type"></span><span class="sig-name descname"><span class="pre">descriptor_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-descriptor_type" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Type of descriptor to be used.</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=1</span></code> G2</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=2</span></code> G3</p></li>
@@ -186,112 +195,145 @@ positions are read.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code> PiP permutationally invariant polynomials.</p></li>
 </ol>
 <p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
-</dd></dl>
+</dd>
+</dl>
 
 <section id="g2">
-<h2>G2<a class="headerlink" href="#g2" title="Permalink to this heading"></a></h2>
+<h2>G2<a class="headerlink" href="#g2" title="Permalink to this heading"></a>
+</h2>
 <p>To use G2, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=1</span></code>.</p>
 <section id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a>
+</h3>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-eta_max_g2">
-<span id="cmdoption-arg-eta-max-g2"></span><span class="sig-name descname"><span class="pre">eta_max_g2</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-eta_max_g2" title="Permalink to this definition"></a></dt>
-<dd><p>The max value of <span class="math notranslate nohighlight">\(\eta\)</span>. The grid will be taken between <span class="math notranslate nohighlight">\(10^{-2}\)</span> and this value.</p>
+<span id="cmdoption-arg-eta-max-g2"></span><span class="sig-name descname"><span class="pre">eta_max_g2</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-eta_max_g2" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The max value of <span class="math notranslate nohighlight">\(\eta\)</span>. The grid will be taken between <span class="math notranslate nohighlight">\(10^{-2}\)</span> and this value.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">eta_max_g2=0.8</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_g2_eta">
-<span id="cmdoption-arg-n-g2-eta"></span><span class="sig-name descname"><span class="pre">n_g2_eta</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_eta" title="Permalink to this definition"></a></dt>
-<dd><p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
+<span id="cmdoption-arg-n-g2-eta"></span><span class="sig-name descname"><span class="pre">n_g2_eta</span></span><span class="sig-prename descclassname">  <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_eta" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
 <div class="math notranslate nohighlight">
 \[\eta_p = 10^{-2} + \frac{p-1}{\textrm{n_g2_eta}}( \textrm{eta_max_g2}- 10^{-2})\]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> range strats to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_eta</span></code>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">3</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_g2_rs">
-<span id="cmdoption-arg-n-g2-rs"></span><span class="sig-name descname"><span class="pre">n_g2_rs</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_rs" title="Permalink to this definition"></a></dt>
-<dd><p>The grid for <span class="math notranslate nohighlight">\(r_s\)</span> with the following generating formulae:</p>
+<span id="cmdoption-arg-n-g2-rs"></span><span class="sig-name descname"><span class="pre">n_g2_rs</span></span><span class="sig-prename descclassname">  <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g2_rs" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The grid for <span class="math notranslate nohighlight">\(r_s\)</span> with the following generating formulae:</p>
 <div class="math notranslate nohighlight">
 \[r_s^p = p-1\]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_rs</span></code>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="g3">
-<h2>G3<a class="headerlink" href="#g3" title="Permalink to this heading"></a></h2>
+<h2>G3<a class="headerlink" href="#g3" title="Permalink to this heading"></a>
+</h2>
 <p>To use G3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=2</span></code>.</p>
 <section id="id1">
-<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a>
+</h3>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_g3_eta">
-<span id="cmdoption-arg-n-g3-eta"></span><span class="sig-name descname"><span class="pre">n_g3_eta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_eta" title="Permalink to this definition"></a></dt>
-<dd><p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
+<span id="cmdoption-arg-n-g3-eta"></span><span class="sig-name descname"><span class="pre">n_g3_eta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_eta" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The grid for <span class="math notranslate nohighlight">\(\eta\)</span> with the following generatig formulae:</p>
 <div class="math notranslate nohighlight">
 \[\eta_p = 10^{-2} + \frac{p-1}{\textrm{n_g2_eta}}(1 - 10^{-2})\]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> range strats to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g2_eta</span></code>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">3</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_g3_lambda">
-<span id="cmdoption-arg-n-g3-lambda"></span><span class="sig-name descname"><span class="pre">n_g3_lambda</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_lambda" title="Permalink to this definition"></a></dt>
-<dd><p>the grid for <span class="math notranslate nohighlight">\(\lambda\)</span> with the following generating formulae:</p>
+<span id="cmdoption-arg-n-g3-lambda"></span><span class="sig-name descname"><span class="pre">n_g3_lambda</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_lambda" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>the grid for <span class="math notranslate nohighlight">\(\lambda\)</span> with the following generating formulae:</p>
 <div class="math notranslate nohighlight">
 \[\lambda_p = -1 + 2(p-1)\]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g3_lambda</span></code>. Is
 highly recommended the value <code class="docutils literal notranslate"><span class="pre">n_g3_lambda</span></code><span class="math notranslate nohighlight">\(=2\)</span> i. e.
 <span class="math notranslate nohighlight">\(\lambda\)</span> will have the value <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_g3_zeta">
-<span id="cmdoption-arg-n-g3-zeta"></span><span class="sig-name descname"><span class="pre">n_g3_zeta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_zeta" title="Permalink to this definition"></a></dt>
-<dd><p>The grid for <span class="math notranslate nohighlight">\(\zeta\)</span> with the following generating formulae:</p>
+<span id="cmdoption-arg-n-g3-zeta"></span><span class="sig-name descname"><span class="pre">n_g3_zeta</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_g3_zeta" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The grid for <span class="math notranslate nohighlight">\(\zeta\)</span> with the following generating formulae:</p>
 <div class="math notranslate nohighlight">
 \[\zeta_p = 2^{p-1}\]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> range starts to 1 up to <code class="docutils literal notranslate"><span class="pre">n_g3_zeta</span></code>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="behler">
-<h2>Behler<a class="headerlink" href="#behler" title="Permalink to this heading"></a></h2>
+<h2>Behler<a class="headerlink" href="#behler" title="Permalink to this heading"></a>
+</h2>
 <p>To use Behler, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=3</span></code>.</p>
 <section id="id2">
-<h3>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptors are controlled by the options of the case <span class="math notranslate nohighlight">\(G2\)</span> and <span class="math notranslate nohighlight">\(G3\)</span>. Additional options are available:</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-strict_behler">
-<span id="cmdoption-arg-strict-behler"></span><span class="sig-name descname"><span class="pre">strict_behler</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-strict_behler" title="Permalink to this definition"></a></dt>
-<dd><p>All the parameters are set-up
+<span id="cmdoption-arg-strict-behler"></span><span class="sig-name descname"><span class="pre">strict_behler</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-strict_behler" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>All the parameters are set-up
 automatically following one of the Behler’s paper.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">F</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="afs">
-<h2>AFS<a class="headerlink" href="#afs" title="Permalink to this heading"></a></h2>
+<h2>AFS<a class="headerlink" href="#afs" title="Permalink to this heading"></a>
+</h2>
 <p>To use  AFS, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=4</span></code>.</p>
 <section id="id3">
-<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptors are controlled by the options of the number of radial
 channels and Tchbychev polynomials. There are two types of AFS
 descriptors introduced by the option <code class="docutils literal notranslate"><span class="pre">afs_type</span></code>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-afs_type">
-<span id="cmdoption-arg-afs-type"></span><span class="sig-name descname"><span class="pre">afs_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-afs_type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span id="cmdoption-arg-afs-type"></span><span class="sig-name descname"><span class="pre">afs_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-afs_type" title="Permalink to this definition"></a>
+</dt>
+<dd></dd>
+</dl>
 
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">afs_type=1</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates the orginal AFS
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">afs_type=1</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates the orginal AFS
 published in the PRB paper <cite>cite{bartok2013}</cite>:</p>
 <div class="math notranslate nohighlight">
 \[\textrm{AFS}_{n,l}^j = \sum_{i,k} g_n(r_{ji}) g_n(r_{jk}) T_l (\cos{\theta_{ijk}})\]</div>
@@ -299,7 +341,8 @@ published in the PRB paper <cite>cite{bartok2013}</cite>:</p>
 <code class="docutils literal notranslate"><span class="pre">(n_cheb</span> <span class="pre">+</span> <span class="pre">1)</span></code>. The <span class="math notranslate nohighlight">\(g_n\)</span> and <span class="math notranslate nohighlight">\(T_l\)</span> are the radial
 channels and Tchebychev polynomials, respectivelly.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">afs_type=2</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates a new AFS
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">afs_type=2</span></code>: <code class="docutils literal notranslate"><span class="pre">integer</span></code> this option activates a new AFS
 descriptor with strong coupling between the radial channels:</p>
 <div class="math notranslate nohighlight">
 \[\textrm{AFS}_{n,n^\prime, l}^j = \sum_{i,k} g_n(r_{ji}) g_{n^{\prime}}(r_{jk}) T_l (\cos{\theta_{ijk}})\]</div>
@@ -310,25 +353,33 @@ descriptor with strong coupling between the radial channels:</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">afs_type</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_rbf">
-<span id="cmdoption-arg-n-rbf"></span><span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_rbf" title="Permalink to this definition"></a></dt>
-<dd><p>The number of radial channels.</p>
+<span id="cmdoption-arg-n-rbf"></span><span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_rbf" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of radial channels.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_cheb">
-<span id="cmdoption-arg-n-cheb"></span><span class="sig-name descname"><span class="pre">n_cheb</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_cheb" title="Permalink to this definition"></a></dt>
-<dd><p>The number of Tchebychev polynomials.</p>
+<span id="cmdoption-arg-n-cheb"></span><span class="sig-name descname"><span class="pre">n_cheb</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_cheb" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of Tchebychev polynomials.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_cheb=5</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="soap">
-<h2>SOAP<a class="headerlink" href="#soap" title="Permalink to this heading"></a></h2>
+<h2>SOAP<a class="headerlink" href="#soap" title="Permalink to this heading"></a>
+</h2>
 <p>To use  SOAP, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=5</span></code>.</p>
 <section id="id4">
-<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptor are controlled by the options of the number of Gaussian
 radial functions <code class="docutils literal notranslate"><span class="pre">n_soap</span></code> and maximum of the spherical harmonics
 <code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
@@ -341,53 +392,73 @@ are, if <code class="docutils literal notranslate"><span class="pre">lsoap_diag=
 <code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code><span class="math notranslate nohighlight">\(\times\)</span> (<code class="docutils literal notranslate"><span class="pre">nspecies_soap</span></code> +1)/2.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_soap">
-<span id="cmdoption-arg-n-soap"></span><span class="sig-name descname"><span class="pre">n_soap</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_soap" title="Permalink to this definition"></a></dt>
-<dd><p>The number of Gaussians.</p>
+<span id="cmdoption-arg-n-soap"></span><span class="sig-name descname"><span class="pre">n_soap</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_soap" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of Gaussians.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_soap=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-l_max">
-<span id="cmdoption-arg-l-max"></span><span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-l_max" title="Permalink to this definition"></a></dt>
-<dd><p>The max l of the spherical harmonics.</p>
+<span id="cmdoption-arg-l-max"></span><span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-l_max" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The max l of the spherical harmonics.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">l_max=5</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lsoap_diag">
-<span id="cmdoption-arg-lsoap-diag"></span><span class="sig-name descname"><span class="pre">lsoap_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_diag" title="Permalink to this definition"></a></dt>
-<dd><p>The SOAP descriptor is diagonal in radial functions.</p>
+<span id="cmdoption-arg-lsoap-diag"></span><span class="sig-name descname"><span class="pre">lsoap_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_diag" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The SOAP descriptor is diagonal in radial functions.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_diag=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lsoap_lnorm">
-<span id="cmdoption-arg-lsoap-lnorm"></span><span class="sig-name descname"><span class="pre">lsoap_lnorm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_lnorm" title="Permalink to this definition"></a></dt>
-<dd><p>The SOAP descriptor is normalized in each <span class="math notranslate nohighlight">\(l\)</span>-angular channel by a factor <span class="math notranslate nohighlight">\(1/(2l+1)\)</span>.</p>
+<span id="cmdoption-arg-lsoap-lnorm"></span><span class="sig-name descname"><span class="pre">lsoap_lnorm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_lnorm" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The SOAP descriptor is normalized in each <span class="math notranslate nohighlight">\(l\)</span>-angular channel by a factor <span class="math notranslate nohighlight">\(1/(2l+1)\)</span>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_lnorm=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lsoap_norm">
-<span id="cmdoption-arg-lsoap-norm"></span><span class="sig-name descname"><span class="pre">lsoap_norm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_norm" title="Permalink to this definition"></a></dt>
-<dd><p>The SOAP descriptor is normalized.</p>
+<span id="cmdoption-arg-lsoap-norm"></span><span class="sig-name descname"><span class="pre">lsoap_norm</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lsoap_norm" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The SOAP descriptor is normalized.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lsoap_norm=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-r_cut_width_soap">
-<span id="cmdoption-arg-r-cut-width-soap"></span><span class="sig-name descname"><span class="pre">r_cut_width_soap</span></span><span class="sig-prename descclassname">&#160; <span class="pre">(double</span> <span class="pre">precision)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width_soap" title="Permalink to this definition"></a></dt>
-<dd><p>The intermediate regime for the cutoff function.</p>
+<span id="cmdoption-arg-r-cut-width-soap"></span><span class="sig-name descname"><span class="pre">r_cut_width_soap</span></span><span class="sig-prename descclassname">  <span class="pre">(double</span> <span class="pre">precision)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width_soap" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The intermediate regime for the cutoff function.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">r_cut_width_soap=0.5d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="power-spectrum-so3">
-<h2>Power Spectrum SO3<a class="headerlink" href="#power-spectrum-so3" title="Permalink to this heading"></a></h2>
+<h2>Power Spectrum SO3<a class="headerlink" href="#power-spectrum-so3" title="Permalink to this heading"></a>
+</h2>
 <p>To use  power spectrum SO3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=6</span></code>.</p>
 <section id="id5">
-<h3>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of this descriptor are controlled by the
 number of radial functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and the angular momentum of spherical harmonics <code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
 This descriptor has two radial function choices given by <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span></code> flag.
@@ -397,26 +468,35 @@ dimension of the descriptor will be: <code class="docutils literal notranslate">
 <code class="docutils literal notranslate"><span class="pre">(l_max</span> <span class="pre">+</span> <span class="pre">1)</span></code> if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code></p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-radial_pow_so3">
-<span id="cmdoption-arg-radial-pow-so3"></span><span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-radial_pow_so3" title="Permalink to this definition"></a></dt>
-<dd><p>The type of radial function. <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code> is the default choice and give the original polynomial radial basis
+<span id="cmdoption-arg-radial-pow-so3"></span><span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-radial_pow_so3" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The type of radial function. <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code> is the default choice and give the original polynomial radial basis
 (the same as the default basis of AFS descritor) whilst <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code> gives the radial basis based on Chebyshev polynomials
 described in refXXX. This option is common and acitve for others two descriptors: Power Spectrum SO3-3body and Bispectrum SO3 descriptors.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-0">
-<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-0" title="Permalink to this definition"></a></dt>
-<dd><p>The number of Gaussian (radial) functions.</p>
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-0" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of Gaussian (radial) functions.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-1">
-<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-1" title="Permalink to this definition"></a></dt>
-<dd><p>The max values of the angular moment.</p>
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-1" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The max values of the angular moment.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <p>The <span class="math notranslate nohighlight">\(n_{rbf} \times (1 + l_{\textrm{max}})\)</span> or <span class="math notranslate nohighlight">\((n_{rbf} + 1) \times (1 + l_{\textrm{max}})\)</span> components of the power
 spectrum SO(3) descriptor of the <span class="math notranslate nohighlight">\(j^{th}\)</span> atom is written:</p>
@@ -435,11 +515,13 @@ Chebyshev polynomials from refXXX.
 </section>
 </section>
 <section id="power-spectrum-so3-3body">
-<h2>Power Spectrum SO3 3body<a class="headerlink" href="#power-spectrum-so3-3body" title="Permalink to this heading"></a></h2>
+<h2>Power Spectrum SO3 3body<a class="headerlink" href="#power-spectrum-so3-3body" title="Permalink to this heading"></a>
+</h2>
 <p>To use  power spectrum SO3 3body, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=603</span></code>. This descriptor follows the ideea
 of 3 body descriptor proposed by refXXXdeGironcoli.</p>
 <section id="id6">
-<h3>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of this descriptor are controlled by the
 number of radial functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and the angular momentum of spherical harmonics <code class="docutils literal notranslate"><span class="pre">l_max</span></code>.
 This descriptor has two radial function choices given by <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span></code> flag.
@@ -448,24 +530,33 @@ if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</
 if <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">2</span></code></p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-2">
-<span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-2" title="Permalink to this definition"></a></dt>
-<dd><p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
+<span class="sig-name descname"><span class="pre">radial_pow_so3</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-2" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">radial_pow_so3</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-3">
-<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-3" title="Permalink to this definition"></a></dt>
-<dd><p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-3" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The same utility as described before for Power Spectrum SO3 descriptor.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-4">
-<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-4" title="Permalink to this definition"></a></dt>
-<dd><p>The max values of the angular moment.</p>
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-4" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The max values of the angular moment.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <p>The <span class="math notranslate nohighlight">\(n_{rbf}^2 \times (1 + l_{\textrm{max}})\)</span> or <span class="math notranslate nohighlight">\((n_{rbf} + 1)^2 \times (1 + l_{\textrm{max}})\)</span> components of the power
 spectrum SO(3) 3 body descriptor of the <span class="math notranslate nohighlight">\(j^{th}\)</span> atom is written:</p>
@@ -477,10 +568,12 @@ spectrum SO(3) 3 body descriptor of the <span class="math notranslate nohighligh
 </section>
 </section>
 <section id="bispectrum-so3">
-<h2>Bispectrum SO3<a class="headerlink" href="#bispectrum-so3" title="Permalink to this heading"></a></h2>
+<h2>Bispectrum SO3<a class="headerlink" href="#bispectrum-so3" title="Permalink to this heading"></a>
+</h2>
 <p>To use bispectrum SO3, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=7</span></code>.</p>
 <section id="id7">
-<h3>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptor are controlled by the number of Gaussian radial
 functions, <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code>, and maximal angular momentum of spherical
 harmonics, <code class="docutils literal notranslate"><span class="pre">(l_max</span></code>. The bispectrum SO3 descriptor components of
@@ -503,49 +596,65 @@ becomes <code class="docutils literal notranslate"><span class="pre">483</span><
 ONLY the diagonal form.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-5">
-<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-5" title="Permalink to this definition"></a></dt>
-<dd><p>The number of Gaussian (radial) functions.</p>
+<span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-5" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of Gaussian (radial) functions.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">n_rbf=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-6">
-<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-6" title="Permalink to this definition"></a></dt>
-<dd><p>The max values of the angular moment.</p>
+<span class="sig-name descname"><span class="pre">l_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-6" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The max values of the angular moment.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">l_max=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lbso3_diag">
-<span id="cmdoption-arg-lbso3-diag"></span><span class="sig-name descname"><span class="pre">lbso3_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso3_diag" title="Permalink to this definition"></a></dt>
-<dd><p>If are taken the full bispectrum coeffcient (overcomplete), <code class="docutils literal notranslate"><span class="pre">.false.</span></code> or only diagonal
+<span id="cmdoption-arg-lbso3-diag"></span><span class="sig-name descname"><span class="pre">lbso3_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso3_diag" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>If are taken the full bispectrum coeffcient (overcomplete), <code class="docutils literal notranslate"><span class="pre">.false.</span></code> or only diagonal
 <span class="math notranslate nohighlight">\(l_1=l_2\)</span> <code class="docutils literal notranslate"><span class="pre">.true.</span></code></p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lbso3_diag=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="bispectrum-so4">
-<h2>Bispectrum SO4<a class="headerlink" href="#bispectrum-so4" title="Permalink to this heading"></a></h2>
+<h2>Bispectrum SO4<a class="headerlink" href="#bispectrum-so4" title="Permalink to this heading"></a>
+</h2>
 <p>To use bispectrum SO4, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=9</span></code>.</p>
 <section id="id8">
-<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptors are controlled by maximum angular moment <span class="math notranslate nohighlight">\(j_{max}\)</span>.
 The dimension is not easy to guess. Moreover, it depends on the
 choice on diagonal (<span class="math notranslate nohighlight">\(j_1=j_2\)</span>) or full the complete set of
 <span class="math notranslate nohighlight">\(j_1, j_2\)</span>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-j_max">
-<span id="cmdoption-arg-j-max"></span><span class="sig-name descname"><span class="pre">j_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-j_max" title="Permalink to this definition"></a></dt>
-<dd><p>The maximum componenet of the spectral
+<span id="cmdoption-arg-j-max"></span><span class="sig-name descname"><span class="pre">j_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-j_max" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The maximum componenet of the spectral
 function.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">j_max=1.5</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-inv_r0_input">
-<span id="cmdoption-arg-inv-r0-input"></span><span class="sig-name descname"><span class="pre">inv_r0_input</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-inv_r0_input" title="Permalink to this definition"></a></dt>
-<dd><p>The value of the maximum projection
+<span id="cmdoption-arg-inv-r0-input"></span><span class="sig-name descname"><span class="pre">inv_r0_input</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-inv_r0_input" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The value of the maximum projection
 at north pole in <span class="math notranslate nohighlight">\(\pi\)</span> units. The final value that will be
 used in code will be multiplied by <span class="math notranslate nohighlight">\(\pi\)</span>. The value should
 be slightly lower that 1 but strictly positive. The default
@@ -553,12 +662,15 @@ value is suggested by the brilliant paper of Bartok et al. If
 you do not have ideea about the <span class="math notranslate nohighlight">\(SO(4)\)</span> theory, trust the
 default value.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">inv_r0_input=</span></code> <code class="docutils literal notranslate"><span class="pre">1.d0</span> <span class="pre">-</span> <span class="pre">0.02/</span></code><span class="math notranslate nohighlight">\(\pi\)</span></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lbso4_diag">
-<span id="cmdoption-arg-lbso4-diag"></span><span class="sig-name descname"><span class="pre">lbso4_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso4_diag" title="Permalink to this definition"></a></dt>
-<dd><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> only the diagonal
+<span id="cmdoption-arg-lbso4-diag"></span><span class="sig-name descname"><span class="pre">lbso4_diag</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-lbso4_diag" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> only the diagonal
 components are selected (as in GAP). If <code class="docutils literal notranslate"><span class="pre">.false.</span></code> is SNAP-like
 way and all the components are selected. It should be notted
 that the bi-spectrum is overcomplete descriptor and only
@@ -566,15 +678,18 @@ diagonal components are mathematically justified. However, in
 the original SNAP potential of Thompsson is was used in full
 version.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lbso4_diag=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="mtp">
-<h2>MTP<a class="headerlink" href="#mtp" title="Permalink to this heading"></a></h2>
+<h2>MTP<a class="headerlink" href="#mtp" title="Permalink to this heading"></a>
+</h2>
 <p>To use MTP, set <code class="docutils literal notranslate"><span class="pre">descriptor_type=100</span></code>.</p>
 <section id="id9">
-<h3>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a>
+</h3>
 <p>The parameters of the descriptors are controlled by minimum and the maximum degree of the
 polynomials <code class="docutils literal notranslate"><span class="pre">mtp_poly_min</span></code> and <code class="docutils literal notranslate"><span class="pre">mtp_poly_max</span></code>. The degree of the
 generating radial function will be the internal parameter
@@ -583,41 +698,52 @@ the descriptor i.e. number of basis function is given by
 <code class="docutils literal notranslate"><span class="pre">mtp_dim=mtp_rad_order</span> <span class="pre">+</span> <span class="pre">2*mtp_rad_order**2</span> <span class="pre">+</span> <span class="pre">mtp_rad_order**3</span></code>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-mtp_poly_min">
-<span id="cmdoption-arg-mtp-poly-min"></span><span class="sig-name descname"><span class="pre">mtp_poly_min</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_min" title="Permalink to this definition"></a></dt>
-<dd><p>The minimum degree of the radial function</p>
+<span id="cmdoption-arg-mtp-poly-min"></span><span class="sig-name descname"><span class="pre">mtp_poly_min</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_min" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The minimum degree of the radial function</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">mtp_poly_min=2</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-mtp_poly_max">
-<span id="cmdoption-arg-mtp-poly-max"></span><span class="sig-name descname"><span class="pre">mtp_poly_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_max" title="Permalink to this definition"></a></dt>
-<dd><p>The minimum degree of the radial function</p>
+<span id="cmdoption-arg-mtp-poly-max"></span><span class="sig-name descname"><span class="pre">mtp_poly_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-mtp_poly_max" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The minimum degree of the radial function</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">mtp_poly_max=4</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-lambda_krr">
-<span id="cmdoption-arg-lambda-krr"></span><span class="sig-name descname"><span class="pre">lambda_krr</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-lambda_krr" title="Permalink to this definition"></a></dt>
-<dd><p>The regularization using <span class="math notranslate nohighlight">\(L^2\)</span> or
+<span id="cmdoption-arg-lambda-krr"></span><span class="sig-name descname"><span class="pre">lambda_krr</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-lambda_krr" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The regularization using <span class="math notranslate nohighlight">\(L^2\)</span> or
 <span class="math notranslate nohighlight">\(L^1\)</span> norm. It is active only for cases <code class="docutils literal notranslate"><span class="pre">mld_fit_type=0</span></code>
 (for a fixed positive value of <code class="docutils literal notranslate"><span class="pre">lambda_krr</span></code> and
 <code class="docutils literal notranslate"><span class="pre">mld_fit_type=10</span></code> (for a grid). For details see the correspoding
 documentation. For negative values this option is skipped and
 standard fit is performed.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">lambda_krr=-1.d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 <section id="pip">
-<h2>PiP<a class="headerlink" href="#pip" title="Permalink to this heading"></a></h2>
+<h2>PiP<a class="headerlink" href="#pip" title="Permalink to this heading"></a>
+</h2>
 <p>To use PiP (permutationally invariant polynomials), set <code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The current implementation of PiP treat only one single type of atoms</p>
 </div>
 <section id="id10">
-<h3>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a>
+</h3>
 <p>This descriptors is based by a cluster expansion of the system energy:</p>
 <div class="math notranslate nohighlight">
 \[E = \sum_i V_1 (r_i)  + \frac{1}{2} \sum_{i,j} V_2(r_{i}, r_{j}) +  \frac{1}{3!} \sum_{i,j,k}   V_3(r_{i}, r_{j}, r_{k} ) + \ldots\]</div>
@@ -628,47 +754,63 @@ up to the fourth order.  The number of PiP terms for each term are driven by <co
 <code class="docutils literal notranslate"><span class="pre">bond_dist_transform</span></code>, <code class="docutils literal notranslate"><span class="pre">bond_beta</span></code> and <code class="docutils literal notranslate"><span class="pre">bond_dist_ann</span></code>.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-l_body_order">
-<span id="cmdoption-arg-l-body-order"></span><span class="sig-name descname"><span class="pre">l_body_order</span></span><span class="sig-prename descclassname"> <span class="pre">(logical</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-l_body_order" title="Permalink to this definition"></a></dt>
-<dd><p>This logical vertor of dimention 4 design the order of cluster expension. For example
+<span id="cmdoption-arg-l-body-order"></span><span class="sig-name descname"><span class="pre">l_body_order</span></span><span class="sig-prename descclassname"> <span class="pre">(logical</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-l_body_order" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>This logical vertor of dimention 4 design the order of cluster expension. For example
 <code class="docutils literal notranslate"><span class="pre">l_body_order(2)=.true.</span></code>, <code class="docutils literal notranslate"><span class="pre">l_body_order(3)=.true.</span></code>, <code class="docutils literal notranslate"><span class="pre">l_body_order(4)=.false.</span></code>
 enable a cluster expension up to the third order.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">l_body_order(:)=.true.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-body_D_max">
-<span id="cmdoption-arg-body-d-max"></span><span class="sig-name descname"><span class="pre">body_D_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-body_D_max" title="Permalink to this definition"></a></dt>
-<dd><p>This integer vector fix the number of PiP terms for each term of expansion.
+<span id="cmdoption-arg-body-d-max"></span><span class="sig-name descname"><span class="pre">body_D_max</span></span><span class="sig-prename descclassname"> <span class="pre">(integer</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-body_D_max" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>This integer vector fix the number of PiP terms for each term of expansion.
 <code class="docutils literal notranslate"><span class="pre">body_D_max(2)</span></code> for <span class="math notranslate nohighlight">\(V_2\)</span>, <code class="docutils literal notranslate"><span class="pre">body_D_max(3)</span></code> for <span class="math notranslate nohighlight">\(V_3\)</span> and
 <code class="docutils literal notranslate"><span class="pre">body_D_max(4)</span></code> for <span class="math notranslate nohighlight">\(V_4\)</span>. A reasonable choice can be 20, 9, 7. Try more less
 depending on th design that you made for your expension.</p>
 <p>Default   <code class="docutils literal notranslate"><span class="pre">body_D_max(i)=i</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-bond_dist_transform">
-<span id="cmdoption-arg-bond-dist-transform"></span><span class="sig-name descname"><span class="pre">bond_dist_transform</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-bond_dist_transform" title="Permalink to this definition"></a></dt>
-<dd><p>TODO: choose 3</p>
+<span id="cmdoption-arg-bond-dist-transform"></span><span class="sig-name descname"><span class="pre">bond_dist_transform</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-bond_dist_transform" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>TODO: choose 3</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">bond_dist_transform=3</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-bond_beta">
-<span id="cmdoption-arg-bond-beta"></span><span class="sig-name descname"><span class="pre">bond_beta</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-bond_beta" title="Permalink to this definition"></a></dt>
-<dd><p>TODO:  choose 2.0</p>
+<span id="cmdoption-arg-bond-beta"></span><span class="sig-name descname"><span class="pre">bond_beta</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-bond_beta" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>TODO:  choose 2.0</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">bond_beta=2.0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-bond_dist_ann">
-<span id="cmdoption-arg-bond-dist-ann"></span><span class="sig-name descname"><span class="pre">bond_dist_ann</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-bond_dist_ann" title="Permalink to this definition"></a></dt>
-<dd><p>TODO: choose   bond_dist_ann=1.0</p>
+<span id="cmdoption-arg-bond-dist-ann"></span><span class="sig-name descname"><span class="pre">bond_dist_ann</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-bond_dist_ann" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>TODO: choose   bond_dist_ann=1.0</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">bond_dist_ann=1.0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
 </section>
+
 
 
            </div>

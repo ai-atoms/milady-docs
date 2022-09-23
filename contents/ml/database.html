@@ -111,72 +111,97 @@
            <div itemprop="articleBody">
              
   <section id="databases">
-<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this heading"></a></h1>
+<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this heading"></a>
+</h1>
 <section id="database-manipulation">
-<h2>Database manipulation<a class="headerlink" href="#database-manipulation" title="Permalink to this heading"></a></h2>
+<h2>Database manipulation<a class="headerlink" href="#database-manipulation" title="Permalink to this heading"></a>
+</h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-db_file">
-<span id="cmdoption-arg-db-file"></span><span class="sig-name descname"><span class="pre">db_file</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=80))</span></span><a class="headerlink" href="#cmdoption-arg-db_file" title="Permalink to this definition"></a></dt>
-<dd><p>The file that design the database
+<span id="cmdoption-arg-db-file"></span><span class="sig-name descname"><span class="pre">db_file</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=80))</span></span><a class="headerlink" href="#cmdoption-arg-db_file" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The file that design the database
 chosen for the potential fitting. each line has the syntax: <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">KLM</span> <span class="pre">number_of_files</span> <span class="pre">number_of_selected_files</span></code></p>
-<p>Default <code class="docutils literal notranslate"><span class="pre">&quot;db_model_in&quot;</span></code></p>
-</dd></dl>
+<p>Default <code class="docutils literal notranslate"><span class="pre">"db_model_in"</span></code></p>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-db_path">
-<span id="cmdoption-arg-db-path"></span><span class="sig-name descname"><span class="pre">db_path</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=60))</span></span><a class="headerlink" href="#cmdoption-arg-db_path" title="Permalink to this definition"></a></dt>
-<dd><p>Path to the database where the
+<span id="cmdoption-arg-db-path"></span><span class="sig-name descname"><span class="pre">db_path</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=60))</span></span><a class="headerlink" href="#cmdoption-arg-db_path" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Path to the database where the
 poscar are located. With the default value you should have `` poscar`` files in
 <code class="docutils literal notranslate"><span class="pre">DB</span></code> directory</p>
-<p>Default <code class="docutils literal notranslate"><span class="pre">&quot;./DB/&quot;</span></code>.</p>
-</dd></dl>
+<p>Default <code class="docutils literal notranslate"><span class="pre">"./DB/"</span></code>.</p>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-selection_type">
-<span id="cmdoption-arg-selection-type"></span><span class="sig-name descname"><span class="pre">selection_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-selection_type" title="Permalink to this definition"></a></dt>
-<dd><p>Inside each <code class="docutils literal notranslate"><span class="pre">class</span></code> and <code class="docutils literal notranslate"><span class="pre">KLM</span></code> subdatabase mentioned in <code class="docutils literal notranslate"><span class="pre">db_file</span></code></p>
+<span id="cmdoption-arg-selection-type"></span><span class="sig-name descname"><span class="pre">selection_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-selection_type" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Inside each <code class="docutils literal notranslate"><span class="pre">class</span></code> and <code class="docutils literal notranslate"><span class="pre">KLM</span></code> subdatabase mentioned in <code class="docutils literal notranslate"><span class="pre">db_file</span></code></p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> selects first “ns” elements of the database;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> selects last “ns” elements of the database;</p></li>
-<li><div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">3</span></code> selects randomly “ns” subsets of “kelem” elements of the
+<li>
+<div class="line-block">
+<div class="line">
+<code class="docutils literal notranslate"><span class="pre">3</span></code> selects randomly “ns” subsets of “kelem” elements of the
 database</div>
 </div>
 </li>
-<li><div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">4</span></code> selects first “ns” subsets of “kelem” elements of the
+<li>
+<div class="line-block">
+<div class="line">
+<code class="docutils literal notranslate"><span class="pre">4</span></code> selects first “ns” subsets of “kelem” elements of the
 database from a starting configuration defined in the
-<code class="docutils literal notranslate"><span class="pre">db_file</span></code></div>
+<code class="docutils literal notranslate"><span class="pre">db_file</span></code>
+</div>
 </div>
 </li>
 </ol>
 <div class="line-block">
 <div class="line">In the case of new type of input, using <code class="docutils literal notranslate"><span class="pre">db_file</span></code> “ns” is given
-by <code class="docutils literal notranslate"><span class="pre">number_of_selected_files</span></code> inside <code class="docutils literal notranslate"><span class="pre">class</span></code>.<code class="docutils literal notranslate"><span class="pre">KLM</span></code></div>
+by <code class="docutils literal notranslate"><span class="pre">number_of_selected_files</span></code> inside <code class="docutils literal notranslate"><span class="pre">class</span></code>.<code class="docutils literal notranslate"><span class="pre">KLM</span></code>
+</div>
 <div class="line">Default <code class="docutils literal notranslate"><span class="pre">3</span></code>.</div>
 </div>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-seed">
-<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-seed" title="Permalink to this definition"></a></dt>
-<dd><p>Seed for random number generator.</p>
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-seed" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Seed for random number generator.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">11</span></code>.</p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-iread_energy">
-<span id="cmdoption-arg-iread-energy"></span><span class="sig-name descname"><span class="pre">iread_energy</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-iread_energy" title="Permalink to this definition"></a></dt>
-<dd><p>This option fixes which energy from the database is taken as target by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>.
+<span id="cmdoption-arg-iread-energy"></span><span class="sig-name descname"><span class="pre">iread_energy</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-iread_energy" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>This option fixes which energy from the database is taken as target by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>.
 Each <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format has in the first line  three energies, as it is described in Section <a class="reference internal" href="#db-format"><span class="std std-ref">Database files</span></a>. A value between 1, 2 and 3
 choose the first, second or third energy, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-ref_energy_per_element">
-<span id="cmdoption-arg-ref-energy-per-element"></span><span class="sig-name descname"><span class="pre">ref_energy_per_element</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=80))</span></span><a class="headerlink" href="#cmdoption-arg-ref_energy_per_element" title="Permalink to this definition"></a></dt>
-<dd><p>This option fixes the reference energy of each species.
+<span id="cmdoption-arg-ref-energy-per-element"></span><span class="sig-name descname"><span class="pre">ref_energy_per_element</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=80))</span></span><a class="headerlink" href="#cmdoption-arg-ref_energy_per_element" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>This option fixes the reference energy of each species.
 These reference energies are useful when we intend to apply a shift of the total energy
 read by <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> from <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>.</p>
 <p>This change of reference can be very useful in many situation, from which we exemplify two:
@@ -194,16 +219,19 @@ If for each species we have a reference energy  <span class="math notranslate no
 \[E_{\textrm{target}} = E_{\textrm{DFT}} - \sum_{s=1,S} n_s E_{\textrm{ref},s}\]</div>
 <p>The number of values provided by <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element</span></code> should be equal to <code class="docutils literal notranslate"><span class="pre">fix_no_of_elements</span></code> (this option is described in
 <a class="reference internal" href="system.html#sec-atomicsys"><span class="std std-ref">Atomic systems</span></a>) otherwise <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> ends into a fatal error.  For example
-<code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=&quot;&quot;</span> <span class="pre">-3.d0</span> <span class="pre">2.12d0</span> <span class="pre">-1.d0&quot;</span></code> provide three
+<code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=""</span> <span class="pre">-3.d0</span> <span class="pre">2.12d0</span> <span class="pre">-1.d0"</span></code> provide three
 values <code class="docutils literal notranslate"><span class="pre">-3.d0</span></code>, <code class="docutils literal notranslate"><span class="pre">2.12d0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.d0</span></code> for the species 1, 2 and 3, respectively.</p>
-<p>Default <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element=&quot;0.d0&quot;</span></code>.</p>
-</dd></dl>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ref_energy_per_element="0.d0"</span></code>.</p>
+</dd>
+</dl>
 
 </section>
 <section id="database-files">
-<h2>Database files<a class="headerlink" href="#database-files" title="Permalink to this heading"></a></h2>
+<h2>Database files<a class="headerlink" href="#database-files" title="Permalink to this heading"></a>
+</h2>
 <section id="database-file-format">
-<span id="db-format"></span><h3>Database file format<a class="headerlink" href="#database-file-format" title="Permalink to this heading"></a></h3>
+<span id="db-format"></span><h3>Database file format<a class="headerlink" href="#database-file-format" title="Permalink to this heading"></a>
+</h3>
 <p>Database files for MiLaDy are stored in the <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format.</p>
 <p>Besides a standard information (cell vectors, number of atoms, atomic
 coordinates and forces) that is usually included in <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>, our
@@ -217,7 +245,8 @@ and ISPIN tag in the end of the file.</p>
 are provided in eV, eV/Å and eV/Å<span class="math notranslate nohighlight">\(^{3}\)</span>, respectively.</p>
 <p>An
 example of a typical database <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> file is reported below.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="mi">111</span> <span class="mi">1</span> <span class="n">Fe</span> <span class="mi">26</span> <span class="o">-</span><span class="mf">15.7255500</span> <span class="mf">0.7884238</span> <span class="mi">0</span> <span class="c1"># EFS-tag n element mass E_1 E_2 E_3</span>
+<div class="highlight-python notranslate">
+<div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="mi">111</span> <span class="mi">1</span> <span class="n">Fe</span> <span class="mi">26</span> <span class="o">-</span><span class="mf">15.7255500</span> <span class="mf">0.7884238</span> <span class="mi">0</span> <span class="c1"># EFS-tag n element mass E_1 E_2 E_3</span>
 <span class="linenos"> 2</span><span class="mf">1.00000000</span> <span class="c1"># unit = 1Å</span>
 <span class="linenos"> 3</span><span class="mf">2.63475324</span> <span class="mf">0.00000000</span> <span class="mf">0.00000000</span> <span class="c1"># cell vectors</span>
 <span class="linenos"> 4</span><span class="mf">0.00000000</span> <span class="mf">2.63475324</span> <span class="mf">0.00000000</span>
@@ -248,11 +277,13 @@ energy of a perfect crystal.</p>
 oxides <em>etc.</em>), the structure of the first and sixths lines will
 slightly change. For instance, the first line for Fe<span class="math notranslate nohighlight">\(_{3}\)</span>C
 cementite with known energies and forces (but no stress tensor) is:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">110</span> <span class="mi">2</span> <span class="n">Fe</span> <span class="mi">26</span> <span class="n">C</span> <span class="mi">12</span> <span class="o">-</span><span class="mf">15.7255500</span> <span class="mf">0.7884238</span> <span class="mi">0</span>
+<div class="highlight-python notranslate">
+<div class="highlight"><pre><span></span><span class="mi">110</span> <span class="mi">2</span> <span class="n">Fe</span> <span class="mi">26</span> <span class="n">C</span> <span class="mi">12</span> <span class="o">-</span><span class="mf">15.7255500</span> <span class="mf">0.7884238</span> <span class="mi">0</span>
 </pre></div>
 </div>
 <p>and the sixth line for the 4-atom Fe<span class="math notranslate nohighlight">\(_{3}\)</span>C system is</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="mi">1</span>
+<div class="highlight-python notranslate">
+<div class="highlight"><pre><span></span><span class="mi">3</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>The database files of this format can be directly used as input
@@ -274,7 +305,8 @@ The inverse conversion from <code class="docutils literal notranslate"><span cla
 <code class="docutils literal notranslate"><span class="pre">DB\_xyz2poscar.py</span></code>.</p>
 </section>
 <section id="database-file-names">
-<span id="sec-dbnames"></span><h3>Database file names<a class="headerlink" href="#database-file-names" title="Permalink to this heading"></a></h3>
+<span id="sec-dbnames"></span><h3>Database file names<a class="headerlink" href="#database-file-names" title="Permalink to this heading"></a>
+</h3>
 <p>The database files for MiLaDy are generally named as
 <code class="docutils literal notranslate"><span class="pre">CCKLMXXXXXX.poscar</span></code>. In this notation, the <em>class</em> <code class="docutils literal notranslate"><span class="pre">CC</span></code> is defined
 by a number that can vary from 01 to 99. This part of the file name
@@ -293,7 +325,8 @@ instance, bcc Fe corresponds to <code class="docutils literal notranslate"><span
 to <code class="docutils literal notranslate"><span class="pre">K</span></code>=3, <em>etc.</em></p>
 </section>
 <section id="input-file-db-model-in">
-<span id="sec-db-model"></span><h3>Input file db<span class="math notranslate nohighlight">\(\_\)</span>model.in<a class="headerlink" href="#input-file-db-model-in" title="Permalink to this heading"></a></h3>
+<span id="sec-db-model"></span><h3>Input file db<span class="math notranslate nohighlight">\(\_\)</span>model.in<a class="headerlink" href="#input-file-db-model-in" title="Permalink to this heading"></a>
+</h3>
 <p>An input file <code class="docutils literal notranslate"><span class="pre">db_model.in</span></code> provides a detailed summary of the
 database which will be used to fit a ML potential in MiLaDy. Each line
 in the file stands for the categories of the database with different
@@ -319,7 +352,8 @@ performed using evolutionary algorithm. In the example of the
 <code class="docutils literal notranslate"><span class="pre">1e6</span></code> for energy, <code class="docutils literal notranslate"><span class="pre">1e1</span></code> and <code class="docutils literal notranslate"><span class="pre">1e3</span></code> for forces and <code class="docutils literal notranslate"><span class="pre">1e2</span></code> and
 <code class="docutils literal notranslate"><span class="pre">1e4</span></code> for stress. Setting everywhere <code class="docutils literal notranslate"><span class="pre">1.e0</span></code> will result in a simple
 fit without regression weights.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">01</span> <span class="mi">120</span> <span class="mi">614</span> <span class="mi">425</span> <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
+<div class="highlight-default notranslate">
+<div class="highlight"><pre><span></span><span class="mi">01</span> <span class="mi">120</span> <span class="mi">614</span> <span class="mi">425</span> <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">110</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">120</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">130</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
@@ -332,7 +366,8 @@ file should provide the first configuration used for the trainning
 selection. As in the following example, where the first configuration
 becomes <code class="docutils literal notranslate"><span class="pre">10</span></code> for the class <code class="docutils literal notranslate"><span class="pre">01</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> for all the others, exept
 the last class for which it is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">01</span> <span class="mi">120</span> <span class="mi">614</span> <span class="mi">425</span> <span class="mi">10</span> <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
+<div class="highlight-default notranslate">
+<div class="highlight"><pre><span></span><span class="mi">01</span> <span class="mi">120</span> <span class="mi">614</span> <span class="mi">425</span> <span class="mi">10</span> <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">110</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="mi">1</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">120</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="mi">1</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
 <span class="mi">02</span> <span class="mi">130</span> <span class="mi">22</span>  <span class="mi">15</span>  <span class="mi">2</span>  <span class="n">T</span> <span class="n">F</span> <span class="n">T</span> <span class="mf">1.e2</span> <span class="mf">1.e1</span> <span class="mf">1.e2</span> <span class="mf">1.e6</span> <span class="mf">1.e2</span> <span class="mf">1.e4</span>
@@ -342,17 +377,21 @@ the last class for which it is <code class="docutils literal notranslate"><span 
 </section>
 </section>
 <section id="database-in-descriptor-space-writing-outputs">
-<h2>Database in descriptor space: writing outputs.<a class="headerlink" href="#database-in-descriptor-space-writing-outputs" title="Permalink to this heading"></a></h2>
+<h2>Database in descriptor space: writing outputs.<a class="headerlink" href="#database-in-descriptor-space-writing-outputs" title="Permalink to this heading"></a>
+</h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-write_desc">
-<span id="cmdoption-arg-write-desc"></span><span class="sig-name descname"><span class="pre">write_desc</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_desc" title="Permalink to this definition"></a></dt>
-<dd><p>Writing or not the local atomic descriptors. The data will be writen in the
+<span id="cmdoption-arg-write-desc"></span><span class="sig-name descname"><span class="pre">write_desc</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_desc" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Writing or not the local atomic descriptors. The data will be writen in the
 directory <code class="docutils literal notranslate"><span class="pre">descDB</span></code>. This option write the descriptors for local energy as well for
 atomic forces.
 In order to write only the descritors of the local atomic environement set
 <code class="docutils literal notranslate"><span class="pre">desc_forces=.false.</span></code></p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">write_desc=.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -361,8 +400,10 @@ are asked in <code class="docutils literal notranslate"><span class="pre">db_mod
 </div>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-desc_file_format">
-<span id="cmdoption-arg-desc-file-format"></span><span class="sig-name descname"><span class="pre">desc_file_format</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-desc_file_format" title="Permalink to this definition"></a></dt>
-<dd><p>The type of descriptor file, which is written if <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code>. Depending on the
+<span id="cmdoption-arg-desc-file-format"></span><span class="sig-name descname"><span class="pre">desc_file_format</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-desc_file_format" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The type of descriptor file, which is written if <code class="docutils literal notranslate"><span class="pre">write_desc=.true.</span></code>. Depending on the
 value of <code class="docutils literal notranslate"><span class="pre">desc_file_format</span></code>, which can be <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">3</span></code> the descriptor files written in
 <code class="docutils literal notranslate"><span class="pre">descDB</span></code> has the extension <code class="docutils literal notranslate"><span class="pre">eml</span></code>, <code class="docutils literal notranslate"><span class="pre">csv</span></code> and <code class="docutils literal notranslate"><span class="pre">npz</span></code> respectively.</p>
 <ul>
@@ -374,14 +415,17 @@ The first column of the matrix indicates the atomic id  in the system
 components of the descriptor.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> the files will be written in <code class="docutils literal notranslate"><span class="pre">csv</span></code> format in  <code class="docutils literal notranslate"><span class="pre">descDB/CC_KLM_XXXXXX.csv</span></code>.
 The shape of the data is same as for option <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
-<li><div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">3</span></code> ensures that the binary format <code class="docutils literal notranslate"><span class="pre">npz</span></code> is <code class="docutils literal notranslate"><span class="pre">descDB/CC_KLM_XXXXXX.npz</span></code>.</div>
+<li>
+<div class="line-block">
+<div class="line">
+<code class="docutils literal notranslate"><span class="pre">3</span></code> ensures that the binary format <code class="docutils literal notranslate"><span class="pre">npz</span></code> is <code class="docutils literal notranslate"><span class="pre">descDB/CC_KLM_XXXXXX.npz</span></code>.</div>
 </div>
 <p>The shape of the data is the same as for option <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 </li>
 </ul>
 <p>Default <code class="docutils literal notranslate"><span class="pre">desc_file_format=1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -391,6 +435,7 @@ computer.</p>
 </div>
 </section>
 </section>
+
 
 
            </div>

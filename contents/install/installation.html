@@ -104,7 +104,8 @@
            <div itemprop="articleBody">
              
   <section id="prerequisites">
-<span id="sec-insta"></span><h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h1>
+<span id="sec-insta"></span><h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a>
+</h1>
 <p>The current version of <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> requires:</p>
 <ul class="simple">
 <li><p>A fortran compiler (tested ifort &gt; 2019.x.x, gfortran &gt; 10.x.x)</p></li>
@@ -113,23 +114,34 @@
 <li><p>CMake (tested &gt; 3.18.x)</p></li>
 </ul>
 </section>
+
 <section id="compilation-modes">
-<h1>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a></h1>
+<h1>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a>
+</h1>
 <p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> has three compilation modes:</p>
 <dl class="glossary simple">
-<dt id="term-MILADY-MIX">MILADY-MIX<a class="headerlink" href="#term-MILADY-MIX" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<dt id="term-MILADY-MIX">MILADY-MIX<a class="headerlink" href="#term-MILADY-MIX" title="Permalink to this term"></a>
+</dt>
+<dd>
+<ul class="simple">
 <li><p>intel compilers (2022.0.1)</p></li>
 <li><p>MKL with ScaLapack support</p></li>
 <li><p>openmpi user-compiled, or system, compatible with intel compilers ( &gt; 4.x.x)</p></li>
 </ul>
 </dd>
-<dt id="term-MILADY-INTEL">MILADY-INTEL<a class="headerlink" href="#term-MILADY-INTEL" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<dt id="term-MILADY-INTEL">MILADY-INTEL<a class="headerlink" href="#term-MILADY-INTEL" title="Permalink to this term"></a>
+</dt>
+<dd>
+<ul class="simple">
 <li><p>intel compilers included in oneAPI distribution</p></li>
 <li><p>MKL with ScaLapack support both of them included in the oneAPI distribution</p></li>
 <li><p>intelmpi equally included in oneAPI distribution.</p></li>
 </ul>
 </dd>
-<dt id="term-MILADY-GNU">MILADY-GNU<a class="headerlink" href="#term-MILADY-GNU" title="Permalink to this term"></a></dt><dd><ul class="simple">
+<dt id="term-MILADY-GNU">MILADY-GNU<a class="headerlink" href="#term-MILADY-GNU" title="Permalink to this term"></a>
+</dt>
+<dd>
+<ul class="simple">
 <li><p>GNU compilers (min V9)</p></li>
 <li><p>MKL or LAPACK/ScaLapack support for GNU.</p></li>
 <li><p>openmpi user-compiled, or system, gnu-compiled</p></li>
@@ -141,17 +153,22 @@
 <p>Our preference is MILADY-MIX, using the intel fortran compiler and MKL / SCALAPACK provided by oneAPI (&gt; 2022.x.x). OpenMPI (&gt; 4.x.x) is compiled by our means using ifort compiler.</p>
 </div>
 </section>
+
 <section id="build">
-<h1>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h1>
+<h1>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a>
+</h1>
 <section id="step-1-setting-environment-variables">
-<h2>Step 1: Setting environment variables<a class="headerlink" href="#step-1-setting-environment-variables" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Setting environment variables<a class="headerlink" href="#step-1-setting-environment-variables" title="Permalink to this heading"></a>
+</h2>
 <p>In the following, <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> refers to the github repository.</p>
 <ol class="arabic">
 <li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">MLD</span></code> and copy <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> in that location.
 Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> is the location of <code class="docutils literal notranslate"><span class="pre">MLD</span></code> directory.</p></li>
-<li><p>Your environment should contain the following 9 variables, which are compulsory for the compilation <code class="docutils literal notranslate"><span class="pre">MILADY</span></code></p>
+<li>
+<p>Your environment should contain the following 9 variables, which are compulsory for the compilation <code class="docutils literal notranslate"><span class="pre">MILADY</span></code></p>
 <p>The first six variables:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
 <span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
 <span class="nb">export</span> <span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
@@ -165,7 +182,8 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <code class="docutils literal notranslate"><span class="pre">mld_testdir</span></code> is a directory of tests that is not compulsory (more details later).</p>
 </div>
 <p>The last 3 variables, followed by a redefinition of <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">OMP_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi
 <span class="nb">export</span> <span class="nv">OMP_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">OMP_INSDIR</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
@@ -175,7 +193,8 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>(Optional) It can be more convenient to set the environment variable using a bash function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady_marinica <span class="o">{</span>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady_marinica <span class="o">{</span>
   <span class="nb">unset</span> MLD_ROODIR
   <span class="nb">unset</span> MLD_SCRDIR
   <span class="nb">unset</span> MLD_SRCDIR
@@ -185,7 +204,7 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
   <span class="nb">unset</span> MLD_SETENV
   <span class="nb">unset</span> OMP_INSDIR
   <span class="nb">unset</span> OMP_ROOT
-  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/MLD&quot;</span>
+  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/MLD"</span>
 
   <span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
   <span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
@@ -206,14 +225,18 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 </ol>
 </section>
 <section id="step-2-compilation">
-<h2>Step 2: Compilation<a class="headerlink" href="#step-2-compilation" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Compilation<a class="headerlink" href="#step-2-compilation" title="Permalink to this heading"></a>
+</h2>
 <ol class="arabic">
-<li><p>Charge the bash functionalities:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> <span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
+<li>
+<p>Charge the bash functionalities:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">source</span> <span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
 </pre></div>
 </div>
 <p>with a typical output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Now you could type:
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>Now you could type:
 f_setenv_milady
 f_compile_milady_mix or
 f_compile_milady_intel or
@@ -221,12 +244,15 @@ f_compile_milady_gnu
 </pre></div>
 </div>
 </li>
-<li><p>Invoke CMake (here in MILADY-MIX mode):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_compile_milady_mix</span>
+<li>
+<p>Invoke CMake (here in MILADY-MIX mode):</p>
+<div class="highlight-default notranslate">
+<div class="highlight"><pre><span></span><span class="n">f_compile_milady_mix</span>
 </pre></div>
 </div>
 <p>with a typical output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Now you could type:
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>Now you could type:
 make -j6
 make install
 f_ctest_milady
@@ -234,8 +260,10 @@ f_explore_milady
 </pre></div>
 </div>
 </li>
-<li><p>Compile the code (as suggested by the output of 2.)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -j6 <span class="c1"># will use 6 parallel jobs</span>
+<li>
+<p>Compile the code (as suggested by the output of 2.)</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>make -j6 <span class="c1"># will use 6 parallel jobs</span>
 </pre></div>
 </div>
 </li>
@@ -244,6 +272,7 @@ f_explore_milady
 <p>In order to test, run the step-by-step examples provided in the <a class="reference external" href="examples.html">Examples section</a>.</p>
 </section>
 </section>
+
 
 
            </div>

@@ -104,27 +104,33 @@
            <div itemprop="articleBody">
              
   <section id="build-on-irene">
-<span id="sec-insta-irene"></span><h1>Build on Irene<a class="headerlink" href="#build-on-irene" title="Permalink to this heading"></a></h1>
+<span id="sec-insta-irene"></span><h1>Build on Irene<a class="headerlink" href="#build-on-irene" title="Permalink to this heading"></a>
+</h1>
 <p>Here we provide the instructions for building <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> on the most powerfull french and PRACE
 supercomputer <a class="reference external" href="http://www-hpc.cea.fr/en/complexe/tgcc-JoliotCurie.htm">Irene / JoliotCurie</a> .</p>
 <blockquote>
-<div><div class="admonition note">
+<div>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We describe here the way that we use and we know that it works.
 If you know a better precedure, we are happy to learn about your experience.
 You can send us an email to update the present documentation.</p>
 </div>
-</div></blockquote>
+</div>
+</blockquote>
 <section id="step-1-loading-modules-and-setting-bash-environement">
-<h2>Step 1: Loading modules and setting bash environement<a class="headerlink" href="#step-1-loading-modules-and-setting-bash-environement" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Loading modules and setting bash environement<a class="headerlink" href="#step-1-loading-modules-and-setting-bash-environement" title="Permalink to this heading"></a>
+</h2>
 <p>In the following, <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> refers to the github repository. We preserve here the same structure of the
 directories as in previous examples.</p>
 <ol class="arabic">
 <li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">MLD</span></code> and copy <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> in that location.
 Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> is the location of <code class="docutils literal notranslate"><span class="pre">MLD</span></code> directory.</p></li>
-<li><p>Set your <code class="docutils literal notranslate"><span class="pre">bash</span></code> environement. My <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file contains the
+<li>
+<p>Set your <code class="docutils literal notranslate"><span class="pre">bash</span></code> environement. My <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file contains the
 following modules and variables:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load mpi/openmpi/4.0.5 scalapack/mkl/21.3.0
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>module load mpi/openmpi/4.0.5 scalapack/mkl/21.3.0
 module load fortran/inteloneapi/21.4.0
 module load gnu/10.1.0
 module load cmake/3.18.2
@@ -139,9 +145,11 @@ module load cmake/3.18.2
 <code class="docutils literal notranslate"><span class="pre">mld_testdir</span></code> is a directory with tests that is not compulsory.</p>
 </div>
 </li>
-<li><p>Define in your environement the following <code class="docutils literal notranslate"><span class="pre">bash</span></code> function (can be added at the end
+<li>
+<p>Define in your environement the following <code class="docutils literal notranslate"><span class="pre">bash</span></code> function (can be added at the end
 of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady<span class="o">{</span>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady<span class="o">{</span>
   <span class="nb">unset</span> MLD_ROODIR
 
   <span class="nb">unset</span> MLD_ROODIR
@@ -154,9 +162,9 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
   <span class="nb">unset</span> OMP_INSDIR
   <span class="nb">unset</span> OMP_ROOT
 
-  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span><span class="s2">/&quot;</span>
-  <span class="c1"># I use: export MLD_ROODIR=&quot;${CCCWORKDIR}/MLD/&quot;</span>
-  <span class="o">[</span> -z <span class="s2">&quot;</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> in_red <span class="s1">&#39;problem undefined MLD_ROODIR, define it&#39;</span>
+  <span class="nb">export</span> <span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span><span class="s2">/"</span>
+  <span class="c1"># I use: export MLD_ROODIR="${CCCWORKDIR}/MLD/"</span>
+  <span class="o">[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> in_red <span class="s1">'problem undefined MLD_ROODIR, define it'</span>
   <span class="nb">export</span> <span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
   <span class="nb">export</span> <span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
   <span class="nb">export</span> <span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
@@ -175,10 +183,13 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 </ol>
 </section>
 <section id="step-2-installation">
-<h2>Step 2: Installation<a class="headerlink" href="#step-2-installation" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Installation<a class="headerlink" href="#step-2-installation" title="Permalink to this heading"></a>
+</h2>
 <ol class="arabic">
-<li><p>Charge the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> bash environement (do not forget to source your <code class="docutils literal notranslate"><span class="pre">$HOME/.bashrc</span></code> file before it):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f_setenv_milady
+<li>
+<p>Charge the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> bash environement (do not forget to source your <code class="docutils literal notranslate"><span class="pre">$HOME/.bashrc</span></code> file before it):</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>f_setenv_milady
 <span class="nb">source</span> <span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>/MILADY/scripts/compile_milady.bash
 </pre></div>
 </div>
@@ -187,8 +198,10 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 <p>Do not forget that <code class="docutils literal notranslate"><span class="pre">${MLD}</span></code> is defined by you. It is the path to the  <code class="docutils literal notranslate"><span class="pre">MLD</span></code> directory.</p>
 </div>
 </li>
-<li><p>Install MILADY:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f_compile_milady_mix
+<li>
+<p>Install MILADY:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>f_compile_milady_mix
 make -j4
 </pre></div>
 </div>
@@ -197,6 +210,7 @@ make -j4
 <p>And that it is !!!! The executable is in <code class="docutils literal notranslate"><span class="pre">bin/milady_main.exe</span></code>.</p>
 </section>
 </section>
+
 
 
            </div>

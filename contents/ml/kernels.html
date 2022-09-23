@@ -105,7 +105,8 @@
            <div itemprop="articleBody">
              
   <section id="kernels">
-<span id="sec-kernel"></span><h1>Kernels<a class="headerlink" href="#kernels" title="Permalink to this heading"></a></h1>
+<span id="sec-kernel"></span><h1>Kernels<a class="headerlink" href="#kernels" title="Permalink to this heading"></a>
+</h1>
 <p>Kernel regression is activated when <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> is executed in the mode <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code>.
 The generation of a kernel potential is made in two steps as it is described
 in <a class="reference internal" href="../examples/04_ex_kernel.html#ex-kernel-poly"><span class="std std-ref">Examples</span></a> : (i) firstly, using <code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code> mode with an
@@ -113,24 +114,30 @@ appropriate algorithm we choose the sparse points that define the kernel and (ii
 the parametrization of the kernel using the mode <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code>. Here we will note the options for the
 first step as <span class="math notranslate nohighlight">\(k_1\)</span>, whilst for the second <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
 <section id="kernels-definitions">
-<h2>Kernels definitions<a class="headerlink" href="#kernels-definitions" title="Permalink to this heading"></a></h2>
+<h2>Kernels definitions<a class="headerlink" href="#kernels-definitions" title="Permalink to this heading"></a>
+</h2>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-kernel_type">
-<span id="cmdoption-arg-kernel-type"></span><span class="sig-name descname"><span class="pre">kernel_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer),</span></span><a class="headerlink" href="#cmdoption-arg-kernel_type" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option.</p>
+<span id="cmdoption-arg-kernel-type"></span><span class="sig-name descname"><span class="pre">kernel_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer),</span></span><a class="headerlink" href="#cmdoption-arg-kernel_type" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option.</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">1</span></code> Square-exponential kernel</p>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">1</span></code> Square-exponential kernel</p>
 <div class="math notranslate nohighlight" id="equation-kse">
 <span class="eqno">(1)<a class="headerlink" href="#equation-kse" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \exp{-\frac{|\mathbf{D}^{s,a} - \mathbf{x}^m |^2}{2l_{SE}^2}}\]</div>
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> and <span class="math notranslate nohighlight">\(l_{SE}\)</span>.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel</p>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel</p>
 <div class="math notranslate nohighlight" id="equation-kpo">
 <span class="eqno">(2)<a class="headerlink" href="#equation-kpo" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p\]</div>
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span>, <span class="math notranslate nohighlight">\(l_{SE}\)</span> and
 <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">6</span></code> Mahalanobis - Batchattarya kernel</p>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">6</span></code> Mahalanobis - Batchattarya kernel</p>
 <div class="math notranslate nohighlight" id="equation-kmaha">
 <span class="eqno">(3)<a class="headerlink" href="#equation-kmaha" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p\]</div>
 <p><span class="math notranslate nohighlight">\(p\)</span> should be defined. For the case <span class="math notranslate nohighlight">\(p=1/2\)</span> there is
@@ -145,22 +152,29 @@ some linear basis. The only parameter to define is <code class="docutils literal
 resonable value (at least on what we have tested, such as, Fe, W, some HEA and aspirin)</p></li>
 </ul>
 <div class="line-block">
-<div class="line">Defalut <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code></div>
+<div class="line">Defalut <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code>
 </div>
-</dd></dl>
+</div>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-length_kernel">
-<span id="cmdoption-arg-length-kernel"></span><span class="sig-name descname"><span class="pre">length_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-length_kernel" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
+<span id="cmdoption-arg-length-kernel"></span><span class="sig-name descname"><span class="pre">length_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-length_kernel" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
 <span class="math notranslate nohighlight">\(l_{SE}\)</span> from Eqs. <a class="reference internal" href="#equation-kse">(1)</a> and <a class="reference internal" href="#equation-kpo">(2)</a>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">length_kernel</span> <span class="pre">=</span> <span class="pre">0.05d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-sigma_kernel">
-<span id="cmdoption-arg-sigma-kernel"></span><span class="sig-name descname"><span class="pre">sigma_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-sigma_kernel" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
+<span id="cmdoption-arg-sigma-kernel"></span><span class="sig-name descname"><span class="pre">sigma_kernel</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-sigma_kernel" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines
 <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> from from Eqs. <a class="reference internal" href="#equation-kse">(1)</a> and <a class="reference internal" href="#equation-kpo">(2)</a>.
 In <code class="docutils literal notranslate"><span class="pre">Milady</span></code> for polynomial kernel is optimal 0.d0.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">0.d0</span></code></p>
@@ -168,20 +182,25 @@ In <code class="docutils literal notranslate"><span class="pre">Milady</span></c
 <p class="admonition-title">Warning</p>
 <p>Pay attetion that <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">0.d0</span></code> for square-exponential kernel has no sense !!!</p>
 </div>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-kernel_power">
-<span id="cmdoption-arg-kernel-power"></span><span class="sig-name descname"><span class="pre">kernel_power</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_power" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines <span class="math notranslate nohighlight">\(p\)</span>
+<span id="cmdoption-arg-kernel-power"></span><span class="sig-name descname"><span class="pre">kernel_power</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_power" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines <span class="math notranslate nohighlight">\(p\)</span>
 from Eqs. <a class="reference internal" href="#equation-kmaha">(3)</a>. The recommended values are 3, 1
 and 1/2, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">2.d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 <section id="selections-of-kernel-sparse-points">
-<h2>Selections of kernel sparse points<a class="headerlink" href="#selections-of-kernel-sparse-points" title="Permalink to this heading"></a></h2>
+<h2>Selections of kernel sparse points<a class="headerlink" href="#selections-of-kernel-sparse-points" title="Permalink to this heading"></a>
+</h2>
 <p>In <code class="docutils literal notranslate"><span class="pre">Milady</span></code> the selection of sparse points (<code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code> and <code class="docutils literal notranslate"><span class="pre">write_krnel_matrix=.true.</span></code>)
 is driven by our intuition based on physics considerations
 that some parts of the database are more important than the others.
@@ -198,12 +217,15 @@ variable <code class="docutils literal notranslate"><span class="pre">classes_fo
 elastic deformations etc). Finally the kernel is written</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-write_kernel_matrix">
-<span id="cmdoption-arg-write-kernel-matrix"></span><span class="sig-name descname"><span class="pre">write_kernel_matrix</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_kernel_matrix" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Writes or not the kernel if it is <code class="docutils literal notranslate"><span class="pre">.true.</span></code> or <code class="docutils literal notranslate"><span class="pre">.false.</span></code>, respectively.
+<span id="cmdoption-arg-write-kernel-matrix"></span><span class="sig-name descname"><span class="pre">write_kernel_matrix</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-write_kernel_matrix" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Writes or not the kernel if it is <code class="docutils literal notranslate"><span class="pre">.true.</span></code> or <code class="docutils literal notranslate"><span class="pre">.false.</span></code>, respectively.
 The kernel is written in the file <code class="docutils literal notranslate"><span class="pre">kernel_matrix.dat</span></code>, which has the shape
 <code class="docutils literal notranslate"><span class="pre">number_of_data_kernel+1</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">dim_desc</span> <span class="pre">+</span> <span class="pre">4</span></code>.
 The ASCII file <code class="docutils literal notranslate"><span class="pre">kernel_matrix.dat</span></code> has the following structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2314</span> <span class="mi">59</span>
+<div class="highlight-default notranslate">
+<div class="highlight"><pre><span></span><span class="mi">2314</span> <span class="mi">59</span>
 <span class="mi">1</span>    <span class="n">a1</span> <span class="n">a2</span> <span class="o">...</span> <span class="n">aD</span>   <span class="mi">43</span>  <span class="mi">27</span>  <span class="mi">07_111_000003</span>
 <span class="mi">2</span>    <span class="n">b1</span> <span class="n">b2</span> <span class="o">...</span> <span class="n">bD</span>  <span class="mi">234</span>  <span class="mi">12</span>  <span class="mi">09_111_000010</span>
 <span class="o">.</span>     <span class="o">.</span>  <span class="o">.</span>      <span class="o">.</span>   <span class="o">.</span>   <span class="o">.</span>       <span class="o">.</span>
@@ -224,12 +246,15 @@ name file described in <a class="reference internal" href="database.html#sec-dbn
 sparse point <code class="docutils literal notranslate"><span class="pre">1</span></code> is part of system  <code class="docutils literal notranslate"><span class="pre">43</span></code> and i correspond to atom number <code class="docutils literal notranslate"><span class="pre">27</span></code>
 from the file <code class="docutils literal notranslate"><span class="pre">07_111_000003.poscar</span></code>.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">.false.</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-kernel_dump">
-<span id="cmdoption-arg-kernel-dump"></span><span class="sig-name descname"><span class="pre">kernel_dump</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_dump" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Algorithm used for the selection of the
+<span id="cmdoption-arg-kernel-dump"></span><span class="sig-name descname"><span class="pre">kernel_dump</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-kernel_dump" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Algorithm used for the selection of the
 sparse points.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">kernel_dump=1</span></code> normalized selection of sparse points using MCD/Mahalanobis distances. There are 4 parameters to set:
@@ -247,75 +272,98 @@ there are others options for CUR descoposition, such as: <code class="docutils l
 <code class="docutils literal notranslate"><span class="pre">cur_rval</span></code> and <code class="docutils literal notranslate"><span class="pre">cur_eps</span></code>. However, the selection of sparse points is not very sensible to these
 last 3 parameters.</p></li>
 </ul>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-classes_for_mcd">
-<span id="cmdoption-arg-classes-for-mcd"></span><span class="sig-name descname"><span class="pre">classes_for_mcd</span></span><span class="sig-prename descclassname"> <span class="pre">(character)</span></span><a class="headerlink" href="#cmdoption-arg-classes_for_mcd" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. It defines the classes that define the <code class="docutils literal notranslate"><span class="pre">database_reference</span></code>. FFor examples
-<code class="docutils literal notranslate"><span class="pre">classes_for_mcd=&quot;10</span> <span class="pre">11&quot;</span></code> defines the collections of all the atomic environements from the
+<span id="cmdoption-arg-classes-for-mcd"></span><span class="sig-name descname"><span class="pre">classes_for_mcd</span></span><span class="sig-prename descclassname"> <span class="pre">(character)</span></span><a class="headerlink" href="#cmdoption-arg-classes_for_mcd" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. It defines the classes that define the <code class="docutils literal notranslate"><span class="pre">database_reference</span></code>. FFor examples
+<code class="docutils literal notranslate"><span class="pre">classes_for_mcd="10</span> <span class="pre">11"</span></code> defines the collections of all the atomic environements from the
 classes <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">11</span></code>. Moreover, for the case <code class="docutils literal notranslate"><span class="pre">kernel_dump=1</span></code> or <code class="docutils literal notranslate"><span class="pre">kernel_dump=2</span></code>
 the atomic configurations,  which  belong to these classes, are used to build the
 sample covariance matrix used to compute MCD/Mahalanobis distance.</p>
-<p>Default <code class="docutils literal notranslate"><span class="pre">classes_for_mcd=</span> <span class="pre">&quot;</span> <span class="pre">01</span> <span class="pre">&quot;</span></code></p>
-</dd></dl>
+<p>Default <code class="docutils literal notranslate"><span class="pre">classes_for_mcd=</span> <span class="pre">"</span> <span class="pre">01</span> <span class="pre">"</span></code></p>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-np_kernel_ref">
-<span id="cmdoption-arg-np-kernel-ref"></span><span class="sig-name descname"><span class="pre">np_kernel_ref</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_ref" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of sparse points
+<span id="cmdoption-arg-np-kernel-ref"></span><span class="sig-name descname"><span class="pre">np_kernel_ref</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_ref" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of sparse points
 selected from the <code class="docutils literal notranslate"><span class="pre">database_reference</span></code> (defined by the atomic environements specified by
 <code class="docutils literal notranslate"><span class="pre">classes_for_mcd</span></code>). However, depending on the selection algorithm the selected sparse points
 can be lower or can have a small noise around the mediam value.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">np_kernel_ref=</span> <span class="pre">200</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-np_kernel_full">
-<span id="cmdoption-arg-np-kernel-full"></span><span class="sig-name descname"><span class="pre">np_kernel_full</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_full" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of points selected from the whole database. However,
+<span id="cmdoption-arg-np-kernel-full"></span><span class="sig-name descname"><span class="pre">np_kernel_full</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_kernel_full" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Number of points selected from the whole database. However,
 depending on the selection algorithm the final number of selected points can be lower or larger
 (but not very different).</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">np_kernel_full=</span> <span class="pre">800</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-power_mcd">
-<span id="cmdoption-arg-power-mcd"></span><span class="sig-name descname"><span class="pre">power_mcd</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-power_mcd" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the power of MCD / Mahalanobis statistical distance on which the
+<span id="cmdoption-arg-power-mcd"></span><span class="sig-name descname"><span class="pre">power_mcd</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-power_mcd" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the power of MCD / Mahalanobis statistical distance on which the
 selection grid od sparse points is made. More details in A. Zhong et al. 2022. If you do not
 know what to do … leave the default value.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">power_mcd</span> <span class="pre">=</span> <span class="pre">0.05d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-cur_kval">
-<span id="cmdoption-arg-cur-kval"></span><span class="sig-name descname"><span class="pre">cur_kval</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-cur_kval" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the order of SVD decomposition of the atomic desing matrix in order to perform
+<span id="cmdoption-arg-cur-kval"></span><span class="sig-name descname"><span class="pre">cur_kval</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-cur_kval" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the order of SVD decomposition of the atomic desing matrix in order to perform
 the leverage column score as was introduced by <strong>REF Mahoney</strong>. it cannot be larger than the rank(atomic desing matrix)
 or the number of columns and rows of atomic design matrix. If it is given a  negative value then
 the optimal value i.e. the rank(atomic desing matrix) is used.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">cur_kval</span> <span class="pre">=</span> <span class="pre">-1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-cur_rval">
-<span id="cmdoption-arg-cur-rval"></span><span class="sig-name descname"><span class="pre">cur_rval</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-cur_rval" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the number of rows selection in CUR decomposition as it was introduced by
+<span id="cmdoption-arg-cur-rval"></span><span class="sig-name descname"><span class="pre">cur_rval</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-cur_rval" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the number of rows selection in CUR decomposition as it was introduced by
 <strong>REF Mahoney</strong>. If you are not sure about your choice, choose the default value i.e. -1.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">cur_rval</span> <span class="pre">=</span> <span class="pre">-1</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-cur_eps">
-<span id="cmdoption-arg-cur-eps"></span><span class="sig-name descname"><span class="pre">cur_eps</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-cur_eps" title="Permalink to this definition"></a></dt>
-<dd><p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the error of sampling in CUR decomposition as it was introduced by
+<span id="cmdoption-arg-cur-eps"></span><span class="sig-name descname"><span class="pre">cur_eps</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-cur_eps" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_1\)</span> option. Defines the error of sampling in CUR decomposition as it was introduced by
 <strong>REF Mahoney</strong>. If you are nor sure about your choise, choose the default value  i.e. 1.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">cur_eps</span> <span class="pre">=</span> <span class="pre">1.d0</span></code></p>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
 </section>
+
 
 
            </div>

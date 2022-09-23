@@ -100,7 +100,8 @@
            <div itemprop="articleBody">
              
   <section id="kernel-regression-using-polynomial-kernel">
-<span id="ex-kernel-poly"></span><h1>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a></h1>
+<span id="ex-kernel-poly"></span><h1>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a>
+</h1>
 <p>Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
 <code class="docutils literal notranslate"><span class="pre">Examples/KERNEL_POLY_W_BSO4</span></code>.</p>
@@ -124,7 +125,8 @@ kernel.</p></li>
 <code class="docutils literal notranslate"><span class="pre">vacancy.ml_02</span></code> and <code class="docutils literal notranslate"><span class="pre">vacancy.ml_03</span></code> files. At each step please copy
 all of them in <code class="docutils literal notranslate"><span class="pre">vacancy.ml</span></code></p>
 <p><strong>1. LML fit</strong> Typical <code class="docutils literal notranslate"><span class="pre">ml</span></code> file <code class="docutils literal notranslate"><span class="pre">vacancy.ml_01</span></code> file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 
@@ -136,7 +138,7 @@ all of them in <code class="docutils literal notranslate"><span class="pre">vaca
 
 <span class="c">!Define your system</span>
 <span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">1</span><span class="w">    </span><span class="c">!the number of chemical species in the system</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; W &quot;</span><span class="w"> </span><span class="c">!the system composition, ordered as in DB files</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" W "</span><span class="w"> </span><span class="c">!the system composition, ordered as in DB files</span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">             </span><span class="c">!set the cutoff distace Rc</span>
@@ -150,7 +152,8 @@ all of them in <code class="docutils literal notranslate"><span class="pre">vaca
 using MCD/Mahalanobis distance. You should define the classes that
 define the MCD class and the exponent Please note: <code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code> and
 <code class="docutils literal notranslate"><span class="pre">write_kernel_matrix=.true.</span></code> The content of the file <code class="docutils literal notranslate"><span class="pre">vacancy.ml_02</span></code></p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 <span class="c">!ML model</span>
@@ -161,7 +164,7 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 
 <span class="c">!Define your system</span>
 <span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!the number of chemical species in the system</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; W &quot;</span><span class="w">    </span><span class="c">!the system composition, ordered as in DB files</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" W "</span><span class="w">    </span><span class="c">!the system composition, ordered as in DB files</span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
@@ -171,7 +174,7 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 <span class="hll"><span class="c">!Kernel dump settings</span>
 </span><span class="hll"><span class="n">write_kernel_matrix</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"> </span><span class="c">!write or not the selected kernel.</span>
 </span><span class="hll"><span class="n">n_pca</span><span class="o">=</span><span class="mi">3</span><span class="w">                    </span><span class="c">!set 3 (default)</span>
-</span><span class="hll"><span class="n">classes_for_mcd</span><span class="o">=</span><span class="s2">&quot;07 08 13&quot;</span><span class="w"> </span><span class="c">!classes used for the MCD reference.</span>
+</span><span class="hll"><span class="n">classes_for_mcd</span><span class="o">=</span><span class="s2">"07 08 13"</span><span class="w"> </span><span class="c">!classes used for the MCD reference.</span>
 </span><span class="hll">
 </span><span class="hll"><span class="c">!Choose the classes more close to the bulk, MD bulk, deformed bulk etc</span>
 </span><span class="hll"><span class="n">power_mcd</span><span class="o">=</span><span class="mf">0.05d0</span><span class="w">           </span><span class="c">!exponent used for the grid of selction of kernel.</span>
@@ -185,7 +188,8 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 <p>Just change in previous ml file: <code class="docutils literal notranslate"><span class="pre">ml_type=1</span></code> and
 <code class="docutils literal notranslate"><span class="pre">write_kernel_matrix=.false.</span></code> and set the characteristic of kernel.
 Let’s look to the <code class="docutils literal notranslate"><span class="pre">vacancy.ml_03</span></code> file.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 <span class="c">!ML model</span>
@@ -196,7 +200,7 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 
 <span class="c">!Define your system</span>
 <span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!the number of chemical species in the system</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">&quot; W &quot;</span><span class="w">    </span><span class="c">!the system composition, ordered as in DB files</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" W "</span><span class="w">    </span><span class="c">!the system composition, ordered as in DB files</span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
@@ -206,7 +210,7 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 <span class="c">!Kernel dump settings</span>
 <span class="hll"><span class="n">write_kernel_matrix</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"> </span><span class="c">!write or not the selected kernel.!set 3 (default)</span>
 </span><span class="n">n_pca</span><span class="o">=</span><span class="mi">3</span><span class="w">                    </span><span class="c">!set 3 (default)</span>
-<span class="n">classes_for_mcd</span><span class="o">=</span><span class="s2">&quot;07 08 13&quot;</span><span class="w"> </span><span class="c">!classes used for the MCD reference.</span>
+<span class="n">classes_for_mcd</span><span class="o">=</span><span class="s2">"07 08 13"</span><span class="w"> </span><span class="c">!classes used for the MCD reference.</span>
 
 <span class="c">!Choose the classes more close to the bulk, MD bulk, deformed bulk etc</span>
 <span class="n">power_mcd</span><span class="o">=</span><span class="mf">0.05d0</span><span class="w">           </span><span class="c">!exponent used for the grid of selction of kernel.</span>
@@ -224,6 +228,7 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 </pre></div>
 </div>
 </section>
+
 
 
            </div>
