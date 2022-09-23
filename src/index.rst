@@ -15,6 +15,7 @@
    :maxdepth: 2
    :hidden:
 
+   contents/install/download
    contents/install/installation
    contents/install/install_marconi
    contents/install/install_irene
