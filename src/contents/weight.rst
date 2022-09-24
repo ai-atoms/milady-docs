@@ -17,14 +17,14 @@ MAE is the mean average error for energy, force or stress and :math:`f`
 is the multiplicative factor for each of them. These multiplicative
 factors are provided by the user (see below in this section). The
 optimization of weights are activated through
-``optimize_weights=.true.`` option and can be customized by 5 optional
+``optimize_weights_db=.true.`` option and can be customized by 5 optional
 commands.
 
-.. option::  optimize_weights (logical)
+.. option::  optimize_weights_db (logical)
 
    Activate or not the optimization through genetical algorithm.
    
-   Default ``optimize_weights=.false.``
+   Default ``optimize_weights_db=.false.``
 
 .. option::  class_no_optimize_weights (character(len=90)) 
 
@@ -43,12 +43,6 @@ commands.
    The size of the population of  genetical algorithm.
    
    Default ``optimize_ga_puplation=80``
-
-.. option::  optimize_weights (logical) 
-
-   Activate or not the optimization through genetical algorithm.
-   
-   Default ``optimize_weights=.false.``
 
 .. option::  optimize_weights_L1 (logical) 
 
