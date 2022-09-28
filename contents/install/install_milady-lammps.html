@@ -18,6 +18,7 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -160,15 +161,15 @@ MKL        <span class="o">(</span>version &gt;<span class="o">=</span> <span cl
 </div>
 <p>We describe here the way that we use and we know that it works.
 If you know a better precedure, we are happy to learn about your experience.
-You can send us an <script type="text/javascript">document.write(
-    "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc%40tznvy\056pbz\">rznvy<\057n>".replace(/[a-zA-Z]/g,
+You can <script type="text/javascript">document.write(
+    "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc\100tznvy\056pbz\">fraq hf na rznvy<\057n>".replace(/[a-zA-Z]/g,
         function(c){
             return String.fromCharCode(
                 (c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26
             );
         }
     )
-);</script>   to update the present documentation.</p>
+);</script> to update the present documentation.</p>
 <ol class="arabic simple">
 <li><p>Clone our repository of <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p></li>
 </ol>
@@ -189,7 +190,7 @@ Note that there is no restriction in the choice that you have for the
 compilation of <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> (we use default parameters and <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler).
 Below, we provide the 2-step example using Intel Fortran <code class="docutils literal notranslate"><span class="pre">ifort</span></code>.
 The case of <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> is similar.</p>
-<p>3a. Edit the appropiate  <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.intel</span></code> for your architecture.
+<p>3a. Edit the appropiate  <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> for your architecture.
 <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> library uses <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and some other Intel libraries from
 <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code> compiler. You need to localize the root directory
 for <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and <code class="docutils literal notranslate"><span class="pre">intel64</span></code> libraries.
@@ -202,7 +203,7 @@ We use <code class="docutils literal notranslate"><span class="pre">oneAPI</span
 <p>The paths will be similar for any older distribution of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code>,  such as <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Composer</span></code>, <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Parallel</span> <span class="pre">Studio</span></code>,  etc.
 If you have doubts: write us <script type="text/javascript">document.write(
-    "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc%40tznvy\056pbz\">urer<\057n>".replace(/[a-zA-Z]/g,
+    "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc\100tznvy\056pbz\">fraq hf na rznvy<\057n>".replace(/[a-zA-Z]/g,
         function(c){
             return String.fromCharCode(
                 (c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26
@@ -210,11 +211,18 @@ If you have doubts: write us <script type="text/javascript">document.write(
         }
     )
 );</script> . We are happy to help you !!!!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this is too painfull for you we provide some examples of <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> on various HPC computers. Here you can found an
+<code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> for <a class="reference external" href="Files/Makefile.lammps.ifort">Marconi</a> , <a class="reference external" href="Files/Makefile.lammps.ifort_ForIrene">TGCC Irene</a>
+and <a class="reference external" href="Files/Makefile.lammps.ifort_ForLinux">some personal computer</a>  .
+After download please copy that file in <cite>lib/milady/Makefile.lammps.ifort</cite></p>
+</div>
 <p>3b. Compile <code class="docutils literal notranslate"><span class="pre">milady</span></code> library in <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p>
 <div class="highlight-bash notranslate">
 <div class="highlight"><pre><span></span><span class="nb">cd</span> milady_lammps.git/lib/milady
-make -f Makefile.mpi_intel  clean
-make -f Makefile.mpi_intel
+make -f Makefile.mpi_ifort  clean
+make -f Makefile.mpi_ifort
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
@@ -224,6 +232,12 @@ make -f Makefile.mpi_intel
 <div class="highlight"><pre><span></span><span class="nb">cd</span> milady_lammps.git/src
 make mpi
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Sometime the default <code class="docutils literal notranslate"><span class="pre">Lammps/src/MAKE/Makefile.mpi</span></code> is somehow different from platform to platform. If this last has some problems, it means that you
+have some inconsistencies in the <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> compilation. Try with one of the following <code class="docutils literal notranslate"><span class="pre">Makefile.mpi</span></code> file:
+<a class="reference external" href="Files/Makefile.mpi_Lammps_Marconi">Marconi</a> , Irene or <a class="reference external" href="Files/Makefile.mpi_ForLinux">some personal computer</a>  .</p>
 </div>
 <p>That’s it! We know … compilations are painful!</p>
 <div class="admonition note">

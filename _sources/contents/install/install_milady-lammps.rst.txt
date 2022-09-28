@@ -71,9 +71,7 @@ We have tested installations with following versions:
 
 We describe here the way that we use and we know that it works.
 If you know a better precedure, we are happy to learn about your experience.
-You can send us an `email`_   to update the present documentation.
-
-.. _email: ai.unseen.group@gmail.com
+You can :email:`send us an email<ai.unseen.group@gmail.com>` to update the present documentation.
 
 
 
@@ -96,7 +94,7 @@ compilation of ``Lammps`` (we use default parameters and ``g++`` compiler).
 Below, we provide the 2-step example using Intel Fortran ``ifort``. 
 The case of ``gfortran`` is similar.
  
-3a. Edit the appropiate  ``Makefile.lammps.intel`` for your architecture. 
+3a. Edit the appropiate  ``Makefile.lammps.ifort`` for your architecture. 
 ``milady_lammps`` library uses ``MKL`` and some other Intel libraries from 
 ``Intel Fortran`` compiler. You need to localize the root directory 
 for ``MKL`` and ``intel64`` libraries. 
@@ -109,17 +107,22 @@ We use ``oneAPI Intel`` free distribution. Here are our choices:
   
 The paths will be similar for any older distribution of ``MKL`` and 
 ``Intel Fortran``,  such as ``Intel Composer``, ``Intel Parallel Studio``,  etc.
-If you have doubts: write us `here`_ . We are happy to help you !!!!
+If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>` . We are happy to help you !!!!
 
-.. _here: ai.unseen.group@gmail.com
+.. note::
+
+  If this is too painfull for you we provide some examples of ``Makefile.lammps.ifort`` on various HPC computers. Here you can found an 
+  ``Makefile.lammps.ifort`` for `Marconi <Files/Makefile.lammps.ifort>`_ , `TGCC Irene <Files/Makefile.lammps.ifort_ForIrene>`_ 
+  and `some personal computer <Files/Makefile.lammps.ifort_ForLinux>`_  . 
+  After download please copy that file in `lib/milady/Makefile.lammps.ifort`
 
 3b. Compile ``milady`` library in ``milady_lammps``: 
 
 .. code:: bash 
 
     cd milady_lammps.git/lib/milady
-    make -f Makefile.mpi_intel  clean 
-    make -f Makefile.mpi_intel   
+    make -f Makefile.mpi_ifort  clean 
+    make -f Makefile.mpi_ifort   
 
 4. ``milady_lammps`` final compilation .... ouufff: 
 
@@ -127,6 +130,11 @@ If you have doubts: write us `here`_ . We are happy to help you !!!!
 
     cd milady_lammps.git/src
     make mpi 
+
+.. warning::
+  Sometime the default ``Lammps/src/MAKE/Makefile.mpi`` is somehow different from platform to platform. If this last has some problems, it means that you 
+  have some inconsistencies in the ``Lammps`` compilation. Try with one of the following ``Makefile.mpi`` file: 
+  `Marconi <Files/Makefile.mpi_Lammps_Marconi>`_ , Irene or `some personal computer <Files/Makefile.mpi_ForLinux>`_  .   
        
 
 That's it! We know ... compilations are painful!
