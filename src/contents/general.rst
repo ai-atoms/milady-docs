@@ -53,10 +53,8 @@ Coupling ``MILADY`` with ``LAMMPS`` is performed by
 Contact 
 ~~~~~~~
 
-The questions and suggestions can be sent to our `email`_ .
+The questions and suggestions can be sent to our :email:`sent to our email<ai.unseen.group@gmail.com>` .
 We will be happy to answer!
-
-.. _email: ai.unseen.group@gmail.com
 
 They appreciate and use MILADY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
