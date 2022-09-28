@@ -213,10 +213,11 @@ If you have doubts: write us <script type="text/javascript">document.write(
 );</script> . We are happy to help you !!!!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If this is too painfull for you we provide some examples of <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> on various HPC computers. Here you can found an
-<code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> for <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort">Marconi</a> , <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForIrene">TGCC Irene</a>
+<p>If this is too painful, for you we provide some examples of <code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> on various
+computers. Here you can found an
+<code class="docutils literal notranslate"><span class="pre">Makefile.lammps.ifort</span></code> for <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort">HPC Marconi</a> , <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForIrene">TGCC Irene</a>
 and <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForLinux">some personal computer</a>  .
-After download please copy that file in <cite>lib/milady/Makefile.lammps.ifort</cite></p>
+After download please copy that file in <code class="docutils literal notranslate"><span class="pre">lib/milady/Makefile.lammps.ifort</span></code></p>
 </div>
 <p>3b. Compile <code class="docutils literal notranslate"><span class="pre">milady</span></code> library in <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p>
 <div class="highlight-bash notranslate">
@@ -235,15 +236,19 @@ make mpi
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Sometime the default <code class="docutils literal notranslate"><span class="pre">Lammps/src/MAKE/Makefile.mpi</span></code> is somehow different from platform to platform. If this last has some problems, it means that you
-have some inconsistencies in the <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> compilation. Try with one of the following <code class="docutils literal notranslate"><span class="pre">Makefile.mpi</span></code> file:
-<a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_Lammps_Marconi">Marconi</a> , Irene or <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux">some personal computer</a>  .</p>
+<p>Sometime the default main makefile of Lammps, i.e. <code class="docutils literal notranslate"><span class="pre">Lammps/src/MAKE/Makefile.mpi</span></code>, is somehow
+different from platform to platform.
+If this last point has some problems, it means that you have some inconsistencies in the <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>
+compilation. Try with one of the following <code class="docutils literal notranslate"><span class="pre">Makefile.mpi</span></code> file, which we use for some platfroms, such as
+<a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_Lammps_Marconi">Marconi</a> ,
+TGCC Irene
+or <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux">some personal computer</a>  .</p>
 </div>
 <p>That’s it! We know … compilations are painful!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>IMPORTANT:  Many thanks to users that have reported some typos, errors in
-Makefile. In particular many thanks to  Marie Landeiro Dos Reis and Antoine Kraych !</p>
+Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wrobel !</p>
 </div>
 </section>
 </section>
