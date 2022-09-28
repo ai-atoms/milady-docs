@@ -111,10 +111,11 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
 
 .. note::
 
-  If this is too painfull for you we provide some examples of ``Makefile.lammps.ifort`` on various HPC computers. Here you can found an 
-  ``Makefile.lammps.ifort`` for `Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort>`_ , `TGCC Irene <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForIrene>`_ 
+  If this is too painful, for you we provide some examples of ``Makefile.lammps.ifort`` on various 
+  computers. Here you can found an 
+  ``Makefile.lammps.ifort`` for `HPC Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort>`_ , `TGCC Irene <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForIrene>`_ 
   and `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForLinux>`_  . 
-  After download please copy that file in `lib/milady/Makefile.lammps.ifort`
+  After download please copy that file in ``lib/milady/Makefile.lammps.ifort``
 
 3b. Compile ``milady`` library in ``milady_lammps``: 
 
@@ -132,15 +133,19 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
     make mpi 
 
 .. warning::
-  Sometime the default ``Lammps/src/MAKE/Makefile.mpi`` is somehow different from platform to platform. If this last has some problems, it means that you 
-  have some inconsistencies in the ``Lammps`` compilation. Try with one of the following ``Makefile.mpi`` file: 
-  `Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_Lammps_Marconi>`_ , Irene or `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux>`_  .   
+  Sometime the default main makefile of Lammps, i.e. ``Lammps/src/MAKE/Makefile.mpi``, is somehow 
+  different from platform to platform. 
+  If this last point has some problems, it means that you have some inconsistencies in the ``Lammps`` 
+  compilation. Try with one of the following ``Makefile.mpi`` file, which we use for some platfroms, such as 
+  `Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_Lammps_Marconi>`_ , 
+  TGCC Irene 
+  or `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux>`_  .   
        
 
 That's it! We know ... compilations are painful!
 
 .. note::
   IMPORTANT:  Many thanks to users that have reported some typos, errors in 
-  Makefile. In particular many thanks to  Marie Landeiro Dos Reis and Antoine Kraych !
+  Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wrobel !
 
 
