@@ -146,6 +146,6 @@ That's it! We know ... compilations are painful!
 
 .. note::
   IMPORTANT:  Many thanks to users that have reported some typos, errors in 
-  Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wrobel !
+  Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wróbel!
 
 
