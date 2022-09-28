@@ -112,8 +112,8 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
 .. note::
 
   If this is too painfull for you we provide some examples of ``Makefile.lammps.ifort`` on various HPC computers. Here you can found an 
-  ``Makefile.lammps.ifort`` for `Marconi <Files/Makefile.lammps.ifort>`_ , `TGCC Irene <Files/Makefile.lammps.ifort_ForIrene>`_ 
-  and `some personal computer <Files/Makefile.lammps.ifort_ForLinux>`_  . 
+  ``Makefile.lammps.ifort`` for `Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort>`_ , `TGCC Irene <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForIrene>`_ 
+  and `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.lammps.ifort_ForLinux>`_  . 
   After download please copy that file in `lib/milady/Makefile.lammps.ifort`
 
 3b. Compile ``milady`` library in ``milady_lammps``: 
@@ -134,7 +134,7 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
 .. warning::
   Sometime the default ``Lammps/src/MAKE/Makefile.mpi`` is somehow different from platform to platform. If this last has some problems, it means that you 
   have some inconsistencies in the ``Lammps`` compilation. Try with one of the following ``Makefile.mpi`` file: 
-  `Marconi <Files/Makefile.mpi_Lammps_Marconi>`_ , Irene or `some personal computer <Files/Makefile.mpi_ForLinux>`_  .   
+  `Marconi <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_Lammps_Marconi>`_ , Irene or `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux>`_  .   
        
 
 That's it! We know ... compilations are painful!
