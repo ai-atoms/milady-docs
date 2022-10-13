@@ -150,7 +150,7 @@ module load cmake/3.18.2
 <p>Define in your environement the following <code class="docutils literal notranslate"><span class="pre">bash</span></code> function (can be added at the end
 of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file)</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady<span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> f_setenv_milady <span class="o">{</span>
   <span class="nb">unset</span> MLD_ROODIR
 
   <span class="nb">unset</span> MLD_ROODIR
@@ -176,7 +176,7 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
   <span class="nb">export</span> <span class="nv">OMP_ROOT</span><span class="o">=</span>/ccc/products/openmpi-4.1.1/intel--20.0.0/default
   <span class="nb">export</span> <span class="nv">MLD_SETENV</span><span class="o">=</span>ON
 
-  <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+  <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>

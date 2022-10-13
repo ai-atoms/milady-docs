@@ -43,7 +43,7 @@ directories as in previous examples.
   
     .. code-block:: bash
 
-      function f_setenv_milady{
+      function f_setenv_milady {
         unset MLD_ROODIR
 
         unset MLD_ROODIR
@@ -69,7 +69,7 @@ directories as in previous examples.
         export OMP_ROOT=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
         export MLD_SETENV=ON
      
-        export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
+        export PATH=${MLD_SRCDIR}/scripts:${PATH}
       }
 
 Step 2: Installation  
