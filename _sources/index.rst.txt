@@ -50,4 +50,5 @@
    :maxdepth: 2
    :hidden:
 
-   contents/publications
+   contents/pubs/publications
+   contents/pubs/potentials

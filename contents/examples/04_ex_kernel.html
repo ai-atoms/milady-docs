@@ -1,39 +1,73 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Kernel regression using polynomial kernel &mdash; Milady  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/fav.png"/>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Articles" href="../publications.html" />
     <link rel="prev" title="QNML fit in HEA" href="03_ex_qnmlhea.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Milady
+          
+
+          
           </a>
+
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -41,7 +75,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install/download.html">Download</a></li>
@@ -71,37 +116,74 @@
 <li class="toctree-l1"><a class="reference internal" href="03_ex_qnmlhea.html">QNML fit in HEA</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Kernel regression using polynomial kernel</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Publications</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../publications.html">Articles</a></li>
-</ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Milady</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Kernel regression using polynomial kernel</li>
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Kernel regression using polynomial kernel</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="../../_sources/contents/examples/04_ex_kernel.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="kernel-regression-using-polynomial-kernel">
-<span id="ex-kernel-poly"></span><h1>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading"></a>
+<span id="ex-kernel-poly"></span><h1>Kernel regression using polynomial kernel<a class="headerlink" href="#kernel-regression-using-polynomial-kernel" title="Permalink to this heading">¶</a>
 </h1>
 <p>Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
@@ -127,8 +209,8 @@ kernel.</p></li>
 all of them in <code class="docutils literal notranslate"><span class="pre">vacancy.ml</span></code></p>
 <p><strong>1. LML fit</strong> Typical <code class="docutils literal notranslate"><span class="pre">ml</span></code> file <code class="docutils literal notranslate"><span class="pre">vacancy.ml_01</span></code> file:</p>
 <div class="highlight-fortran notranslate">
-<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
+<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 
 
 <span class="c">!ML model</span>
@@ -146,7 +228,7 @@ all of them in <code class="docutils literal notranslate"><span class="pre">vaca
 <span class="n">descriptor_type</span><span class="o">=</span><span class="mi">9</span><span class="w">       </span><span class="c">!set 9 for bispectrum SO4</span>
 <span class="n">j_max</span><span class="o">=</span><span class="mf">4.0</span><span class="w">               </span><span class="c">!angular moment for bispectrum SO4</span>
 
-<span class="p">&amp;</span><span class="k">end</span><span class="w"></span>
+<span class="p">&amp;</span><span class="k">end</span>
 </pre></div>
 </div>
 <p><strong>2. Selection of kernel points</strong> The selection in this example is done
@@ -154,8 +236,8 @@ using MCD/Mahalanobis distance. You should define the classes that
 define the MCD class and the exponent Please note: <code class="docutils literal notranslate"><span class="pre">ml_type=-2</span></code> and
 <code class="docutils literal notranslate"><span class="pre">write_kernel_matrix=.true.</span></code> The content of the file <code class="docutils literal notranslate"><span class="pre">vacancy.ml_02</span></code></p>
 <div class="highlight-fortran notranslate">
-<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
+<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 
 <span class="c">!ML model</span>
 <span class="hll"><span class="n">ml_type</span><span class="o">=-</span><span class="mi">2</span><span class="w">                 </span><span class="c">!set -2 to perform kernel selection</span>
@@ -182,7 +264,7 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 </span><span class="hll"><span class="n">np_kernel_ref</span><span class="o">=</span><span class="mi">1000</span><span class="w">         </span><span class="c">!number of proposed points in the MCD class</span>
 </span><span class="hll"><span class="n">np_kernel_full</span><span class="o">=</span><span class="mi">4000</span><span class="w">        </span><span class="c">!number of points outside the MCD class</span>
 </span><span class="hll"><span class="n">kernel_dump</span><span class="o">=</span><span class="mi">2</span><span class="w">              </span><span class="c">!set 2 for MCD/MAHALANOBIS</span>
-</span><span class="p">&amp;</span><span class="k">end</span><span class="w"></span>
+</span><span class="p">&amp;</span><span class="k">end</span>
 </pre></div>
 </div>
 <p><strong>3. kernel fit.</strong></p>
@@ -190,8 +272,8 @@ define the MCD class and the exponent Please note: <code class="docutils literal
 <code class="docutils literal notranslate"><span class="pre">write_kernel_matrix=.false.</span></code> and set the characteristic of kernel.
 Let’s look to the <code class="docutils literal notranslate"><span class="pre">vacancy.ml_03</span></code> file.</p>
 <div class="highlight-fortran notranslate">
-<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span><span class="w"></span>
-<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
+<span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 
 <span class="c">!ML model</span>
 <span class="hll"><span class="n">ml_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                  </span><span class="c">!set 1 to perform kernel fit</span>
@@ -225,7 +307,7 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 </span><span class="hll"><span class="n">length_kernel</span><span class="o">=</span><span class="mf">0.05</span><span class="w">         </span><span class="c">!hyperparameter, test more!</span>
 </span><span class="hll"><span class="n">sigma_kernel</span><span class="o">=</span><span class="mf">0.d0</span><span class="w">          </span><span class="c">!hyperparameter, set 0 in milady</span>
 </span>
-<span class="p">&amp;</span><span class="k">end</span><span class="w"></span>
+<span class="p">&amp;</span><span class="k">end</span>
 </pre></div>
 </div>
 </section>
@@ -233,33 +315,49 @@ Let’s look to the <code class="docutils literal notranslate"><span class="pre"
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="03_ex_qnmlhea.html" class="btn btn-neutral float-left" title="QNML fit in HEA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../publications.html" class="btn btn-neutral float-right" title="Articles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022, MCM, AMG &amp; more.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
