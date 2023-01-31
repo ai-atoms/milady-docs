@@ -17,7 +17,7 @@ MILADY uses machine learning algorithms and prioritises methods with a reasonabl
 **Advantages of MILADY:**
 
 * MILADY is designed for High Performance Computing and is therefore well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
-* MILADY includes a large choice of atomic :ref:`descriptors<sec:descriptors>` and :ref:`regression<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernel<sec:kernel>` models.
+* MILADY includes a large choice of atomic :ref:`descriptors<sec:descriptors>` and :ref:`regression models<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernels<sec:kernel>`.
 * MILADY is open-source package and contributions are very welcome.
 
 
