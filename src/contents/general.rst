@@ -5,20 +5,20 @@ What is MILADY?
 
 MILADY stands for *Machine Learning DYnamics*, a package created by (and for) computational materials science researchers to improve the accuracy and predictive power of atomistic simulations. 
 MILADY uses machine learning algorithms and prioritises methods with a reasonable computational cost.
-``MILADY 2.0`` is an open-source code distributed under the Academic Software Licence (ASL)
+``MILADY 2.0`` is an open-source code distributed under the Academic Software Licence (ASL).
 
 **Main functionalities:**
 
-- Development of machine learning force fields, suitable for molecular dynamics simulations.
-- Development of surrogate regression models to predict materials properties, including vibrational entropy, HUMO-LUMO energies, etc.
-- Representation of atomic structures in the feature space of atomic descriptors.
-- Analysis, sparsification, and optimization of datasets.
+* Development of machine learning force fields, suitable for molecular dynamics simulations.
+* Development of surrogate regression models to predict materials properties, including vibrational entropy, HUMO-LUMO energies, etc.
+* Representation of atomic structures in the feature space of atomic descriptors.
+* Analysis, sparsification, and optimization of datasets.
 
 **Advantages of MILADY:**
 
-- MILADY is designed for High Performance Computing and is therefore well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
-- MILADY includes a large choice of atomic :ref:`descriptors<sec:descriptors>` and :ref:`regression<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernel<sec:kernel>` models.
-- MILADY is open-source package and contributions are very welcome.
+* MILADY is designed for High Performance Computing and is therefore well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
+* MILADY includes a large choice of atomic :ref:`descriptors<sec:descriptors>` and :ref:`regression<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernel<sec:kernel>` models.
+* MILADY is open-source package and contributions are very welcome.
 
 
 Contributors
