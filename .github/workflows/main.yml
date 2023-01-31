@@ -7,20 +7,16 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
 
 
 jobs:
 
-  # Notre job
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    # Tâches à effectuer, comme expliquées ci-dessus
     steps:
-
-      # 1. On récupère le contenu du dépôt
 
       - name: "Checkout"
         uses: actions/checkout@v2
