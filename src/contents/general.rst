@@ -10,7 +10,7 @@ MILADY uses machine learning algorithms and prioritises methods with a reasonabl
 **Main functionalities:**
 
 * Development of machine learning force fields, suitable for molecular dynamics simulations.
-* Development of surrogate regression models to predict materials properties, including vibrational entropy, HUMO-LUMO energies, etc.
+* Development of surrogate regression models to predict materials properties, including vibrational entropy, HOMO-LUMO energies, etc.
 * Representation of atomic structures in the feature space of atomic descriptors.
 * Analysis, sparsification, and optimization of datasets.
 

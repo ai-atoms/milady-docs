@@ -7,6 +7,18 @@ Many thanks to the authors!
 Articles
 ^^^^^^^^
 
+.. _`pub:2023`:
+
+2023
+~~~~
+
+A. Zhong, C. Lapointe, A.M. Goryaeva, J. Baima, N. Athenes, M.-C. Marinica. Anharmonic thermo-elasticity of tungsten from accelerated Bayesian adaptive biasing force calculations with data-driven force fields. `Phys. Rev. Mater. 7: 023802 (2023) 
+<https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.7.023802>`_
+
+
+P. Grigorev, A.M. Goryaeva, M.-C. Marinica, J. R. Kermode, T. D. Swinburne. Calculation of dislocation binding to helium-vacancy defects in tungsten using hybrid ab initio-machine learning methods. `Acta Mater.   247: 118734  (2023)
+<https://www.sciencedirect.com/science/article/pii/S1359645423000666>`_
+
 .. _`pub:2022`:
 
 2022
