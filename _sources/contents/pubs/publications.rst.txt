@@ -12,7 +12,7 @@ Articles
 2023
 ~~~~
 
-A. Zhong, C. Lapointe, A.M. Goryaeva, J. Baima, N. Athenes, M.-C. Marinica. Anharmonic thermo-elasticity of tungsten from accelerated Bayesian adaptive biasing force calculations with data-driven force fields. `Phys. Rev. Mater. 7: 023802 (2023) 
+A. Zhong, C. Lapointe, A.M. Goryaeva, J. Baima, M. Athenes, M.-C. Marinica. Anharmonic thermo-elasticity of tungsten from accelerated Bayesian adaptive biasing force calculations with data-driven force fields. `Phys. Rev. Mater. 7: 023802 (2023) 
 <https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.7.023802>`_
 
 
