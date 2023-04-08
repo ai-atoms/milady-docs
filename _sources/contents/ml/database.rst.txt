@@ -1,6 +1,8 @@
 Databases
 #########
 
+.. _`sec:database`:
+
 Database manipulation
 =====================
 
