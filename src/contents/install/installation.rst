@@ -1,8 +1,10 @@
 .. _`sec:insta`:
 
+Local build
+-----------
 
 Prerequisites
--------------
+:::::::::::::
 
 The current version of ``MILADY`` requires: 
 
@@ -12,7 +14,7 @@ The current version of ``MILADY`` requires:
 - CMake (tested > 3.18.x) 
 
 Compilation modes
------------------
+:::::::::::::::::
 
 ``MILADY`` has three compilation modes:
 
@@ -21,7 +23,7 @@ Compilation modes
 
     - intel compilers (2022.0.1)
     - MKL with ScaLapack support
-    - openmpi user-compiled, or system, compatible with intel compilers ( > 4.x.x)
+    - openmpi user-compiled, or system, compatible with intel compilers (> 4.x.x)
 
 
   MILADY-INTEL
@@ -39,8 +41,8 @@ Compilation modes
 
 .. Hint:: Our preference is MILADY-MIX, using the intel fortran compiler and MKL / SCALAPACK provided by oneAPI (> 2022.x.x). OpenMPI (> 4.x.x) is compiled by our means using ifort compiler.
 
-Build
------
+Compilation
+:::::::::::
 
 Step 1: Setting environment variables 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

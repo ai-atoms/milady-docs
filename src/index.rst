@@ -10,15 +10,23 @@
 
 .. include:: contents/general.rst
 
+
 .. toctree::
-   :caption: Installation
+   :caption: Installation with Docker
+   :maxdepth: 2
+   :hidden:
+
+   contents/install/docker
+
+.. toctree::
+   :caption: Build Milady
    :maxdepth: 2
    :hidden:
 
    contents/install/download
    contents/install/installation
-   contents/install/install_marconi
    contents/install/install_irene
+   contents/install/install_marconi
    contents/install/install_milady-lammps
 
 .. toctree::
@@ -32,7 +40,7 @@
    contents/ml/system
    contents/ml/descriptors
    contents/ml/database
-   contents/weight
+   contents/ml/weight
    contents/ml/advanced
 
 .. toctree::
