@@ -24,26 +24,25 @@ MILADY uses machine learning algorithms and prioritises methods with a reasonabl
 Contributors
 ~~~~~~~~~~~~
 
-The current architecture was designed by M.-C. Marinica and A. M. Goryaeva.
+| The development of MILADY started in 2015 at SRMP, CEA Saclay, France.
+| The current architecture was designed by M.-C. Marinica and A. M. Goryaeva.
 
-The development of MILADY started in 2015 at SRMP, CEA Saclay, France.
+| **Main contributors** in chronological order, all current or former members of SRMP, CEA Saclay:
+| M.-C. Marinica     (2015-present)
+| W. Unn-Toc         (2015-2017)
+| A. M. Goryaeva     (2018-present)
+| C. Lapointe        (2018-2021)
+| J. Deres           (2019-2021)
+| J. Baima           (2020 - 2022)
+| A. Allera          (2022 - present)
+| A. Zhong           (2022 - present)
 
-Main contributors (in chronological order):
-M.-C. Marinica (2015-present at SRMP, CEA Saclay),
-W. Unn-Toc (2015-2017 at SRMP, CEA Saclay),
-A. M. Goryaeva (2018-present at SRMP, CEA Saclay),
-C. Lapointe (2018-2021 at SRMP, CEA Saclay),
-J. Deres (2019-2021 at SRMP, CEA Saclay),
-J. Baima (2020 - 2022 at SRMP, CEA Saclay),
-A. Allera (2022 - present, at SRMP, CEA Saclay),
-A. Zhong (2022 - present, at SRMP, CEA Saclay).
-
-Software development support:
-Anida Khizar (LGLS, CEA Saclay),
-Christian Van Wambeke (LGLS, CEA Saclay).
+| Software development support is provided by:
+| Anida Khizar (LGLS, CEA Saclay),
+| Christian Van Wambeke (LGLS, CEA Saclay).
 
 The `coupling of MILADY and LAMMPS <https://github.com/ai-atoms/Lammps-MiLaDy>`_ was developed by
-`Thomas D. Swinburne <https://tomswinburne.github.io/>`_ (CINaM, Marseille)
+`Thomas D. Swinburne <https://tomswinburne.github.io/>`_ (CINaM, Marseille).
 
 Contact 
 ~~~~~~~
