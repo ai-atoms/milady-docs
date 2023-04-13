@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prerequisites &mdash; Milady Docs</title>
+  <title>Local build &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Build on Marconi" href="install_marconi.html" />
-    <link rel="prev" title="Download" href="download.html" /> 
+    <link rel="next" title="Build on Irene" href="install_irene.html" />
+    <link rel="prev" title="Download sources" href="download.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,18 +42,26 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation with Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Pull the image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html#usage">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Build Milady</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#compilation-modes">Compilation modes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#build">Build</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-setting-environment-variables">Step 1: Setting environment variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-compilation">Step 2: Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download sources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Local build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compilation-modes">Compilation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compilation">Compilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-setting-environment-variables">Step 1: Setting environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-compilation">Step 2: Compilation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="install_irene.html">Build on Irene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_milady-lammps.html">MILADY potentials in Lammps</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
@@ -65,7 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ml/system.html">Atomic systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ml/descriptors.html">Descriptors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ml/database.html">Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/weight.html">Optimization of hyperparameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ml/advanced.html">Advanced options</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
@@ -95,7 +103,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Prerequisites</li>
+      <li class="breadcrumb-item active">Local build</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/contents/install/installation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,9 +113,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="prerequisites">
-<span id="sec-insta"></span><h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a>
+  <section id="local-build">
+<span id="sec-insta"></span><h1>Local build<a class="headerlink" href="#local-build" title="Permalink to this heading"></a>
 </h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a>
+</h2>
 <p>The current version of <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> requires:</p>
 <ul class="simple">
 <li><p>A fortran compiler (tested ifort &gt; 2019.x.x, gfortran &gt; 10.x.x)</p></li>
@@ -116,10 +127,9 @@
 <li><p>CMake (tested &gt; 3.18.x)</p></li>
 </ul>
 </section>
-
 <section id="compilation-modes">
-<h1>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a>
-</h1>
+<h2>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a>
+</h2>
 <p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> has three compilation modes:</p>
 <dl class="glossary simple">
 <dt id="term-MILADY-MIX">MILADY-MIX<a class="headerlink" href="#term-MILADY-MIX" title="Permalink to this term"></a>
@@ -128,7 +138,7 @@
 <ul class="simple">
 <li><p>intel compilers (2022.0.1)</p></li>
 <li><p>MKL with ScaLapack support</p></li>
-<li><p>openmpi user-compiled, or system, compatible with intel compilers ( &gt; 4.x.x)</p></li>
+<li><p>openmpi user-compiled, or system, compatible with intel compilers (&gt; 4.x.x)</p></li>
 </ul>
 </dd>
 <dt id="term-MILADY-INTEL">MILADY-INTEL<a class="headerlink" href="#term-MILADY-INTEL" title="Permalink to this term"></a>
@@ -155,13 +165,12 @@
 <p>Our preference is MILADY-MIX, using the intel fortran compiler and MKL / SCALAPACK provided by oneAPI (&gt; 2022.x.x). OpenMPI (&gt; 4.x.x) is compiled by our means using ifort compiler.</p>
 </div>
 </section>
-
-<section id="build">
-<h1>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a>
-</h1>
-<section id="step-1-setting-environment-variables">
-<h2>Step 1: Setting environment variables<a class="headerlink" href="#step-1-setting-environment-variables" title="Permalink to this heading"></a>
+<section id="compilation">
+<h2>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading"></a>
 </h2>
+<section id="step-1-setting-environment-variables">
+<h3>Step 1: Setting environment variables<a class="headerlink" href="#step-1-setting-environment-variables" title="Permalink to this heading"></a>
+</h3>
 <p>In the following, <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> refers to the github repository.</p>
 <ol class="arabic">
 <li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">MLD</span></code> and copy <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> in that location.
@@ -227,8 +236,8 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 </ol>
 </section>
 <section id="step-2-compilation">
-<h2>Step 2: Compilation<a class="headerlink" href="#step-2-compilation" title="Permalink to this heading"></a>
-</h2>
+<h3>Step 2: Compilation<a class="headerlink" href="#step-2-compilation" title="Permalink to this heading"></a>
+</h3>
 <ol class="arabic">
 <li>
 <p>Charge the bash functionalities:</p>
@@ -274,14 +283,15 @@ f_explore_milady
 <p>In order to test, run the step-by-step examples provided in the <a class="reference external" href="examples.html">Examples section</a>.</p>
 </section>
 </section>
+</section>
 
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="download.html" class="btn btn-neutral float-left" title="Download" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="install_marconi.html" class="btn btn-neutral float-right" title="Build on Marconi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="download.html" class="btn btn-neutral float-left" title="Download sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install_irene.html" class="btn btn-neutral float-right" title="Build on Irene" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,26 +1,26 @@
-.. _`sec:insta_marconi`:
+_`sec:insta_marconi`:
 
 Build on Marconi
-----------------
+::::::::::::::::
 
 Here we provide the instructions for building ``MILADY`` on the widely used
-supercomputer `MARCONI <https://www.hpc.cineca.it/hardware/marconi>`_ .
+supercomputer `MARCONI <https://www.hpc.cineca.it/hardware/marconi>`_.
 
     .. note::
       We describe here the way that we use and we know that it works.
-      If you know a better precedure, we are happy to learn about your experience.
-      You can send us an email to update the present documentation.
+      If you know a better procedure, we are happy to learn about your experience.
+      You can email us to update the present documentation.
 
-Step 1: Loading modules and setting bash environement
+Step 1: Loading modules and setting bash environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the following, ``MILADY`` refers to the github repository. We preserve here the same structure of the
-directories as in previous examples.   
+In the following, ``MILADY`` refers to the GitHub repository. We preserve here the same structure of the
+directories as in previous examples.
 
 1.  Create a directory ``MLD`` and copy ``MILADY`` in that location. 
     Hereafter, ``${MLD}`` is the location of ``MLD`` directory.
 
-2.  Set your ``bash`` environement. My ``${HOME}/.bashrc`` file contains the
+2.  Set your ``bash`` environment. My ``${HOME}/.bashrc`` file contains the
     following modules and variables: 
 
     .. code-block:: bash
@@ -40,7 +40,7 @@ directories as in previous examples.
       ``mld_build`` and ``mld_install`` will be created by the installation procedure, whilst
       ``mld_testdir`` is a directory with tests that is not compulsory.
 
-3.  Define in your environement the following ``bash`` function (can be added at the end
+3.  Define in your environment the following ``bash`` function (can be added at the end
     of your ``${HOME}/.bashrc`` file)
   
     .. code-block:: bash
@@ -73,7 +73,7 @@ directories as in previous examples.
 Step 2: Installation  
 ^^^^^^^^^^^^^^^^^^^^
 
-1.  Charge the ``MILADY`` bash environement (do not forget to source your ``$HOME/.bashrc`` file before it):
+1.  Charge the ``MILADY`` bash environment (do not forget to source your ``$HOME/.bashrc`` file before it):
 
     .. code-block:: bash
 
@@ -82,7 +82,7 @@ Step 2: Installation
 
 
     .. note::
-      Do not forget that ``${MLD}`` is defined by you. It is the path to the  ``MLD`` directory.
+      Do not forget that ``${MLD}`` is defined by you. It is the path to the ``MLD`` directory.
 
 2.  Install MILADY:
 
@@ -92,4 +92,4 @@ Step 2: Installation
       make -j6
 
 
-And that it is !!!! The executable is in ``bin/milady_main.exe``.
+And that is it ! The executable is in ``bin/milady_main.exe``.

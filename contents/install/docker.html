@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download sources &mdash; Milady Docs</title>
+  <title>Pull the image &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Local build" href="installation.html" />
-    <link rel="prev" title="Pull the image" href="docker.html" /> 
+    <link rel="next" title="Download sources" href="download.html" />
+    <link rel="prev" title="What is MILADY?" href="../../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,13 +43,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Installation with Docker</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Pull the image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html#usage">Usage</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pull the image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Build Milady</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Download sources</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Local build</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_irene.html">Build on Irene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
@@ -94,9 +94,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Download sources</li>
+      <li class="breadcrumb-item active">Pull the image</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/contents/install/download.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/contents/install/docker.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -104,22 +104,70 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="download-sources">
-<span id="sec-down"></span><h1>Download sources<a class="headerlink" href="#download-sources" title="Permalink to this heading"></a>
+  <section id="pull-the-image">
+<span id="sec-docker"></span><h1>Pull the image<a class="headerlink" href="#pull-the-image" title="Permalink to this heading"></a>
 </h1>
-<p>The open source Machine Learning Dynamics software can be downloaded
-through a GitHub repository.
-The repository is private but in order to have access
-just <script type="text/javascript">document.write(
-    "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc\100tznvy\056pbz\">fraq hf na rznvy<\057n>".replace(/[a-zA-Z]/g,
-        function(c){
-            return String.fromCharCode(
-                (c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26
-            );
-        }
-    )
-);</script> to let us know from which GitHub
-account you intend to download <code class="docutils literal notranslate"><span class="pre">Milady</span></code>. That’s all!!!</p>
+<p>For easier access to Milady, we provide pre-buit Docker images, which are publicly available on DockerHub.
+We recommend this approach for new users.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Using docker pre-built images allow for an installation with minimal effort, for use on both workstations and HPC facilities (using Singularity or pcocc to run Docker images).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using pre-built images, expect some performance reduction compared to building from source. For HPC use and if performance is crucial, we recommend going through the route of compiling on your target platform.</p>
+</div>
+<p>To get started with the Milady Docker image, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Install Docker Engine by following the instructions available at <a class="reference external" href="https://docs.docker.com/engine/">https://docs.docker.com/engine/</a>.</p></li>
+<li><p>Pull the Milady Docker image from DockerHub:</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>aallera/milady
+</pre></div>
+</div>
+<p>Now that you have the Milady Docker image, you can use it based on the following usage examples:</p>
+</section>
+
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a>
+</h1>
+<p>Run Milady in the current directory and exit:</p>
+<ol class="arabic simple">
+<li><p>With 4 CPUs (default):</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>With 8 CPUs (using the <code class="docutils literal notranslate"><span class="pre">-np</span> <span class="pre">8</span></code> option):</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Run Jupyter in the container:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady<span class="w"> </span>shell
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Exposing the current directory to the container with <code class="docutils literal notranslate"><span class="pre">-v</span></code> allows you to export your results to disk.</p>
+</div>
+<p>This command opens a shell inside the container.
+Then, you can run the following command to start the Jupyter Notebook:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>notebook
+</pre></div>
+</div>
+<p>You can also interactively navigate in the container, where the current directory of the host is mounted to <code class="docutils literal notranslate"><span class="pre">/workspace</span></code>.
+The Milady executable is available with the command:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>milady
+</pre></div>
+</div>
 </section>
 
 
@@ -127,8 +175,8 @@ account you intend to download <code class="docutils literal notranslate"><span 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="docker.html" class="btn btn-neutral float-left" title="Pull the image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="installation.html" class="btn btn-neutral float-right" title="Local build" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../index.html" class="btn btn-neutral float-left" title="What is MILADY?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="download.html" class="btn btn-neutral float-right" title="Download sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

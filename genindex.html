@@ -39,14 +39,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation with Docker</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="contents/install/download.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contents/install/installation.html">Prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contents/install/installation.html#compilation-modes">Compilation modes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contents/install/installation.html#build">Build</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contents/install/install_marconi.html">Build on Marconi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/docker.html">Pull the image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/docker.html#usage">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Build Milady</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/download.html">Download sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/installation.html">Local build</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/install/install_irene.html">Build on Irene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/install_marconi.html">Build on Marconi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/install/install_milady-lammps.html">MILADY potentials in Lammps</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
@@ -58,7 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contents/ml/system.html">Atomic systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/ml/descriptors.html">Descriptors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/ml/database.html">Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contents/weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/ml/weight.html">Optimization of hyperparameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/ml/advanced.html">Advanced options</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
@@ -198,7 +201,7 @@
     class_no_optimize_weights
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-class_no_optimize_weights">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-class_no_optimize_weights">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -228,7 +231,7 @@
 </li>
         <li><a href="contents/ml/system.html#cmdoption-arg-chemical_elements_invisible">chemical_elements_invisible</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-class_no_optimize_weights">class_no_optimize_weights</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-class_no_optimize_weights">class_no_optimize_weights</a>
 </li>
         <li><a href="contents/ml/kernels.html#cmdoption-arg-classes_for_mcd">classes_for_mcd</a>
 </li>
@@ -252,11 +255,11 @@
 </li>
         <li><a href="contents/ml/descriptors.html#cmdoption-arg-eta_max_g2">eta_max_g2</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_energy_error">factor_energy_error</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_energy_error">factor_energy_error</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_force_error">factor_force_error</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_force_error">factor_force_error</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_stress_error">factor_stress_error</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_stress_error">factor_stress_error</a>
 </li>
         <li><a href="contents/ml/system.html#cmdoption-arg-fix_no_of_elements">fix_no_of_elements</a>
 </li>
@@ -304,7 +307,7 @@
 </li>
         <li><a href="contents/ml/advanced.html#cmdoption-arg-marginal_likelihood">marginal_likelihood</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-max_iter_optimize_weights">max_iter_optimize_weights</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-max_iter_optimize_weights">max_iter_optimize_weights</a>
 </li>
         <li><a href="contents/ml/model.html#cmdoption-arg-ml_type">ml_type</a>
 </li>
@@ -348,17 +351,17 @@
 </li>
         <li><a href="contents/ml/advanced.html#cmdoption-arg-ns_data">ns_data</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_ga_population">optimize_ga_population</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_ga_population">optimize_ga_population</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_chem">optimize_weights_chem</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_chem">optimize_weights_chem</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_db">optimize_weights_db</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_db">optimize_weights_db</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_L1">optimize_weights_L1</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_L1">optimize_weights_L1</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_L2">optimize_weights_L2</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_L2">optimize_weights_L2</a>
 </li>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_Le">optimize_weights_Le</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_Le">optimize_weights_Le</a>
 </li>
         <li><a href="contents/ml/advanced.html#cmdoption-arg-path">path</a>
 </li>
@@ -516,21 +519,21 @@
     factor_energy_error
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_energy_error">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_energy_error">command line option</a>
 </li>
       </ul></li>
       <li>
     factor_force_error
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_force_error">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_force_error">command line option</a>
 </li>
       </ul></li>
       <li>
     factor_stress_error
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-factor_stress_error">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-factor_stress_error">command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -736,7 +739,7 @@
     max_iter_optimize_weights
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-max_iter_optimize_weights">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-max_iter_optimize_weights">command line option</a>
 </li>
       </ul></li>
       <li><a href="contents/install/installation.html#term-MILADY-GNU"><strong>MILADY-GNU</strong></a>
@@ -914,21 +917,21 @@
     optimize_ga_population
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_ga_population">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_ga_population">command line option</a>
 </li>
       </ul></li>
       <li>
     optimize_weights_chem
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_chem">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_chem">command line option</a>
 </li>
       </ul></li>
       <li>
     optimize_weights_db
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_db">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_db">command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -937,21 +940,21 @@
     optimize_weights_L1
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_L1">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_L1">command line option</a>
 </li>
       </ul></li>
       <li>
     optimize_weights_L2
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_L2">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_L2">command line option</a>
 </li>
       </ul></li>
       <li>
     optimize_weights_Le
 
       <ul>
-        <li><a href="contents/weight.html#cmdoption-arg-optimize_weights_Le">command line option</a>
+        <li><a href="contents/ml/weight.html#cmdoption-arg-optimize_weights_Le">command line option</a>
 </li>
       </ul></li>
   </ul></td>
