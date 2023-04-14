@@ -47,7 +47,7 @@ The `coupling of MILADY and LAMMPS <https://github.com/ai-atoms/Lammps-MiLaDy>`_
 Contact 
 ~~~~~~~
 
-Questions and suggestions can be sent to :email:`ai.unseen.group@gmail.com`.
+Questions and suggestions can be sent to :email:`our email<ai.unseen.group@gmail.com>`.
 We will be happy to answer!
 
 
