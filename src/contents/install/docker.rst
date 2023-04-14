@@ -48,7 +48,7 @@ Run Jupyter in the container:
 
 .. code-block:: bash
 
-   docker run -it -p 8888:8888 -v "$(pwd):/workspace" aallera/milady:1.0.2 shell
+   docker run -it --rm -p 8888:8888 -v "$(pwd):/workspace" aallera/milady:1.0.2 shell
 
 .. Hint:: Exposing the current directory to the container with ``-v`` allows you to export your results to disk.
 
