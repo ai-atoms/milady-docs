@@ -5,7 +5,7 @@ What is MILADY?
 
 MILADY stands for *Machine Learning DYnamics*, a package created by (and for) computational materials scientists to improve the accuracy and predictive power of atomistic simulations. 
 The code uses machine learning algorithms and prioritises methods with a reasonable computational cost.
-``MILADY`` is an open-source code distributed under the Academic Software Licence (ASL).
+MILADY is an open-source code distributed under the Academic Software Licence (ASL).
 
 **Main functionalities:**
 
