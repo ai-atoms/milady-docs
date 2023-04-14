@@ -28,7 +28,7 @@ C. Lapointe, T. D. Swinburne, L. Proville, C. S. Becquart, N. Mousseau, M.-C. Ma
 <https://doi.org/10.1103/PhysRevMaterials.6.113803>`_
 
 
-J. Baima, A.M. Goryaeva, T. D. Swinburne, J.-B. Maillet, M. Nastar, M.-C. Marinica. Capabilities and limits of autoencoders for extracting collective variables in atomistic materials science. `Phys. Chem. Chem. Phys.   10.1039/D2CP01917E (2022)
+J. Baima, A.M. Goryaeva, T. D. Swinburne, J.-B. Maillet, M. Nastar, M.-C. Marinica. Capabilities and limits of autoencoders for extracting collective variables in atomistic materials science. `Phys. Chem. Chem. Phys. 24: 23152 (2022)
 <https://pubs.rsc.org/en/content/articlelanding/2022/cp/d2cp01917e>`_
 
 .. _`pub:2021`:
