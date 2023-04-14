@@ -123,7 +123,7 @@ We recommend this approach for new users.</p>
 <li><p>Pull the Milady Docker image from DockerHub:</p></li>
 </ol>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>aallera/milady
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>aallera/milady:1.0.2
 </pre></div>
 </div>
 <p>Now that you have the Milady Docker image, you can use it based on the following usage examples:</p>
@@ -137,19 +137,19 @@ We recommend this approach for new users.</p>
 <li><p>With 4 CPUs (default):</p></li>
 </ol>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>aallera/milady:1.0.2
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>With 8 CPUs (using the <code class="docutils literal notranslate"><span class="pre">-np</span> <span class="pre">8</span></code> option):</p></li>
 </ol>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span>
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>aallera/milady:1.0.2<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span>
 </pre></div>
 </div>
 <p>Run Jupyter in the container:</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>milady<span class="w"> </span>shell
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>aallera/milady:1.0.2<span class="w"> </span>shell
 </pre></div>
 </div>
 <div class="admonition hint">

@@ -22,7 +22,7 @@ To get started with the Milady Docker image, follow these steps:
 
 .. code-block:: bash
 
-   docker pull aallera/milady
+   docker pull aallera/milady:1.0.2
 
 
 Now that you have the Milady Docker image, you can use it based on the following usage examples:
@@ -36,19 +36,19 @@ Run Milady in the current directory and exit:
 
 .. code-block:: bash
 
-   docker run -it --rm -v "$(pwd):/workspace" milady
+   docker run -it --rm -v "$(pwd):/workspace" aallera/milady:1.0.2
 
 2. With 8 CPUs (using the ``-np 8`` option):
 
 .. code-block:: bash
 
-   docker run -it --rm -v "$(pwd):/workspace" milady -np 8
+   docker run -it --rm -v "$(pwd):/workspace" aallera/milady:1.0.2 -np 8
 
 Run Jupyter in the container:
 
 .. code-block:: bash
 
-   docker run -it -p 8888:8888 -v "$(pwd):/workspace" milady shell
+   docker run -it -p 8888:8888 -v "$(pwd):/workspace" aallera/milady:1.0.2 shell
 
 .. Hint:: Exposing the current directory to the container with ``-v`` allows you to export your results to disk.
 
