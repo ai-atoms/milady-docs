@@ -149,7 +149,7 @@ We recommend this approach for new users.</p>
 </div>
 <p>Run Jupyter in the container:</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>aallera/milady:1.0.2<span class="w"> </span>shell
+<div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">:/workspace"</span><span class="w"> </span>aallera/milady:1.0.2<span class="w"> </span>shell
 </pre></div>
 </div>
 <div class="admonition hint">
