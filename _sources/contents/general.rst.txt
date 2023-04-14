@@ -37,7 +37,7 @@ Contributors
 | A. Allera          (2022 - present)
 | A. Zhong           (2022 - present)
 
-| Software development support is provided by:
+| **Software development support** is provided by:
 | Anida Khizar (LGLS, CEA Saclay),
 | Christian Van Wambeke (LGLS, CEA Saclay).
 
