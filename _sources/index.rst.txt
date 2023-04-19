@@ -60,3 +60,13 @@
 
    contents/pubs/publications
    contents/pubs/potentials
+
+.. toctree::
+   :caption: Tutorials
+   :maxdepth: 2
+   :hidden:
+
+   contents/school/iamat
+
+
+
