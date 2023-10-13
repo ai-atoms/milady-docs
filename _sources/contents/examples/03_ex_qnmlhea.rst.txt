@@ -6,7 +6,7 @@ QNML fit in HEA
 
 Here we provide an example of input file to perform quadratic noise ML
 (QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
-are provided in ``Examples/QNML_HEA_bSO4``.
+are provided in ``examples/qnml_hea_bso4``.
 
 For the models like QNML we recommend setting ``mld_fit_type=4``, which
 uses SVD with rank estimation. Other available settings for
