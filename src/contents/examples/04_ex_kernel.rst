@@ -6,7 +6,7 @@ Kernel regression using polynomial kernel
 
 Here we provide an example of input file to perform kernel noise ML
 (KNML) fit for W. The relevant files are provided in
-``Examples/KERNEL_POLY_W_BSO4``.
+``examples/kernel_poly_w_bso4``.
 
 For the models like kernel are performed using ``ml_type=1``. However,
 any kernel fit requires one pre-processing step, which actually are two

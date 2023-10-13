@@ -27,13 +27,6 @@ executed.
       that controls the design of the database. A description of this file
       can be found in the `database section <database.html>`__.
 
-   eamtab.potin, PREFIXSIM.din, PREFIXSIM.gin
-   
-      All these files are not used but theirs presence is compulsory. These files are
-      reminiscent from the NDM molecular dynamics code, the roots of the
-      ``MILADY`` package. In the future versions, these files
-      will be suppressed.
-
       .. note::
          
          Others files may be required depending on the keywords set in

@@ -6,7 +6,7 @@ LML fit in bcc Fe
 
 This section provides an example input an input file for performing
 linear ML (LML) fit with AFS descriptors for bcc Fe. The relevant files
-are provided in ``Examples/LML_Fe_AFS``.
+are provided in ``examples/lml_fe_afs``.
 
 We note that in this example, the fit is performed using a default
 home-made subroutine solving the least square problem. In order to set a

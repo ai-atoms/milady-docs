@@ -12,6 +12,13 @@ Articles
 2023
 ~~~~
 
+A. Allera, A. M. Goryaeva, P. Lafourcade, J.-B. Maillet, M.-C. Marinica. Neighbors Map: An efficient atomic descriptor for structural analysis.
+`Comp. Mater. Sci. 231: 112535 (2023) <https://www.sciencedirect.com/science/article/pii/S0927025623005293>`_
+
+A. M Goryaeva, C. Domain, A. Chartier, A. Dézaphie, T. D Swinburne, K. Ma, M. Loyer-Prost, J. Creuze, M.-C. Marinica. Compact 
+A15 Frank-Kasper nano-phases at the origin of dislocation loops in face-centred cubic metals. `Nature Comm. 14: 3003 (2023) 
+<https://https://www.nature.com/articles/s41467-023-38729-6>`_
+
 A. Zhong, C. Lapointe, A.M. Goryaeva, J. Baima, M. Athenes, M.-C. Marinica. Anharmonic thermo-elasticity of tungsten from accelerated Bayesian adaptive biasing force calculations with data-driven force fields. `Phys. Rev. Mater. 7: 023802 (2023) 
 <https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.7.023802>`_
 

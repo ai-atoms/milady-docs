@@ -2,7 +2,7 @@
 Here we provide the inputs for some common tasks that involve different
 types of fit, working with single-element and multi-component systems,
 writing descriptors to the files, saving design matrix, etc. The input
-files listed here are also provided in ``Examples``.
+files listed here are also provided in ``examples``.
 
 .. _`ex:write-desc`:
 
@@ -12,11 +12,15 @@ Compute and write descriptors without further fit
 This section provides an example of input to write atomic descriptors
 into files, without performing further fit (task with ``ml_type=-1``).
 This option is useful for structural analysis based on atomic
-descriptors :raw-latex:`\cite{Goryaeva_NatComm_2020}`, visualization of
+descriptors, as in  `​Nature Comm. 11: 4691 (2020)
+<https://doi.org/10.1038/s41467-020-18282-2>`_
+, visualization of
 atomic systems in the descriptor space, or for using the computed
 descriptors in conjunction with ML models not implemented in ``MiLaDy``,
-e.g. as in Ref. :raw-latex:`\cite{MESSINA_2020}`. The relevant files can
-be found in ``Examples/Compute_desc_only``.
+e.g. as in Ref. 
+`Messina et al (2020)
+<https://doi.org/10.1016/j.nimb.2020.09.011>`_ . The relevant files can
+be found in ``examples/compute_desc_only``.
 
 .. code-block:: fortran
 
