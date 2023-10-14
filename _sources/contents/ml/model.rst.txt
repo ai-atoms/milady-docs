@@ -141,11 +141,9 @@ Solving algorithm
   dimensions :math:`d \times m` being in fact :math:`\mathbf{A}^T`
   (with the notation used for this documentation):  
 
-  #. ``mld_fit_type=0``: home made subroutine based on inversion of a 
-     symmetric real matrix ( :math:`\mathbf{A}^T \mathbf{A}`) using Bunch-Kaufman
-     diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and 
-     adapted for compact descritors and low non-linarity (to have diesign matrix close 
-     to full rank)   
+  #. ``mld_fit_type=0``: home made solver  based on LU / QR decomposition for general matrix. 
+     There is no any particular assuption for the size or rank of  :math:`\mathbf{A}`  matrix. 
+     All the cases :math:`M > D`, :math:`M < D` and :math:`M = D` are treated. 
 
   #. ``mld_fit_type=1``: solution based on QR
      decomposition for serial and ScaLapack version.  
@@ -168,8 +166,8 @@ Solving algorithm
      least squares solution :math:`\beta` which minimizes both
      :math:`\left| \beta \right|^2` and
      :math:`\left| b - A \beta \right|^2`. With this option a rank 
-     estimation is possible. The ScaLapack version uses Cholesky decomposition for symlmetric and 
-     positive definite matrix consequnetly should be avoided.   
+     estimation is possible. The ScaLapack version uses Cholesky decomposition for symmetric and 
+     positive definite matrix consequnetly sometimes should be avoided.   
 
      .. warning:: 
         Avoid this solution for Scalapack version. Is very likely to obtain weird results in the 

@@ -291,11 +291,9 @@ implementation we build <span class="math notranslate nohighlight">\(\mathbf{Ama
 dimensions <span class="math notranslate nohighlight">\(d \times m\)</span> being in fact <span class="math notranslate nohighlight">\(\mathbf{A}^T\)</span>
 (with the notation used for this documentation):</p>
 <ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">mld_fit_type=0</span></code>: home made subroutine based on inversion of a
-symmetric real matrix ( <span class="math notranslate nohighlight">\(\mathbf{A}^T \mathbf{A}\)</span>) using Bunch-Kaufman
-diagonal pivoting method (for serial version) and LU factorization (for Scalapack version). Fast and
-adapted for compact descritors and low non-linarity (to have diesign matrix close
-to full rank)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mld_fit_type=0</span></code>: home made solver  based on LU / QR decomposition for general matrix.
+There is no any particular assuption for the size or rank of  <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>  matrix.
+All the cases <span class="math notranslate nohighlight">\(M &gt; D\)</span>, <span class="math notranslate nohighlight">\(M &lt; D\)</span> and <span class="math notranslate nohighlight">\(M = D\)</span> are treated.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mld_fit_type=1</span></code>: solution based on QR
 decomposition for serial and ScaLapack version.
 Adapted for full rank matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and use the assumption
@@ -316,8 +314,8 @@ may have <span class="math notranslate nohighlight">\(\textrm{rank}(\mathbf{A}) 
 least squares solution <span class="math notranslate nohighlight">\(\beta\)</span> which minimizes both
 <span class="math notranslate nohighlight">\(\left| \beta \right|^2\)</span> and
 <span class="math notranslate nohighlight">\(\left| b - A \beta \right|^2\)</span>. With this option a rank
-estimation is possible. The ScaLapack version uses Cholesky decomposition for symlmetric and
-positive definite matrix consequnetly should be avoided.</p>
+estimation is possible. The ScaLapack version uses Cholesky decomposition for symmetric and
+positive definite matrix consequnetly sometimes should be avoided.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Avoid this solution for Scalapack version. Is very likely to obtain weird results in the
