@@ -36,5 +36,5 @@ uses SVD with rank estimation. Other available settings for
    r_cut=4.7d0                !set the cutoff distace Rc
    descriptor_type=9          !set 9 for bispectrum SO4
    j_max=3.5                  !angular moment for bispectrum SO4
-
+   &end
 
