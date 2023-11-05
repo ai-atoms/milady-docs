@@ -212,28 +212,32 @@ Default is ``mld_fit_type=4``.
 
    Dump the design matrix, which contains the descriptors (energy, force and stress if 
    mentioned in  ``db_model.in``) and
-   the weigths. The writen design matix that has the dimension
-   ``number_of_data`` :math:`\times` ``dim_desc`` + 5, where
+   the weigths. The design matrix is writen design in file ``design_matrix.dat``.
+   This matrix has the dimension ``number_of_data`` :math:`\times` ``dim_desc``, where
    number_of_data are the number of data points (energy, force or
    stress) used to fit the potential and ``dim_desc`` is the dimension
-   of descriptor.
-   The file ``design_matrix.dat`` is created.
-
+   of descriptor. And additional file ``design_matrix.info`` is written with information 
+   about the database used for trainning. 
+   
    This option is active for normal trainning (``ml_type >= 0``).
 
-   **Format :**
+   .. warning:: 
+      The design matrix is written as the transpose of the matrix used internally by ``milady`` 
+  
 
-   -  The first column indicates the number of atoms (number of atoms for energy
-      descriptor, 0 for force or stress line), from 2nd column up to the
-      ``dim_desc`` + 1 column it is stored the descriptor components,
-      ``dim_desc`` being the dimension of descriptor.
-   -  The ``dim_desc+2``
-      column is for target (energy, force or stress).
-   -  The ``dim_desc+3`` column indicates if that line comes from energy (1); force (2); or
-      stress (3). .
-   -  The ``dim_desc+4`` column indicates the weight used
-      for that data point in loss function.
-   -  The ``dim_desc+5`` column indicates from which file comes that data point.
+   **Format of the design_matrix.dat :**
+
+   -  The first 3 lines  are comments 
+   -  Then are ``number_of_data`` lines with ``dim_desc`` columns. 
+
+   **Format of the design_matrix.info :**
+
+   -  The first 5 lines are comments. 
+   -  Then there are ``number_of_data`` lines with ``4`` columns.
+   -  The first column is a tag that indicates whether the corresponding line comes from energy (1), force (2), or stress (3).
+   -  The second column gives the target value (energy, force, or stress) used for training.
+   -  The third column indicates the weight used for that data point in the loss function.
+   -  The fourth column indicates the source file of that data point.
 
    Default ``write_design_matrix=.false.``
 

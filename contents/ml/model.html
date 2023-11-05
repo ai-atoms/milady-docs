@@ -371,26 +371,30 @@ vector <span class="math notranslate nohighlight">\(\mathbf{d}\)</span>.</p>
 <dd>
 <p>Dump the design matrix, which contains the descriptors (energy, force and stress if
 mentioned in  <code class="docutils literal notranslate"><span class="pre">db_model.in</span></code>) and
-the weigths. The writen design matix that has the dimension
-<code class="docutils literal notranslate"><span class="pre">number_of_data</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> + 5, where
+the weigths. The design matrix is writen design in file <code class="docutils literal notranslate"><span class="pre">design_matrix.dat</span></code>.
+This matrix has the dimension <code class="docutils literal notranslate"><span class="pre">number_of_data</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code>, where
 number_of_data are the number of data points (energy, force or
 stress) used to fit the potential and <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> is the dimension
-of descriptor.
-The file <code class="docutils literal notranslate"><span class="pre">design_matrix.dat</span></code> is created.</p>
+of descriptor. And additional file <code class="docutils literal notranslate"><span class="pre">design_matrix.info</span></code> is written with information
+about the database used for trainning.</p>
 <p>This option is active for normal trainning (<code class="docutils literal notranslate"><span class="pre">ml_type</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code>).</p>
-<p><strong>Format :</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The design matrix is written as the transpose of the matrix used internally by <code class="docutils literal notranslate"><span class="pre">milady</span></code></p>
+</div>
+<p><strong>Format of the design_matrix.dat :</strong></p>
 <ul class="simple">
-<li><p>The first column indicates the number of atoms (number of atoms for energy
-descriptor, 0 for force or stress line), from 2nd column up to the
-<code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> + 1 column it is stored the descriptor components,
-<code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> being the dimension of descriptor.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+2</span></code>
-column is for target (energy, force or stress).</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+3</span></code> column indicates if that line comes from energy (1); force (2); or
-stress (3). .</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+4</span></code> column indicates the weight used
-for that data point in loss function.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">dim_desc+5</span></code> column indicates from which file comes that data point.</p></li>
+<li><p>The first 3 lines  are comments</p></li>
+<li><p>Then are <code class="docutils literal notranslate"><span class="pre">number_of_data</span></code> lines with <code class="docutils literal notranslate"><span class="pre">dim_desc</span></code> columns.</p></li>
+</ul>
+<p><strong>Format of the design_matrix.info :</strong></p>
+<ul class="simple">
+<li><p>The first 5 lines are comments.</p></li>
+<li><p>Then there are <code class="docutils literal notranslate"><span class="pre">number_of_data</span></code> lines with <code class="docutils literal notranslate"><span class="pre">4</span></code> columns.</p></li>
+<li><p>The first column is a tag that indicates whether the corresponding line comes from energy (1), force (2), or stress (3).</p></li>
+<li><p>The second column gives the target value (energy, force, or stress) used for training.</p></li>
+<li><p>The third column indicates the weight used for that data point in the loss function.</p></li>
+<li><p>The fourth column indicates the source file of that data point.</p></li>
 </ul>
 <p>Default <code class="docutils literal notranslate"><span class="pre">write_design_matrix=.false.</span></code></p>
 </dd>
