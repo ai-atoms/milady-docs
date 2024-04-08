@@ -25,10 +25,10 @@ directories as in previous examples.
 
     .. code-block:: bash
 
-      module load mpi/openmpi/4.0.5 scalapack/mkl/21.3.0
+      module load mpi/openmpi/4.1.1 scalapack/mkl/21.3.0
       module load fortran/inteloneapi/21.4.0
-      module load gnu/10.1.0
-      module load cmake/3.18.2
+      module load gnu/11.2.0 
+      module load cmake/3.20.3
       export OMPI_FC=ifort
       export OMPI_CXX=g++
       export OMPI_CC=gcc
@@ -63,12 +63,12 @@ directories as in previous examples.
         export MLD_BUIDIR=${MLD_ROODIR}/mld_build
         export MLD_INSDIR=${MLD_ROODIR}/mld_install
         export MLD_TESDIR=${MLD_ROODIR}/mld_testdir
-        export MKL_ROOT=${MKLROOT}
-        export OAP_ROODIR=/ccc/products/ifx-21.4.0/system/default/
+        export MKL_ROOT=/ccc/products/mkl-21.3.0/system/default/21.3.0/
+        export OMP_ROODIR=/ccc/products/ifx-21.4.0/system/default/
         export OMP_INSDIR=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
         export OMP_ROOT=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
         export MLD_SETENV=ON
-     
+        export LD_LIBRARY_PATH=/ccc/products/mkl-21.3.0/system/default/21.3.0/lib/intel64/:$LD_LIBRARY_PATH
         export PATH=${MLD_SRCDIR}/scripts:${PATH}
       }
 
