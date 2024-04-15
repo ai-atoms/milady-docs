@@ -139,10 +139,10 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <p>Set your <code class="docutils literal notranslate"><span class="pre">bash</span></code> environment. My <code class="docutils literal notranslate"><span class="pre">${HOME}/.bashrc</span></code> file contains the
 following modules and variables:</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mpi/openmpi/4.0.5<span class="w"> </span>scalapack/mkl/21.3.0
+<div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mpi/openmpi/4.1.1<span class="w"> </span>scalapack/mkl/21.3.0
 module<span class="w"> </span>load<span class="w"> </span>fortran/inteloneapi/21.4.0
-module<span class="w"> </span>load<span class="w"> </span>gnu/10.1.0
-module<span class="w"> </span>load<span class="w"> </span>cmake/3.18.2
+module<span class="w"> </span>load<span class="w"> </span>gnu/11.2.0
+module<span class="w"> </span>load<span class="w"> </span>cmake/3.20.3
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMPI_FC</span><span class="o">=</span>ifort
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMPI_CXX</span><span class="o">=</span>g++
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMPI_CC</span><span class="o">=</span>gcc
@@ -178,12 +178,12 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_TESDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_testdir
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OAP_ROODIR</span><span class="o">=</span>/ccc/products/ifx-21.4.0/system/default/
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MKL_ROOT</span><span class="o">=</span>/ccc/products/mkl-21.3.0/system/default/21.3.0/
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_ROODIR</span><span class="o">=</span>/ccc/products/ifx-21.4.0/system/default/
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_INSDIR</span><span class="o">=</span>/ccc/products/openmpi-4.1.1/intel--20.0.0/default
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_ROOT</span><span class="o">=</span>/ccc/products/openmpi-4.1.1/intel--20.0.0/default
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SETENV</span><span class="o">=</span>ON
-
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/ccc/products/mkl-21.3.0/system/default/21.3.0/lib/intel64/:<span class="nv">$LD_LIBRARY_PATH</span>
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
 <span class="o">}</span>
 </pre></div>
