@@ -28,15 +28,23 @@ Kernels definitions
 
       the values to define are :math:`\sigma_{SE}` and :math:`l_{SE}`.
 
-   -  ``kernel_type = 4`` Polynomial kernel
+   -  ``kernel_type = 4`` Polynomial kernel shifted
 
       .. math::
-         \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p
+         \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a} \cdot  \mathbf{x}^m }{2l_{SE}^2}  \right)^p
          :label: kPO
 
       the values to define are :math:`\sigma_{SE}`, :math:`l_{SE}` and
       :math:`p`.
 
+   -  ``kernel_type = 5`` Polynomial kernel scaled 
+
+      .. math::
+         \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \left( \frac{\mathbf{D}^{s,a} \cdot \mathbf{x}^m }{|\mathbf{D}^{s,a}| |\mathbf{x}^m|}  \right)^p
+         :label: kPOs
+
+      the value to define  :math:`\sigma_{SE}` and
+      :math:`p`.
 
    -  ``kernel_type = 6`` Mahalanobis - Batchattarya kernel
 

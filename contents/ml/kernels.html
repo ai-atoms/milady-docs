@@ -139,16 +139,23 @@ first step as <span class="math notranslate nohighlight">\(k_1\)</span>, whilst 
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> and <span class="math notranslate nohighlight">\(l_{SE}\)</span>.</p>
 </li>
 <li>
-<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel</p>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code> Polynomial kernel shifted</p>
 <div class="math notranslate nohighlight" id="equation-kpo">
-<span class="eqno">(2)<a class="headerlink" href="#equation-kpo" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a}\mathbf{x}^m }{2l_{SE}^2}  \right)^p\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-kpo" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \left(\sigma_{SE}^2 + \frac{\mathbf{D}^{s,a} \cdot  \mathbf{x}^m }{2l_{SE}^2}  \right)^p\]</div>
 <p>the values to define are <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span>, <span class="math notranslate nohighlight">\(l_{SE}\)</span> and
+<span class="math notranslate nohighlight">\(p\)</span>.</p>
+</li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">5</span></code> Polynomial kernel scaled</p>
+<div class="math notranslate nohighlight" id="equation-kpos">
+<span class="eqno">(3)<a class="headerlink" href="#equation-kpos" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  =  \sigma_{SE}^2 \left( \frac{\mathbf{D}^{s,a} \cdot \mathbf{x}^m }{|\mathbf{D}^{s,a}| |\mathbf{x}^m|}  \right)^p\]</div>
+<p>the value to define  <span class="math notranslate nohighlight">\(\sigma_{SE}\)</span> and
 <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </li>
 <li>
 <p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">6</span></code> Mahalanobis - Batchattarya kernel</p>
 <div class="math notranslate nohighlight" id="equation-kmaha">
-<span class="eqno">(3)<a class="headerlink" href="#equation-kmaha" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p\]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-kmaha" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{D}^m)  =  \left[ \left( \mathbf{D}^{s,a} - \mathbf{x}^m \right)^\top  \Sigma^{-1} \left(  \mathbf{D}^{s,a} - \mathbf{x}^m \right) \right]^p\]</div>
 <p><span class="math notranslate nohighlight">\(p\)</span> should be defined. For the case <span class="math notranslate nohighlight">\(p=1/2\)</span> there is
 Mahalanobis distance.</p>
 </li>
@@ -200,7 +207,7 @@ In <code class="docutils literal notranslate"><span class="pre">Milady</span></c
 </dt>
 <dd>
 <p><span class="math notranslate nohighlight">\(k_2\)</span> option. It defines <span class="math notranslate nohighlight">\(p\)</span>
-from Eqs. <a class="reference internal" href="#equation-kmaha">(3)</a>. The recommended values are 3, 1
+from Eqs. <a class="reference internal" href="#equation-kmaha">(4)</a>. The recommended values are 3, 1
 and 1/2, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">2.d0</span></code></p>
 </dd>
