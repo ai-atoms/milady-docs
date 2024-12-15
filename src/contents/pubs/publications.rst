@@ -7,13 +7,28 @@ Many thanks to the authors!
 Articles
 ^^^^^^^^
 
+
+.. _`pub:2024`:
+
+2024
+~~~~
+
+A. Allera, A. M. Goryaeva, P. Lafourcade, J.-B. Maillet, M.-C. Marinica. Neighbors Map: An efficient atomic descriptor for structural analysis.
+`Comp. Mater. Sci. 231: 112535 (2024) <https://www.sciencedirect.com/science/article/pii/S0927025623005293>`_
+
+A. Dezaphie, C. Lapointe, A. M. Goryaeva, J. Creuze, M.-C. Marinica.Designing hybrid descriptors for improved machine learning models in atomistic materials science simulations.
+`Comp. Mater. Sci. 246: 113459 (2024) <https://www.sciencedirect.com/science/article/pii/S0927025624006803>`_
+
+A. Allera, T. D. Swinburne, A. M. Goryaeva, B. Bienvenu, F. Ribeiro, M. Perez, M.-C. Marinica, D. Rodney. Activation entropy of dislocation glide
+`arXiv preprint arXiv:2410.04813 (2024) <https://arxiv.org/abs/2410.04813>`_
+
+G. Soum-Sidikov, J.-P. Crocombette, M.-C. Marinica, C. Doutre, D. Lhuillier, L. Thulliez. Calculation of crystal defects induced in CaWO by 100 eV displacement cascades using a linear Machine Learning interatomic potential.
+`arXiv preprint arXiv:2407.00133 (2024) <https://arxiv.org/abs/2407.00133>`_
+
 .. _`pub:2023`:
 
 2023
 ~~~~
-
-A. Allera, A. M. Goryaeva, P. Lafourcade, J.-B. Maillet, M.-C. Marinica. Neighbors Map: An efficient atomic descriptor for structural analysis.
-`Comp. Mater. Sci. 231: 112535 (2023) <https://www.sciencedirect.com/science/article/pii/S0927025623005293>`_
 
 A. M Goryaeva, C. Domain, A. Chartier, A. Dézaphie, T. D Swinburne, K. Ma, M. Loyer-Prost, J. Creuze, M.-C. Marinica. Compact 
 A15 Frank-Kasper nano-phases at the origin of dislocation loops in face-centred cubic metals. `Nature Comm. 14: 3003 (2023) 
