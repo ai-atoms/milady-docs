@@ -108,6 +108,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id10">Parameters</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#ace">ACE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Parameters</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
@@ -201,7 +205,8 @@ positions are read.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=19</span></code> hybrid G2 + bispectrum SO4</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=100</span></code> MTP<span class="math notranslate nohighlight">\(^3\)</span> (up to order
 <span class="math notranslate nohighlight">\(M_{\mu,\nu}\)</span>, with <span class="math notranslate nohighlight">\(\nu \le 3\)</span>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code> PiP permutationally invariant polynomials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=200</span></code> PiP permutationally invariant polynomials</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">descriptor_type=300</span></code> ACE</p></li>
 </ol>
 <p>Default <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 </dd>
@@ -357,9 +362,9 @@ descriptor with strong coupling between the radial channels:</p>
 \[\textrm{AFS}_{n,n^\prime, l}^j = \sum_{i,k} g_n(r_{ji}) g_{n^{\prime}}(r_{jk}) T_l (\cos{\theta_{ijk}})\]</div>
 <p>The dimension of this descriptor is equal to <code class="docutils literal notranslate"><span class="pre">n_rbf</span></code><span class="math notranslate nohighlight">\(^2\)</span>
 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">(n_cheb</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">afs_type</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 </li>
 </ul>
-<p>Default <code class="docutils literal notranslate"><span class="pre">afs_type</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-arg-n_rbf">
 <span id="cmdoption-arg-n-rbf"></span><span class="sig-name descname"><span class="pre">n_rbf</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-n_rbf" title="Permalink to this definition"></a>
@@ -813,6 +818,154 @@ depending on th design that you made for your expension.</p>
 <dd>
 <p>TODO: choose   bond_dist_ann=1.0</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">bond_dist_ann=1.0</span></code></p>
+</dd>
+</dl>
+
+</section>
+</section>
+<section id="ace">
+<h2>ACE<a class="headerlink" href="#ace" title="Permalink to this heading"></a>
+</h2>
+<p>To use ACE (atomic cluster expansion), set <code class="docutils literal notranslate"><span class="pre">descriptor_type=300</span></code>.</p>
+<section id="id11">
+<h3>Parameters<a class="headerlink" href="#id11" title="Permalink to this heading"></a>
+</h3>
+<p>This descriptor is based on a hierarchy of many-body basis functions.</p>
+<p>The energy descriptor of an atom <span class="math notranslate nohighlight">\(a\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[  \mathbf{D}_{a} = \bigoplus_{\nu} \left( \bigoplus_{\mathbf{u}^{(\nu)}} \sum_{\mathbf{m} = -\mathbf{l}}^{\mathbf{l}} c_{\mathbf{m}}^{\mathbf{l} \mathbf{L}} \mathbf{A}_{a, \mathbf{v}}^{(\nu)}(\mathbf{R}_a)
+\right)
+  = \bigoplus_{\nu} \mathbf{D}_{a,\mathbf{u}^{(\nu)}}^{(\nu)}\]</div>
+<p>The total energy is expressed as a sum of the <span class="math notranslate nohighlight">\(\nu\)</span>-body order terms, where <span class="math notranslate nohighlight">\(\nu\)</span> is the number of atoms in the cluster.
+The index <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> indicates a collection of indices <span class="math notranslate nohighlight">\(\mathbf{\mu n l L}\)</span> that define the basis functions,
+where each of them is a vector of <span class="math notranslate nohighlight">\(\nu\)</span> elements:
+<span class="math notranslate nohighlight">\(\mathbf{\mu}\)</span> is the chemical species, <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> is the index of the radial function, <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> is the angular momentum, and <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> is the order of coupling.
+The coefficients <span class="math notranslate nohighlight">\(c_{\mathbf{m}}^{\mathbf{l} \mathbf{L}}\)</span> are the Clebsch-Gordan coefficients that couple the spherical harmonics.
+The <span class="math notranslate nohighlight">\(\mathbf{A}_{a, \mathbf{v}}^{(\nu)}(\mathbf{R}_a)\)</span> are the atomic basis functions, which are products of one-atom basis functions <span class="math notranslate nohighlight">\(A_{a,\mu n l m}(\mathbf{R}_a)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A_{a,\mu n l m}(\mathbf{R}_a) =
+\sum_{j \in \mathcal{N}(a)} \delta_{\mu}(\mu_j)
+R_{nl}^{\mu \mu_a}(r_{ja}) \, Y_{lm}(\hat{r}_{ja})\]</div>
+<p>For the case of k-ACE with a drastic reduction of number of basis functions by tensor contraction,
+we define <span class="math notranslate nohighlight">\(\mathbf{G}^{l,\mu_a,\mu_j}\)</span> a matrix composed of <span class="math notranslate nohighlight">\(M\)</span> row vectors <span class="math notranslate nohighlight">\(\mathbf{R}_{l}^{\mu_a \mu_j}(r_m)\)</span> at a
+given sampled distance <span class="math notranslate nohighlight">\(r_m (m=1,\ldots,M)\)</span>. Then <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> denotes the order of contraction,
+i.e., the truncation order retained in the SVD of the matrix <span class="math notranslate nohighlight">\(\mathbf{G}^{l,\mu_a,\mu_j}\)</span>.</p>
+<p>The parameters of the descriptors are controlled by the options below.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_numax">
+<span id="cmdoption-arg-ace-numax"></span><span class="sig-name descname"><span class="pre">ace_numax</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_numax" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The maximum body order set by the user.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_chem">
+<span id="cmdoption-arg-ace-chem"></span><span class="sig-name descname"><span class="pre">ace_chem</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_chem" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The way to encode chemical species.</p>
+</dd>
+</dl>
+
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ace_chem=0</span></code>: incomplet version, treatement for single element systems.</p></li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">ace_chem=1</span></code>: full version, treatement for multi-element systems.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_chem=1</span></code></p>
+</li>
+</ul>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_radial_chem">
+<span id="cmdoption-arg-ace-radial-chem"></span><span class="sig-name descname"><span class="pre">ace_radial_chem</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_radial_chem" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The type of the radial part treatement.</p>
+</dd>
+</dl>
+
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ace_radial_chem=1</span></code>: Ralf version, classical ACE.</p></li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">ace_radial_chem=3</span></code>: k-ACE version with tensor contraction.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_radial_chem=1</span></code></p>
+</li>
+</ul>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_gencg">
+<span id="cmdoption-arg-ace-gencg"></span><span class="sig-name descname"><span class="pre">ace_gencg</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_gencg" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The type of the generation of the Clebsch-Gordan coefficients.</p>
+</dd>
+</dl>
+
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ace_gencg=1</span></code>: redundant version.</p></li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">ace_gencg=2</span></code>: SVD Dusson-Ortner version.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_gencg=2</span></code></p>
+</li>
+</ul>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-l_ace_order">
+<span id="cmdoption-arg-l-ace-order"></span><span class="sig-name descname"><span class="pre">l_ace_order</span></span><span class="sig-prename descclassname"> <span class="pre">(logical</span> <span class="pre">vector)</span></span><a class="headerlink" href="#cmdoption-arg-l_ace_order" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>This logical vector defines which order(s) of cluster expension is activated.
+For example, the setting</p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(1)=.true.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(2)=.true.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(3)=.true.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(4)=.false.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(5)=.false.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">l_body_order(6)=.false.</span></code></p>
+<p>enables a cluster expension up to the third order.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_nmax_list">
+<span id="cmdoption-arg-ace-nmax-list"></span><span class="sig-name descname"><span class="pre">ace_nmax_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_nmax_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>A string of integer numbers that define the maximum value of <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> for each body order.
+The length of this string should be at least equal to <code class="docutils literal notranslate"><span class="pre">ace_numax</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">ace_nmax_list</span> <span class="pre">=</span> <span class="pre">"14</span> <span class="pre">5</span> <span class="pre">4</span> <span class="pre">3</span> <span class="pre">2</span> <span class="pre">1"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_lmax_list">
+<span id="cmdoption-arg-ace-lmax-list"></span><span class="sig-name descname"><span class="pre">ace_lmax_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_lmax_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>A string of integer numbers that define the maximum value of <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> for each body order.
+The length of this string should be at least equal to <code class="docutils literal notranslate"><span class="pre">ace_numax</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">ace_lmax_list</span> <span class="pre">=</span> <span class="pre">"0</span> <span class="pre">4</span> <span class="pre">3</span> <span class="pre">2</span> <span class="pre">1</span> <span class="pre">1"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_kmax_list">
+<span id="cmdoption-arg-ace-kmax-list"></span><span class="sig-name descname"><span class="pre">ace_kmax_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_kmax_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>A string of integer numbers that define the maximum value of <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> for each body order.
+The length of this string should be at least equal to <code class="docutils literal notranslate"><span class="pre">ace_numax</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">ace_kmax_list="5</span> <span class="pre">3</span> <span class="pre">3</span> <span class="pre">3</span> <span class="pre">3</span> <span class="pre">3"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_radial_poly">
+<span id="cmdoption-arg-ace-radial-poly"></span><span class="sig-name descname"><span class="pre">ace_radial_poly</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_radial_poly" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The type of the polynomial in the radial part.</p>
+<p>1 - powPftouny; 2 - expPaftouny; 3 - simpBessel</p>
+<p>Default   <code class="docutils literal notranslate"><span class="pre">ace_radial_poly=2</span></code></p>
 </dd>
 </dl>
 

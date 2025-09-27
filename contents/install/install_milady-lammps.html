@@ -131,14 +131,20 @@ the name of your potential file:</p>
 pair_coeff<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>Fe_LML.pot<span class="w"> </span>Fe
 </pre></div>
 </div>
-<p>For many elements you should just provide the elements for which your elements
-where designed. E.g. for one potential designed for a TaTiVW HEA the <code class="docutils literal notranslate"><span class="pre">pair_coeff</span></code>
+<p>For multi-element systems, you should simply provide the elements for which your potential was designed.
+For example, for a potential developed for a TaTiVW HEA,the <code class="docutils literal notranslate"><span class="pre">pair_coeff</span></code>
 line is as follow:</p>
 <div class="highlight-bash notranslate">
 <div class="highlight"><pre><span></span>pair_coeff<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>hea.pot<span class="w"> </span>Ta<span class="w"> </span>Ti<span class="w"> </span>V<span class="w"> </span>W
 </pre></div>
 </div>
-<p>The ready-to-use input files can be found in Examples of this repository</p>
+<p>You can also compute and output the descriptors with the following command:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>compute<span class="w"> </span>D<span class="w"> </span>all<span class="w"> </span>milady/atom
+dump<span class="w"> </span><span class="m">1</span><span class="w"> </span>all<span class="w"> </span>custom<span class="w"> </span><span class="m">10</span><span class="w"> </span>dump.milady.*<span class="w"> </span>id<span class="w"> </span><span class="nb">type</span><span class="w"> </span>c_D<span class="o">[</span>*<span class="o">]</span>
+</pre></div>
+</div>
+<p>Note that you don’t need to set any specific parameters for this compute, and all potential parameters are read directly from the <code class="docutils literal notranslate"><span class="pre">*.pot</span></code> file.</p>
 </section>
 <section id="installing-lammps-and-milady">
 <span id="sec-install-lammps"></span><h2>Installing Lammps and MILADY<a class="headerlink" href="#installing-lammps-and-milady" title="Permalink to this heading"></a>
