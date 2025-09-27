@@ -48,7 +48,9 @@ Descriptors
    #. ``descriptor_type=100`` MTP\ :math:`^3` (up to order
       :math:`M_{\mu,\nu}`, with :math:`\nu \le 3`)
 
-   #. ``descriptor_type=200`` PiP permutationally invariant polynomials.
+   #. ``descriptor_type=200`` PiP permutationally invariant polynomials
+
+   #. ``descriptor_type=300`` ACE
 
 
    Default ``1``.
@@ -179,7 +181,7 @@ descriptors introduced by the option ``afs_type``.
    The dimension of this descriptor is equal to ``n_rbf``\ :math:`^2`
    :math:`\times` ``(n_cheb + 1)``.
 
-Default ``afs_type = 1``
+   Default ``afs_type = 1``
 
 .. option::  n_rbf (integer)
 
@@ -557,3 +559,148 @@ up to the fourth order.  The number of PiP terms for each term are driven by ``b
    TODO: choose   bond_dist_ann=1.0
 
    Default: ``bond_dist_ann=1.0``
+
+
+ACE
+----
+
+To use ACE (atomic cluster expansion), set ``descriptor_type=300``.
+
+
+Parameters
+""""""""""
+
+
+This descriptor is based on a hierarchy of many-body basis functions.
+
+.. .. math::
+
+..    \epsilon_a (\mathbf{R}_a) = \sum_{\nu} \mathbf{w}_{\mathbf{u}^{(\nu)}}^\top \sum_{\mathbf{m} = -\mathbf{l}_b}^{\mathbf{l}_b} c_{\mathbf{m}}^{\mathbf{l}_b \mathbf{L}_b} \mathbf{A}_{a, \mathbf{v}}^{(\nu)}(\mathbf{R}_a)
+
+The energy descriptor of an atom :math:`a` is:
+
+.. math::
+
+   \mathbf{D}_{a} = \bigoplus_{\nu} \left( \bigoplus_{\mathbf{u}^{(\nu)}} \sum_{\mathbf{m} = -\mathbf{l}}^{\mathbf{l}} c_{\mathbf{m}}^{\mathbf{l} \mathbf{L}} \mathbf{A}_{a, \mathbf{v}}^{(\nu)}(\mathbf{R}_a)
+ \right)
+   = \bigoplus_{\nu} \mathbf{D}_{a,\mathbf{u}^{(\nu)}}^{(\nu)}
+
+
+The total energy is expressed as a sum of the :math:`\nu`-body order terms, where :math:`\nu` is the number of atoms in the cluster. 
+The index :math:`\mathbf{u}` indicates a collection of indices :math:`\mathbf{\mu n l L}` that define the basis functions, 
+where each of them is a vector of :math:`\nu` elements: 
+:math:`\mathbf{\mu}` is the chemical species, :math:`\mathbf{n}` is the index of the radial function, :math:`\mathbf{l}` is the angular momentum, and :math:`\mathbf{L}` is the order of coupling. 
+The coefficients :math:`c_{\mathbf{m}}^{\mathbf{l} \mathbf{L}}` are the Clebsch-Gordan coefficients that couple the spherical harmonics. 
+The :math:`\mathbf{A}_{a, \mathbf{v}}^{(\nu)}(\mathbf{R}_a)` are the atomic basis functions, which are products of one-atom basis functions :math:`A_{a,\mu n l m}(\mathbf{R}_a)`:  
+
+.. math::
+
+   A_{a,\mu n l m}(\mathbf{R}_a) =
+   \sum_{j \in \mathcal{N}(a)} \delta_{\mu}(\mu_j)
+   R_{nl}^{\mu \mu_a}(r_{ja}) \, Y_{lm}(\hat{r}_{ja})
+
+For the case of k-ACE with a drastic reduction of number of basis functions by tensor contraction, 
+we define :math:`\mathbf{G}^{l,\mu_a,\mu_j}` a matrix composed of :math:`M` row vectors :math:`\mathbf{R}_{l}^{\mu_a \mu_j}(r_m)` at a
+given sampled distance :math:`r_m (m=1,\ldots,M)`. Then :math:`\mathbf{k}` denotes the order of contraction,
+i.e., the truncation order retained in the SVD of the matrix :math:`\mathbf{G}^{l,\mu_a,\mu_j}`.
+
+The parameters of the descriptors are controlled by the options below.
+
+.. option:: ace_numax (integer)
+
+   The maximum body order set by the user. 
+
+.. option:: ace_chem (integer)
+
+   The way to encode chemical species.
+-  ``ace_chem=0``: incomplet version, treatement for single element systems. 
+-  ``ace_chem=1``: full version, treatement for multi-element systems. 
+
+   Default ``ace_chem=1``
+
+.. option:: ace_radial_chem (integer)
+
+   The type of the radial part treatement.
+- ``ace_radial_chem=1``: Ralf version, classical ACE.
+- ``ace_radial_chem=3``: k-ACE version with tensor contraction.
+
+  Default ``ace_radial_chem=1``
+
+.. option:: ace_gencg (integer)
+
+   The type of the generation of the Clebsch-Gordan coefficients.
+
+- ``ace_gencg=1``: redundant version.
+- ``ace_gencg=2``: SVD Dusson-Ortner version.
+ 
+  Default ``ace_gencg=2``
+
+.. option:: l_ace_order (logical vector)
+
+   This logical vector defines which order(s) of cluster expension is activated. 
+   For example, the setting
+
+   ``l_body_order(1)=.true.``
+   
+   ``l_body_order(2)=.true.``
+   
+   ``l_body_order(3)=.true.``
+
+   ``l_body_order(4)=.false.``
+   
+   ``l_body_order(5)=.false.``
+    
+   ``l_body_order(6)=.false.``
+
+   enables a cluster expension up to the third order. 
+
+.. option:: ace_nmax_list (string)
+
+   A string of integer numbers that define the maximum value of :math:`\mathbf{n}` for each body order. 
+   The length of this string should be at least equal to ``ace_numax``. 
+
+   Example: ``ace_nmax_list = "14 5 4 3 2 1"`` 
+
+.. option:: ace_lmax_list (string)
+
+   A string of integer numbers that define the maximum value of :math:`\mathbf{l}` for each body order. 
+   The length of this string should be at least equal to ``ace_numax``. 
+
+   Example: ``ace_lmax_list = "0 4 3 2 1 1"``
+
+.. option:: ace_kmax_list (string)
+
+   A string of integer numbers that define the maximum value of :math:`\mathbf{k}` for each body order. 
+   The length of this string should be at least equal to ``ace_numax``. 
+
+   Example: ``ace_kmax_list="5 3 3 3 3 3"``
+
+.. option:: ace_radial_poly (integer)
+
+   The type of the polynomial in the radial part. 
+
+   1 - powPftouny; 2 - expPaftouny; 3 - simpBessel 
+
+   Default   ``ace_radial_poly=2``
+
+.. .. option:: ace_lambda_list (string)
+
+..    A string of real numbers that define the value of :math:`\lambda` for each body order. 
+..    The length of this string should be at least equal to ``ace_numax``.
+
+..    Example: ``ace_lambda_list="3.0 3.0 3.0 3.0 3.0 3.0"``         
+   
+
+.. zetaace_order =      1
+.. ! here is the body nu=1... 
+.. dim_delta_zetaace(1) = " 1.d0 1.d0 1.d0 1.d0 1.d0 1.d0 "  
+.. ! nu =2 
+.. dim_delta_zetaace(2) = " 1.d0 1.0d0 1.0d0 1.0d0 1.d0 1.d0 "  
+.. ! nu = 3 
+.. dim_delta_zetaace(3) = " 1.d0 1.0d 1.0d0 1.0d0 1.d0 1.d0 "  
+.. l_ace_set_rcut = .false. 
+.. ace_rcut_in_list =" 1.2d0 1.2d0 1.2d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+.. ace_rcut_width_in_list =" 0.4d0 0.4d0 0.4d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+.. ace_rcut_out_list =" 5.d0 5.d0 5.d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+.. ace_rcut_width_out_list =" 0.5d0 0.5d0 0.5d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+

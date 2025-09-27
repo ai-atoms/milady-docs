@@ -25,15 +25,27 @@ the name of your potential file:
   pair_style milady
   pair_coeff * * Fe_LML.pot Fe
 
-For many elements you should just provide the elements for which your elements 
-where designed. E.g. for one potential designed for a TaTiVW HEA the ``pair_coeff``
+For multi-element systems, you should simply provide the elements for which your potential was designed. 
+For example, for a potential developed for a TaTiVW HEA,the ``pair_coeff``
 line is as follow: 
 
 .. code-block:: bash
 
   pair_coeff * * hea.pot Ta Ti V W
 
-The ready-to-use input files can be found in Examples of this repository
+.. The ready-to-use input files can be found in Examples of this repository.
+
+You can also compute and output the descriptors with the following command:
+
+.. code-block:: bash
+
+  compute D all milady/atom
+  dump 1 all custom 10 dump.milady.* id type c_D[*]
+
+Note that you don't need to set any specific parameters for this compute, and all potential parameters are read directly from the ``*.pot`` file.
+
+.. Actually, this compute doesn't perform any calculations itself. 
+.. It simply gathers and outputs the descriptors already calculated by the Milady library during the force computations.
 
 
 .. _`sec:install_lammps`:
