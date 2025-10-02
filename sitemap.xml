@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/docker.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/download.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/installation.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/install_irene.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/install_marconi.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/install/install_milady-lammps.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/input.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/model.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/kernels.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/system.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/descriptors.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/database.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/weight.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/ml/advanced.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/examples/01_ex_write.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/examples/02_ex_lmlfe.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/examples/03_ex_qnmlhea.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/examples/04_ex_kernel.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/pubs/publications.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/pubs/potentials.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/contents/school/iamat.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ai-atoms.github.io/milady-docs/index.html</loc>
+  <lastmod>2025-09-27T22:57:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
