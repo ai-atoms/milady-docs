@@ -66,3 +66,4 @@ html_theme_options = {
 html_favicon = 'static/fav.png'
 html_title = 'Milady Docs'
 
+suppress_warnings = ["misc.highlighting_failure"]
