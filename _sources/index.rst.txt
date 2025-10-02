@@ -42,6 +42,7 @@
    contents/ml/database
    contents/ml/weight
    contents/ml/advanced
+   contents/ml/chatbot
 
 .. toctree::
    :caption: Examples

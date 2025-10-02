@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roscoff &mdash; Milady Docs</title>
+  <title>MiLaDy Chatbot &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -22,7 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Potentials" href="../pubs/potentials.html" /> 
+    <link rel="next" title="Compute and write descriptors without further fit" href="../examples/01_ex_write.html" />
+    <link rel="prev" title="Advanced options" href="advanced.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,17 +56,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/install_milady-lammps.html">MILADY potentials in Lammps</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ml/input.html">Input files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/model.html">ML tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/model.html#regression-models">Regression models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/kernels.html">Kernels</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/system.html">Atomic systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/descriptors.html">Descriptors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/database.html">Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/weight.html">Optimization of hyperparameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/advanced.html">Advanced options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml/chatbot.html">MiLaDy Chatbot</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">ML tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html#regression-models">Regression models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced options</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MiLaDy Chatbot</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -80,12 +81,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../pubs/potentials.html">Potentials</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Roscoff</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#gpr">GPR</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gnn">GNN</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../school/iamat.html">Roscoff</a></li>
 </ul>
 
         </div>
@@ -102,9 +99,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Roscoff</li>
+      <li class="breadcrumb-item active">MiLaDy Chatbot</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/contents/school/iamat.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/contents/ml/chatbot.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -112,31 +109,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>Here are three collabs that emphasize some simple concepts in ML.</p>
-
-<section id="roscoff">
-<h1>Roscoff<a class="headerlink" href="#roscoff" title="Permalink to this heading"></a>
+  <section id="milady-chatbot">
+<span id="sec-advanced"></span><h1>MiLaDy Chatbot<a class="headerlink" href="#milady-chatbot" title="Permalink to this heading"></a>
 </h1>
-<section id="gpr">
-<h2>GPR<a class="headerlink" href="#gpr" title="Permalink to this heading"></a>
-</h2>
-<p>1D GP process from the scratch. With no <em>import something</em> <a class="reference external" href="https://colab.research.google.com/drive/1nMb6onNl1GMtO-aowOuGTWYO-2admSSL?usp=sharing">GPRoscoff01</a></p>
-<p>Surrogate models for local energy in W and vibrational entropy for point defects in Fe <a class="reference external" href="https://drive.google.com/file/d/1UBI983ZLnadULAVjZPAV4RIok_mjnmxW/view?usp=sharing">GPRoscoff02</a></p>
-</section>
-<section id="gnn">
-<h2>GNN<a class="headerlink" href="#gnn" title="Permalink to this heading"></a>
-</h2>
-<p>GCN from the scratch using just JAX (inspired from Prof. Jure Leskovec)
-<a class="reference external" href="https://drive.google.com/file/d/16OVOf9rGkCE_wpc7LEzZU8aJGjtFiN-r/view?usp=sharing">GCNRoscoff03</a></p>
-</section>
-</section>
+<iframe src="https://milady-chatbot.onrender.com/" width="100%" height="600px" frameborder="0"></iframe></section>
 
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../pubs/potentials.html" class="btn btn-neutral float-left" title="Potentials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-left" title="Advanced options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/01_ex_write.html" class="btn btn-neutral float-right" title="Compute and write descriptors without further fit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
