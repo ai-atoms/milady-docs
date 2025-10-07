@@ -55,7 +55,14 @@
 <li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MILADY potentials in Lammps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-milady-potentials">Using MILADY potentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-lammps-and-milady">Installing Lammps and MILADY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-lammps-and-milady">Installing Lammps and MILADY</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#itegration-of-milady-to-your-existing-lammps-installation">Itegration of MILADY to your existing Lammps installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#if-you-use-make-for-compiling-lammps-follow-the-next-steps">👉 If you use <code class="docutils literal notranslate"><span class="pre">make</span></code> for compiling Lammps, follow the next steps:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#if-you-use-cmake-for-compiling-lammps-follow-the-next-steps">👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, follow the next steps:</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -185,6 +192,10 @@ You can <script type="text/javascript">document.write(
         }
     )
 );</script> to update the present documentation.</p>
+<section id="itegration-of-milady-to-your-existing-lammps-installation">
+<h3>Itegration of MILADY to your existing Lammps installation<a class="headerlink" href="#itegration-of-milady-to-your-existing-lammps-installation" title="Permalink to this heading"></a>
+</h3>
+<p>If you have already <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installed, you can add <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library to your existing <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation as follows:</p>
 <ol class="arabic simple">
 <li><p>Clone our repository of <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p></li>
 </ol>
@@ -192,15 +203,22 @@ You can <script type="text/javascript">document.write(
 <div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>git@github.com:tomswinburne/milady_lammps.git<span class="w"> </span>milady_lammps.git
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>turn on  <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library in <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>:</p></li>
-</ol>
+<p>2. You will find the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/lib/milady</span></code>.
+Copy this <code class="docutils literal notranslate"><span class="pre">milady</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory of your <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation.
+For example, if your <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation is in <code class="docutils literal notranslate"><span class="pre">/path/to/lammps</span></code>,
+copy <code class="docutils literal notranslate"><span class="pre">milady</span></code> directory in <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/lib</span></code>.</p>
+<p>You will also find in <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/src/ML-MILADY</span></code> the <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> source files that
+are needed for <code class="docutils literal notranslate"><span class="pre">MILADY</span></code>. Copy the folder <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/src/ML-MILADY</span></code> to your <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/src</span></code>.</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>milady_lammps.git/src
-make<span class="w"> </span>yes-ml-milady
+<div class="highlight"><pre><span></span>cp<span class="w"> </span>-rp<span class="w"> </span>milady_lammps.git/lib/milady<span class="w"> </span>/path/to/lammps/lib/
+cp<span class="w"> </span>-rp<span class="w"> </span>milady_lammps.git/src/ML-MILADY<span class="w"> </span>/path/to/lammps/src/
 </pre></div>
 </div>
-<p>3. Choose the compilator for <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>: <code class="docutils literal notranslate"><span class="pre">intel</span></code> or <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.
+<section id="if-you-use-make-for-compiling-lammps-follow-the-next-steps">
+<h4>👉 If you use <code class="docutils literal notranslate"><span class="pre">make</span></code> for compiling Lammps, follow the next steps:<a class="headerlink" href="#if-you-use-make-for-compiling-lammps-follow-the-next-steps" title="Permalink to this heading"></a>
+</h4>
+<p>3. Go to <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/lib</span></code> and compile <code class="docutils literal notranslate"><span class="pre">milady</span></code> library.
+Choose the compilator for <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>: <code class="docutils literal notranslate"><span class="pre">intel</span></code> or <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.
 Note that there is no restriction in the choice that you have for the
 compilation of <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> (we use default parameters and <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler).
 Below, we provide the 2-step example using Intel Fortran <code class="docutils literal notranslate"><span class="pre">ifort</span></code>.
@@ -216,7 +234,7 @@ We use <code class="docutils literal notranslate"><span class="pre">oneAPI</span
 </pre></div>
 </div>
 <p>The paths will be similar for any older distribution of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code>,  such as <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Composer</span></code>, <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Parallel</span> <span class="pre">Studio</span></code>,  etc.
+<code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span></code>,  such as <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Composer</span></code>, <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Parallel</span> <span class="pre">Studio</span></code>, etc.
 If you have doubts: write us <script type="text/javascript">document.write(
     "<n pynff=\"ersrerapr rkgreany\" uers=\"znvygb:nv\056hafrra\056tebhc\100tznvy\056pbz\">fraq hf na rznvy<\057n>".replace(/[a-zA-Z]/g,
         function(c){
@@ -241,11 +259,11 @@ make<span class="w"> </span>-f<span class="w"> </span>Makefile.mpi_ifort<span cl
 make<span class="w"> </span>-f<span class="w"> </span>Makefile.mpi_ifort
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p><code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> final compilation …. ouufff:</p></li>
-</ol>
+<p>4. <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> final compilation …. ouufff:
+Turn on  <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library in <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>:</p>
 <div class="highlight-bash notranslate">
 <div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>milady_lammps.git/src
+make<span class="w"> </span>yes-ml-milady
 make<span class="w"> </span>mpi
 </pre></div>
 </div>
@@ -259,12 +277,36 @@ compilation. Try with one of the following <code class="docutils literal notrans
 TGCC Irene
 or <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux">some personal computer</a>  .</p>
 </div>
+</section>
+<section id="if-you-use-cmake-for-compiling-lammps-follow-the-next-steps">
+<h4>👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, follow the next steps:<a class="headerlink" href="#if-you-use-cmake-for-compiling-lammps-follow-the-next-steps" title="Permalink to this heading"></a>
+</h4>
+<p>3. Copy the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file from <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/cmake</span></code> to your <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/cmake</span></code> directory.
+Then, create a build directory, run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and compile <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>.</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cp<span class="w"> </span>-rp<span class="w"> </span>milady_lammps.git/cmake/CMakeLists.txt<span class="w"> </span>/path/to/lammps/cmake
+<span class="nb">cd</span><span class="w"> </span>/path/to/lammps
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>-DPKG_ML-MILADY<span class="o">=</span>ON<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>mpicc<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>mpicxx<span class="w"> </span>../cmake
+make<span class="w"> </span>-j4
+</pre></div>
+</div>
+<p>If your compiler cannot find <code class="docutils literal notranslate"><span class="pre">Lapack</span></code> functions, you may need to manually add the <code class="docutils literal notranslate"><span class="pre">BLAS</span></code> and <code class="docutils literal notranslate"><span class="pre">LAPACK</span></code> libraries in <code class="docutils literal notranslate"><span class="pre">cmake/CMakeLists.txt</span></code>:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>find_package<span class="o">(</span>BLAS<span class="w"> </span>REQUIRED<span class="o">)</span>
+find_package<span class="o">(</span>LAPACK<span class="w"> </span>REQUIRED<span class="o">)</span>
+target_link_libraries<span class="o">(</span>lmp<span class="w"> </span>PRIVATE<span class="w"> </span>lammps<span class="w"> </span><span class="si">${</span><span class="nv">BLAS_LIBRARIES</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">LAPACK_LIBRARIES</span><span class="si">}</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>instead of <code class="docutils literal notranslate"><span class="pre">target_link_libraries(lmp</span> <span class="pre">PRIVATE</span> <span class="pre">lammps)</span></code>.</p>
 <p>That’s it! We know … compilations are painful!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>IMPORTANT:  Many thanks to users that have reported some typos, errors in
 Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wróbel!</p>
 </div>
+</section>
+</section>
 </section>
 </section>
 
@@ -280,7 +322,7 @@ Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, MCM, AMG &amp; more.</p>
+    <p>&#169; Copyright 2022, MCM, AMG, AZ &amp; more.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

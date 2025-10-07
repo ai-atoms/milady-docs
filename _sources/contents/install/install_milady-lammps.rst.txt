@@ -86,21 +86,37 @@ If you know a better precedure, we are happy to learn about your experience.
 You can :email:`send us an email<ai.unseen.group@gmail.com>` to update the present documentation.
 
 
+Itegration of MILADY to your existing Lammps installation
+:::::::::::::
+
+If you have already ``Lammps`` installed, you can add ``MILADY`` library to your existing ``Lammps`` installation as follows:
 
 1. Clone our repository of ``milady_lammps``:
-
+   
 .. code:: bash
 
   git clone --recursive git@github.com:tomswinburne/milady_lammps.git milady_lammps.git
 
-2. turn on  ``MILADY`` library in ``Lammps``:
+
+2. You will find the ``MILADY`` library ``milady_lammps.git/lib/milady``.
+Copy this ``milady`` directory in the ``lib`` directory of your ``Lammps`` installation.
+For example, if your ``Lammps`` installation is in ``/path/to/lammps``, 
+copy ``milady`` directory in ``/path/to/lammps/lib``.
+
+You will also find in ``milady_lammps.git/src/ML-MILADY`` the ``Lammps`` source files that
+are needed for ``MILADY``. Copy the folder ``milady_lammps.git/src/ML-MILADY`` to your ``/path/to/lammps/src``.
 
 .. code:: bash
 
-  cd milady_lammps.git/src 
-  make yes-ml-milady 
+  cp -rp milady_lammps.git/lib/milady /path/to/lammps/lib/
+  cp -rp milady_lammps.git/src/ML-MILADY /path/to/lammps/src/
 
-3. Choose the compilator for ``milady_lammps``: ``intel`` or ``gfortran``. 
+
+👉 If you use ``make`` for compiling Lammps, follow the next steps: 
+""""""""""
+
+3. Go to ``/path/to/lammps/lib`` and compile ``milady`` library.
+Choose the compilator for ``milady_lammps``: ``intel`` or ``gfortran``. 
 Note that there is no restriction in the choice that you have for the 
 compilation of ``Lammps`` (we use default parameters and ``g++`` compiler). 
 Below, we provide the 2-step example using Intel Fortran ``ifort``. 
@@ -118,7 +134,7 @@ We use ``oneAPI Intel`` free distribution. Here are our choices:
   LIBCOMP=/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64/
   
 The paths will be similar for any older distribution of ``MKL`` and 
-``Intel Fortran``,  such as ``Intel Composer``, ``Intel Parallel Studio``,  etc.
+``Intel Fortran``,  such as ``Intel Composer``, ``Intel Parallel Studio``, etc.
 If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>` . We are happy to help you !!!!
 
 .. note::
@@ -138,11 +154,14 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
     make -f Makefile.mpi_ifort   
 
 4. ``milady_lammps`` final compilation .... ouufff: 
+Turn on  ``MILADY`` library in ``Lammps``:
 
-.. code:: bash 
+.. code:: bash
 
-    cd milady_lammps.git/src
-    make mpi 
+  cd milady_lammps.git/src 
+  make yes-ml-milady
+  make mpi 
+
 
 .. warning::
   Sometime the default main makefile of Lammps, i.e. ``Lammps/src/MAKE/Makefile.mpi``, is somehow 
@@ -153,6 +172,33 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
   TGCC Irene 
   or `some personal computer <https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux>`_  .   
        
+
+👉 If you use ``cmake`` for compiling Lammps, follow the next steps: 
+""""""""""
+
+3. Copy the ``CMakeLists.txt`` file from ``milady_lammps.git/cmake`` to your ``/path/to/lammps/cmake`` directory.
+Then, create a build directory, run ``cmake`` and compile ``Lammps``.
+
+.. code:: bash
+
+  cp -rp milady_lammps.git/cmake/CMakeLists.txt /path/to/lammps/cmake 
+  cd /path/to/lammps
+  mkdir build ; cd build 
+  cmake -DPKG_ML-MILADY=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx ../cmake
+  make -j4 
+
+
+If your compiler cannot find ``Lapack`` functions, you may need to manually add the ``BLAS`` and ``LAPACK`` libraries in ``cmake/CMakeLists.txt``:
+
+.. code:: bash
+
+  find_package(BLAS REQUIRED)
+  find_package(LAPACK REQUIRED)
+  target_link_libraries(lmp PRIVATE lammps ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES})
+
+instead of ``target_link_libraries(lmp PRIVATE lammps)``.
+
+
 
 That's it! We know ... compilations are painful!
 
