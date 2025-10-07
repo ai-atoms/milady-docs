@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Milady'
-copyright = '2022, MCM, AMG & more'
-author = 'MCM, AMG & more'
+copyright = '2022, MCM, AMG, AZ & more'
+author = 'MCM, AMG, AZ & more'
 
 
 # -- General configuration ---------------------------------------------------
