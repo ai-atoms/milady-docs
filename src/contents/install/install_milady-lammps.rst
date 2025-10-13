@@ -95,10 +95,10 @@ If you have already ``Lammps`` installed, you can add ``MILADY`` library to your
    
 .. code:: bash
 
-  git clone --recursive git@github.com:tomswinburne/milady_lammps.git milady_lammps.git
+  git clone --recursive git@github.com:mcmarinica/milady_lammps.git milady_lammps.git
 
 
-2. You will find the ``MILADY`` library ``milady_lammps.git/lib/milady``.
+1. You will find the ``MILADY`` library ``milady_lammps.git/lib/milady``.
 Copy this ``milady`` directory in the ``lib`` directory of your ``Lammps`` installation.
 For example, if your ``Lammps`` installation is in ``/path/to/lammps``, 
 copy ``milady`` directory in ``/path/to/lammps/lib``.
@@ -153,7 +153,7 @@ If you have doubts: write us :email:`send us an email<ai.unseen.group@gmail.com>
     make -f Makefile.mpi_ifort  clean 
     make -f Makefile.mpi_ifort   
 
-4. ``milady_lammps`` final compilation .... ouufff: 
+4. ``milady_lammps`` final compilation .... ouufff.
 Turn on  ``MILADY`` library in ``Lammps``:
 
 .. code:: bash
