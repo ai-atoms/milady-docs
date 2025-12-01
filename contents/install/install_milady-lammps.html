@@ -58,7 +58,27 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-lammps-and-milady">Installing Lammps and MILADY</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#itegration-of-milady-to-your-existing-lammps-installation">Itegration of MILADY to your existing Lammps installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#if-you-use-make-for-compiling-lammps-follow-the-next-steps">👉 If you use <code class="docutils literal notranslate"><span class="pre">make</span></code> for compiling Lammps, follow the next steps:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#if-you-use-cmake-for-compiling-lammps-follow-the-next-steps">👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, follow the next steps:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#if-you-use-cmake-for-compiling-lammps-please-make-sure-that-you-have-the-latest-version-of-lammps-and-follow-the-next-steps">👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, please make sure that you have the LATEST version of Lammps and follow the next steps:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-lammps-and-phondy-mab">Installing Lammps and PHONDY / MAB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-procedure">Installation procedure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#procedure-a-phondy-gnu-fortran-build-phondy-gfortran">Procedure A — PHONDY + GNU Fortran (<code class="docutils literal notranslate"><span class="pre">build-phondy-gfortran</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#procedure-b-phondy-intel-fortran-build-phondy-ifx">Procedure B — PHONDY + Intel Fortran (<code class="docutils literal notranslate"><span class="pre">build-phondy-ifx</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#procedure-c-mab-gnu-fortran-build-mab-gfortran">Procedure C — MAB + GNU Fortran (<code class="docutils literal notranslate"><span class="pre">build-mab-gfortran</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#procedure-d-mab-intel-fortran-build-mab-ifx">Procedure D — MAB + Intel Fortran (<code class="docutils literal notranslate"><span class="pre">build-mab-ifx</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-selection-defaults">Package selection defaults</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-phondy-vs-mab-integrity-tests">Running PHONDY vs MAB integrity tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-types-release-vs-debug">Build types: Release vs Debug</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-config-generators-unix-makefiles-ninja-etc">Single-config generators (Unix Makefiles, Ninja, etc.)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-config-generators-ninja-multi-config-visual-studio">Multi-config generators (Ninja Multi-Config, Visual Studio)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-tweaks">Custom tweaks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ipo-lto">IPO/LTO</a></li>
 </ul>
 </li>
 </ul>
@@ -157,8 +177,7 @@ dump<span class="w"> </span><span class="m">1</span><span class="w"> </span>all<
 <section id="installing-lammps-and-milady">
 <span id="sec-install-lammps"></span><h2>Installing Lammps and MILADY<a class="headerlink" href="#installing-lammps-and-milady" title="Permalink to this heading"></a>
 </h2>
-<p>Here we provide the steps for building <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> with <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> patch will call
-this as <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>.</p>
+<p>Here we provide the steps for building <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> with <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> patch, which we will refer to as <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code> installation is similar to <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> regular
@@ -203,7 +222,7 @@ You can <script type="text/javascript">document.write(
 <div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>git@github.com:mcmarinica/milady_lammps.git<span class="w"> </span>milady_lammps.git
 </pre></div>
 </div>
-<p>1. You will find the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/lib/milady</span></code>.
+<p>2. You will find the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> library <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/lib/milady</span></code>.
 Copy this <code class="docutils literal notranslate"><span class="pre">milady</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory of your <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation.
 For example, if your <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation is in <code class="docutils literal notranslate"><span class="pre">/path/to/lammps</span></code>,
 copy <code class="docutils literal notranslate"><span class="pre">milady</span></code> directory in <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/lib</span></code>.</p>
@@ -278,8 +297,8 @@ TGCC Irene
 or <a class="reference external" href="https://raw.githubusercontent.com/ai-atoms/milady-docs/main/src/contents/install/Files/Makefile.mpi_ForLinux">some personal computer</a>  .</p>
 </div>
 </section>
-<section id="if-you-use-cmake-for-compiling-lammps-follow-the-next-steps">
-<h4>👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, follow the next steps:<a class="headerlink" href="#if-you-use-cmake-for-compiling-lammps-follow-the-next-steps" title="Permalink to this heading"></a>
+<section id="if-you-use-cmake-for-compiling-lammps-please-make-sure-that-you-have-the-latest-version-of-lammps-and-follow-the-next-steps">
+<h4>👉 If you use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for compiling Lammps, please make sure that you have the LATEST version of Lammps and follow the next steps:<a class="headerlink" href="#if-you-use-cmake-for-compiling-lammps-please-make-sure-that-you-have-the-latest-version-of-lammps-and-follow-the-next-steps" title="Permalink to this heading"></a>
 </h4>
 <p>3. Copy the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file from <code class="docutils literal notranslate"><span class="pre">milady_lammps.git/cmake</span></code> to your <code class="docutils literal notranslate"><span class="pre">/path/to/lammps/cmake</span></code> directory.
 Then, create a build directory, run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and compile <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>.</p>
@@ -305,6 +324,411 @@ target_link_libraries<span class="o">(</span>lmp<span class="w"> </span>PRIVATE<
 <p>IMPORTANT:  Many thanks to users that have reported some typos, errors in
 Makefile. In particular many thanks to  Marie Landeiro Dos Reis, Antoine Kraych and Jan Wróbel!</p>
 </div>
+</section>
+</section>
+</section>
+<section id="installing-lammps-and-phondy-mab">
+<span id="sec-install-mhondy"></span><h2>Installing Lammps and PHONDY / MAB<a class="headerlink" href="#installing-lammps-and-phondy-mab" title="Permalink to this heading"></a>
+</h2>
+<p>Here we provide the steps for building <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> with PHONDY or MAB using either GNU <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> or Intel oneAPI <code class="docutils literal notranslate"><span class="pre">ifx</span></code>.
+Attention: as PHONDY and MAB are mutually
+exclusive (<code class="docutils literal notranslate"><span class="pre">PKG_PHONDY</span></code> vs <code class="docutils literal notranslate"><span class="pre">PKG_MAB</span></code>), please keep dedicated build directories per package and compiler to avoid cross-pollution.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a>
+</h3>
+<ul class="simple">
+<li><p>GNU toolchain and OpenMPI wrappers (<code class="docutils literal notranslate"><span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>, <code class="docutils literal notranslate"><span class="pre">mpicc</span></code>, <code class="docutils literal notranslate"><span class="pre">mpicxx</span></code>, <code class="docutils literal notranslate"><span class="pre">mpifort</span></code>)</p></li>
+<li><p>Intel oneAPI HPC Toolkit (<code class="docutils literal notranslate"><span class="pre">ifx</span></code>, <code class="docutils literal notranslate"><span class="pre">mpiifort</span></code>, <code class="docutils literal notranslate"><span class="pre">mpiicpc</span></code>, etc.)</p></li>
+<li><p>ScaLAPACK runtime via Intel oneAPI Math Kernel Library (<code class="docutils literal notranslate"><span class="pre">libscalapack_lp64.so</span></code>)</p></li>
+<li><p>MPI build enabled in CMake (<code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">BUILD_MPI=on</span></code>): PHONDY and MAB binaries require MPI interfaces even for nominally serial jobs</p></li>
+<li><p>Disable automatic potential downloads for reproducibility: <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">DOWNLOAD_POTENTIALS=off</span></code></p></li>
+</ul>
+<p>Recommanded toolchains (Nov 2025)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="row-odd">
+<th class="head"><p>Component</p></th>
+<th class="head"><p>Version / build ID</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p>CMake</p></td>
+<td><p>&gt;= 4.1.2</p></td>
+<td><p>/usr/bin/cmake –version</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>GNU Fortran</p></td>
+<td><p>&gt;= 13.3.0</p></td>
+<td><p>gfortran –version</p></td>
+</tr>
+<tr class="row-even">
+<td><p>Intel ifx</p></td>
+<td><p>&gt;= 2024.2.0 (oneAPI 2024.2)</p></td>
+<td><p>ifx –version</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>OpenMPI</p></td>
+<td><p>&gt;= 5.0.7</p></td>
+<td><p>mpirun –version</p></td>
+</tr>
+<tr class="row-even">
+<td><p>Python</p></td>
+<td><p>3.12.3</p></td>
+<td><p>Optional, used by integrity_test.py</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="installation-procedure">
+<h3>Installation procedure<a class="headerlink" href="#installation-procedure" title="Permalink to this heading"></a>
+</h3>
+<ol class="arabic simple">
+<li><p>(Optional) You need to install the latest version of <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> if you don’t have it.</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>release<span class="w"> </span>https://github.com/lammps/lammps.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Clone our repository of <code class="docutils literal notranslate"><span class="pre">milady_lammps</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>git@github.com:mcmarinica/phondy.git<span class="w"> </span>phondy.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Copy this <code class="docutils literal notranslate"><span class="pre">phondy.git</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory of your <code class="docutils literal notranslate"><span class="pre">Lammps</span></code> installation and name it as PHONDY.</p></li>
+</ol>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cp<span class="w"> </span>-rp<span class="w"> </span>phondy.git<span class="w"> </span>/path/to/lammps/lib/phondy
+</pre></div>
+</div>
+<p>Then based on your compiler and your target, follow one of the next 4 procedures:</p>
+<section id="procedure-a-phondy-gnu-fortran-build-phondy-gfortran">
+<h4>Procedure A — PHONDY + GNU Fortran (<code class="docutils literal notranslate"><span class="pre">build-phondy-gfortran</span></code>)<a class="headerlink" href="#procedure-a-phondy-gnu-fortran-build-phondy-gfortran" title="Permalink to this heading"></a>
+</h4>
+<p>A1. Create fresh build directory</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/lammps
+rm<span class="w"> </span>-rf<span class="w"> </span>build-phondy-gfortran
+mkdir<span class="w"> </span>build-phondy-gfortran
+</pre></div>
+</div>
+<p>A2. Configure release build with presets + GNU toolchain</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-phondy-gfortran<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/most.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">BUILD_MPI</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>gfortran<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>mpifort
+</pre></div>
+</div>
+<p>The preset already prefers GNU compilers; the explicit <cite>-D</cite> flags guarantee we stick with <cite>gfortran</cite> even after previous Intel builds.</p>
+<p>Short-form configure (quick rebuilds) can be configured as:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-phondy-gfortran<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-D<span class="w"> </span><span class="nv">PKG_MANYBODY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-D<span class="w"> </span><span class="nv">PKG_REPLICA</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>on
+</pre></div>
+</div>
+<p>This trimmed command keeps the essentials for “short” LAMMPS rebuilds—just rerun it after cleaning the build tree when you do not need the full preset stack.</p>
+<p>A3. Build complete LAMMPS + PHONDY artifacts</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-gfortran<span class="w"> </span>--target<span class="w"> </span>lmp<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-gfortran<span class="w"> </span>--target<span class="w"> </span>phondy_main<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Outputs:</p>
+<ul class="simple">
+<li><p>LAMMPS executable with the full <code class="docutils literal notranslate"><span class="pre">most.cmake</span></code> package set: <code class="docutils literal notranslate"><span class="pre">build-phondy-gfortran/lmp</span></code></p></li>
+<li><p>PHONDY driver: <code class="docutils literal notranslate"><span class="pre">build-phondy-gfortran/lib/phondy/bin/phondy_main</span></code></p></li>
+</ul>
+</section>
+<section id="procedure-b-phondy-intel-fortran-build-phondy-ifx">
+<h4>Procedure B — PHONDY + Intel Fortran (<code class="docutils literal notranslate"><span class="pre">build-phondy-ifx</span></code>)<a class="headerlink" href="#procedure-b-phondy-intel-fortran-build-phondy-ifx" title="Permalink to this heading"></a>
+</h4>
+<p>B1. Load Intel environment</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/intel/oneapi/setvars.sh
+</pre></div>
+</div>
+<p>B2. Create fresh build directory</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/lammps
+rm<span class="w"> </span>-rf<span class="w"> </span>build-phondy-ifx
+mkdir<span class="w"> </span>build-phondy-ifx
+</pre></div>
+</div>
+<p>B3. Configure Release build pointing to <code class="docutils literal notranslate"><span class="pre">ifx</span></code> and matching MPI wrapper</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-phondy-ifx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/most.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">BUILD_MPI</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>/opt/intel/oneapi/2024.2/bin/ifx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>/usr/local/iopenmpi.5.0.7/bin/mpifort<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_INTERPROCEDURAL_OPTIMIZATION</span><span class="o">=</span>off
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CMAKE_INTERPROCEDURAL_OPTIMIZATION=off</span></code> prevents GCC LTO objects inside <code class="docutils literal notranslate"><span class="pre">liblammps.a</span></code> from requiring the GNU LTO plugin during the final Fortran link.</p>
+<p>Short-form configure (quick rebuilds) can be configured as:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-phondy-ifx<span class="w"> </span><span class="se">\</span>
+-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_MANYBODY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_REPLICA</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>ifx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>mpifort<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_INTERPROCEDURAL_OPTIMIZATION</span><span class="o">=</span>off
+</pre></div>
+</div>
+<p>Use this when you just need the lean Intel-based PHONDY build without the more exhaustive preset overrides.</p>
+<p>B4. Build complete LAMMPS + PHONDY artifacts</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-ifx<span class="w"> </span>--target<span class="w"> </span>lmp<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-ifx<span class="w"> </span>--target<span class="w"> </span>phondy_main<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Outputs:</p>
+<ul class="simple">
+<li><p>Full <code class="docutils literal notranslate"><span class="pre">lmp</span></code> binary under <code class="docutils literal notranslate"><span class="pre">build-phondy-ifx/lmp</span></code></p></li>
+<li><p>PHONDY driver under <code class="docutils literal notranslate"><span class="pre">build-phondy-ifx/lib/phondy/bin/phondy_main</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Keep both build directories to flip between compilers instantly.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">ENABLE_TESTING=on</span></code> if you plan to run the broader unit-test suite.</p></li>
+<li><p>Swapping presets: use <code class="docutils literal notranslate"><span class="pre">cmake/presets/basic.cmake</span></code> for faster builds with fewer packages, or toggle packages individually with <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_&lt;NAME&gt;=on/off</span></code>.</p></li>
+<li><p>For pure GNU builds you may re-enable IPO/LTO (<code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">CMAKE_INTERPROCEDURAL_OPTIMIZATION=on</span></code>) to squeeze more performance, but leave it off when mixing Intel Fortran with GNU C++ objects.</p></li>
+<li><p>If CMake cannot locate MPI, point it to the wrapper binaries explicitly (<code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">MPI_C_COMPILER=/usr/local/iopenmpi/bin/mpicc</span></code>, etc.) and ensure the matching <code class="docutils literal notranslate"><span class="pre">lib64</span></code> directory is on <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> during the configure step.</p></li>
+</ul>
+</div>
+</section>
+<section id="procedure-c-mab-gnu-fortran-build-mab-gfortran">
+<h4>Procedure C — MAB + GNU Fortran (<code class="docutils literal notranslate"><span class="pre">build-mab-gfortran</span></code>)<a class="headerlink" href="#procedure-c-mab-gnu-fortran-build-mab-gfortran" title="Permalink to this heading"></a>
+</h4>
+<p>C1. Fresh build directory</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/lammps
+rm<span class="w"> </span>-rf<span class="w"> </span>build-mab-gfortran
+mkdir<span class="w"> </span>build-mab-gfortran
+</pre></div>
+</div>
+<p>C2. Configure Release build with MAB enabled</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-mab-gfortran<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/most.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">BUILD_MPI</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_MAB</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>gfortran<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>mpifort
+</pre></div>
+</div>
+<p>MAB pulls in the same PHONDY library sources but links the <code class="docutils literal notranslate"><span class="pre">mab_main</span></code> driver. Keeping PHONDY off avoids duplicate targets.</p>
+<p>Short-form configure (quick rebuilds) can be configured as:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-mab-gfortran<span class="w"> </span><span class="se">\</span>
+-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_MAB</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_MANYBODY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_REPLICA</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off
+</pre></div>
+</div>
+<p>Use this trimmed variant after the first configuration when you simply need to refresh the existing GNU build tree.</p>
+<p>C3. Build the <code class="docutils literal notranslate"><span class="pre">mab_main</span></code> executable</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>build-mab-gfortran<span class="w"> </span>--target<span class="w"> </span>mab_main<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Output: <code class="docutils literal notranslate"><span class="pre">build-mab-gfortran/lib/phondy/bin/mab_main</span></code></p>
+</section>
+<section id="procedure-d-mab-intel-fortran-build-mab-ifx">
+<h4>Procedure D — MAB + Intel Fortran (<code class="docutils literal notranslate"><span class="pre">build-mab-ifx</span></code>)<a class="headerlink" href="#procedure-d-mab-intel-fortran-build-mab-ifx" title="Permalink to this heading"></a>
+</h4>
+<p>D1. Load Intel environment</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/intel/oneapi/setvars.sh
+</pre></div>
+</div>
+<p>D2. Create isolated build directory</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/lammps
+rm<span class="w"> </span>-rf<span class="w"> </span>build-mab-ifx
+mkdir<span class="w"> </span>build-mab-ifx
+</pre></div>
+</div>
+<p>D3. Configure (<code class="docutils literal notranslate"><span class="pre">PKG_MAB</span></code> on, <code class="docutils literal notranslate"><span class="pre">PKG_PHONDY</span></code> off)</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-mab-ifx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-C<span class="w"> </span>cmake/presets/most.cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">BUILD_MPI</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_MAB</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>/opt/intel/oneapi/2024.2/bin/ifx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>/usr/local/iopenmpi.5.0.7/bin/mpifort<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">CMAKE_INTERPROCEDURAL_OPTIMIZATION</span><span class="o">=</span>off
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CMAKE_INTERPROCEDURAL_OPTIMIZATION=off</span></code> is again critical when mixing Intel Fortran with the GNU-built LAMMPS C++ objects.</p>
+<p>Short-form configure (quick rebuilds) can be configured as:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-mab-ifx<span class="w"> </span><span class="se">\</span>
+-C<span class="w"> </span>cmake/presets/gcc.cmake<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_MAB</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_PHONDY</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_MANYBODY</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">PKG_REPLICA</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">DOWNLOAD_POTENTIALS</span><span class="o">=</span>off<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">CMAKE_Fortran_COMPILER</span><span class="o">=</span>ifx<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">MPI_Fortran_COMPILER</span><span class="o">=</span>mpifort<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">CMAKE_INTERPROCEDURAL_OPTIMIZATION</span><span class="o">=</span>off
+</pre></div>
+</div>
+<p>D4. Build the <code class="docutils literal notranslate"><span class="pre">mab_main</span></code> executable</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>build-mab-ifx<span class="w"> </span>--target<span class="w"> </span>mab_main<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Output: <code class="docutils literal notranslate"><span class="pre">build-mab-ifx/lib/phondy/bin/mab_main</span></code></p>
+</section>
+<section id="package-selection-defaults">
+<h4>Package selection defaults<a class="headerlink" href="#package-selection-defaults" title="Permalink to this heading"></a>
+</h4>
+<p>LAMMPS packages are opt-in, and the build picks up whatever combination you enable with <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_&lt;NAME&gt;=on/off</span></code> (or the legacy <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">yes-&lt;name&gt;</span></code> flow).
+The instructions above assume the <code class="docutils literal notranslate"><span class="pre">cmake/presets/most.cmake</span></code> preset is loaded, which now serves as the default package set for PHONDY/MAB work.
+That preset flips on the “most commonly needed” packages—<code class="docutils literal notranslate"><span class="pre">MANYBODY</span></code>, <code class="docutils literal notranslate"><span class="pre">MOLECULE</span></code>, <code class="docutils literal notranslate"><span class="pre">KSPACE</span></code>, <code class="docutils literal notranslate"><span class="pre">RIGID</span></code>, <code class="docutils literal notranslate"><span class="pre">REPLICA</span></code>, etc.—so you get a feature-complete <code class="docutils literal notranslate"><span class="pre">lmp</span></code> without hand-toggling dozens of options.</p>
+<ul class="simple">
+<li><p>To slim the build down, drop the <code class="docutils literal notranslate"><span class="pre">most.cmake</span></code> preset (use <code class="docutils literal notranslate"><span class="pre">basic.cmake</span></code> instead) and explicitly re-enable only the packages you need via <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_&lt;NAME&gt;=on</span></code>.</p></li>
+<li><p>To add extras on top of <code class="docutils literal notranslate"><span class="pre">most.cmake</span></code>, just append more <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_&lt;NAME&gt;=on</span></code> arguments; the preset values are only defaults and can be overridden per build.</p></li>
+<li><p>If you temporarily disable PHONDY/MAB (<code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_PHONDY=off</span></code>, <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">PKG_MAB=off</span></code>), remember that <code class="docutils literal notranslate"><span class="pre">most.cmake</span></code> will still toggle the other packages unless you override them explicitly.</p></li>
+</ul>
+</section>
+</section>
+<section id="running-phondy-vs-mab-integrity-tests">
+<h3>Running PHONDY vs MAB integrity tests<a class="headerlink" href="#running-phondy-vs-mab-integrity-tests" title="Permalink to this heading"></a>
+</h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">phondy.git</span></code> repository includes a regression helper to validate PHONDY and MAB builds against a suite of reference calculations.
+The regression helper lives in <code class="docutils literal notranslate"><span class="pre">lib/phondy/mab_phondy_test</span></code>.
+It can now target PHONDY-only, MAB-only, or the combined suite using an optional selector argument:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/lammps/lib/phondy/mab_phondy_test
+python<span class="w"> </span>integrity_test.py<span class="w"> </span>clean<span class="w"> </span>phondy<span class="w">   </span><span class="c1"># clean only PHONDY directories</span>
+python<span class="w"> </span>integrity_test.py<span class="w"> </span>run<span class="w"> </span>phondy<span class="w">     </span><span class="c1"># run PHONDY validations</span>
+python<span class="w"> </span>integrity_test.py<span class="w"> </span>clean<span class="w"> </span>mab<span class="w">      </span><span class="c1"># clean only MAB directories</span>
+python<span class="w"> </span>integrity_test.py<span class="w"> </span>run<span class="w"> </span>mab<span class="w">        </span><span class="c1"># run MAB validations</span>
+python<span class="w"> </span>integrity_test.py<span class="w"> </span>run<span class="w">            </span><span class="c1"># default = all tests</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The script reads <code class="docutils literal notranslate"><span class="pre">integrity.json</span></code> for the PHONDY (<code class="docutils literal notranslate"><span class="pre">exe_phondy</span></code>) and MAB (<code class="docutils literal notranslate"><span class="pre">exe_mab</span></code>) executable paths; update those fields if you rename build directories.</p></li>
+<li><p>PHONDY and MAB share support files, so keep separate build trees (<code class="docutils literal notranslate"><span class="pre">build-phondy-*</span></code>, <code class="docutils literal notranslate"><span class="pre">build-mab-*</span></code>) to avoid CMake cache conflicts.</p></li>
+</ul>
+</section>
+<section id="build-types-release-vs-debug">
+<h3>Build types: Release vs Debug<a class="headerlink" href="#build-types-release-vs-debug" title="Permalink to this heading"></a>
+</h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="row-odd">
+<th class="head"><p>Build type</p></th>
+<th class="head"><p>Typical flag set</p></th>
+<th class="head"><p>When to use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">Release</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O3</span> <span class="pre">-DNDEBUG</span></code></p></td>
+<td><p>Production-quality binaries (default in this guide).</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">RelWithDebInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O2</span> <span class="pre">-g</span> <span class="pre">-DNDEBUG</span></code></p></td>
+<td><p>Profiling or reproducing user issues with symbols but decent performance.</p></td>
+</tr>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">Debug</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O0</span> <span class="pre">-g</span></code> (plus runtime checks if you add them)</p></td>
+<td><p>Deep debugging, AddressSanitizer/UBSan runs, extra asserts/logging.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">MinSizeRel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-Os</span> <span class="pre">-DNDEBUG</span></code></p></td>
+<td><p>Size-constrained environments (rare for HPC but available).</p></td>
+</tr>
+</tbody>
+</table>
+<section id="single-config-generators-unix-makefiles-ninja-etc">
+<h4>Single-config generators (Unix Makefiles, Ninja, etc.)<a class="headerlink" href="#single-config-generators-unix-makefiles-ninja-etc" title="Permalink to this heading"></a>
+</h4>
+<p>Pick one type at configure time:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build-phondy-gfortran<span class="w"> </span><span class="se">\</span>
+...<span class="w"> </span><span class="se">\</span>
+-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo
+</pre></div>
+</div>
+<p>Reconfigure if you need to switch types (or keep parallel build directories per type)</p>
+</section>
+<section id="multi-config-generators-ninja-multi-config-visual-studio">
+<h4>Multi-config generators (Ninja Multi-Config, Visual Studio)<a class="headerlink" href="#multi-config-generators-ninja-multi-config-visual-studio" title="Permalink to this heading"></a>
+</h4>
+<p>Omit <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code>, then choose at build time:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-gfortran<span class="w"> </span>--target<span class="w"> </span>phondy_main<span class="w"> </span>--config<span class="w"> </span>Debug<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>build-phondy-gfortran<span class="w"> </span>--target<span class="w"> </span>phondy_main<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-tweaks">
+<h4>Custom tweaks<a class="headerlink" href="#custom-tweaks" title="Permalink to this heading"></a>
+</h4>
+<p>Override the per-language flags if needed (examples):</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>-D<span class="w"> </span><span class="nv">CMAKE_CXX_FLAGS_DEBUG</span><span class="o">=</span><span class="s2">"-O0 -g3 -fsanitize=address"</span>
+-D<span class="w"> </span><span class="nv">CMAKE_Fortran_FLAGS_RELEASE</span><span class="o">=</span><span class="s2">"-O3 -march=native"</span>
+</pre></div>
+</div>
+<p>You can also set generator expressions like <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE=Debug</span></code> plus <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">ENABLE_TESTING=on</span></code> for debug-only checks.</p>
+</section>
+<section id="ipo-lto">
+<h4>IPO/LTO<a class="headerlink" href="#ipo-lto" title="Permalink to this heading"></a>
+</h4>
+<p>Leave <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">CMAKE_INTERPROCEDURAL_OPTIMIZATION=off</span></code> whenever Intel Fortran links against GNU-built C++ objects (mixed toolchain). Re-enable it only for pure GNU or pure Intel builds with the appropriate plugin installed.</p>
 </section>
 </section>
 </section>
