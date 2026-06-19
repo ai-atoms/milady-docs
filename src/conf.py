@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Milady'
-copyright = '2022, MCM, AMG & more'
-author = 'MCM, AMG & more'
+copyright = '2022, MCM, AMG, AZ & more'
+author = 'MCM, AMG, AZ & more'
 
 
 # -- General configuration ---------------------------------------------------
@@ -66,3 +66,4 @@ html_theme_options = {
 html_favicon = 'static/fav.png'
 html_title = 'Milady Docs'
 
+suppress_warnings = ["misc.highlighting_failure"]
