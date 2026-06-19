@@ -55,16 +55,50 @@ Kernels definitions
       :math:`p` should be defined. For the case :math:`p=1/2` there is
       Mahalanobis distance.
 
-   -  ``kernel_type = 7`` Square-exponential kernel for which the covariance matrix is sampled randomly on
-      some linear basis. The only parameter to define is ``sigma_kernel``
-      ( typical value is ``sigma_kernel = 0.05`` but try more values to be sure that it is adapted for
-      your descriptor).
+   -  ``kernel_type = 7`` Square-exponential (Gaussian) kernel approximated by
+      **random Fourier features**. The descriptor is mapped on :math:`F` random
+      projections
 
-   -  ``kernel_type = 44`` Polynomial kernel for which the covariance matrix is sampled randomly on
-      some linear basis. The only parameter to define is ``kernel_power``. Usually ``kernel_power=4`` it is a
-      resonable value (at least on what we have tested, such as, Fe, W, some HEA and aspirin)
+      .. math::
+         \varphi_i(\mathbf{D}) = \sqrt{\frac{2}{F}} \cos\left( \boldsymbol{\omega}_i \cdot \mathbf{D} + b_i \right) , \quad i = 1, \ldots, F
+         :label: kRFF
 
-   | Defalut ``kernel_type = 4``
+      with frequencies :math:`\boldsymbol{\omega}_i` drawn from a distribution
+      :math:`p(\boldsymbol{\omega})` (set by ``krff_type``), phases :math:`b_i`
+      uniform on :math:`[0, 2\pi]` and :math:`F =` ``np_omega``. The kernel is
+      the inner product of the two feature maps
+
+      .. math::
+         \tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  \approx  \sum_{i=1}^{F} \varphi_i(\mathbf{D}^{s,a})\, \varphi_i(\mathbf{x}^m)
+         :label: kRFFdot
+
+      For ``kernel_type = 7`` the frequencies are Gaussian,
+      :math:`\boldsymbol{\omega}_i \sim \mathcal{N}(\mathbf{0}, \sigma_{kernel}^{-2}\,\mathbf{I})`,
+      so that :math:numref:`kRFFdot` recovers the square-exponential kernel
+      :math:numref:`kSE` in expectation. The parameter to define is
+      ``sigma_kernel`` (typical value ``sigma_kernel = 0.05``, but try several
+      values to find the one adapted to your descriptor).
+
+   -  ``kernel_type = 44`` Polynomial kernel approximated by random features
+      (same random map :math:numref:`kRFF` and inner product
+      :math:numref:`kRFFdot`). It approximates the scaled polynomial kernel
+      :math:numref:`kPOs` of order :math:`p =` ``kernel_power`` (usually
+      ``kernel_power = 4`` is a reasonable value, at least on what we tested:
+      Fe, W, some HEA and aspirin).
+
+   -  ``kernel_type = 66`` Mahalanobis kernel approximated by random features
+      (map :math:numref:`kRFF`, inner product :math:numref:`kRFFdot`), where the
+      frequencies follow the Mahalanobis metric,
+      :math:`\boldsymbol{\omega}_i \sim \mathcal{N}(\mathbf{0}, \Sigma^{-1})`,
+      :math:`\Sigma` being the sample covariance of the reference descriptors.
+      It is the random-feature counterpart of the Mahalanobis kernel
+      :math:numref:`kMAHA`.
+
+   | Default ``kernel_type = 4``
+
+   .. note::
+      ``kernel_type = 2`` (Ornstein-Uhlenbeck) and ``kernel_type = 3``
+      (Matérn class) are reserved but **not yet implemented**.
 
 .. option::  length_kernel (real)
 
@@ -92,6 +126,28 @@ Kernels definitions
    and 1/2, respectively.
 
    Default ``kernel_power = 2.d0``
+
+.. option::  np_omega (integer)
+
+   :math:`k_2` option. The number of random features :math:`F` used by the
+   random-feature kernels (``kernel_type = 7``, ``44`` and ``66``), i.e. the
+   number of random projections :math:`\boldsymbol{\omega}_i` in
+   :math:numref:`kRFF`. A larger value gives a more accurate approximation of
+   the target kernel at a higher cost.
+
+   Default ``np_omega = 4``
+
+.. option::  krff_type (integer)
+
+   :math:`k_2` option. The distribution :math:`p(\boldsymbol{\omega})` from which
+   the random frequencies :math:`\boldsymbol{\omega}_i` of the random-feature
+   kernels are sampled:
+
+   -  ``krff_type = 1`` Gaussian (currently the only supported choice),
+   -  ``krff_type = 2`` Cauchy,
+   -  ``krff_type = 3`` Laplace.
+
+   Default ``krff_type = 1``
 
 Selections of kernel sparse points
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 

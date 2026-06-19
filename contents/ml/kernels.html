@@ -161,17 +161,47 @@ first step as <span class="math notranslate nohighlight">\(k_1\)</span>, whilst 
 <p><span class="math notranslate nohighlight">\(p\)</span> should be defined. For the case <span class="math notranslate nohighlight">\(p=1/2\)</span> there is
 Mahalanobis distance.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">7</span></code> Square-exponential kernel for which the covariance matrix is sampled randomly on
-some linear basis. The only parameter to define is <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span></code>
-( typical value is <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">0.05</span></code> but try more values to be sure that it is adapted for
-your descriptor).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">44</span></code> Polynomial kernel for which the covariance matrix is sampled randomly on
-some linear basis. The only parameter to define is <code class="docutils literal notranslate"><span class="pre">kernel_power</span></code>. Usually <code class="docutils literal notranslate"><span class="pre">kernel_power=4</span></code> it is a
-resonable value (at least on what we have tested, such as, Fe, W, some HEA and aspirin)</p></li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">7</span></code> Square-exponential (Gaussian) kernel approximated by
+<strong>random Fourier features</strong>. The descriptor is mapped on <span class="math notranslate nohighlight">\(F\)</span> random
+projections</p>
+<div class="math notranslate nohighlight" id="equation-krff">
+<span class="eqno">(5)<a class="headerlink" href="#equation-krff" title="Permalink to this equation"></a></span>\[\varphi_i(\mathbf{D}) = \sqrt{\frac{2}{F}} \cos\left( \boldsymbol{\omega}_i \cdot \mathbf{D} + b_i \right) , \quad i = 1, \ldots, F\]</div>
+<p>with frequencies <span class="math notranslate nohighlight">\(\boldsymbol{\omega}_i\)</span> drawn from a distribution
+<span class="math notranslate nohighlight">\(p(\boldsymbol{\omega})\)</span> (set by <code class="docutils literal notranslate"><span class="pre">krff_type</span></code>), phases <span class="math notranslate nohighlight">\(b_i\)</span>
+uniform on <span class="math notranslate nohighlight">\([0, 2\pi]\)</span> and <span class="math notranslate nohighlight">\(F =\)</span> <code class="docutils literal notranslate"><span class="pre">np_omega</span></code>. The kernel is
+the inner product of the two feature maps</p>
+<div class="math notranslate nohighlight" id="equation-krffdot">
+<span class="eqno">(6)<a class="headerlink" href="#equation-krffdot" title="Permalink to this equation"></a></span>\[\tilde{k}(\mathbf{D}^{s,a}, \mathbf{x}^m)  \approx  \sum_{i=1}^{F} \varphi_i(\mathbf{D}^{s,a})\, \varphi_i(\mathbf{x}^m)\]</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">7</span></code> the frequencies are Gaussian,
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega}_i \sim \mathcal{N}(\mathbf{0}, \sigma_{kernel}^{-2}\,\mathbf{I})\)</span>,
+so that <a class="reference internal" href="#equation-krffdot">(6)</a> recovers the square-exponential kernel
+<a class="reference internal" href="#equation-kse">(1)</a> in expectation. The parameter to define is
+<code class="docutils literal notranslate"><span class="pre">sigma_kernel</span></code> (typical value <code class="docutils literal notranslate"><span class="pre">sigma_kernel</span> <span class="pre">=</span> <span class="pre">0.05</span></code>, but try several
+values to find the one adapted to your descriptor).</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">44</span></code> Polynomial kernel approximated by random features
+(same random map <a class="reference internal" href="#equation-krff">(5)</a> and inner product
+<a class="reference internal" href="#equation-krffdot">(6)</a>). It approximates the scaled polynomial kernel
+<a class="reference internal" href="#equation-kpos">(3)</a> of order <span class="math notranslate nohighlight">\(p =\)</span> <code class="docutils literal notranslate"><span class="pre">kernel_power</span></code> (usually
+<code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">4</span></code> is a reasonable value, at least on what we tested:
+Fe, W, some HEA and aspirin).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">66</span></code> Mahalanobis kernel approximated by random features
+(map <a class="reference internal" href="#equation-krff">(5)</a>, inner product <a class="reference internal" href="#equation-krffdot">(6)</a>), where the
+frequencies follow the Mahalanobis metric,
+<span class="math notranslate nohighlight">\(\boldsymbol{\omega}_i \sim \mathcal{N}(\mathbf{0}, \Sigma^{-1})\)</span>,
+<span class="math notranslate nohighlight">\(\Sigma\)</span> being the sample covariance of the reference descriptors.
+It is the random-feature counterpart of the Mahalanobis kernel
+<a class="reference internal" href="#equation-kmaha">(4)</a>.</p></li>
 </ul>
 <div class="line-block">
-<div class="line">Defalut <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code>
+<div class="line">Default <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">4</span></code>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">2</span></code> (Ornstein-Uhlenbeck) and <code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">3</span></code>
+(Matérn class) are reserved but <strong>not yet implemented</strong>.</p>
 </div>
 </dd>
 </dl>
@@ -212,6 +242,37 @@ In <code class="docutils literal notranslate"><span class="pre">Milady</span></c
 from Eqs. <a class="reference internal" href="#equation-kmaha">(4)</a>. The recommended values are 3, 1
 and 1/2, respectively.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">kernel_power</span> <span class="pre">=</span> <span class="pre">2.d0</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-np_omega">
+<span id="cmdoption-arg-np-omega"></span><span class="sig-name descname"><span class="pre">np_omega</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_omega" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option. The number of random features <span class="math notranslate nohighlight">\(F\)</span> used by the
+random-feature kernels (<code class="docutils literal notranslate"><span class="pre">kernel_type</span> <span class="pre">=</span> <span class="pre">7</span></code>, <code class="docutils literal notranslate"><span class="pre">44</span></code> and <code class="docutils literal notranslate"><span class="pre">66</span></code>), i.e. the
+number of random projections <span class="math notranslate nohighlight">\(\boldsymbol{\omega}_i\)</span> in
+<a class="reference internal" href="#equation-krff">(5)</a>. A larger value gives a more accurate approximation of
+the target kernel at a higher cost.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">np_omega</span> <span class="pre">=</span> <span class="pre">4</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-krff_type">
+<span id="cmdoption-arg-krff-type"></span><span class="sig-name descname"><span class="pre">krff_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-krff_type" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p><span class="math notranslate nohighlight">\(k_2\)</span> option. The distribution <span class="math notranslate nohighlight">\(p(\boldsymbol{\omega})\)</span> from which
+the random frequencies <span class="math notranslate nohighlight">\(\boldsymbol{\omega}_i\)</span> of the random-feature
+kernels are sampled:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">krff_type</span> <span class="pre">=</span> <span class="pre">1</span></code> Gaussian (currently the only supported choice),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">krff_type</span> <span class="pre">=</span> <span class="pre">2</span></code> Cauchy,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">krff_type</span> <span class="pre">=</span> <span class="pre">3</span></code> Laplace.</p></li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">krff_type</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 </dd>
 </dl>
 
