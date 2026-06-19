@@ -613,6 +613,98 @@ The parameters of the descriptors are controlled by the options below.
 
    Default   ``ace_radial_poly=2``
 
+.. option:: ace_lambda_list (string)
+
+   A string of real numbers that define the value of :math:`\lambda` for each
+   body order. The length of this string should be at least equal to
+   ``ace_numax``.
+
+   Example: ``ace_lambda_list="2.0 2.0 2.0"``
+
+   Default ``ace_lambda_list=" 2.d0 2.d0 2.d0"``
+
+.. option:: ace_npoints_spline (integer)
+
+   The number of points of the radial spline grid used to tabulate the ACE
+   radial functions. A larger value gives a finer radial interpolation.
+
+   Default ``ace_npoints_spline=1000``
+
+Low-rank chemical compression
+"""""""""""""""""""""""""""""
+
+For k-ACE with HSVD radial contraction (``ace_radial_chem=3``) and a large number
+of species (typically 25-108), each :math:`(k,l)` channel carries
+:math:`S \times S` pair radial functions (:math:`S` being the number of species).
+The following options compress every channel to rank :math:`Q` through a
+symmetric Alternating Least Squares (ALS) factorization,
+:math:`g_k^{l\mu\nu}(r) \approx \sum_{q} A_{\mu q}^{kl} A_{\nu q}^{kl} u_q^{kl}(r)`,
+reducing the storage from :math:`\mathcal{O}(N_r S^2)` to
+:math:`\mathcal{O}(SQ + N_r Q)` per channel. They are only effective with
+``ace_radial_chem=3``.
+
+.. option:: ace_chem_low_rank (integer)
+
+   Enable the low-rank chemical compression: ``0`` disabled, ``1`` enabled.
+
+   Default ``ace_chem_low_rank=0``
+
+.. option:: ace_chem_low_rank_q (integer)
+
+   The compression rank :math:`Q`.
+
+   Default ``ace_chem_low_rank_q=4``
+
+.. option:: ace_chem_low_rank_niter (integer)
+
+   The number of ALS iterations used to build the compression.
+
+   Default ``ace_chem_low_rank_niter=50``
+
+.. option:: ace_chem_low_rank_lambda (real)
+
+   The ridge regularization of the ALS factorization.
+
+   Default ``ace_chem_low_rank_lambda=1.d-6``
+
+Per-body-order radial cutoffs
+"""""""""""""""""""""""""""""
+
+By default the ACE radial functions use the global cutoffs (``r_cut`` /
+``r_cut_in``). The options below allow a different inner/outer cutoff (and
+transition width) for each body order.
+
+.. option:: l_ace_set_rcut (logical)
+
+   If ``.true.``, the per-body-order cutoff lists below are used instead of the
+   global cutoffs.
+
+   Default ``l_ace_set_rcut=.false.``
+
+.. option:: ace_rcut_out_list (string)
+
+   The outer cutoff radius (Å) for each body order.
+
+   Default ``ace_rcut_out_list=" 5.d0 5.d0 5.d0 "``
+
+.. option:: ace_rcut_width_out_list (string)
+
+   The outer cutoff transition width (Å) for each body order.
+
+   Default ``ace_rcut_width_out_list=" 0.5d0 0.5d0 0.5d0 "``
+
+.. option:: ace_rcut_in_list (string)
+
+   The inner cutoff radius (Å) for each body order.
+
+   Default ``ace_rcut_in_list=" 1.2d0 1.2d0 1.2d0 "``
+
+.. option:: ace_rcut_width_in_list (string)
+
+   The inner cutoff transition width (Å) for each body order.
+
+   Default ``ace_rcut_width_in_list=" 0.4d0 0.4d0 0.4d0 "``
+
 
 Hybrid descriptors
 ------------------
@@ -729,29 +821,6 @@ Parameters
 
    The width of the cut-off transition region of the 3-body channel. If
    negative, the global ``r_cut_width`` is used.
-
-.. .. option:: ace_lambda_list (string)
-
-..    A string of real numbers that define the value of :math:`\lambda` for each body order. 
-..    The length of this string should be at least equal to ``ace_numax``.
-
-..    Example: ``ace_lambda_list="3.0 3.0 3.0 3.0 3.0 3.0"``         
-   
-
-.. zetaace_order =      1
-.. ! here is the body nu=1... 
-.. dim_delta_zetaace(1) = " 1.d0 1.d0 1.d0 1.d0 1.d0 1.d0 "  
-.. ! nu =2 
-.. dim_delta_zetaace(2) = " 1.d0 1.0d0 1.0d0 1.0d0 1.d0 1.d0 "  
-.. ! nu = 3 
-.. dim_delta_zetaace(3) = " 1.d0 1.0d 1.0d0 1.0d0 1.d0 1.d0 "  
-.. l_ace_set_rcut = .false. 
-.. ace_rcut_in_list =" 1.2d0 1.2d0 1.2d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-.. ace_rcut_width_in_list =" 0.4d0 0.4d0 0.4d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-.. ace_rcut_out_list =" 5.d0 5.d0 5.d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-.. ace_rcut_width_out_list =" 0.5d0 0.5d0 0.5d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-
-
 
 .. _`sec:low_distance`:
 
