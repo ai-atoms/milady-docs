@@ -3,8 +3,7 @@
 What is MILADY?
 ~~~~~~~~~~~~~~~
 
-MILADY — *Machine Learning DYnamics* — is a package created by scientists for
-scientists to improve the accuracy and predictive power of atomistic
+MILADY — *Machine Learning DYnamics* — is a package created to improve the accuracy and predictive power of atomistic
 simulations. It builds machine-learning interatomic potentials and regression
 models from *ab initio* data, while keeping a reasonable computational cost.
 MILADY is an open-source code distributed under the Academic Software Licence
