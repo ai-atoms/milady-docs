@@ -111,21 +111,44 @@
   <section id="what-is-milady">
 <h1>What is MILADY?<a class="headerlink" href="#what-is-milady" title="Permalink to this heading"></a>
 </h1>
-<p>MILADY - <em>Machine Learning DYnamics</em> is a package created by scientists for scientists, aiming to improve the accuracy and predictive power of atomistic simulations.
-The code uses machine learning algorithms and prioritises methods with a reasonable computational cost.
-MILADY is an open-source code distributed under the Academic Software Licence (ASL).</p>
+<p>MILADY — <em>Machine Learning DYnamics</em> — is a package created by scientists for
+scientists to improve the accuracy and predictive power of atomistic
+simulations. It builds machine-learning interatomic potentials and regression
+models from <em>ab initio</em> data, while keeping a reasonable computational cost.
+MILADY is an open-source code distributed under the Academic Software Licence
+(ASL), and is coupled to <code class="docutils literal notranslate"><span class="pre">LAMMPS</span></code> for large-scale molecular dynamics.</p>
 <p><strong>Main functionalities:</strong></p>
 <ul class="simple">
-<li><p>Development of machine learning force fields, suitable for molecular dynamics simulations.</p></li>
-<li><p>Development of surrogate regression models to predict materials properties, including vibrational entropy, HOMO-LUMO energies, etc.</p></li>
-<li><p>Representation of atomic structures in the feature space of atomic descriptors.</p></li>
-<li><p>Analysis, sparsification, and optimization of datasets.</p></li>
+<li><p>Training of machine-learning force fields (energies, forces and stresses) for
+molecular dynamics, with an optional physics-based short-range
+<a class="reference internal" href="ml/descriptors.html#sec-low-distance"><span class="std std-ref">ZBL repulsive core and k2b pair channel</span></a>.</p></li>
+<li><p>Surrogate regression models for materials properties, including vibrational
+entropy, HOMO-LUMO energies, etc.</p></li>
+<li><p>Representation of atomic structures in the feature space of atomic
+<a class="reference internal" href="ml/descriptors.html#sec-descriptors"><span class="std std-ref">descriptors</span></a>, for structural analysis and
+visualization.</p></li>
+<li><p>Analysis, sparsification and optimization of datasets (MCD/Mahalanobis and
+CUR selection of reference points).</p></li>
+</ul>
+<p><strong>Descriptors and models:</strong></p>
+<ul class="simple">
+<li><p>A large library of atomic <a class="reference internal" href="ml/descriptors.html#sec-descriptors"><span class="std std-ref">descriptors</span></a>, including the
+Atomic Cluster Expansion (ACE), bispectrum SO(4), Moment Tensor Potentials
+(MTP) and many other choices.</p></li>
+<li><p>Only <a class="reference internal" href="ml/model.html#sec-models"><span class="std std-ref">models</span></a> that are <strong>linear in the parameters</strong>: built
+as polynomials in the descriptors, together with <a class="reference internal" href="ml/kernels.html#sec-kernel"><span class="std std-ref">kernels</span></a>
+(including random-feature kernels), the available choice depending on the
+descriptor. They are solved by SVD/QR, block ALS-Ridge, or a low-memory
+online (streaming) solver.</p></li>
 </ul>
 <p><strong>Advantages of MILADY:</strong></p>
 <ul class="simple">
-<li><p>MILADY is designed for High Performance Computing and is therefore well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.</p></li>
-<li><p>MILADY includes a large choice of atomic <a class="reference internal" href="ml/descriptors.html#sec-descriptors"><span class="std std-ref">descriptors</span></a> and <a class="reference internal" href="ml/model.html#sec-models"><span class="std std-ref">regression models</span></a>, including linear, quadratic, polynomial chaos, and <a class="reference internal" href="ml/kernels.html#sec-kernel"><span class="std std-ref">kernels</span></a>.</p></li>
-<li><p>MILADY is open-source package and contributions are very welcome.</p></li>
+<li><p>Designed for High Performance Computing: well parallelized with MPI, PBLAS and
+ScaLapack, and scalable to large training sets — including a streaming mode
+that avoids storing the full design matrix.</p></li>
+<li><p>Reads databases in the native <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format and in
+<a class="reference internal" href="ml/database.html#sec-extxyz"><span class="std std-ref">extended XYZ</span></a> (ASE-compatible).</p></li>
+<li><p>Open-source package — contributions are very welcome.</p></li>
 </ul>
 </section>
 
