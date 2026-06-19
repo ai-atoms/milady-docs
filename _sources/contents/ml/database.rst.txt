@@ -15,9 +15,13 @@ Database manipulation
 
 .. option::  db_path (character(len=60))
 
-   Path to the database where the
-   poscar are located. With the default value you should have `` poscar`` files in 
-   ``DB`` directory  
+   Path to the database. With the default value you should have ``.poscar`` files
+   in the ``DB`` directory.
+
+   If ``db_path`` points instead to a single file ending in ``.xyz`` or
+   ``.extxyz``, ``MiLaDy`` automatically switches to **extended XYZ mode** and
+   reads all the configurations from that file (see
+   :ref:`Reading extended XYZ <sec:extxyz>`).
 
    Default ``"./DB/"``.
 
@@ -29,16 +33,16 @@ Database manipulation
 
    #. ``2`` selects last "ns" elements of the database;
 
-   #. | ``3`` selects randomly "ns" subsets of "kelem" elements of the
-        database
+   #. ``3`` selects randomly "ns" subsets of "kelem" elements of the
+      database;
 
-   #. | ``4`` selects first "ns" subsets of "kelem" elements of the
-        database from a starting configuration defined in the
-        ``db_file``
+   #. ``4`` selects first "ns" subsets of "kelem" elements of the
+      database from a starting configuration defined in the ``db_file``.
 
-   | In the case of new type of input, using ``db_file`` "ns" is given
-     by ``number_of_selected_files`` inside ``class``.\ ``KLM``
-   | Default ``3``.
+   In the case of new type of input, using ``db_file``, "ns" is given
+   by ``number_of_selected_files`` inside ``class``.\ ``KLM``.
+
+   Default ``3``.
 
 .. option::  seed (integer)
 
@@ -167,15 +171,54 @@ i.e.** ``desc_forces=.false.`` In this particular case only the
 positions of atoms and the box informations are read. Any information
 about forces , spin etc is ignored and is not complusory.
 
-**Other file formats.** Some of the files can be stored in binary format
-``.traj``, generated and read by `Atomic Simulation
-Environment <https://wiki.fysik.dtu.dk/ase/>`__ (ASE). The data can be
-then extracted to the database ``.poscar`` format with a python script
-``extract\_traj.py`` that is provided together with ``.traj`` files.
-Conversion of the ``.poscar`` DB files (compatible with MiLaDy) into
-extended ``.xyz`` format can be performed using ``DB\_poscar2xyz.py``.
-The inverse conversion from ``.xyz`` to ``.poscar`` can be done with
-``DB\_xyz2poscar.py``.
+**Other file formats.** Besides the native ``.poscar`` format, ``MiLaDy`` can
+read databases directly in the **extended XYZ** format (see
+:ref:`Reading extended XYZ <sec:extxyz>` below), the same format produced and
+consumed by the `Atomic Simulation Environment <https://wiki.fysik.dtu.dk/ase/>`__
+(ASE). Configurations stored in the ASE binary ``.traj`` format can be exported
+to ``.extxyz`` (or to ``.poscar``) with ASE or the helper python scripts
+shipped with ``MiLaDy``. Conversion of ``.poscar`` DB files into extended
+``.xyz`` and back can also be performed with ``DB_poscar2xyz.py`` and
+``DB_xyz2poscar.py``.
+
+.. _`sec:extxyz`:
+
+Reading extended XYZ
+--------------------
+
+``MiLaDy`` can read a full database from a single **extended XYZ** file instead
+of a directory of ``.poscar`` files. The mode is enabled **automatically** when
+the :ref:`db_path <sec:database>` ends in ``.xyz`` or ``.extxyz``; all the
+configurations are then read from that one file (one block per configuration,
+in the usual ASE convention: a line with the number of atoms, an *info* line,
+then one line per atom).
+
+The per-configuration *info* line is parsed for the following keys (standard
+ASE extended-XYZ keywords, plus the ``MiLaDy`` ``class`` key):
+
++---------------------------+--------------------------------------------------------------+
+| Key                       | Meaning                                                      |
++===========================+==============================================================+
+| ``Lattice="..."``         | The nine components of the cell vectors.                     |
++---------------------------+--------------------------------------------------------------+
+| ``Properties=...``        | The per-atom columns; if it contains ``forces`` the atomic   |
+|                           | forces are read.                                             |
++---------------------------+--------------------------------------------------------------+
+| ``energy=...``            | The total energy used as training target.                    |
++---------------------------+--------------------------------------------------------------+
+| ``free_energy=...``       | The free energy (optional; defaults to ``energy``).          |
++---------------------------+--------------------------------------------------------------+
+| ``stress="..."``          | The nine components of the 3×3 stress tensor.                |
++---------------------------+--------------------------------------------------------------+
+| ``class=...``             | The ``MiLaDy`` :ref:`class <sec:dbnames>` label (``CC``).    |
+|                           | If absent it defaults to ``01``. Configurations are numbered |
+|                           | per class, reproducing the ``CC_KLM_XXXXXX`` naming.         |
++---------------------------+--------------------------------------------------------------+
+
+Energies, forces and stress follow the same units as the ``.poscar`` format
+(eV, eV/Å and eV/Å\ :math:`^{3}`). As with ``.poscar``, the energy/force/stress
+actually fitted is the superposition of what is present in the file and the
+``EFS`` tags declared in :ref:`db_model.in <sec:db-model>`.
 
 .. _`sec:dbnames`:
 

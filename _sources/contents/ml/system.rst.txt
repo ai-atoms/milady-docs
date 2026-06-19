@@ -12,17 +12,18 @@ Atomic systems
    numbers of chemical symbols (and correspondings weigths in
    ``chemical_elements`` and ``weigth_per_element`` or ``weigth_per_element_3ch``)
 
-   Default ``no_of_elements=1``
+   Default ``fix_no_of_elements=1``
 
-.. option::  chemical_elements (character(len=80))
+.. option::  chemical_elements (character(len=5000))
 
    The chemical symbols of the elements contained in the database. The elements should be
    among the 109 elements of the periodic table. E.g. for there
    elements should be like that: ``chemical_elements= ” Fe W Re ”``.
    The custom weigths associated with those elements are defined in
-   ``weigth_per_element``.
+   ``weigth_per_element``. The long character length allows large
+   multi-element lists, e.g. high-entropy alloys.
 
-   Default ``chemical_elements= ” ”``
+   Default ``chemical_elements= ”Fe”``
 
 .. option::  weighted (logical)
 
@@ -49,7 +50,7 @@ Atomic systems
 
    If this option is valid ``.true.`` the chemical weights are chosen automatically by ``MILADY``
    for  ``weight_per_element`` and ``weight_per_element_3ch``, if necessary. If this option is ``.true.``
-   the current value of   ``weight_per_element`` and ``weight_per_element_3ch`` are redefined with the default values.
+   the current value of   ``weight_per_element`` and ``weight_per_element_3ch`` are redefined with the automatic values.
 
    For the second channel the ``weighted_auto=.true`` gives for the weigth for the species :math:`w_I` as:
 
@@ -59,7 +60,7 @@ Atomic systems
 
    .. math:: w_I^{\textrm{3rd ch}} = \frac {Z_I N_{\textrm{all species} } } {\sum_{J \in \textrm{all species}}  Z_J}
 
-   Default ``weighted_auto = .true.``
+   Default ``weighted_auto = .false.``
 
 
 .. option::  chemical_elements_invisible (character(len=80))
@@ -70,7 +71,7 @@ Atomic systems
 
    Default ``chemical_elements_invisible= ” ”``
 
-.. option::  weight_per_element (character(len=80))
+.. option::  weight_per_element (character(len=5000))
 
    The weigths associated with the chemical elements defined in the list
    ``chemical_elements``.
@@ -89,7 +90,7 @@ Atomic systems
    Default ``weight_per_element= " "``
 
 
-.. option::  weight_per_element_3ch (character(len=80))
+.. option::  weight_per_element_3ch (character(len=5000))
 
    The weigths associated with the chemical elements defined in the list
    ``chemical_elements``. These weights define the accuracy of the 3rd channel.

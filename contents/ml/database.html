@@ -69,6 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#database-manipulation">Database manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database-files">Database files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database-file-format">Database file format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-extended-xyz">Reading extended XYZ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#database-file-names">Database file names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#input-file-db-model-in">Input file db<span class="math notranslate nohighlight">\(\_\)</span>model.in</a></li>
 </ul>
@@ -143,9 +144,12 @@ chosen for the potential fitting. each line has the syntax: <code class="docutil
 <span id="cmdoption-arg-db-path"></span><span class="sig-name descname"><span class="pre">db_path</span></span><span class="sig-prename descclassname"> <span class="pre">(character(len=60))</span></span><a class="headerlink" href="#cmdoption-arg-db_path" title="Permalink to this definition"></a>
 </dt>
 <dd>
-<p>Path to the database where the
-poscar are located. With the default value you should have `` poscar`` files in
-<code class="docutils literal notranslate"><span class="pre">DB</span></code> directory</p>
+<p>Path to the database. With the default value you should have <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> files
+in the <code class="docutils literal notranslate"><span class="pre">DB</span></code> directory.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">db_path</span></code> points instead to a single file ending in <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or
+<code class="docutils literal notranslate"><span class="pre">.extxyz</span></code>, <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> automatically switches to <strong>extended XYZ mode</strong> and
+reads all the configurations from that file (see
+<a class="reference internal" href="#sec-extxyz"><span class="std std-ref">Reading extended XYZ</span></a>).</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">"./DB/"</span></code>.</p>
 </dd>
 </dl>
@@ -156,32 +160,17 @@ poscar are located. With the default value you should have `` poscar`` files in
 </dt>
 <dd>
 <p>Inside each <code class="docutils literal notranslate"><span class="pre">class</span></code> and <code class="docutils literal notranslate"><span class="pre">KLM</span></code> subdatabase mentioned in <code class="docutils literal notranslate"><span class="pre">db_file</span></code></p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> selects first “ns” elements of the database;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> selects last “ns” elements of the database;</p></li>
-<li>
-<div class="line-block">
-<div class="line">
-<code class="docutils literal notranslate"><span class="pre">3</span></code> selects randomly “ns” subsets of “kelem” elements of the
-database</div>
-</div>
-</li>
-<li>
-<div class="line-block">
-<div class="line">
-<code class="docutils literal notranslate"><span class="pre">4</span></code> selects first “ns” subsets of “kelem” elements of the
-database from a starting configuration defined in the
-<code class="docutils literal notranslate"><span class="pre">db_file</span></code>
-</div>
-</div>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> selects randomly “ns” subsets of “kelem” elements of the
+database;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> selects first “ns” subsets of “kelem” elements of the
+database from a starting configuration defined in the <code class="docutils literal notranslate"><span class="pre">db_file</span></code>.</p></li>
 </ol>
-<div class="line-block">
-<div class="line">In the case of new type of input, using <code class="docutils literal notranslate"><span class="pre">db_file</span></code> “ns” is given
-by <code class="docutils literal notranslate"><span class="pre">number_of_selected_files</span></code> inside <code class="docutils literal notranslate"><span class="pre">class</span></code>.<code class="docutils literal notranslate"><span class="pre">KLM</span></code>
-</div>
-<div class="line">Default <code class="docutils literal notranslate"><span class="pre">3</span></code>.</div>
-</div>
+<p>In the case of new type of input, using <code class="docutils literal notranslate"><span class="pre">db_file</span></code>, “ns” is given
+by <code class="docutils literal notranslate"><span class="pre">number_of_selected_files</span></code> inside <code class="docutils literal notranslate"><span class="pre">class</span></code>.<code class="docutils literal notranslate"><span class="pre">KLM</span></code>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
 </dd>
 </dl>
 
@@ -305,15 +294,72 @@ their visualization in VESTA.</p>
 i.e.</strong> <code class="docutils literal notranslate"><span class="pre">desc_forces=.false.</span></code> In this particular case only the
 positions of atoms and the box informations are read. Any information
 about forces , spin etc is ignored and is not complusory.</p>
-<p><strong>Other file formats.</strong> Some of the files can be stored in binary format
-<code class="docutils literal notranslate"><span class="pre">.traj</span></code>, generated and read by <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation
-Environment</a> (ASE). The data can be
-then extracted to the database <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format with a python script
-<code class="docutils literal notranslate"><span class="pre">extract\_traj.py</span></code> that is provided together with <code class="docutils literal notranslate"><span class="pre">.traj</span></code> files.
-Conversion of the <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> DB files (compatible with MiLaDy) into
-extended <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> format can be performed using <code class="docutils literal notranslate"><span class="pre">DB\_poscar2xyz.py</span></code>.
-The inverse conversion from <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> to <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> can be done with
-<code class="docutils literal notranslate"><span class="pre">DB\_xyz2poscar.py</span></code>.</p>
+<p><strong>Other file formats.</strong> Besides the native <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format, <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> can
+read databases directly in the <strong>extended XYZ</strong> format (see
+<a class="reference internal" href="#sec-extxyz"><span class="std std-ref">Reading extended XYZ</span></a> below), the same format produced and
+consumed by the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation Environment</a>
+(ASE). Configurations stored in the ASE binary <code class="docutils literal notranslate"><span class="pre">.traj</span></code> format can be exported
+to <code class="docutils literal notranslate"><span class="pre">.extxyz</span></code> (or to <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>) with ASE or the helper python scripts
+shipped with <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code>. Conversion of <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> DB files into extended
+<code class="docutils literal notranslate"><span class="pre">.xyz</span></code> and back can also be performed with <code class="docutils literal notranslate"><span class="pre">DB_poscar2xyz.py</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DB_xyz2poscar.py</span></code>.</p>
+</section>
+<section id="reading-extended-xyz">
+<span id="sec-extxyz"></span><h3>Reading extended XYZ<a class="headerlink" href="#reading-extended-xyz" title="Permalink to this heading"></a>
+</h3>
+<p><code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> can read a full database from a single <strong>extended XYZ</strong> file instead
+of a directory of <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> files. The mode is enabled <strong>automatically</strong> when
+the <a class="reference internal" href="#sec-database"><span class="std std-ref">db_path</span></a> ends in <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.extxyz</span></code>; all the
+configurations are then read from that one file (one block per configuration,
+in the usual ASE convention: a line with the number of atoms, an <em>info</em> line,
+then one line per atom).</p>
+<p>The per-configuration <em>info</em> line is parsed for the following keys (standard
+ASE extended-XYZ keywords, plus the <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> <code class="docutils literal notranslate"><span class="pre">class</span></code> key):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="row-odd">
+<th class="head"><p>Key</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">Lattice="..."</span></code></p></td>
+<td><p>The nine components of the cell vectors.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">Properties=...</span></code></p></td>
+<td><p>The per-atom columns; if it contains <code class="docutils literal notranslate"><span class="pre">forces</span></code> the atomic
+forces are read.</p></td>
+</tr>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">energy=...</span></code></p></td>
+<td><p>The total energy used as training target.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">free_energy=...</span></code></p></td>
+<td><p>The free energy (optional; defaults to <code class="docutils literal notranslate"><span class="pre">energy</span></code>).</p></td>
+</tr>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">stress="..."</span></code></p></td>
+<td><p>The nine components of the 3×3 stress tensor.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">class=...</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> <a class="reference internal" href="#sec-dbnames"><span class="std std-ref">class</span></a> label (<code class="docutils literal notranslate"><span class="pre">CC</span></code>).
+If absent it defaults to <code class="docutils literal notranslate"><span class="pre">01</span></code>. Configurations are numbered
+per class, reproducing the <code class="docutils literal notranslate"><span class="pre">CC_KLM_XXXXXX</span></code> naming.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Energies, forces and stress follow the same units as the <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> format
+(eV, eV/Å and eV/Å<span class="math notranslate nohighlight">\(^{3}\)</span>). As with <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>, the energy/force/stress
+actually fitted is the superposition of what is present in the file and the
+<code class="docutils literal notranslate"><span class="pre">EFS</span></code> tags declared in <a class="reference internal" href="#sec-db-model"><span class="std std-ref">db_model.in</span></a>.</p>
 </section>
 <section id="database-file-names">
 <span id="sec-dbnames"></span><h3>Database file names<a class="headerlink" href="#database-file-names" title="Permalink to this heading"></a>
