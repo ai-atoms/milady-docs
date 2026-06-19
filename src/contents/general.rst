@@ -3,22 +3,45 @@
 What is MILADY?
 ~~~~~~~~~~~~~~~
 
-MILADY - *Machine Learning DYnamics* is a package created by scientists for scientists, aiming to improve the accuracy and predictive power of atomistic simulations. 
-The code uses machine learning algorithms and prioritises methods with a reasonable computational cost.
-MILADY is an open-source code distributed under the Academic Software Licence (ASL).
+MILADY — *Machine Learning DYnamics* — is a package created by scientists for
+scientists to improve the accuracy and predictive power of atomistic
+simulations. It builds machine-learning interatomic potentials and regression
+models from *ab initio* data, while keeping a reasonable computational cost.
+MILADY is an open-source code distributed under the Academic Software Licence
+(ASL), and is coupled to ``LAMMPS`` for large-scale molecular dynamics.
 
 **Main functionalities:**
 
-* Development of machine learning force fields, suitable for molecular dynamics simulations.
-* Development of surrogate regression models to predict materials properties, including vibrational entropy, HOMO-LUMO energies, etc.
-* Representation of atomic structures in the feature space of atomic descriptors.
-* Analysis, sparsification, and optimization of datasets.
+* Training of machine-learning force fields (energies, forces and stresses) for
+  molecular dynamics, with an optional physics-based short-range
+  :ref:`ZBL repulsive core and k2b pair channel <sec:low_distance>`.
+* Surrogate regression models for materials properties, including vibrational
+  entropy, HOMO-LUMO energies, etc.
+* Representation of atomic structures in the feature space of atomic
+  :ref:`descriptors <sec:descriptors>`, for structural analysis and
+  visualization.
+* Analysis, sparsification and optimization of datasets (MCD/Mahalanobis and
+  CUR selection of reference points).
+
+**Descriptors and models:**
+
+* A large library of atomic :ref:`descriptors <sec:descriptors>`, including the
+  Atomic Cluster Expansion (ACE), bispectrum SO(4), Moment Tensor Potentials
+  (MTP) and many other choices.
+* Only :ref:`models <sec:models>` that are **linear in the parameters**: built
+  as polynomials in the descriptors, together with :ref:`kernels <sec:kernel>`
+  (including random-feature kernels), the available choice depending on the
+  descriptor. They are solved by SVD/QR, block ALS-Ridge, or a low-memory
+  online (streaming) solver.
 
 **Advantages of MILADY:**
 
-* MILADY is designed for High Performance Computing and is therefore well parallelized and has a good scalability. It uses MPI, PBLAS and ScaLapack.
-* MILADY includes a large choice of atomic :ref:`descriptors<sec:descriptors>` and :ref:`regression models<sec:models>`, including linear, quadratic, polynomial chaos, and :ref:`kernels<sec:kernel>`.
-* MILADY is open-source package and contributions are very welcome.
+* Designed for High Performance Computing: well parallelized with MPI, PBLAS and
+  ScaLapack, and scalable to large training sets — including a streaming mode
+  that avoids storing the full design matrix.
+* Reads databases in the native ``.poscar`` format and in
+  :ref:`extended XYZ <sec:extxyz>` (ASE-compatible).
+* Open-source package — contributions are very welcome.
 
 
 Build with CMake
