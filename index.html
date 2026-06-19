@@ -53,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contents/install/install_irene.html">Build on Irene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/install/install_marconi.html">Build on Marconi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contents/install/install_milady-lammps.html">MILADY potentials in Lammps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/install/install_legacy.html">Former build (Makefile)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
 <ul>
@@ -129,6 +130,27 @@ MILADY is an open-source code distributed under the Academic Software Licence (A
 <li><p>MILADY includes a large choice of atomic <a class="reference internal" href="contents/ml/descriptors.html#sec-descriptors"><span class="std std-ref">descriptors</span></a> and <a class="reference internal" href="contents/ml/model.html#sec-models"><span class="std std-ref">regression models</span></a>, including linear, quadratic, polynomial chaos, and <a class="reference internal" href="contents/ml/kernels.html#sec-kernel"><span class="std std-ref">kernels</span></a>.</p></li>
 <li><p>MILADY is open-source package and contributions are very welcome.</p></li>
 </ul>
+</section>
+
+<section id="build-with-cmake">
+<h1>Build with CMake<a class="headerlink" href="#build-with-cmake" title="Permalink to this heading"></a>
+</h1>
+<p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> is compiled with <strong>CMake</strong> (≥ 3.24). Once the prerequisites are in
+place (a Fortran compiler, <code class="docutils literal notranslate"><span class="pre">MKL</span></code> / <code class="docutils literal notranslate"><span class="pre">ScaLapack</span></code> and an <code class="docutils literal notranslate"><span class="pre">MPI</span></code> library), the
+build boils down to:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
+f_compile_milady_mix<span class="w">   </span><span class="c1"># or f_compile_milady_intel / f_compile_milady_gnu</span>
+make<span class="w"> </span>-j6
+</pre></div>
+</div>
+<p>The executable is then in <code class="docutils literal notranslate"><span class="pre">bin/milady_main.exe</span></code>. Both Intel <code class="docutils literal notranslate"><span class="pre">ifort</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ifx</span></code> are supported (when the matching MPI / ScaLapack are compatible), and
+HDF5 I/O is optional (enabled with <code class="docutils literal notranslate"><span class="pre">MLD_HDF5=ON</span></code>; a bundled HDF5 is built
+automatically unless you point <code class="docutils literal notranslate"><span class="pre">HDF5_DIR</span></code> to your own). The full, step-by-step
+procedure is on the <a class="reference internal" href="contents/install/installation.html#sec-insta"><span class="std std-ref">Local build</span></a> page; the former,
+Makefile-based way is kept for reference on the
+<a class="reference internal" href="contents/install/install_legacy.html#sec-insta-legacy"><span class="std std-ref">Former build (Makefile)</span></a> page.</p>
 </section>
 
 <section id="contributors">

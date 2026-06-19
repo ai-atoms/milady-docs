@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="install_irene.html">Build on Irene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_marconi.html">Build on Marconi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_milady-lammps.html">MILADY potentials in Lammps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_legacy.html">Former build (Makefile)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
 <ul>
@@ -121,16 +122,49 @@
   <section id="local-build">
 <span id="sec-insta"></span><h1>Local build<a class="headerlink" href="#local-build" title="Permalink to this heading"></a>
 </h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> is built with <strong>CMake</strong> (≥ 3.24). The CMake workflow described on
+this page is the <strong>only supported and tested</strong> way to compile the code: the
+compilers and the <code class="docutils literal notranslate"><span class="pre">MKL</span></code> / <code class="docutils literal notranslate"><span class="pre">ScaLapack</span></code> / <code class="docutils literal notranslate"><span class="pre">MPI</span></code> libraries are detected
+automatically through the <code class="docutils literal notranslate"><span class="pre">scripts/compile_milady.bash</span></code> helper functions,
+so there is no <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to edit by hand.</p>
+<p>The former, Makefile-based procedure is kept for reference on the
+<a class="reference internal" href="install_legacy.html#sec-insta-legacy"><span class="std std-ref">Former build (Makefile)</span></a> page.</p>
+</div>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a>
 </h2>
 <p>The current version of <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> requires:</p>
 <ul class="simple">
-<li><p>A fortran compiler (tested ifort &gt; 2019.x.x, gfortran &gt; 10.x.x)</p></li>
+<li><p>A fortran compiler (tested <code class="docutils literal notranslate"><span class="pre">ifort</span></code> &gt; 2020.x.x, <code class="docutils literal notranslate"><span class="pre">ifx</span></code> &gt; 2023.x.x, <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> &gt; 12.x.x)</p></li>
 <li><p>The LAPACK / SCALAPACK library (tested MKL distribution &gt; 19.x.x)</p></li>
-<li><p>An MPI library  (tested OpenMPI &gt; 4.x.x or IntelMPI &gt; 2019.x.x)</p></li>
-<li><p>CMake (tested &gt; 3.18.x)</p></li>
+<li><p>An MPI library  (tested OpenMPI &gt; 4.x.x or IntelMPI &gt; 2020.x.x)</p></li>
+<li><p>CMake (tested &gt; 3.24.x)</p></li>
 </ul>
+<p>and <em>optionally</em>:</p>
+<ul class="simple">
+<li><p>The HDF5 library (Fortran interface) — only relevant if you enable the HDF5 I/O support.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>HDF5 I/O is optional and self-contained.</strong> By default <code class="docutils literal notranslate"><span class="pre">MILADY</span></code>
+compiles without HDF5. To enable it, export <code class="docutils literal notranslate"><span class="pre">MLD_HDF5=ON</span></code> before invoking
+CMake. Then:</p>
+<ul class="simple">
+<li><p>if you set <code class="docutils literal notranslate"><span class="pre">HDF5_DIR</span></code> to a Fortran-enabled HDF5 build, that HDF5 is used;</p></li>
+<li><p>otherwise <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> builds its <strong>own bundled HDF5 (1.14.3) automatically</strong>
+(as a CMake <code class="docutils literal notranslate"><span class="pre">ExternalProject</span></code>), so no system HDF5 needs to be installed.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Intel ``ifx`` is supported</strong> in addition to the classic <code class="docutils literal notranslate"><span class="pre">ifort</span></code>.
+You can build with <code class="docutils literal notranslate"><span class="pre">ifx</span></code> as long as the associated MPI and MKL / ScaLapack
+are compatible with it (e.g. <code class="docutils literal notranslate"><span class="pre">mpiifx</span></code> / a recent oneAPI). Use
+<code class="docutils literal notranslate"><span class="pre">f_compile_milady_mix_ifx</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">f_compile_milady_mix_ifort</span></code>) to
+select the <code class="docutils literal notranslate"><span class="pre">ifx</span></code> compiler.</p>
+</div>
 </section>
 <section id="compilation-modes">
 <h2>Compilation modes<a class="headerlink" href="#compilation-modes" title="Permalink to this heading"></a>
@@ -141,7 +175,7 @@
 </dt>
 <dd>
 <ul class="simple">
-<li><p>intel compilers (2022.0.1)</p></li>
+<li><p>intel compilers <code class="docutils literal notranslate"><span class="pre">ifort</span></code> or <code class="docutils literal notranslate"><span class="pre">ifx</span></code> (&gt; 2022.0.1)</p></li>
 <li><p>MKL with ScaLapack support</p></li>
 <li><p>openmpi user-compiled, or system, compatible with intel compilers (&gt; 4.x.x)</p></li>
 </ul>
@@ -150,7 +184,7 @@
 </dt>
 <dd>
 <ul class="simple">
-<li><p>intel compilers included in oneAPI distribution</p></li>
+<li><p>intel compilers (<code class="docutils literal notranslate"><span class="pre">ifort</span></code> / <code class="docutils literal notranslate"><span class="pre">ifx</span></code>) included in oneAPI distribution</p></li>
 <li><p>MKL with ScaLapack support both of them included in the oneAPI distribution</p></li>
 <li><p>intelmpi equally included in oneAPI distribution.</p></li>
 </ul>
@@ -159,7 +193,7 @@
 </dt>
 <dd>
 <ul class="simple">
-<li><p>GNU compilers (min V9)</p></li>
+<li><p>GNU compilers (min V12)</p></li>
 <li><p>MKL or LAPACK/ScaLapack support for GNU.</p></li>
 <li><p>openmpi user-compiled, or system, gnu-compiled</p></li>
 </ul>
@@ -221,18 +255,22 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <span class="w">  </span><span class="nb">unset</span><span class="w"> </span>OMP_INSDIR
 <span class="w">  </span><span class="nb">unset</span><span class="w"> </span>OMP_ROOT
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_ROODIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/MLD"</span>
-
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SRCDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/ml.git
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_BUIDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_build
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_INSDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_install
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_TESDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/mld_testdir
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SETENV</span><span class="o">=</span>ON
+
 
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi/
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_ROOT</span><span class="o">=</span>/usr/local/iopenmpi/
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_MPI_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi/
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_MKL_LIB</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
 
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SETENV</span><span class="o">=</span>ON
+
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -266,6 +304,14 @@ f_compile_milady_gnu
 <div class="highlight"><pre><span></span><span class="n">f_compile_milady_mix</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In MIX mode you can pick the Intel compiler explicitly with
+<code class="docutils literal notranslate"><span class="pre">f_compile_milady_mix_ifort</span></code> (classic <code class="docutils literal notranslate"><span class="pre">ifort</span></code>) or
+<code class="docutils literal notranslate"><span class="pre">f_compile_milady_mix_ifx</span></code> (next-generation <code class="docutils literal notranslate"><span class="pre">ifx</span></code>), provided the
+associated MPI and MKL / ScaLapack are compatible with the chosen
+compiler.</p>
+</div>
 <p>with a typical output:</p>
 <div class="highlight-bash notranslate">
 <div class="highlight"><pre><span></span>Now<span class="w"> </span>you<span class="w"> </span>could<span class="w"> </span>type:
@@ -286,6 +332,11 @@ f_explore_milady
 </ol>
 <p>THAT’S ALL FOLKS !!! The executable is in <code class="docutils literal notranslate"><span class="pre">bin/milady_main.exe</span></code>.</p>
 <p>In order to test, run the step-by-step examples provided in the <a class="reference external" href="examples.html">Examples section</a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Looking for the old, hand-edited <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> procedure? See the
+<a class="reference internal" href="install_legacy.html#sec-insta-legacy"><span class="std std-ref">Former build (Makefile)</span></a> page (legacy, reference only).</p>
+</div>
 </section>
 </section>
 </section>
