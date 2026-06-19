@@ -107,6 +107,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ace">ACE</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id10">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#low-rank-chemical-compression">Low-rank chemical compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-body-order-radial-cutoffs">Per-body-order radial cutoffs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hybrid-descriptors">Hybrid descriptors</a></li>
@@ -882,6 +884,141 @@ The length of this string should be at least equal to <code class="docutils lite
 <p>The type of the polynomial in the radial part.</p>
 <p>1 - powPftouny; 2 - expPaftouny; 3 - simpBessel</p>
 <p>Default   <code class="docutils literal notranslate"><span class="pre">ace_radial_poly=2</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_lambda_list">
+<span id="cmdoption-arg-ace-lambda-list"></span><span class="sig-name descname"><span class="pre">ace_lambda_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_lambda_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>A string of real numbers that define the value of <span class="math notranslate nohighlight">\(\lambda\)</span> for each
+body order. The length of this string should be at least equal to
+<code class="docutils literal notranslate"><span class="pre">ace_numax</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">ace_lambda_list="2.0</span> <span class="pre">2.0</span> <span class="pre">2.0"</span></code></p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_lambda_list="</span> <span class="pre">2.d0</span> <span class="pre">2.d0</span> <span class="pre">2.d0"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_npoints_spline">
+<span id="cmdoption-arg-ace-npoints-spline"></span><span class="sig-name descname"><span class="pre">ace_npoints_spline</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_npoints_spline" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of points of the radial spline grid used to tabulate the ACE
+radial functions. A larger value gives a finer radial interpolation.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_npoints_spline=1000</span></code></p>
+</dd>
+</dl>
+
+</section>
+<section id="low-rank-chemical-compression">
+<h3>Low-rank chemical compression<a class="headerlink" href="#low-rank-chemical-compression" title="Permalink to this heading"></a>
+</h3>
+<p>For k-ACE with HSVD radial contraction (<code class="docutils literal notranslate"><span class="pre">ace_radial_chem=3</span></code>) and a large number
+of species (typically 25-108), each <span class="math notranslate nohighlight">\((k,l)\)</span> channel carries
+<span class="math notranslate nohighlight">\(S \times S\)</span> pair radial functions (<span class="math notranslate nohighlight">\(S\)</span> being the number of species).
+The following options compress every channel to rank <span class="math notranslate nohighlight">\(Q\)</span> through a
+symmetric Alternating Least Squares (ALS) factorization,
+<span class="math notranslate nohighlight">\(g_k^{l\mu\nu}(r) \approx \sum_{q} A_{\mu q}^{kl} A_{\nu q}^{kl} u_q^{kl}(r)\)</span>,
+reducing the storage from <span class="math notranslate nohighlight">\(\mathcal{O}(N_r S^2)\)</span> to
+<span class="math notranslate nohighlight">\(\mathcal{O}(SQ + N_r Q)\)</span> per channel. They are only effective with
+<code class="docutils literal notranslate"><span class="pre">ace_radial_chem=3</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_chem_low_rank">
+<span id="cmdoption-arg-ace-chem-low-rank"></span><span class="sig-name descname"><span class="pre">ace_chem_low_rank</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_chem_low_rank" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Enable the low-rank chemical compression: <code class="docutils literal notranslate"><span class="pre">0</span></code> disabled, <code class="docutils literal notranslate"><span class="pre">1</span></code> enabled.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_chem_low_rank=0</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_chem_low_rank_q">
+<span id="cmdoption-arg-ace-chem-low-rank-q"></span><span class="sig-name descname"><span class="pre">ace_chem_low_rank_q</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_chem_low_rank_q" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The compression rank <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_chem_low_rank_q=4</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_chem_low_rank_niter">
+<span id="cmdoption-arg-ace-chem-low-rank-niter"></span><span class="sig-name descname"><span class="pre">ace_chem_low_rank_niter</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-ace_chem_low_rank_niter" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of ALS iterations used to build the compression.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_chem_low_rank_niter=50</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_chem_low_rank_lambda">
+<span id="cmdoption-arg-ace-chem-low-rank-lambda"></span><span class="sig-name descname"><span class="pre">ace_chem_low_rank_lambda</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-ace_chem_low_rank_lambda" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The ridge regularization of the ALS factorization.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_chem_low_rank_lambda=1.d-6</span></code></p>
+</dd>
+</dl>
+
+</section>
+<section id="per-body-order-radial-cutoffs">
+<h3>Per-body-order radial cutoffs<a class="headerlink" href="#per-body-order-radial-cutoffs" title="Permalink to this heading"></a>
+</h3>
+<p>By default the ACE radial functions use the global cutoffs (<code class="docutils literal notranslate"><span class="pre">r_cut</span></code> /
+<code class="docutils literal notranslate"><span class="pre">r_cut_in</span></code>). The options below allow a different inner/outer cutoff (and
+transition width) for each body order.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-l_ace_set_rcut">
+<span id="cmdoption-arg-l-ace-set-rcut"></span><span class="sig-name descname"><span class="pre">l_ace_set_rcut</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-l_ace_set_rcut" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, the per-body-order cutoff lists below are used instead of the
+global cutoffs.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">l_ace_set_rcut=.false.</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_rcut_out_list">
+<span id="cmdoption-arg-ace-rcut-out-list"></span><span class="sig-name descname"><span class="pre">ace_rcut_out_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_rcut_out_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The outer cutoff radius (Å) for each body order.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_rcut_out_list="</span> <span class="pre">5.d0</span> <span class="pre">5.d0</span> <span class="pre">5.d0</span> <span class="pre">"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_rcut_width_out_list">
+<span id="cmdoption-arg-ace-rcut-width-out-list"></span><span class="sig-name descname"><span class="pre">ace_rcut_width_out_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_rcut_width_out_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The outer cutoff transition width (Å) for each body order.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_rcut_width_out_list="</span> <span class="pre">0.5d0</span> <span class="pre">0.5d0</span> <span class="pre">0.5d0</span> <span class="pre">"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_rcut_in_list">
+<span id="cmdoption-arg-ace-rcut-in-list"></span><span class="sig-name descname"><span class="pre">ace_rcut_in_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_rcut_in_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The inner cutoff radius (Å) for each body order.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_rcut_in_list="</span> <span class="pre">1.2d0</span> <span class="pre">1.2d0</span> <span class="pre">1.2d0</span> <span class="pre">"</span></code></p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ace_rcut_width_in_list">
+<span id="cmdoption-arg-ace-rcut-width-in-list"></span><span class="sig-name descname"><span class="pre">ace_rcut_width_in_list</span></span><span class="sig-prename descclassname"> <span class="pre">(string)</span></span><a class="headerlink" href="#cmdoption-arg-ace_rcut_width_in_list" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The inner cutoff transition width (Å) for each body order.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">ace_rcut_width_in_list="</span> <span class="pre">0.4d0</span> <span class="pre">0.4d0</span> <span class="pre">0.4d0</span> <span class="pre">"</span></code></p>
 </dd>
 </dl>
 
