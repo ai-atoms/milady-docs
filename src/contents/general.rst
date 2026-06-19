@@ -15,8 +15,6 @@ MILADY is an open-source code distributed under the Academic Software Licence
 * Training of machine-learning force fields (energies, forces and stresses) for
   molecular dynamics, with an optional physics-based short-range
   :ref:`ZBL repulsive core and k2b pair channel <sec:low_distance>`.
-* Surrogate regression models for materials properties, including vibrational
-  entropy, HOMO-LUMO energies, etc.
 * Representation of atomic structures in the feature space of atomic
   :ref:`descriptors <sec:descriptors>`, for structural analysis and
   visualization.
@@ -26,8 +24,7 @@ MILADY is an open-source code distributed under the Academic Software Licence
 **Descriptors and models:**
 
 * A large library of atomic :ref:`descriptors <sec:descriptors>`, including the
-  Atomic Cluster Expansion (ACE), bispectrum SO(4), Moment Tensor Potentials
-  (MTP) and many other choices.
+  Atomic Cluster Expansion (ACE), bispectrum SO(4) and many other choices.
 * Only :ref:`models <sec:models>` that are **linear in the parameters**: built
   as polynomials in the descriptors, together with :ref:`kernels <sec:kernel>`
   (including random-feature kernels), the available choice depending on the
@@ -74,12 +71,12 @@ Contributors
 | **Main contributors** in chronological order, all current or former members of SRMP, CEA Saclay:
 | M.-C. Marinica     (2015-present)
 | W. Unn-Toc         (2015-2017)
-| A. M. Goryaeva     (2018-present)
+| A. M. Goryaeva     (2018-2024)
 | C. Lapointe        (2018-2021)
 | J. Deres           (2019-2021)
-| J. Baima           (2020 - 2022)
-| A. Allera          (2022 - present)
-| A. Zhong           (2022 - present)
+| J. Baima           (2020-2022)
+| A. Allera          (2022-2024)
+| A. Zhong           (2022-present)
 
 | **Software development support** is provided by:
 | Anida Khizar (LGLS, CEA Saclay),
