@@ -31,27 +31,37 @@ Descriptors
 
    #. ``descriptor_type=4`` Angular Fourier Series (AFS)
 
-   #. ``descriptor_type=5`` Smooth Overlap of Atomic Positions (SOAP)
-
    #. ``descriptor_type=6`` Power Spectrum SO3
-
-   #. ``descriptor_type=7`` Bispectrum SO3
 
    #. ``descriptor_type=8`` Power Spectrum SO4
 
-   #. ``descriptor_type=9`` bispectrum SO4
+   #. ``descriptor_type=9`` Bispectrum SO4
 
    #. ``descriptor_type=14`` hybrid G2 + AFS
 
-   #. ``descriptor_type=19`` hybrid G2 + bispectrum SO4
+   #. ``descriptor_type=18`` hybrid G2 + Power Spectrum SO4
+
+   #. ``descriptor_type=19`` hybrid G2 + Bispectrum SO4
+
+   #. ``descriptor_type=77`` MiLaDy native descriptor
 
    #. ``descriptor_type=100`` MTP\ :math:`^3` (up to order
       :math:`M_{\mu,\nu}`, with :math:`\nu \le 3`)
 
-   #. ``descriptor_type=200`` PiP permutationally invariant polynomials
+   #. ``descriptor_type=200`` PiP permutationally invariant polynomials (N-body)
 
-   #. ``descriptor_type=300`` ACE
+   #. ``descriptor_type=202`` Fourier N-body (ftnbody)
 
+   #. ``descriptor_type=204`` Zeta-body (real-space 2-body / 3-body)
+
+   #. ``descriptor_type=300`` ACE (atomic cluster expansion)
+
+   #. ``descriptor_type=603`` Power Spectrum SO3 (3-body variant)
+
+   .. note::
+      The legacy SOAP (former ``descriptor_type=5``) and Bispectrum SO3
+      (former ``descriptor_type=7``) descriptors are **no longer available**
+      in this version of ``MILADY``.
 
    Default ``1``.
 
@@ -196,62 +206,6 @@ descriptors introduced by the option ``afs_type``.
    Default ``n_cheb=5``
 
 
-SOAP
-----
-
-To use  SOAP, set ``descriptor_type=5``.
-
-Parameters
-""""""""""
-
-The parameters of the descriptor are controlled by the options of the number of Gaussian
-radial functions ``n_soap`` and maximum of the spherical harmonics
-``l_max``.
-If the ``nspecies_soap`` is set, the number of components
-are, if ``lsoap_diag=.true.``: ``(l_max + 1)`` :math:`\times`
-``n_soap`` :math:`\cdot` ``nspecies_soap``\ :math:`\times`
-(``n_soap`` :math:`\cdot` ``nspecies_soap`` +1)/2, whilst, if
-``lsoap_diag=.false.`` the number of components is much less
-``(l_max + 1)`` :math:`\times` ``n_soap`` :math:`\times`
-``nspecies_soap``\ :math:`\times` (``nspecies_soap`` +1)/2.
-
-.. option::  n_soap (integer)
-
-   The number of Gaussians.
-
-
-   Default ``n_soap=4``
-
-.. option::  l_max (integer)
-
-   The max l of the spherical harmonics.
-
-   Default ``l_max=5``
-
-.. option::  lsoap_diag (logical)
-
-   The SOAP descriptor is diagonal in radial functions.
-
-   Default ``lsoap_diag=.false.``
-
-.. option::  lsoap_lnorm (logical)
-
-   The SOAP descriptor is normalized in each :math:`l`-angular channel by a factor :math:`1/(2l+1)`.
-
-   Default ``lsoap_lnorm=.false.``
-
-.. option::  lsoap_norm (logical)
-
-   The SOAP descriptor is normalized.
-
-   Default ``lsoap_norm=.false.``
-
-.. option::  r_cut_width_soap  (double precision)
-
-   The intermediate regime for the cutoff function.
-
-   Default ``r_cut_width_soap=0.5d0``
-
 Power Spectrum SO3
 ------------------
 
@@ -358,57 +312,31 @@ with :math:`n_{1,é}` are in the range of :math:`0/1` to :math:`n_{rbf}`, whilst
 :math:`l = 0, \ldots l_{max}`. The Wigner coefficients are the same described for Power Spectrum SO3.
 
 
-Bispectrum SO3
---------------
+Power Spectrum SO4
+------------------
 
-To use bispectrum SO3, set ``descriptor_type=7``.
+To use power spectrum SO4, set ``descriptor_type=8``.
 
 Parameters
 """"""""""
 
+The parameters of this descriptor are controlled by the maximum angular
+moment :math:`j_{max}`. Its dimension is :math:`2 j_{max} + 1`. The same
+two options as for the **Bispectrum SO4** descriptor (below),
+``j_max`` and ``inv_r0_input``, are used.
 
-The parameters of the descriptor are controlled by the number of Gaussian radial
-functions, ``n_rbf``, and maximal angular momentum of spherical
-harmonics, ``(l_max``. The bispectrum SO3 descriptor components of
-the :math:`i^{th}` atom are obtained from the power spectrum SO3
-coefficients :math:`c_{nlm}^i`:
+.. option::  j_max (real)
 
-.. math::
+   The maximum component of the spectral function.
 
-   b_{n l l_1 l_2}^i = \sum_{m=-l}^{l}\sum_{m_1=-l_1}^{l_1} \sum_{m_2=-l_2}^{l_2} c_{ n l m}^{*i}C_{m m_1 m_2}^{l l_1 l_2} c_{n l_1 m_1}^i c_{n l_2 m_2}^i
-                     \nonumber
+   Default ``j_max=1.5``
 
-where :math:`C_{m m_1 m_2}^{l l_1 l_2}` is the 3-dimensional
-Clebsch-Gordan coefficients. The dimension of this desriptor is
-difficult to know beforehand. The naive estimation of the dimension
-is ``n_rbf`` :math:`\times` ``(l_max + 1)``\ :math:`^3`. However, the
-selection rules of the Clebsch-Gordan coefficients reduce drastically
-this number e.g. for ``n_rbf=7`` and ``l_max=5`` the number of
-components is ``140`` (instead ). This number follow the GC/Karakala
-convention and take only the diagonal CG coefficients i.e.
-:math:`l_1=l_2` in previous equation. This condition can be released
-using ``lbso3_diag=.false.`` (in the above mentioned the dimension
-becomes ``483``). For numerical reasons, is highly recommended to use
-ONLY the diagonal form.
+.. option::  inv_r0_input (real)
 
-.. option::  n_rbf (integer)
+   The value of the maximum projection at the north pole in :math:`\pi`
+   units (see Bispectrum SO4 for details).
 
-   The number of Gaussian (radial) functions.
-
-   Default ``n_rbf=4``
-
-.. option::  l_max (integer)
-
-   The max values of the angular moment.
-
-   Default ``l_max=4``
-
-.. option::  lbso3_diag (logical)
-
-   If are taken the full bispectrum coeffcient (overcomplete), ``.false.`` or only diagonal
-   :math:`l_1=l_2` ``.true.``
-
-   Default ``lbso3_diag=.false.``
+   Default ``inv_r0_input=`` ``1.d0 - 0.02/``\ :math:`\pi`
 
 
 Bispectrum SO4
@@ -613,27 +541,29 @@ The parameters of the descriptors are controlled by the options below.
 .. option:: ace_chem (integer)
 
    The way to encode chemical species.
--  ``ace_chem=0``: incomplet version, treatement for single element systems. 
--  ``ace_chem=1``: full version, treatement for multi-element systems. 
+
+   -  ``ace_chem=0``: incomplet version, treatement for single element systems.
+   -  ``ace_chem=1``: full version, treatement for multi-element systems.
 
    Default ``ace_chem=1``
 
 .. option:: ace_radial_chem (integer)
 
    The type of the radial part treatement.
-- ``ace_radial_chem=1``: Ralf version, classical ACE.
-- ``ace_radial_chem=3``: k-ACE version with tensor contraction.
 
-  Default ``ace_radial_chem=1``
+   - ``ace_radial_chem=1``: Ralf version, classical ACE.
+   - ``ace_radial_chem=3``: k-ACE version with tensor contraction.
+
+   Default ``ace_radial_chem=1``
 
 .. option:: ace_gencg (integer)
 
    The type of the generation of the Clebsch-Gordan coefficients.
 
-- ``ace_gencg=1``: redundant version.
-- ``ace_gencg=2``: SVD Dusson-Ortner version.
- 
-  Default ``ace_gencg=2``
+   - ``ace_gencg=1``: redundant version.
+   - ``ace_gencg=2``: SVD Dusson-Ortner version.
+
+   Default ``ace_gencg=2``
 
 .. option:: l_ace_order (logical vector)
 
@@ -677,11 +607,128 @@ The parameters of the descriptors are controlled by the options below.
 
 .. option:: ace_radial_poly (integer)
 
-   The type of the polynomial in the radial part. 
+   The type of the polynomial in the radial part.
 
-   1 - powPftouny; 2 - expPaftouny; 3 - simpBessel 
+   1 - powPftouny; 2 - expPaftouny; 3 - simpBessel
 
    Default   ``ace_radial_poly=2``
+
+
+Hybrid descriptors
+------------------
+
+``MILADY`` provides several *hybrid* descriptors that concatenate a radial
+:math:`G2` part with an angular/many-body part. The resulting descriptor is the
+direct sum of the two blocks, and its parameters are simply those of the two
+parent descriptors:
+
+- ``descriptor_type=14`` — hybrid **G2 + AFS** (parameters of the **G2** and **AFS** sections).
+- ``descriptor_type=18`` — hybrid **G2 + Power Spectrum SO4** (parameters of the **G2** and **Power Spectrum SO4** sections).
+- ``descriptor_type=19`` — hybrid **G2 + Bispectrum SO4** (parameters of the **G2** and **Bispectrum SO4** sections).
+
+
+MiLaDy native descriptor
+------------------------
+
+To use the MiLaDy native descriptor, set ``descriptor_type=77``.
+
+Parameters
+""""""""""
+
+.. option:: rmat_dim (integer)
+
+   The linear size of the native descriptor matrix; the descriptor dimension is
+   ``rmat_dim`` :math:`\times` ``rmat_dim``.
+
+   Default ``rmat_dim=20``
+
+.. option:: img_weighted (logical)
+
+   Use a multi-channel (chemically weighted) variant of the descriptor.
+
+   Default ``img_weighted=.false.``
+
+.. option:: img_num_ch (integer)
+
+   The number of channels used when ``img_weighted=.true.``.
+
+   Default ``img_num_ch=1``
+
+
+Fourier N-body (ftnbody)
+------------------------
+
+To use the Fourier N-body descriptor, set ``descriptor_type=202``.
+
+Parameters
+""""""""""
+
+This descriptor expands the N-body interaction on a Fourier radial basis. The
+active body orders are selected with ``l_body_order`` (a logical vector, see
+the **PiP** section); the size, length and grid spacing of the Fourier basis are
+provided per body order as strings.
+
+.. option:: l_body_order (logical vector)
+
+   Selects which body orders are activated (same convention as for the
+   **PiP** descriptor).
+
+.. option:: dim_fourier_nbody (string)
+
+   The number of Fourier basis functions for each active body order.
+
+.. option:: length_fourier_nbody (string)
+
+   The length (range) of the Fourier basis for each active body order.
+
+.. option:: delta_fourier_nbody (string)
+
+   The grid spacing of the Fourier basis for each active body order.
+
+
+Zeta-body
+---------
+
+To use the Zeta-body descriptor, set ``descriptor_type=204``. It provides an
+explicit real-space **2-body / 3-body** description of the local environment.
+
+.. note::
+   Zeta-body uses body orders 2 and 3 only (``l_body_order(2)`` and
+   ``l_body_order(3)``); the other body orders are turned off automatically.
+   For the pure 2-body channel it is recommended to use ``active_k2b=.true.``
+   instead.
+
+Parameters
+""""""""""
+
+.. option:: zetabody_order (integer)
+
+   The order of the zeta-body expansion. It must be strictly smaller than the
+   internal limit ``MAX_ZETABODY_ORDER`` (= 6).
+
+.. option:: r_cut_z2b (real)
+
+   The cut-off radius (in Å) of the 2-body channel. If negative, the global
+   ``r_cut`` is used.
+
+   Default ``r_cut_z2b=r_cut``
+
+.. option:: r_cut_z3b (real)
+
+   The cut-off radius (in Å) of the 3-body channel. If negative, the global
+   ``r_cut`` is used.
+
+   Default ``r_cut_z3b=r_cut``
+
+.. option:: r_cut_width_z2b (real)
+
+   The width of the cut-off transition region of the 2-body channel. If
+   negative, the global ``r_cut_width`` is used.
+
+.. option:: r_cut_width_z3b (real)
+
+   The width of the cut-off transition region of the 3-body channel. If
+   negative, the global ``r_cut_width`` is used.
 
 .. .. option:: ace_lambda_list (string)
 
