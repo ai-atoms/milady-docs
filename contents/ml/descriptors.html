@@ -122,6 +122,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">Parameters</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#low-distance-behaviour-cutoffs-k2b-and-zbl">Low-distance behaviour: cutoffs, k2b and ZBL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cutoff-functions">Cutoff functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#k2b-explicit-two-body-channel">k2b: explicit two-body channel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zbl-short-range-repulsive-core">ZBL: short-range repulsive core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switching-zbl-on-off-with-or-without-k2b">Switching ZBL on/off, with or without k2b</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Databases</a></li>
@@ -1050,6 +1057,333 @@ negative, the global <code class="docutils literal notranslate"><span class="pre
 </dd>
 </dl>
 
+</section>
+</section>
+<section id="low-distance-behaviour-cutoffs-k2b-and-zbl">
+<span id="sec-low-distance"></span><h2>Low-distance behaviour: cutoffs, k2b and ZBL<a class="headerlink" href="#low-distance-behaviour-cutoffs-k2b-and-zbl" title="Permalink to this heading"></a>
+</h2>
+<p>At short interatomic distances the many-body descriptors become unreliable, as
+training sets rarely sample close encounters. <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> controls this
+<em>low-distance</em> regime with three ingredients that can be combined: the smooth
+<strong>cutoff functions</strong> that bound the descriptor in distance, an explicit <strong>k2b</strong>
+two-body channel that adds a learnable pair interaction, and the physics-based
+<strong>ZBL</strong> repulsive core for very close encounters.</p>
+<section id="cutoff-functions">
+<h3>Cutoff functions<a class="headerlink" href="#cutoff-functions" title="Permalink to this heading"></a>
+</h3>
+<p>Every descriptor is bounded by a smooth cutoff. The <em>outer</em> cutoff removes
+interactions beyond <code class="docutils literal notranslate"><span class="pre">r_cut</span></code>; an optional <em>inner</em> cutoff removes them below
+<code class="docutils literal notranslate"><span class="pre">r_cut_in</span></code>.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-7">
+<span class="sig-name descname"><span class="pre">r_cut</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-7" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The outer cutoff radius (Å). All interactions vanish for
+<span class="math notranslate nohighlight">\(r &gt; r_{\textrm{cut}}\)</span>. Mandatory.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_width">
+<span id="cmdoption-arg-r-cut-width"></span><span class="sig-name descname"><span class="pre">r_cut_width</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The width (Å) of the smooth transition near the outer cutoff (used by
+<code class="docutils literal notranslate"><span class="pre">type_fcut=3</span></code>).</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-type_fcut">
+<span id="cmdoption-arg-type-fcut"></span><span class="sig-name descname"><span class="pre">type_fcut</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-type_fcut" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The functional form of the outer cutoff function <span class="math notranslate nohighlight">\(f_{\textrm{cut}}(r)\)</span>:</p>
+<ul>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">type_fcut=1</span></code> power law:</p>
+<div class="math notranslate nohighlight">
+\[f_{\textrm{cut}}(r) = \left[ \left(\frac{r}{r_{\textrm{cut}}}\right)^2 - 1 \right]^2\]</div>
+</li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">type_fcut=2</span></code> cosine (default):</p>
+<div class="math notranslate nohighlight">
+\[f_{\textrm{cut}}(r) = \frac{1}{2}\left[ \cos\left( \pi \frac{r}{r_{\textrm{cut}}} \right) + 1 \right]\]</div>
+</li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">type_fcut=3</span></code> smooth plateau + cosine (constant 1 up to
+<span class="math notranslate nohighlight">\(r_{\textrm{cut}} - r_{\textrm{cut,width}}\)</span>, then a cosine taper).
+This is the form used internally for the <em>inner</em> cutoff of several
+descriptors:</p>
+<div class="math notranslate nohighlight">
+\[f_{\textrm{cut}}(r) = \frac{1}{2}\left[ \cos\left( \pi \frac{ r - r_{\textrm{cut}} + r_{\textrm{cut,width}} }{ r_{\textrm{cut,width}} } \right) + 1 \right] , \quad r_{\textrm{cut}} - r_{\textrm{cut,width}} \le r \le r_{\textrm{cut}}\]</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type_fcut=4</span></code> quadratic: <span class="math notranslate nohighlight">\(f_{\textrm{cut}}(r) = 2\,(r - r_{\textrm{cut}})\)</span>.</p></li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">type_fcut=2</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_in">
+<span id="cmdoption-arg-r-cut-in"></span><span class="sig-name descname"><span class="pre">r_cut_in</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_in" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The inner cutoff radius (Å). When <strong>positive</strong>, the descriptors are smoothly
+turned off below <span class="math notranslate nohighlight">\(r_{\textrm{cut,in}}\)</span>, with the same value for all
+element pairs (global mode). When <strong>negative</strong>, the inner cutoff is computed
+automatically for each element pair <span class="math notranslate nohighlight">\((A,B)\)</span> from the covalent radii,</p>
+<div class="math notranslate nohighlight">
+\[r_{\textrm{cut,in}}^{AB} = 0.60\,\frac{ r_{\textrm{cov}}(A) + r_{\textrm{cov}}(B) }{100}\]</div>
+<p>(<span class="math notranslate nohighlight">\(r_{\textrm{cov}}\)</span> in pm), clamped to <span class="math notranslate nohighlight">\([0.60, 1.80]\)</span> Å.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r_cut_in=-1.2</span></code> (automatic, element-specific inner cutoffs).</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_width_in">
+<span id="cmdoption-arg-r-cut-width-in"></span><span class="sig-name descname"><span class="pre">r_cut_width_in</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width_in" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The width (Å) of the smooth inner-cutoff transition, applied over the
+interval <span class="math notranslate nohighlight">\([\,r_{\textrm{cut,in}},\; r_{\textrm{cut,in}} + r_{\textrm{cut,width,in}}\,]\)</span>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r_cut_width_in=0.4</span></code>.</p>
+</dd>
+</dl>
+
+</section>
+<section id="k2b-explicit-two-body-channel">
+<h3>k2b: explicit two-body channel<a class="headerlink" href="#k2b-explicit-two-body-channel" title="Permalink to this heading"></a>
+</h3>
+<p>The <strong>k2b</strong> (kernel 2-body) channel appends an explicit, learnable pair
+interaction to the design matrix, independent of the many-body descriptor:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A} = \left[\; \mathbf{A}_{\textrm{many-body}} \;\big|\; \mathbf{A}_{\textrm{k2b}} \;\right]\]</div>
+<p>It places <span class="math notranslate nohighlight">\(n_{\textrm{rad}}=\)</span> <code class="docutils literal notranslate"><span class="pre">np_radial_2b</span></code> Gaussian radial functions on
+a linearly-spaced grid from 0.2 Å to <span class="math notranslate nohighlight">\(r_{\textrm{cut}}^{(2b)}\)</span>, with</p>
+<div class="math notranslate nohighlight">
+\[B_i(r) = \delta_{2b}^2 \;\zeta_{\textrm{fcut}}(z_r^{(i)}) \; f_{\textrm{cut}}(r) \; \exp\!\left( -\frac{(r - z_r^{(i)})^2}{2\,\sigma_{2b}^2} \right)\]</div>
+<p>one block of <span class="math notranslate nohighlight">\(n_{\textrm{rad}}\)</span> columns per unique element pair, so the
+channel dimension is
+<span class="math notranslate nohighlight">\(D_{\textrm{k2b}} = n_{\textrm{rad}} \times N_{\textrm{elem}}(N_{\textrm{elem}}+1)/2\)</span>.
+It is especially useful together with ZBL, as it provides the learnable
+short-range pair interaction that bridges the repulsive core and the many-body
+domain.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-activate_k2b">
+<span id="cmdoption-arg-activate-k2b"></span><span class="sig-name descname"><span class="pre">activate_k2b</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-activate_k2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The master switch of the k2b channel. If <code class="docutils literal notranslate"><span class="pre">zbl_potential=.true.</span></code> but
+<code class="docutils literal notranslate"><span class="pre">activate_k2b=.false.</span></code>, k2b is activated automatically (with a warning),
+because the ZBL bridge mode requires it.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">activate_k2b=.false.</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-np_radial_2b">
+<span id="cmdoption-arg-np-radial-2b"></span><span class="sig-name descname"><span class="pre">np_radial_2b</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-np_radial_2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The number of Gaussian radial functions <span class="math notranslate nohighlight">\(n_{\textrm{rad}}\)</span>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">np_radial_2b=30</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-sigma_2b">
+<span id="cmdoption-arg-sigma-2b"></span><span class="sig-name descname"><span class="pre">sigma_2b</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-sigma_2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The Gaussian width <span class="math notranslate nohighlight">\(\sigma_{2b}\)</span> (Å) of each radial basis function.
+Smaller values give sharper, more localized functions.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">sigma_2b=0.05</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-delta_2b">
+<span id="cmdoption-arg-delta-2b"></span><span class="sig-name descname"><span class="pre">delta_2b</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-delta_2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The amplitude <span class="math notranslate nohighlight">\(\delta_{2b}\)</span> scaling the whole k2b channel; it sets the
+typical magnitude (in eV) of a 2-body interaction and the weight of the k2b
+channel relative to the many-body descriptor.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">delta_2b=1.0</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_2b">
+<span id="cmdoption-arg-r-cut-2b"></span><span class="sig-name descname"><span class="pre">r_cut_2b</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The cutoff radius of the k2b channel. Defaults to <code class="docutils literal notranslate"><span class="pre">r_cut</span></code> if not set.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r_cut_width_2b">
+<span id="cmdoption-arg-r-cut-width-2b"></span><span class="sig-name descname"><span class="pre">r_cut_width_2b</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r_cut_width_2b" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The width of the k2b cutoff transition. Defaults to <code class="docutils literal notranslate"><span class="pre">r_cut_width</span></code>.</p>
+</dd>
+</dl>
+
+</section>
+<section id="zbl-short-range-repulsive-core">
+<h3>ZBL: short-range repulsive core<a class="headerlink" href="#zbl-short-range-repulsive-core" title="Permalink to this heading"></a>
+</h3>
+<p>The <strong>ZBL</strong> (Ziegler-Biersack-Littmark) potential adds a physics-based repulsive
+core for close encounters, where the screened Coulomb repulsion between the
+nuclei <span class="math notranslate nohighlight">\(Z_i, Z_j\)</span> dominates:</p>
+<div class="math notranslate nohighlight">
+\[V_{\textrm{ZBL}}(r) = \frac{Z_i Z_j}{4\pi\varepsilon_0} \, \frac{\phi(r/a)}{r} \; f_{\textrm{cut}}^{\textrm{ZBL}}(r)\]</div>
+<p>with the universal screening function and length</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\phi(x) &amp;= 0.32825\,e^{-2.54931\,x} + 0.09219\,e^{-0.29182\,x} + 0.58110\,e^{-0.59231\,x} \\
+a &amp;= \frac{0.46848}{Z_i^{0.23} + Z_j^{0.23}}\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\varepsilon_0 = 55.26349406\times10^{-4}\)</span> e<sup>2</sup>/(eV·Å). A
+<span class="math notranslate nohighlight">\(C^2\)</span>-continuous switching function turns ZBL off between
+<span class="math notranslate nohighlight">\(r_1^{\textrm{ZBL}}\)</span> and <span class="math notranslate nohighlight">\(r_2^{\textrm{ZBL}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_{\textrm{cut}}^{\textrm{ZBL}}(r) =
+\begin{cases}
+  1 &amp; r \le r_1^{\textrm{ZBL}} \\
+  1 - \chi^3\,(6\chi^2 - 15\chi + 10) &amp; r_1^{\textrm{ZBL}} &lt; r &lt; r_2^{\textrm{ZBL}} \\
+  0 &amp; r \ge r_2^{\textrm{ZBL}}
+\end{cases}
+\qquad \chi = \frac{r - r_1^{\textrm{ZBL}}}{r_2^{\textrm{ZBL}} - r_1^{\textrm{ZBL}}}\end{split}\]</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-zbl_potential">
+<span id="cmdoption-arg-zbl-potential"></span><span class="sig-name descname"><span class="pre">zbl_potential</span></span><span class="sig-prename descclassname"> <span class="pre">(logical)</span></span><a class="headerlink" href="#cmdoption-arg-zbl_potential" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The master switch enabling the ZBL repulsive core.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">zbl_potential=.false.</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-zbl_type">
+<span id="cmdoption-arg-zbl-type"></span><span class="sig-name descname"><span class="pre">zbl_type</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-zbl_type" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The way ZBL is integrated with the many-body (MB) potential:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">zbl_type=1</span></code> <em>bridge mode</em> (default). ZBL is connected to the MB
+potential through the k2b channel and a smooth raccordement (bridge)
+function, so the total energy reads
+<span class="math notranslate nohighlight">\(E = E_{\textrm{ZBL+bridge}} + E_{\textrm{k2b}} + E_{\textrm{MB}}\)</span>.
+It <strong>requires</strong> k2b (auto-activated if needed).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zbl_type=2</span></code> <em>additive mode</em>. The total energy is simply
+<span class="math notranslate nohighlight">\(E = E_{\textrm{ZBL}} + E_{\textrm{MB}}\)</span>; the MB descriptors use the
+inner cutoff <code class="docutils literal notranslate"><span class="pre">r_cut_in</span></code> to vanish at short range, so only ZBL acts there.
+No k2b channel or bridge is needed.</p></li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">zbl_type=1</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r1_zbl">
+<span id="cmdoption-arg-r1-zbl"></span><span class="sig-name descname"><span class="pre">r1_zbl</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r1_zbl" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Below this distance (Å) only the pure ZBL screened Coulomb is used
+(<span class="math notranslate nohighlight">\(f_{\textrm{cut}}^{\textrm{ZBL}}=1\)</span>). Typically 0.8-1.2 Å.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r1_zbl=1.0</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-r2_zbl">
+<span id="cmdoption-arg-r2-zbl"></span><span class="sig-name descname"><span class="pre">r2_zbl</span></span><span class="sig-prename descclassname"> <span class="pre">(real)</span></span><a class="headerlink" href="#cmdoption-arg-r2_zbl" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Above this distance (Å) ZBL is fully switched off. Typically 1.8-2.5 Å.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">r2_zbl=2.2</span></code>.</p>
+</dd>
+</dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-type_rac_zbl">
+<span id="cmdoption-arg-type-rac-zbl"></span><span class="sig-name descname"><span class="pre">type_rac_zbl</span></span><span class="sig-prename descclassname"> <span class="pre">(integer)</span></span><a class="headerlink" href="#cmdoption-arg-type_rac_zbl" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The bridge (raccordement) function connecting ZBL to k2b in <code class="docutils literal notranslate"><span class="pre">zbl_type=1</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type_rac_zbl=1</span></code> exponential, <span class="math notranslate nohighlight">\(f_{\textrm{bridge}}(r)=\exp(a+br+cr^2+dr^3)\)</span>
+(<span class="math notranslate nohighlight">\(C^1\)</span> continuity at the two endpoints).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type_rac_zbl=2</span></code> polynomial,
+<span class="math notranslate nohighlight">\(f_{\textrm{bridge}}(r)=a+br+cr^2+dr^3+er^4+fr^5\)</span>
+(<span class="math notranslate nohighlight">\(C^2\)</span> continuity, default and recommended).</p></li>
+</ul>
+<p>Default <code class="docutils literal notranslate"><span class="pre">type_rac_zbl=2</span></code>.</p>
+</dd>
+</dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In bridge mode (<code class="docutils literal notranslate"><span class="pre">zbl_type=1</span></code>) the three radii must satisfy the strict
+ordering <span class="math notranslate nohighlight">\(r_1^{\textrm{ZBL}} &lt; r_{\textrm{cut,in}}\,(=r_{\textrm{k2b}}) &lt; r_2^{\textrm{ZBL}}\)</span>;
+if <code class="docutils literal notranslate"><span class="pre">r_cut_in</span></code> is negative it defaults to
+<span class="math notranslate nohighlight">\((r_1^{\textrm{ZBL}} + r_2^{\textrm{ZBL}})/2\)</span>, and <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> aborts if
+the ordering is violated.</p>
+</div>
+</section>
+<section id="switching-zbl-on-off-with-or-without-k2b">
+<h3>Switching ZBL on/off, with or without k2b<a class="headerlink" href="#switching-zbl-on-off-with-or-without-k2b" title="Permalink to this heading"></a>
+</h3>
+<p>The two switches <code class="docutils literal notranslate"><span class="pre">activate_k2b</span></code> and <code class="docutils literal notranslate"><span class="pre">zbl_potential</span></code> (with <code class="docutils literal notranslate"><span class="pre">zbl_type</span></code>)
+combine as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 16%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="row-odd">
+<th class="head"><p>Settings</p></th>
+<th class="head"><p>Short-range core</p></th>
+<th class="head"><p>Behaviour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">zbl_potential=.false.</span></code>,
+<code class="docutils literal notranslate"><span class="pre">activate_k2b=.false.</span></code></p></td>
+<td><p>none</p></td>
+<td><p>Standard many-body descriptor only.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">zbl_potential=.false.</span></code>,
+<code class="docutils literal notranslate"><span class="pre">activate_k2b=.true.</span></code></p></td>
+<td><p>learnable pair</p></td>
+<td><p>k2b pair channel appended to the many-body descriptor; no
+physics-based repulsion.</p></td>
+</tr>
+<tr class="row-even">
+<td><p><code class="docutils literal notranslate"><span class="pre">zbl_potential=.true.</span></code>,
+<code class="docutils literal notranslate"><span class="pre">zbl_type=1</span></code></p></td>
+<td><p>ZBL + k2b
++ bridge</p></td>
+<td><p>Bridge mode: ZBL → smooth bridge → k2b + many-body. k2b is
+required and auto-activated if <code class="docutils literal notranslate"><span class="pre">activate_k2b=.false.</span></code>.</p></td>
+</tr>
+<tr class="row-odd">
+<td><p><code class="docutils literal notranslate"><span class="pre">zbl_potential=.true.</span></code>,
+<code class="docutils literal notranslate"><span class="pre">zbl_type=2</span></code></p></td>
+<td><p>ZBL (additive)</p></td>
+<td><p><span class="math notranslate nohighlight">\(E_{\textrm{ZBL}} + E_{\textrm{MB}}\)</span>; the inner cutoff
+removes the many-body part at short range. k2b not required.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>

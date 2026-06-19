@@ -751,3 +751,239 @@ Parameters
 .. ace_rcut_out_list =" 5.d0 5.d0 5.d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 .. ace_rcut_width_out_list =" 0.5d0 0.5d0 0.5d0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
+
+
+.. _`sec:low_distance`:
+
+Low-distance behaviour: cutoffs, k2b and ZBL
+--------------------------------------------
+
+At short interatomic distances the many-body descriptors become unreliable, as
+training sets rarely sample close encounters. ``MILADY`` controls this
+*low-distance* regime with three ingredients that can be combined: the smooth
+**cutoff functions** that bound the descriptor in distance, an explicit **k2b**
+two-body channel that adds a learnable pair interaction, and the physics-based
+**ZBL** repulsive core for very close encounters.
+
+Cutoff functions
+""""""""""""""""
+
+Every descriptor is bounded by a smooth cutoff. The *outer* cutoff removes
+interactions beyond ``r_cut``; an optional *inner* cutoff removes them below
+``r_cut_in``.
+
+.. option:: r_cut (real)
+
+   The outer cutoff radius (Å). All interactions vanish for
+   :math:`r > r_{\textrm{cut}}`. Mandatory.
+
+.. option:: r_cut_width (real)
+
+   The width (Å) of the smooth transition near the outer cutoff (used by
+   ``type_fcut=3``).
+
+.. option:: type_fcut (integer)
+
+   The functional form of the outer cutoff function :math:`f_{\textrm{cut}}(r)`:
+
+   - ``type_fcut=1`` power law:
+
+     .. math:: f_{\textrm{cut}}(r) = \left[ \left(\frac{r}{r_{\textrm{cut}}}\right)^2 - 1 \right]^2
+
+   - ``type_fcut=2`` cosine (default):
+
+     .. math:: f_{\textrm{cut}}(r) = \frac{1}{2}\left[ \cos\left( \pi \frac{r}{r_{\textrm{cut}}} \right) + 1 \right]
+
+   - ``type_fcut=3`` smooth plateau + cosine (constant 1 up to
+     :math:`r_{\textrm{cut}} - r_{\textrm{cut,width}}`, then a cosine taper).
+     This is the form used internally for the *inner* cutoff of several
+     descriptors:
+
+     .. math:: f_{\textrm{cut}}(r) = \frac{1}{2}\left[ \cos\left( \pi \frac{ r - r_{\textrm{cut}} + r_{\textrm{cut,width}} }{ r_{\textrm{cut,width}} } \right) + 1 \right] , \quad r_{\textrm{cut}} - r_{\textrm{cut,width}} \le r \le r_{\textrm{cut}}
+
+   - ``type_fcut=4`` quadratic: :math:`f_{\textrm{cut}}(r) = 2\,(r - r_{\textrm{cut}})`.
+
+   Default ``type_fcut=2``.
+
+.. option:: r_cut_in (real)
+
+   The inner cutoff radius (Å). When **positive**, the descriptors are smoothly
+   turned off below :math:`r_{\textrm{cut,in}}`, with the same value for all
+   element pairs (global mode). When **negative**, the inner cutoff is computed
+   automatically for each element pair :math:`(A,B)` from the covalent radii,
+
+   .. math:: r_{\textrm{cut,in}}^{AB} = 0.60\,\frac{ r_{\textrm{cov}}(A) + r_{\textrm{cov}}(B) }{100}
+
+   (:math:`r_{\textrm{cov}}` in pm), clamped to :math:`[0.60, 1.80]` Å.
+
+   Default ``r_cut_in=-1.2`` (automatic, element-specific inner cutoffs).
+
+.. option:: r_cut_width_in (real)
+
+   The width (Å) of the smooth inner-cutoff transition, applied over the
+   interval :math:`[\,r_{\textrm{cut,in}},\; r_{\textrm{cut,in}} + r_{\textrm{cut,width,in}}\,]`.
+
+   Default ``r_cut_width_in=0.4``.
+
+k2b: explicit two-body channel
+""""""""""""""""""""""""""""""
+
+The **k2b** (kernel 2-body) channel appends an explicit, learnable pair
+interaction to the design matrix, independent of the many-body descriptor:
+
+.. math:: \mathbf{A} = \left[\; \mathbf{A}_{\textrm{many-body}} \;\big|\; \mathbf{A}_{\textrm{k2b}} \;\right]
+
+It places :math:`n_{\textrm{rad}}=` ``np_radial_2b`` Gaussian radial functions on
+a linearly-spaced grid from 0.2 Å to :math:`r_{\textrm{cut}}^{(2b)}`, with
+
+.. math:: B_i(r) = \delta_{2b}^2 \;\zeta_{\textrm{fcut}}(z_r^{(i)}) \; f_{\textrm{cut}}(r) \; \exp\!\left( -\frac{(r - z_r^{(i)})^2}{2\,\sigma_{2b}^2} \right)
+
+one block of :math:`n_{\textrm{rad}}` columns per unique element pair, so the
+channel dimension is
+:math:`D_{\textrm{k2b}} = n_{\textrm{rad}} \times N_{\textrm{elem}}(N_{\textrm{elem}}+1)/2`.
+It is especially useful together with ZBL, as it provides the learnable
+short-range pair interaction that bridges the repulsive core and the many-body
+domain.
+
+.. option:: activate_k2b (logical)
+
+   The master switch of the k2b channel. If ``zbl_potential=.true.`` but
+   ``activate_k2b=.false.``, k2b is activated automatically (with a warning),
+   because the ZBL bridge mode requires it.
+
+   Default ``activate_k2b=.false.``.
+
+.. option:: np_radial_2b (integer)
+
+   The number of Gaussian radial functions :math:`n_{\textrm{rad}}`.
+
+   Default ``np_radial_2b=30``.
+
+.. option:: sigma_2b (real)
+
+   The Gaussian width :math:`\sigma_{2b}` (Å) of each radial basis function.
+   Smaller values give sharper, more localized functions.
+
+   Default ``sigma_2b=0.05``.
+
+.. option:: delta_2b (real)
+
+   The amplitude :math:`\delta_{2b}` scaling the whole k2b channel; it sets the
+   typical magnitude (in eV) of a 2-body interaction and the weight of the k2b
+   channel relative to the many-body descriptor.
+
+   Default ``delta_2b=1.0``.
+
+.. option:: r_cut_2b (real)
+
+   The cutoff radius of the k2b channel. Defaults to ``r_cut`` if not set.
+
+.. option:: r_cut_width_2b (real)
+
+   The width of the k2b cutoff transition. Defaults to ``r_cut_width``.
+
+ZBL: short-range repulsive core
+"""""""""""""""""""""""""""""""
+
+The **ZBL** (Ziegler-Biersack-Littmark) potential adds a physics-based repulsive
+core for close encounters, where the screened Coulomb repulsion between the
+nuclei :math:`Z_i, Z_j` dominates:
+
+.. math:: V_{\textrm{ZBL}}(r) = \frac{Z_i Z_j}{4\pi\varepsilon_0} \, \frac{\phi(r/a)}{r} \; f_{\textrm{cut}}^{\textrm{ZBL}}(r)
+
+with the universal screening function and length
+
+.. math::
+
+   \phi(x) &= 0.32825\,e^{-2.54931\,x} + 0.09219\,e^{-0.29182\,x} + 0.58110\,e^{-0.59231\,x} \\
+   a &= \frac{0.46848}{Z_i^{0.23} + Z_j^{0.23}}
+
+and :math:`\varepsilon_0 = 55.26349406\times10^{-4}` e\ :sup:`2`/(eV·Å). A
+:math:`C^2`-continuous switching function turns ZBL off between
+:math:`r_1^{\textrm{ZBL}}` and :math:`r_2^{\textrm{ZBL}}`:
+
+.. math::
+
+   f_{\textrm{cut}}^{\textrm{ZBL}}(r) =
+   \begin{cases}
+     1 & r \le r_1^{\textrm{ZBL}} \\
+     1 - \chi^3\,(6\chi^2 - 15\chi + 10) & r_1^{\textrm{ZBL}} < r < r_2^{\textrm{ZBL}} \\
+     0 & r \ge r_2^{\textrm{ZBL}}
+   \end{cases}
+   \qquad \chi = \frac{r - r_1^{\textrm{ZBL}}}{r_2^{\textrm{ZBL}} - r_1^{\textrm{ZBL}}}
+
+.. option:: zbl_potential (logical)
+
+   The master switch enabling the ZBL repulsive core.
+
+   Default ``zbl_potential=.false.``.
+
+.. option:: zbl_type (integer)
+
+   The way ZBL is integrated with the many-body (MB) potential:
+
+   - ``zbl_type=1`` *bridge mode* (default). ZBL is connected to the MB
+     potential through the k2b channel and a smooth raccordement (bridge)
+     function, so the total energy reads
+     :math:`E = E_{\textrm{ZBL+bridge}} + E_{\textrm{k2b}} + E_{\textrm{MB}}`.
+     It **requires** k2b (auto-activated if needed).
+   - ``zbl_type=2`` *additive mode*. The total energy is simply
+     :math:`E = E_{\textrm{ZBL}} + E_{\textrm{MB}}`; the MB descriptors use the
+     inner cutoff ``r_cut_in`` to vanish at short range, so only ZBL acts there.
+     No k2b channel or bridge is needed.
+
+   Default ``zbl_type=1``.
+
+.. option:: r1_zbl (real)
+
+   Below this distance (Å) only the pure ZBL screened Coulomb is used
+   (:math:`f_{\textrm{cut}}^{\textrm{ZBL}}=1`). Typically 0.8-1.2 Å.
+
+   Default ``r1_zbl=1.0``.
+
+.. option:: r2_zbl (real)
+
+   Above this distance (Å) ZBL is fully switched off. Typically 1.8-2.5 Å.
+
+   Default ``r2_zbl=2.2``.
+
+.. option:: type_rac_zbl (integer)
+
+   The bridge (raccordement) function connecting ZBL to k2b in ``zbl_type=1``:
+
+   - ``type_rac_zbl=1`` exponential, :math:`f_{\textrm{bridge}}(r)=\exp(a+br+cr^2+dr^3)`
+     (:math:`C^1` continuity at the two endpoints).
+   - ``type_rac_zbl=2`` polynomial,
+     :math:`f_{\textrm{bridge}}(r)=a+br+cr^2+dr^3+er^4+fr^5`
+     (:math:`C^2` continuity, default and recommended).
+
+   Default ``type_rac_zbl=2``.
+
+.. note::
+   In bridge mode (``zbl_type=1``) the three radii must satisfy the strict
+   ordering :math:`r_1^{\textrm{ZBL}} < r_{\textrm{cut,in}}\,(=r_{\textrm{k2b}}) < r_2^{\textrm{ZBL}}`;
+   if ``r_cut_in`` is negative it defaults to
+   :math:`(r_1^{\textrm{ZBL}} + r_2^{\textrm{ZBL}})/2`, and ``MILADY`` aborts if
+   the ordering is violated.
+
+Switching ZBL on/off, with or without k2b
+"""""""""""""""""""""""""""""""""""""""""
+
+The two switches ``activate_k2b`` and ``zbl_potential`` (with ``zbl_type``)
+combine as follows:
+
++------------------------------+-----------------+--------------------------------------------------------------+
+| Settings                     | Short-range core| Behaviour                                                    |
++==============================+=================+==============================================================+
+| ``zbl_potential=.false.``,   | none            | Standard many-body descriptor only.                          |
+| ``activate_k2b=.false.``     |                 |                                                              |
++------------------------------+-----------------+--------------------------------------------------------------+
+| ``zbl_potential=.false.``,   | learnable pair  | k2b pair channel appended to the many-body descriptor; no    |
+| ``activate_k2b=.true.``      |                 | physics-based repulsion.                                     |
++------------------------------+-----------------+--------------------------------------------------------------+
+| ``zbl_potential=.true.``,    | ZBL + k2b       | Bridge mode: ZBL → smooth bridge → k2b + many-body. k2b is   |
+| ``zbl_type=1``               | + bridge        | required and auto-activated if ``activate_k2b=.false.``.     |
++------------------------------+-----------------+--------------------------------------------------------------+
+| ``zbl_potential=.true.``,    | ZBL (additive)  | :math:`E_{\textrm{ZBL}} + E_{\textrm{MB}}`; the inner cutoff |
+| ``zbl_type=2``               |                 | removes the many-body part at short range. k2b not required. |
++------------------------------+-----------------+--------------------------------------------------------------+

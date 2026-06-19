@@ -152,7 +152,7 @@ Kernels definitions
 Selections of kernel sparse points
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
 
-In ``Milady`` the selection of sparse points (``ml_type=-2`` and ``write_krnel_matrix=.true.``) 
+In ``Milady`` the selection of sparse points (``ml_type=-2`` and ``write_kernel_matrix=.true.``)
 is driven by our intuition based on physics considerations 
 that some parts of the database are more important than the others. 
 For example if we are interested in having nice elastic constants we will make a 
@@ -166,6 +166,36 @@ The selection of classes that encompass ``database_reference`` is given by the c
 variable ``classes_for_mcd`` (the name is weird because it corresponds sometimes to the most 
 “smooth” classes without outliers such as molecular dynamics for perfect bulk configuration, 
 elastic deformations etc). Finally the kernel is written 
+
+The MCD/Mahalanobis selections (``kernel_dump=1`` and ``kernel_dump=2``) rank
+the candidate atomic descriptors :math:`\mathbf{D}^{s,a}` by their Mahalanobis
+distance to the reference set (sample mean :math:`\boldsymbol{\mu}` and
+covariance :math:`\Sigma` built from the ``classes_for_mcd`` classes):
+
+.. math::
+   d_\Sigma(\mathbf{D}^{s,a}) = \left[ \left( \mathbf{D}^{s,a} - \boldsymbol{\mu} \right)^\top \Sigma^{-1} \left( \mathbf{D}^{s,a} - \boldsymbol{\mu} \right) \right]^{1/2}
+   :label: kMCD
+
+i.e. the same metric as the Mahalanobis kernel :math:numref:`kMAHA`. The sparse
+points are then drawn on a grid built from this distance raised to the power
+``power_mcd``. The *normalized* variant (``kernel_dump=1``) works on normalized
+Mahalanobis distances and is the recommended one, whereas ``kernel_dump=2`` uses
+the raw distances.
+
+The CUR selections (``kernel_dump=3`` and ``kernel_dump=4``) instead rank the
+columns (atomic environments) of the atomic design matrix by their statistical
+**leverage scores**. From the top-:math:`k` right singular vectors
+:math:`\mathbf{v}_1, \ldots, \mathbf{v}_k` of that matrix (:math:`k =`
+``cur_kval``), the leverage score of column :math:`j` is
+
+.. math::
+   \pi_j = \frac{1}{k} \sum_{i=1}^{k} \left( v_{ij} \right)^2
+   :label: kCUR
+
+and the columns with the largest :math:`\pi_j` are retained as sparse points
+(the :math:`\pi_j` sum to one and act as column-sampling probabilities). The
+``kernel_dump=4`` variant biases this sampling with the Mahalanobis metric
+:math:numref:`kMCD`.
 
 .. option::  write_kernel_matrix (logical)
 
@@ -218,8 +248,22 @@ elastic deformations etc). Finally the kernel is written
       parameters that should be set: ``np_kernel_ref``, ``np_kernel_full``
       as well as the reference classes given by ``classes_for_mcd``. For advanced applications 
       there are others options for CUR descoposition, such as: ``cur_kval``, 
-      ``cur_rval`` and ``cur_eps``. However, the selection of sparse points is not very sensible to these 
-      last 3 parameters.   
+      ``cur_rval`` and ``cur_eps``. However, the selection of sparse points is not very sensible to these
+      last 3 parameters.
+
+   -  ``kernel_dump=4`` selection based on CUR decomposition with
+      MCD/Mahalanobis sampling. It combines the CUR leverage scores of
+      ``kernel_dump=3`` with the Mahalanobis biasing of ``kernel_dump=1``. It
+      uses the same parameters as ``kernel_dump=3`` (``np_kernel_ref``,
+      ``np_kernel_full``, ``classes_for_mcd`` and, optionally, ``cur_kval``,
+      ``cur_rval`` and ``cur_eps``) together with ``power_mcd``.
+
+   .. note::
+      The CUR-based selections (``kernel_dump=3`` and ``kernel_dump=4``) require
+      the ScaLapack driver. If ``scalapack_driver=.false.`` it is switched on
+      automatically.
+
+   Default ``kernel_dump=1`` (normalized MCD/Mahalanobis selection).
 
 .. option::  classes_for_mcd (character)
 
