@@ -179,9 +179,30 @@ Solving algorithm
      :math:`\mathbf{A}` may be rank-deficient, we seek the minimum norm
      least squares solution :math:`\beta` which minimizes both
      :math:`\left| \beta \right|^2` and
-     :math:`\left| b - A \beta \right|^2`. Is the slowest but is by far mathematically 
-     most complete solution based on SVD decomposition. 
+     :math:`\left| b - A \beta \right|^2`. Is the slowest but is by far mathematically
+     most complete solution based on SVD decomposition.
      With this option a rank estimation (via SVD and driven by the option ``svd_rcond``).
+
+  #. ``mld_fit_type=5``: **ALS-Ridge block preconditioning** (alternating least
+     squares with ridge regularization). The design matrix is partitioned into
+     ``als_nu_max`` row-blocks (one per descriptor body order, usually
+     auto-detected); each block is renormalized by a coefficient
+     :math:`\alpha_b` and the parameters are obtained by block-wise ridge
+     regression on the scaled matrix. It is well suited to multi-body
+     descriptors (e.g. ACE) whose blocks have very different scales. The
+     behaviour is controlled by the ``als_*`` options described in the
+     :ref:`ALS-Ridge solver options<sec:als_options>` below. See
+     *MiladyNoteTechnique5.pdf* (sections 1.10.1 and 1.10.2).
+
+  #. ``mld_fit_type=6``: **Online (streaming) solver**. Instead of storing the
+     full design matrix :math:`\mathbf{A}`, the :math:`D \times D` Gram matrix
+     :math:`\mathbf{G}=\mathbf{A}\mathbf{W}\mathbf{A}^T` and the right-hand side
+     :math:`\mathbf{A}\mathbf{W}\mathbf{y}` are accumulated one configuration at
+     a time, then the small :math:`D \times D` system is solved by SVD. This
+     drastically reduces the memory footprint for very large training sets
+     (millions of configurations), at the price of recomputing the descriptors
+     once at prediction time. The options ``lambda_krr`` and ``svd_rcond`` keep
+     the same meaning as for ``mld_fit_type=4``.
 
 Default is ``mld_fit_type=4``.
 
@@ -242,6 +263,99 @@ Default is ``mld_fit_type=4``.
    Default ``write_design_matrix=.false.``
 
 
+.. _`sec:als_options`:
+
+ALS-Ridge solver options
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following options are active **only** when ``mld_fit_type=5`` (ALS-Ridge
+block preconditioning). They have no effect for the other solvers. See
+*MiladyNoteTechnique5.pdf* (sections 1.10.1 and 1.10.2) for the underlying
+algorithm.
+
+.. option:: als_nu_max (integer)
+
+   The number of row-blocks of the design matrix. In most cases it is
+   auto-detected from the descriptor structure (e.g. the ACE body orders) and
+   does not need to be set by hand; with ``als_nu_max=1`` the whole matrix is
+   treated as a single block.
+
+   Default ``als_nu_max=1``.
+
+.. option:: als_alpha_method (integer)
+
+   How the block renormalization coefficients :math:`\alpha_b` are obtained:
+
+   - ``als_alpha_method=0``: *fixed alpha* — the :math:`\alpha_b` are computed
+     once from the preconditioner and a single ``w``-step is performed
+     (section 1.10.1).
+   - ``als_alpha_method=1``: *learning alpha* — the :math:`\alpha_b` are updated
+     at each ALS iteration by solving the alpha sub-problem (section 1.10.2).
+
+   Default ``als_alpha_method=1``.
+
+.. option:: als_nsteps (integer)
+
+   The maximum number of outer ALS iterations. With ``als_alpha_method=0`` a
+   single ``w``-step is performed regardless of this value.
+
+   Default ``als_nsteps=10``.
+
+.. option:: als_tol (real)
+
+   The convergence tolerance on the relative change of :math:`\mathbf{w}` and
+   :math:`\alpha`. A negative value disables the check and runs exactly
+   ``als_nsteps`` iterations. Only used when ``als_alpha_method=1``.
+
+   Default ``als_tol=-1.0``.
+
+.. option:: als_precond_type (integer)
+
+   The preconditioner used both for the initial :math:`\alpha` and for the
+   per-column ridge vector :math:`\boldsymbol{\lambda}`:
+
+   - ``als_precond_type=0``: Frobenius-norm scaling.
+   - ``als_precond_type=1``: SVD-based scaling (largest singular value of each block).
+   - ``als_precond_type=2``: flat — no scaling, uniform ridge set to ``lambda_krr``.
+
+   Default ``als_precond_type=0``.
+
+.. option:: als_ridge_k (real)
+
+   The global ridge parameter :math:`k>0` controlling the per-column ridge
+   :math:`\lambda_i = k\,\|A^{(b)}\|_F^2 / D_b`, where :math:`D_b` is the number
+   of rows of block :math:`b`. It is ignored when ``als_precond_type=2`` (where
+   ``lambda_krr`` is used instead).
+
+   Default ``als_ridge_k=1.d-3``.
+
+.. option:: als_rho (real)
+
+   The Tikhonov regularization of the (small) alpha sub-problem
+   :math:`(\mathbf{B}^T\mathbf{B}+\rho\,\mathbf{I})\,\alpha = \mathbf{B}^T\mathbf{y}`.
+   Only used when ``als_alpha_method=1``.
+
+   Default ``als_rho=1.d-6``.
+
+.. option:: als_nnls_alpha (logical)
+
+   If ``.true.``, enforce :math:`\alpha_b \ge 0` through a Non-Negative Least
+   Squares (NNLS) solve of the alpha sub-problem, which acts as a block/feature
+   selection. Only effective when ``als_alpha_method=1``.
+
+   Default ``als_nnls_alpha=.false.``.
+
+.. option:: als_nnls_mode (integer)
+
+   The NNLS algorithm used when ``als_nnls_alpha=.true.``:
+
+   - ``als_nnls_mode=0``: Lawson-Hanson (cold start, re-initialized each step).
+   - ``als_nnls_mode=1``: Bunch-Kaufman warm-start (persistent active set, faster
+     convergence and more stable feature selection).
+
+   Default ``als_nnls_mode=0``.
+
+
 Regularization and loss
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -272,6 +386,13 @@ Regularization and loss
          | Default ``n_values_lambda_krr=21``
 
    Default is ``0``.
+
+   .. note::
+      ``mld_regularization_type`` controls the regularization for the standard
+      basis-function/kernel solvers. The dedicated solvers carry their own
+      ridge regularization: ``mld_fit_type=5`` (ALS-Ridge) uses ``als_ridge_k``
+      / ``als_rho`` (or ``lambda_krr`` in flat mode), and ``mld_fit_type=6``
+      (online) adds ``lambda_krr`` to the diagonal of the Gram matrix.
 
 
 .. option:: type_of_loss (integer)
