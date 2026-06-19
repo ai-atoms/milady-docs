@@ -21,6 +21,27 @@ MILADY is an open-source code distributed under the Academic Software Licence (A
 * MILADY is open-source package and contributions are very welcome.
 
 
+Build with CMake
+~~~~~~~~~~~~~~~~~
+
+``MILADY`` is compiled with **CMake** (≥ 3.24). Once the prerequisites are in
+place (a Fortran compiler, ``MKL`` / ``ScaLapack`` and an ``MPI`` library), the
+build boils down to:
+
+.. code-block:: bash
+
+  source ${MLD_SRCDIR}/scripts/compile_milady.bash
+  f_compile_milady_mix   # or f_compile_milady_intel / f_compile_milady_gnu
+  make -j6
+
+The executable is then in ``bin/milady_main.exe``. Both Intel ``ifort`` and
+``ifx`` are supported (when the matching MPI / ScaLapack are compatible), and
+HDF5 I/O is optional (enabled with ``MLD_HDF5=ON``; a bundled HDF5 is built
+automatically unless you point ``HDF5_DIR`` to your own). The full, step-by-step
+procedure is on the :ref:`Local build <sec:insta>` page; the former,
+Makefile-based way is kept for reference on the
+:ref:`Former build (Makefile) <sec:insta_legacy>` page.
+
 Contributors
 ~~~~~~~~~~~~
 
