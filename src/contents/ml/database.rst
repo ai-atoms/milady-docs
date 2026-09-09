@@ -18,10 +18,13 @@ Database manipulation
    Path to the database. With the default value you should have ``.poscar`` files
    in the ``DB`` directory.
 
-   If ``db_path`` points instead to a single file ending in ``.xyz`` or
-   ``.extxyz``, ``MiLaDy`` automatically switches to **extended XYZ mode** and
-   reads all the configurations from that file (see
-   :ref:`Reading extended XYZ <sec:extxyz>`).
+   If ``db_path`` points instead to a single file, ``MiLaDy`` **auto-detects
+   the database format** from its suffix and reads every configuration from
+   that one file: ``.xyz`` or ``.extxyz`` selects **extended XYZ mode**, and
+   ``.json`` selects **MPtrj-style JSON mode** (see
+   :ref:`Reading extended XYZ and JSON <sec:extxyz>`). In every case a
+   ``db_file`` (``db_model.in``) is still required for the train/test split,
+   the per-class ``EFS`` tags and the regression weights.
 
    Default ``"./DB/"``.
 
@@ -183,18 +186,23 @@ shipped with ``MiLaDy``. Conversion of ``.poscar`` DB files into extended
 
 .. _`sec:extxyz`:
 
-Reading extended XYZ
---------------------
+Reading extended XYZ and JSON
+-----------------------------
 
-``MiLaDy`` can read a full database from a single **extended XYZ** file instead
-of a directory of ``.poscar`` files. The mode is enabled **automatically** when
-the :ref:`db_path <sec:database>` ends in ``.xyz`` or ``.extxyz``; all the
-configurations are then read from that one file (one block per configuration,
-in the usual ASE convention: a line with the number of atoms, an *info* line,
-then one line per atom).
+``MiLaDy`` can read a full database from a single file instead of a directory of
+``.poscar`` files. The mode is enabled **automatically** from the
+:ref:`db_path <sec:database>` suffix: ``.xyz`` or ``.extxyz`` for **extended
+XYZ**, ``.json`` for **MPtrj-style JSON**. In both cases the file is streamed
+(never loaded whole), so databases too large to fit in memory (tens of GB) are
+supported, and the :ref:`db_model.in <sec:db-model>` selection
+(``selection_type``, train/test counts, ``EFS`` tags, weight ranges) behaves
+exactly as for ``.poscar``.
 
-The per-configuration *info* line is parsed for the following keys (standard
-ASE extended-XYZ keywords, plus the ``MiLaDy`` ``class`` key):
+**Extended XYZ.** All configurations are read from one file (one block per
+configuration, in the usual ASE convention: a line with the number of atoms, an
+*info* line, then one line per atom). The per-configuration *info* line is
+parsed for the following keys (standard ASE extended-XYZ keywords, plus the
+``MiLaDy`` ``class`` key):
 
 +---------------------------+--------------------------------------------------------------+
 | Key                       | Meaning                                                      |
@@ -219,6 +227,29 @@ Energies, forces and stress follow the same units as the ``.poscar`` format
 (eV, eV/Å and eV/Å\ :math:`^{3}`). As with ``.poscar``, the energy/force/stress
 actually fitted is the superposition of what is present in the file and the
 ``EFS`` tags declared in :ref:`db_model.in <sec:db-model>`.
+
+Two further keys are recognised: ``atomization_energy=``, which takes precedence
+over ``energy=`` as the training target when present, and ``subset=``, used as
+the class label when ``class=`` is absent (distinct ``subset`` names are
+auto-registered to ``01``, ``02``, ... in order of first appearance).
+
+**MPtrj-style JSON.** A single nested-JSON trajectory in the Materials Project
+``MPtrj`` layout::
+
+   { "mp-XXXXXXX": { "mp-XXXXXXX-i-j": {
+        "structure": { "lattice": {"matrix": [[..],[..],[..]]},
+                       "sites": [{"species":[{"element":"Fe"}], "xyz":[x,y,z]}, ...] },
+        "corrected_total_energy": ...,
+        "force":  [[fx,fy,fz], ...] or null,
+        "stress": [[..],[..],[..]] or null }, ... }, ... }
+
+A streaming pass records the byte offset of every ``structure`` object and each
+frame is then read on demand. The reader extracts the lattice
+(``structure.lattice.matrix``), the species and Cartesian coordinates
+(``structure.sites``), ``corrected_total_energy`` and, when they are not
+``null``, ``force`` and ``stress``. All configurations are placed in a single
+class ``01`` (the ``MPtrj`` schema has no class/subset equivalent), so
+``db_model.in`` must list class ``01``.
 
 .. _`sec:dbnames`:
 
