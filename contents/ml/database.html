@@ -69,7 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#database-manipulation">Database manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database-files">Database files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database-file-format">Database file format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reading-extended-xyz">Reading extended XYZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-extended-xyz-and-json">Reading extended XYZ and JSON</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#database-file-names">Database file names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#input-file-db-model-in">Input file db<span class="math notranslate nohighlight">\(\_\)</span>model.in</a></li>
 </ul>
@@ -146,10 +146,13 @@ chosen for the potential fitting. each line has the syntax: <code class="docutil
 <dd>
 <p>Path to the database. With the default value you should have <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> files
 in the <code class="docutils literal notranslate"><span class="pre">DB</span></code> directory.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">db_path</span></code> points instead to a single file ending in <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or
-<code class="docutils literal notranslate"><span class="pre">.extxyz</span></code>, <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> automatically switches to <strong>extended XYZ mode</strong> and
-reads all the configurations from that file (see
-<a class="reference internal" href="#sec-extxyz"><span class="std std-ref">Reading extended XYZ</span></a>).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">db_path</span></code> points instead to a single file, <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> <strong>auto-detects
+the database format</strong> from its suffix and reads every configuration from
+that one file: <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.extxyz</span></code> selects <strong>extended XYZ mode</strong>, and
+<code class="docutils literal notranslate"><span class="pre">.json</span></code> selects <strong>MPtrj-style JSON mode</strong> (see
+<a class="reference internal" href="#sec-extxyz"><span class="std std-ref">Reading extended XYZ and JSON</span></a>). In every case a
+<code class="docutils literal notranslate"><span class="pre">db_file</span></code> (<code class="docutils literal notranslate"><span class="pre">db_model.in</span></code>) is still required for the train/test split,
+the per-class <code class="docutils literal notranslate"><span class="pre">EFS</span></code> tags and the regression weights.</p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">"./DB/"</span></code>.</p>
 </dd>
 </dl>
@@ -304,17 +307,22 @@ shipped with <code class="docutils literal notranslate"><span class="pre">MiLaDy
 <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> and back can also be performed with <code class="docutils literal notranslate"><span class="pre">DB_poscar2xyz.py</span></code> and
 <code class="docutils literal notranslate"><span class="pre">DB_xyz2poscar.py</span></code>.</p>
 </section>
-<section id="reading-extended-xyz">
-<span id="sec-extxyz"></span><h3>Reading extended XYZ<a class="headerlink" href="#reading-extended-xyz" title="Permalink to this heading"></a>
+<section id="reading-extended-xyz-and-json">
+<span id="sec-extxyz"></span><h3>Reading extended XYZ and JSON<a class="headerlink" href="#reading-extended-xyz-and-json" title="Permalink to this heading"></a>
 </h3>
-<p><code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> can read a full database from a single <strong>extended XYZ</strong> file instead
-of a directory of <code class="docutils literal notranslate"><span class="pre">.poscar</span></code> files. The mode is enabled <strong>automatically</strong> when
-the <a class="reference internal" href="#sec-database"><span class="std std-ref">db_path</span></a> ends in <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.extxyz</span></code>; all the
-configurations are then read from that one file (one block per configuration,
-in the usual ASE convention: a line with the number of atoms, an <em>info</em> line,
-then one line per atom).</p>
-<p>The per-configuration <em>info</em> line is parsed for the following keys (standard
-ASE extended-XYZ keywords, plus the <code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> <code class="docutils literal notranslate"><span class="pre">class</span></code> key):</p>
+<p><code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> can read a full database from a single file instead of a directory of
+<code class="docutils literal notranslate"><span class="pre">.poscar</span></code> files. The mode is enabled <strong>automatically</strong> from the
+<a class="reference internal" href="#sec-database"><span class="std std-ref">db_path</span></a> suffix: <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.extxyz</span></code> for <strong>extended
+XYZ</strong>, <code class="docutils literal notranslate"><span class="pre">.json</span></code> for <strong>MPtrj-style JSON</strong>. In both cases the file is streamed
+(never loaded whole), so databases too large to fit in memory (tens of GB) are
+supported, and the <a class="reference internal" href="#sec-db-model"><span class="std std-ref">db_model.in</span></a> selection
+(<code class="docutils literal notranslate"><span class="pre">selection_type</span></code>, train/test counts, <code class="docutils literal notranslate"><span class="pre">EFS</span></code> tags, weight ranges) behaves
+exactly as for <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>.</p>
+<p><strong>Extended XYZ.</strong> All configurations are read from one file (one block per
+configuration, in the usual ASE convention: a line with the number of atoms, an
+<em>info</em> line, then one line per atom). The per-configuration <em>info</em> line is
+parsed for the following keys (standard ASE extended-XYZ keywords, plus the
+<code class="docutils literal notranslate"><span class="pre">MiLaDy</span></code> <code class="docutils literal notranslate"><span class="pre">class</span></code> key):</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 30%">
@@ -360,6 +368,28 @@ per class, reproducing the <code class="docutils literal notranslate"><span clas
 (eV, eV/Å and eV/Å<span class="math notranslate nohighlight">\(^{3}\)</span>). As with <code class="docutils literal notranslate"><span class="pre">.poscar</span></code>, the energy/force/stress
 actually fitted is the superposition of what is present in the file and the
 <code class="docutils literal notranslate"><span class="pre">EFS</span></code> tags declared in <a class="reference internal" href="#sec-db-model"><span class="std std-ref">db_model.in</span></a>.</p>
+<p>Two further keys are recognised: <code class="docutils literal notranslate"><span class="pre">atomization_energy=</span></code>, which takes precedence
+over <code class="docutils literal notranslate"><span class="pre">energy=</span></code> as the training target when present, and <code class="docutils literal notranslate"><span class="pre">subset=</span></code>, used as
+the class label when <code class="docutils literal notranslate"><span class="pre">class=</span></code> is absent (distinct <code class="docutils literal notranslate"><span class="pre">subset</span></code> names are
+auto-registered to <code class="docutils literal notranslate"><span class="pre">01</span></code>, <code class="docutils literal notranslate"><span class="pre">02</span></code>, … in order of first appearance).</p>
+<p><strong>MPtrj-style JSON.</strong> A single nested-JSON trajectory in the Materials Project
+<code class="docutils literal notranslate"><span class="pre">MPtrj</span></code> layout:</p>
+<div class="highlight-default notranslate">
+<div class="highlight"><pre><span></span><span class="p">{</span> <span class="s2">"mp-XXXXXXX"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"mp-XXXXXXX-i-j"</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">"structure"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"lattice"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"matrix"</span><span class="p">:</span> <span class="p">[[</span><span class="o">..</span><span class="p">],[</span><span class="o">..</span><span class="p">],[</span><span class="o">..</span><span class="p">]]},</span>
+                    <span class="s2">"sites"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"species"</span><span class="p">:[{</span><span class="s2">"element"</span><span class="p">:</span><span class="s2">"Fe"</span><span class="p">}],</span> <span class="s2">"xyz"</span><span class="p">:[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]},</span> <span class="o">...</span><span class="p">]</span> <span class="p">},</span>
+     <span class="s2">"corrected_total_energy"</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+     <span class="s2">"force"</span><span class="p">:</span>  <span class="p">[[</span><span class="n">fx</span><span class="p">,</span><span class="n">fy</span><span class="p">,</span><span class="n">fz</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="ow">or</span> <span class="n">null</span><span class="p">,</span>
+     <span class="s2">"stress"</span><span class="p">:</span> <span class="p">[[</span><span class="o">..</span><span class="p">],[</span><span class="o">..</span><span class="p">],[</span><span class="o">..</span><span class="p">]]</span> <span class="ow">or</span> <span class="n">null</span> <span class="p">},</span> <span class="o">...</span> <span class="p">},</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>A streaming pass records the byte offset of every <code class="docutils literal notranslate"><span class="pre">structure</span></code> object and each
+frame is then read on demand. The reader extracts the lattice
+(<code class="docutils literal notranslate"><span class="pre">structure.lattice.matrix</span></code>), the species and Cartesian coordinates
+(<code class="docutils literal notranslate"><span class="pre">structure.sites</span></code>), <code class="docutils literal notranslate"><span class="pre">corrected_total_energy</span></code> and, when they are not
+<code class="docutils literal notranslate"><span class="pre">null</span></code>, <code class="docutils literal notranslate"><span class="pre">force</span></code> and <code class="docutils literal notranslate"><span class="pre">stress</span></code>. All configurations are placed in a single
+class <code class="docutils literal notranslate"><span class="pre">01</span></code> (the <code class="docutils literal notranslate"><span class="pre">MPtrj</span></code> schema has no class/subset equivalent), so
+<code class="docutils literal notranslate"><span class="pre">db_model.in</span></code> must list class <code class="docutils literal notranslate"><span class="pre">01</span></code>.</p>
 </section>
 <section id="database-file-names">
 <span id="sec-dbnames"></span><h3>Database file names<a class="headerlink" href="#database-file-names" title="Permalink to this heading"></a>

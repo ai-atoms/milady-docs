@@ -531,19 +531,73 @@ For the case of k-ACE with a drastic reduction of number of basis functions by t
 we define :math:`\mathbf{G}^{l,\mu_a,\mu_j}` a matrix composed of :math:`M` row vectors :math:`\mathbf{R}_{l}^{\mu_a \mu_j}(r_m)` at a
 given sampled distance :math:`r_m (m=1,\ldots,M)`. Then :math:`\mathbf{k}` denotes the order of contraction,
 i.e., the truncation order retained in the SVD of the matrix :math:`\mathbf{G}^{l,\mu_a,\mu_j}`.
+The truncated SVD produces, for each triple :math:`(l,\mu_a,\mu_j)`, an effective radial function
+
+.. math::
+
+   g_k^{l\mu_a\mu_j}(r) = \sum_{\omega \in \Omega} t_\omega^{(k)} R_\omega^{l\mu_a\mu_j}(r) ,
+   \qquad t^{(k)} = \mathbf{V}^{l,\mu_a,\mu_j}(:,k)
+
+where :math:`\Omega` is the set of radial--chemical tuples :math:`\omega=(\mu,n)`.
+This contraction removes the number of chemical species :math:`E_{\textrm{ch}}` from the
+*size* of the many-body basis, but not from the *cost* of building it: there is still one
+radial curve :math:`g_k^{l\mu_a\mu_j}(r)` per ordered species pair, i.e.
+:math:`O(N_r E_{\textrm{ch}}^2)` stored values and :math:`E_{\textrm{ch}}^2 (l_{\textrm{max}}+1)`
+SVDs per contraction channel. This becomes the dominant memory and CPU bottleneck once
+:math:`E_{\textrm{ch}} \gtrsim 100`. Two optional and independent low-rank techniques
+address it, both active only for the HSVD radial (``ace_radial_chem=3``):
+
+- **Low-rank chemical compression** (``ace_chem_low_rank``). For a fixed channel
+  :math:`(k,l)`, the symmetric species-coupling matrix
+  :math:`\left[\mathbf{C}_{kl}(r)\right]_{\mu_a\mu_j} = g_k^{l\mu_a\mu_j}(r)` is approximated
+  by a single shared low-rank embedding
+
+  .. math::
+
+     g_k^{l\mu_a\mu_j}(r) \approx \sum_{q=1}^{Q}
+     A_{\mu_a q}^{kl}\, A_{\mu_j q}^{kl}\, u_q^{kl}(r) ,
+
+  with a per-species embedding matrix :math:`\mathbf{A}^{kl} \in \mathbb{R}^{E_{\textrm{ch}} \times Q}`
+  mapping each species to :math:`Q` latent "pseudo-species" and :math:`Q` prototype radial
+  functions :math:`u_q^{kl}(r)` shared by all species pairs of the channel. The factors are
+  seeded by the SVD of the accumulated Gram matrix
+  :math:`\sum_i \mathbf{C}_{kl}(r_i)^\top \mathbf{C}_{kl}(r_i)` and refined by
+  ridge-regularized alternating least squares (ALS). Storage per channel drops from
+  :math:`O(N_r E_{\textrm{ch}}^2)` to :math:`O(E_{\textrm{ch}} Q + N_r Q)`, and the exchange
+  symmetry :math:`\mu_a \leftrightarrow \mu_j` is preserved exactly at any truncation
+  :math:`Q`.
+
+- **Randomized SVD** (``ace_svd_randomized``). Only the leading :math:`k_{\textrm{max}}`
+  right singular vectors and values of :math:`\mathbf{G}^{l,\mu_a,\mu_j}` ever enter the model,
+  so the exact SVD is replaced by a randomized range-finding procedure
+  (Halko--Martinsson--Tropp): the column space is sketched with a random Gaussian test matrix
+  of :math:`s = k_{\textrm{max}} + p` columns (:math:`p` = oversampling), optionally sharpened
+  with :math:`q` power iterations, and only the small projected matrix is diagonalized
+  exactly. The per-triple cost drops from
+  :math:`O\!\left(N_r |\Omega| \min(N_r,|\Omega|)\right)` to
+  :math:`O\!\left(N_r |\Omega|\, s\right)`. The Gaussian sketch is drawn from a deterministic
+  hash of :math:`(l,\mu_a,\mu_j)`, so the result is reproducible run-to-run and each
+  decomposition stays embarrassingly parallel. This technique is independent of
+  ``ace_chem_low_rank`` and can be stacked with it.
 
 The parameters of the descriptors are controlled by the options below.
 
 .. option:: ace_numax (integer)
 
-   The maximum body order set by the user. 
+   The maximum body order :math:`\nu` set by the user. It also fixes the minimum
+   length expected for the ``ace_nmax_list``, ``ace_lmax_list`` and ``ace_kmax_list``
+   strings.
+
+   Default ``ace_numax=3``
 
 .. option:: ace_chem (integer)
 
    The way to encode chemical species.
 
    -  ``ace_chem=0``: incomplet version, treatement for single element systems.
-   -  ``ace_chem=1``: full version, treatement for multi-element systems.
+   -  ``ace_chem=1``: standard (full) version, treatement for multi-element systems.
+   -  ``ace_chem=2``: TS version. Selecting this value automatically forces
+      ``ace_radial_chem=2``.
 
    Default ``ace_chem=1``
 
@@ -551,8 +605,17 @@ The parameters of the descriptors are controlled by the options below.
 
    The type of the radial part treatement.
 
-   - ``ace_radial_chem=1``: Ralf version, classical ACE.
-   - ``ace_radial_chem=3``: k-ACE version with tensor contraction.
+   - ``ace_radial_chem=1``: Ralf version, classical ACE polynomial radial basis
+     (one radial pair function per ordered species pair, no contraction).
+   - ``ace_radial_chem=2``: HOME / TS version. Block-diagonal HSVD variant, kept
+     automatically in sync with ``ace_chem=2``.
+   - ``ace_radial_chem=3``: HSVD, i.e. k-ACE version with tensor contraction. The
+     radial--chemical channels are contracted through a truncated SVD of the
+     sampled radial matrix :math:`\mathbf{G}^{l,\mu_a,\mu_j}` (see above). This is
+     the value required to activate the low-rank compression options described in
+     :ref:`Low-rank chemical compression <sec:ace-lowrank>` below.
+   - ``ace_radial_chem=5``: same HSVD contraction as ``3`` but the deterministic
+     SVD contraction vectors are replaced by a fixed random projection.
 
    Default ``ace_radial_chem=1``
 
@@ -630,6 +693,8 @@ The parameters of the descriptors are controlled by the options below.
 
    Default ``ace_npoints_spline=1000``
 
+.. _`sec:ace-lowrank`:
+
 Low-rank chemical compression
 """""""""""""""""""""""""""""
 
@@ -645,27 +710,102 @@ reducing the storage from :math:`\mathcal{O}(N_r S^2)` to
 
 .. option:: ace_chem_low_rank (integer)
 
-   Enable the low-rank chemical compression: ``0`` disabled, ``1`` enabled.
+   Activates the data-adaptive low-rank compression of the chemical-pair coupling
+   axis of the k-ACE effective radial functions :math:`g_k^{l\mu_a\mu_j}(r)`.
+
+   - ``ace_chem_low_rank=0``: nothing is done. The full
+     :math:`E_{\textrm{ch}} \times E_{\textrm{ch}}` set of radial pair functions
+     is built and stored (standard k-ACE).
+   - ``ace_chem_low_rank=1``: tensor compression. Each :math:`(k,l)` channel is
+     compressed on the fly to the symmetric rank-:math:`Q` factorization
+     :math:`\mathbf{A}^{kl}\,\mathrm{diag}(u^{kl})\,\mathbf{A}^{kl\top}` (SVD
+     initialization followed by ALS refinement). The full
+     :math:`g_k^{\mu_a\mu_j}(r_i)` tensor is never formed; the normal equations
+     are accumulated species by species. Recommended when the number of chemical
+     species is large (roughly :math:`E_{\textrm{ch}} \gtrsim 100`).
 
    Default ``ace_chem_low_rank=0``
 
 .. option:: ace_chem_low_rank_q (integer)
 
-   The compression rank :math:`Q`.
+   The compression rank :math:`Q`: the number of latent "pseudo-species"
+   coordinates and, equivalently, the number of shared prototype radial functions
+   :math:`u_q^{kl}(r)` kept per channel. Capped internally to
+   :math:`Q \le E_{\textrm{ch}}`. Even a modest value (e.g. ``8``) yields a
+   per-channel compression factor of order :math:`E_{\textrm{ch}}^2/Q`.
 
    Default ``ace_chem_low_rank_q=4``
 
 .. option:: ace_chem_low_rank_niter (integer)
 
-   The number of ALS iterations used to build the compression.
+   The number of alternating least squares (ALS) sweeps used to refine the factors
+   :math:`\mathbf{A}^{kl}` and :math:`u^{kl}` after the SVD initialization. Each
+   sweep alternates a u-step (fixed :math:`\mathbf{A}^{kl}`) and an A-step (fixed
+   :math:`u^{kl}`), each solving a :math:`Q \times Q` ridge-regularized system.
+   About ``40`` is a typical value for a well-converged tensor decomposition;
+   fewer sweeps are cheaper but less accurate.
 
    Default ``ace_chem_low_rank_niter=50``
 
 .. option:: ace_chem_low_rank_lambda (real)
 
-   The ridge regularization of the ALS factorization.
+   The ridge (:math:`L^2`) regularization :math:`\lambda > 0` added to the
+   diagonal of the :math:`Q \times Q` normal equations in both the u-step and the
+   A-step of the ALS. It stabilizes the solves when :math:`E_{\textrm{ch}}` is
+   large and species are chemically similar (near-degenerate columns of
+   :math:`\mathbf{C}_{kl}`).
 
    Default ``ace_chem_low_rank_lambda=1.d-6``
+
+Randomized SVD acceleration
+"""""""""""""""""""""""""""
+
+For the same HSVD radial construction (``ace_radial_chem=3``), only the leading
+:math:`k_{\textrm{max}}` right singular vectors/values of each per-pair matrix
+:math:`\mathbf{G}^{l,\mu_a,\mu_j}` ever enter the model. The options below replace
+the exact SVD by a randomized range-finding procedure
+(Halko--Martinsson--Tropp), independent of the low-rank compression above and
+freely combined with it.
+
+.. option:: ace_svd_randomized (integer)
+
+   Selects the algorithm used for the per-pair truncated SVD of
+   :math:`\mathbf{G}^{l,\mu_a,\mu_j}`.
+
+   - ``ace_svd_randomized=0``: exact LAPACK SVD (``dgesvd``), unchanged
+     behaviour.
+   - ``ace_svd_randomized=1``: randomized range-finding truncated SVD. The column
+     space is sketched with a random Gaussian matrix of
+     :math:`k_{\textrm{max}} + p` columns, optionally sharpened by :math:`q` power
+     iterations, and only the small projected matrix is diagonalized exactly. The
+     sketch is drawn from a deterministic hash of :math:`(l,\mu_a,\mu_j)`, so the
+     result is reproducible run-to-run. Recommended when the number of species is
+     large (roughly :math:`E_{\textrm{ch}} \gtrsim 30`--:math:`50`): it can speed
+     up the radial-construction step by one to two orders of magnitude while
+     matching the exact result to 5--6 significant figures.
+
+   Default ``ace_svd_randomized=0``
+
+.. option:: ace_svd_randomized_oversample (integer)
+
+   The oversampling parameter :math:`p` added to :math:`k_{\textrm{max}}` to set
+   the sketch size :math:`s = k_{\textrm{max}} + p` of the random Gaussian test
+   matrix. A larger :math:`p` improves the accuracy of the captured dominant
+   subspace at a modest extra cost. Only used when ``ace_svd_randomized=1``.
+
+   Default ``ace_svd_randomized_oversample=10``
+
+.. option:: ace_svd_randomized_power_iter (integer)
+
+   The number :math:`q` of power iterations (alternately applying
+   :math:`\mathbf{G}^{l,\mu_a,\mu_j}` and its transpose, with reorthonormalization
+   after each half-step) used to sharpen the sketched subspace when the singular
+   spectrum of :math:`\mathbf{G}^{l,\mu_a,\mu_j}` decays slowly past index
+   :math:`k_{\textrm{max}}`. ``q=2`` is usually sufficient; ``q=0`` disables them.
+   This :math:`q` is unrelated to the compression rank :math:`Q` of
+   ``ace_chem_low_rank_q``. Only used when ``ace_svd_randomized=1``.
+
+   Default ``ace_svd_randomized_power_iter=2``
 
 Per-body-order radial cutoffs
 """""""""""""""""""""""""""""
