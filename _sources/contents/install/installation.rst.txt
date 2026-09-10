@@ -1,3 +1,79 @@
+.. _`sec:insta_pip`:
+
+PyPI install
+------------
+
+``MILADY`` can be installed from PyPI with:
+
+.. code-block:: bash
+
+   pip install milady-mlip
+
+Running MILADY from Python
+:::::::::::::::::::::::::::
+
+Once installed, ``MILADY`` can be run from Python through the ``milady_run`` helper:
+
+.. code-block:: python
+
+   from milady import milady_run
+
+   res = milady_run(
+       input="./input.ml",
+       db_model="./db_model.in",
+       DB="./DB",
+       nprocs=2,
+       workdir="./",
+       output="out.run",    # None -> no extra log file, but milady.out is always created
+       mpi_args=[],
+       check=True,
+   )
+
+where:
+
+- ``input`` is the ``MILADY`` `input file <../ml/input.html>`__ (``PREFIXSIM.ml``);
+- ``db_model`` is the :ref:`db_model.in file <sec:db-model>`, describing the database used to fit the potential;
+- ``DB`` is the path to the :ref:`database <sec:database>` directory;
+- ``nprocs`` is the number of MPI ranks (equivalent to ``mpirun -np $nprocs``);
+- ``workdir`` is the working directory in which ``milady_main.exe`` is run;
+- ``output`` is the path of an extra log file (``None`` disables it, but ``milady.out`` is always created);
+- ``mpi_args`` is a list of extra flags handed to ``mpirun``;
+- ``check`` controls what happens if ``milady_main.exe`` exits with a non-zero return code:
+
+  - ``check=True`` (default): ``milady_run`` raises ``MiladyError`` (Python traceback).
+  - ``check=False``: no exception is raised — ``milady_run`` simply returns a
+    ``MiladyResult`` with ``.returncode`` set, letting the caller handle it.
+
+Releasing to PyPI (for developers)
+:::::::::::::::::::::::::::::::::::
+
+Once the source code has been changed on GitHub, on any branch (``BRANCHNAME``
+below), publishing that change to the PyPI package involves the following
+steps:
+
+.. code-block:: bash
+
+   # 0. make sure BRANCHNAME is current locally first
+   git fetch origin
+   git checkout pylib
+   git merge origin/BRANCHNAME       # bring the code change in
+
+   # 1. bump the version (edit the two files)
+   #    python/pyproject.toml          version = "2.0.2"
+   #    python/src/milady/__init__.py  __version__ = "2.0.2"   (fallback line)
+
+   # 2. commit + push branch + tag + push tag
+   git commit -am "Release 2.0.2"
+   git push origin pylib
+   git tag v2.0.2                    # tag the commit you just made
+   git push origin v2.0.2            # publish to PyPI
+
+.. important::
+
+   Pushing the branch (``git push origin pylib``) only triggers the CI build
+   and smoke tests. Publication to PyPI happens **only** when the version tag
+   itself is pushed (``git push origin v2.0.2``).
+
 .. _`sec:insta`:
 
 Local build

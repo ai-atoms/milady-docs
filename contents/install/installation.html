@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Local build &mdash; Milady Docs</title>
+  <title>PyPI install &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -50,7 +50,12 @@
 <p class="caption" role="heading"><span class="caption-text">Build Milady</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="download.html">Download sources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Local build</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PyPI install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-milady-from-python">Running MILADY from Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#releasing-to-pypi-for-developers">Releasing to PyPI (for developers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#local-build">Local build</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compilation-modes">Compilation modes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compilation">Compilation</a><ul>
@@ -109,7 +114,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Local build</li>
+      <li class="breadcrumb-item active">PyPI install</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/contents/install/installation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,7 +124,85 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="local-build">
+  <section id="pypi-install">
+<span id="sec-insta-pip"></span><h1>PyPI install<a class="headerlink" href="#pypi-install" title="Permalink to this heading"></a>
+</h1>
+<p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> can be installed from PyPI with:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>milady-mlip
+</pre></div>
+</div>
+<section id="running-milady-from-python">
+<h2>Running MILADY from Python<a class="headerlink" href="#running-milady-from-python" title="Permalink to this heading"></a>
+</h2>
+<p>Once installed, <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> can be run from Python through the <code class="docutils literal notranslate"><span class="pre">milady_run</span></code> helper:</p>
+<div class="highlight-python notranslate">
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">milady</span><span class="w"> </span><span class="kn">import</span> <span class="n">milady_run</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">milady_run</span><span class="p">(</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">"./input.ml"</span><span class="p">,</span>
+    <span class="n">db_model</span><span class="o">=</span><span class="s2">"./db_model.in"</span><span class="p">,</span>
+    <span class="n">DB</span><span class="o">=</span><span class="s2">"./DB"</span><span class="p">,</span>
+    <span class="n">nprocs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">workdir</span><span class="o">=</span><span class="s2">"./"</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"out.run"</span><span class="p">,</span>    <span class="c1"># None -&gt; no extra log file, but milady.out is always created</span>
+    <span class="n">mpi_args</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code> is the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> <a class="reference external" href="../ml/input.html">input file</a> (<code class="docutils literal notranslate"><span class="pre">PREFIXSIM.ml</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">db_model</span></code> is the <a class="reference internal" href="../ml/database.html#sec-db-model"><span class="std std-ref">db_model.in file</span></a>, describing the database used to fit the potential;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DB</span></code> is the path to the <a class="reference internal" href="../ml/database.html#sec-database"><span class="std std-ref">database</span></a> directory;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nprocs</span></code> is the number of MPI ranks (equivalent to <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">$nprocs</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workdir</span></code> is the working directory in which <code class="docutils literal notranslate"><span class="pre">milady_main.exe</span></code> is run;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code> is the path of an extra log file (<code class="docutils literal notranslate"><span class="pre">None</span></code> disables it, but <code class="docutils literal notranslate"><span class="pre">milady.out</span></code> is always created);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpi_args</span></code> is a list of extra flags handed to <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>;</p></li>
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">check</span></code> controls what happens if <code class="docutils literal notranslate"><span class="pre">milady_main.exe</span></code> exits with a non-zero return code:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">check=True</span></code> (default): <code class="docutils literal notranslate"><span class="pre">milady_run</span></code> raises <code class="docutils literal notranslate"><span class="pre">MiladyError</span></code> (Python traceback).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check=False</span></code>: no exception is raised — <code class="docutils literal notranslate"><span class="pre">milady_run</span></code> simply returns a
+<code class="docutils literal notranslate"><span class="pre">MiladyResult</span></code> with <code class="docutils literal notranslate"><span class="pre">.returncode</span></code> set, letting the caller handle it.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="releasing-to-pypi-for-developers">
+<h2>Releasing to PyPI (for developers)<a class="headerlink" href="#releasing-to-pypi-for-developers" title="Permalink to this heading"></a>
+</h2>
+<p>Once the source code has been changed on GitHub, on any branch (<code class="docutils literal notranslate"><span class="pre">BRANCHNAME</span></code>
+below), publishing that change to the PyPI package involves the following
+steps:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="c1"># 0. make sure BRANCHNAME is current locally first</span>
+git<span class="w"> </span>fetch<span class="w"> </span>origin
+git<span class="w"> </span>checkout<span class="w"> </span>pylib
+git<span class="w"> </span>merge<span class="w"> </span>origin/BRANCHNAME<span class="w">       </span><span class="c1"># bring the code change in</span>
+
+<span class="c1"># 1. bump the version (edit the two files)</span>
+<span class="c1">#    python/pyproject.toml          version = "2.0.2"</span>
+<span class="c1">#    python/src/milady/__init__.py  __version__ = "2.0.2"   (fallback line)</span>
+
+<span class="c1"># 2. commit + push branch + tag + push tag</span>
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">"Release 2.0.2"</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>pylib
+git<span class="w"> </span>tag<span class="w"> </span>v2.0.2<span class="w">                    </span><span class="c1"># tag the commit you just made</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v2.0.2<span class="w">            </span><span class="c1"># publish to PyPI</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Pushing the branch (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">pylib</span></code>) only triggers the CI build
+and smoke tests. Publication to PyPI happens <strong>only</strong> when the version tag
+itself is pushed (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">v2.0.2</span></code>).</p>
+</div>
+</section>
+</section>
+
+<section id="local-build">
 <span id="sec-insta"></span><h1>Local build<a class="headerlink" href="#local-build" title="Permalink to this heading"></a>
 </h1>
 <div class="admonition important">
