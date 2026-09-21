@@ -67,7 +67,7 @@ directories as in previous examples.
         export OMP_INSDIR=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
         export OMP_ROOT=/cineca/prod/opt/compilers/intel/pe-xe-2020/binary/impi/2019.9.304/intel64/
      
-        export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
+        export PATH=${MLD_ROODIR}/MILADY/src/scripts:${PATH}
       }
 
 Step 2: Installation  
@@ -78,7 +78,7 @@ Step 2: Installation
     .. code-block:: bash
 
       f_setenv_milady
-      source ${MLD}/MILADY/scripts/compile_milady.bash
+      source ${MLD}/MILADY/src/scripts/compile_milady.bash
 
 
     .. note::

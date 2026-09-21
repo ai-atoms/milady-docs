@@ -48,5 +48,5 @@ Typical legacy procedure
    Because this procedure required manual editing of paths for every machine,
    it has been replaced by the :ref:`CMake build <sec:insta>`, which detects
    the compilers and libraries automatically through the
-   ``scripts/compile_milady.bash`` helper functions. If in doubt, use the
+   ``src/scripts/compile_milady.bash`` helper functions. If in doubt, use the
    :ref:`Local build <sec:insta>` page.

@@ -86,9 +86,14 @@
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/01_ex_write.html">Compute and write descriptors without further fit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/02_ex_lmlfe.html">LML fit in bcc Fe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/03_ex_qnmlhea.html">QNML fit in HEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/08_ex_lml_hea_kace.html">LML fit in HEA with kACE descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Publications</span></p>
 <ul>
@@ -210,7 +215,7 @@ itself is pushed (<code class="docutils literal notranslate"><span class="pre">g
 <p><code class="docutils literal notranslate"><span class="pre">MILADY</span></code> is built with <strong>CMake</strong> (≥ 3.24). The CMake workflow described on
 this page is the <strong>only supported and tested</strong> way to compile the code: the
 compilers and the <code class="docutils literal notranslate"><span class="pre">MKL</span></code> / <code class="docutils literal notranslate"><span class="pre">ScaLapack</span></code> / <code class="docutils literal notranslate"><span class="pre">MPI</span></code> libraries are detected
-automatically through the <code class="docutils literal notranslate"><span class="pre">scripts/compile_milady.bash</span></code> helper functions,
+automatically through the <code class="docutils literal notranslate"><span class="pre">src/scripts/compile_milady.bash</span></code> helper functions,
 so there is no <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to edit by hand.</p>
 <p>The former, Makefile-based procedure is kept for reference on the
 <a class="reference internal" href="install_legacy.html#sec-insta-legacy"><span class="std std-ref">Former build (Makefile)</span></a> page.</p>
@@ -319,7 +324,7 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MKL_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMP_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMP_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">OMP_INSDIR</span><span class="si">}</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_ROODIR</span><span class="si">}</span>/MILADY/src/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">MKL_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">OMP_INSDIR</span></code> should contain the installation path to <code class="docutils literal notranslate"><span class="pre">MKL</span></code> and <code class="docutils literal notranslate"><span class="pre">openMPI</span></code>, respectively.</p>
@@ -350,7 +355,7 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_MPI_INSDIR</span><span class="o">=</span>/usr/local/iopenmpi/
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_MKL_LIB</span><span class="o">=</span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>
 
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/src/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
 
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SETENV</span><span class="o">=</span>ON
 
@@ -368,7 +373,7 @@ Hereafter, <code class="docutils literal notranslate"><span class="pre">${MLD}</
 <li>
 <p>Charge the bash functionalities:</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
+<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/src/scripts/compile_milady.bash
 </pre></div>
 </div>
 <p>with a typical output:</p>
@@ -436,7 +441,7 @@ f_explore_milady
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, MCM, AMG, AZ &amp; more.</p>
+    <p>&#169; Copyright 2026, MCM, AMG, AZ &amp; more.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

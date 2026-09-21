@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LML fit in HEA with kACE descriptor &mdash; Milady Docs</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/fav.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QNML fit in HEA with ACE descriptor" href="09_ex_qnml_hea_ace.html" />
+    <link rel="prev" title="LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core" href="07_ex_lml_zbl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation with Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/docker.html">Pull the image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/docker.html#usage">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Build Milady</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/download.html">Download sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/installation.html">PyPI install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/installation.html#local-build">Local build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_irene.html">Build on Irene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_marconi.html">Build on Marconi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_milady-lammps.html">MILADY potentials in Lammps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/install_legacy.html">Former build (Makefile)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ml/input.html">Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html">ML tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/model.html#regression-models">Regression models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/kernels.html">Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/system.html">Atomic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/descriptors.html">Descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/database.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/weight.html">Optimization of hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/advanced.html">Advanced options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/chatbot.html">MiLaDy Chatbot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_ex_write.html">Compute and write descriptors without further fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LML fit in HEA with kACE descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Publications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pubs/publications.html">Articles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pubs/potentials.html">Potentials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../school/iamat.html">Roscoff</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Milady</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">LML fit in HEA with kACE descriptor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contents/examples/08_ex_lml_hea_kace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lml-fit-in-hea-with-kace-descriptor">
+<span id="ex-lml-hea-kace"></span><h1>LML fit in HEA with kACE descriptor<a class="headerlink" href="#lml-fit-in-hea-with-kace-descriptor" title="Permalink to this heading"></a>
+</h1>
+<p>This section provides an example of input file to perform a linear
+ML (LML) fit for the equimolar Ta-Ti-V-W high entropy alloy (HEA)
+using the kACE descriptor (<code class="docutils literal notranslate"><span class="pre">descriptor_type=300</span></code>, <code class="docutils literal notranslate"><span class="pre">ace_radial_chem=3</span></code>), including
+body orders 1 to 3, chemical low-rank tensor compression, and a
+randomized SVD for the descriptor basis construction. The relevant
+files are provided in <code class="docutils literal notranslate"><span class="pre">examples/lml_hea_kace</span></code>.</p>
+<div class="highlight-fortran notranslate">
+<div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
+
+<span class="c">!ML mode</span>
+<span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c">!ML model</span>
+<span class="n">mld_order</span><span class="o">=</span><span class="mi">1</span><span class="w">                </span><span class="c">!set 1 for linear regression</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">              </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">           </span><span class="c">!set true to fit the forces</span>
+
+<span class="c">!Define your system</span>
+<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">               </span><span class="c">!set true for multicomponent systems</span>
+<span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Ta Ti V  W"</span>
+<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">"0.8 0.9 1.0 1.1"</span><span class="w">  </span><span class="c">!for numerical stability, keep close to 1.0</span>
+
+<span class="c">!Descriptor cutoff</span>
+<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span>
+<span class="n">r_cut_width</span><span class="o">=</span><span class="mf">0.5d0</span>
+<span class="n">r_cut_in</span><span class="o">=</span><span class="mf">1.2d0</span>
+<span class="n">r_cut_width_in</span><span class="o">=</span><span class="mf">0.4d0</span>
+<span class="n">type_fcut</span><span class="o">=</span><span class="mi">3</span>
+
+<span class="c">!Descriptor type</span>
+<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">300</span><span class="w">         </span><span class="c">!300 for ACE/kACE</span>
+
+<span class="n">ace_numax</span><span class="o">=</span><span class="mi">3</span><span class="w">                  </span><span class="c">!maximum ACE body order (here up to 3)</span>
+<span class="n">ace_gencg</span><span class="o">=</span><span class="mi">1</span><span class="w">                   </span><span class="c">!1 DRAFT redundant version; 2 SVD Dusson-Ortner version</span>
+
+<span class="n">ace_chem</span><span class="o">=</span><span class="mi">1</span><span class="w">                     </span><span class="c">!chemical embedding: 0 incomplete, 1 standard, 2 TS</span>
+<span class="n">ace_radial_chem</span><span class="o">=</span><span class="mi">3</span><span class="w">               </span><span class="c">!1 Ralf (standard ACE), 3 HSVD (kACE), 5 HSVD with random projection</span>
+<span class="n">ace_chem_low_rank</span><span class="o">=</span><span class="mi">1</span><span class="w">              </span><span class="c">!tensor compression of the chemical basis</span>
+<span class="n">ace_chem_low_rank_q</span><span class="o">=</span><span class="mi">8</span>
+<span class="n">ace_chem_low_rank_niter</span><span class="o">=</span><span class="mi">10</span><span class="w">        </span><span class="c">!default is 40</span>
+<span class="n">ace_chem_low_rank_lambda</span><span class="o">=</span><span class="mf">1.d-08</span>
+
+<span class="n">ace_svd_randomized</span><span class="o">=</span><span class="mi">1</span><span class="w">              </span><span class="c">!use a randomized SVD instead of the exact one</span>
+<span class="n">ace_svd_randomized_oversample</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">ace_svd_randomized_power_iter</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="n">l_ace_order</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="n">ace_nmax_list</span><span class="o">=</span><span class="s2">"4 2 1 1 1 1"</span>
+<span class="n">ace_lmax_list</span><span class="o">=</span><span class="s2">"0 4 3 2 1 1"</span>
+<span class="n">ace_lambda_list</span><span class="o">=</span><span class="s2">"3.0 3.0 3.0 3.0 3.0 3.0"</span>
+<span class="n">ace_radial_poly</span><span class="o">=</span><span class="mi">2</span><span class="w">            </span><span class="c">!1 powPftouny, 2 expPaftouny, 3 simpBessel</span>
+
+<span class="p">&amp;</span><span class="k">end</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the fit is linear (<code class="docutils literal notranslate"><span class="pre">mld_order=1</span></code>), the size of the design
+matrix scales only linearly with the kACE descriptor dimension,
+which makes it practical to use a comparatively large basis (body
+orders up to 3) here. See <a class="reference internal" href="09_ex_qnml_hea_ace.html#ex-qnml-hea-ace"><span class="std std-ref">QNML fit in HEA with ACE descriptor</span></a> for the same
+descriptor family used with a quadratic (QNML) fit, where the
+design matrix scales as the square of the descriptor dimension.</p>
+</div>
+</section>
+
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="07_ex_lml_zbl.html" class="btn btn-neutral float-left" title="LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09_ex_qnml_hea_ace.html" class="btn btn-neutral float-right" title="QNML fit in HEA with ACE descriptor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, MCM, AMG, AZ &amp; more.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

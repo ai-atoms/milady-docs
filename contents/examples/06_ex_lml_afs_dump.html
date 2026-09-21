@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QNML fit in HEA with BSO4 descriptor &mdash; Milady Docs</title>
+  <title>LML fit in bcc Fe with AFS descriptor, dump/read &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Kernel regression using polynomial kernel" href="04_ex_kernel.html" />
-    <link rel="prev" title="LML fit in bcc Fe with AFS descriptor" href="02_ex_lmlfe.html" /> 
+    <link rel="next" title="LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core" href="07_ex_lml_zbl.html" />
+    <link rel="prev" title="Kernel regression using a random kernel" href="05_ex_kernel_random.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,10 +74,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="01_ex_write.html">Compute and write descriptors without further fit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">QNML fit in HEA with BSO4 descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_ex_lml_hea_kace.html">LML fit in HEA with kACE descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
@@ -106,9 +106,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">QNML fit in HEA with BSO4 descriptor</li>
+      <li class="breadcrumb-item active">LML fit in bcc Fe with AFS descriptor, dump/read</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/contents/examples/03_ex_qnmlhea.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/contents/examples/06_ex_lml_afs_dump.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -116,41 +116,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="qnml-fit-in-hea-with-bso4-descriptor">
-<span id="ex-qnml-hae"></span><h1>QNML fit in HEA with BSO4 descriptor<a class="headerlink" href="#qnml-fit-in-hea-with-bso4-descriptor" title="Permalink to this heading"></a>
+  <section id="lml-fit-in-bcc-fe-with-afs-descriptor-dump-read">
+<span id="ex-lml-afs-dump"></span><h1>LML fit in bcc Fe with AFS descriptor, dump/read<a class="headerlink" href="#lml-fit-in-bcc-fe-with-afs-descriptor-dump-read" title="Permalink to this heading"></a>
 </h1>
-<p>Here we provide an example of input file to perform quadratic noise ML
-(QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
-are provided in <code class="docutils literal notranslate"><span class="pre">examples/qnml_hea_bso4</span></code>.</p>
-<p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">mld_fit_type=4</span></code>, which
-uses SVD with rank estimation. Other available settings for
-<code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
+<p>This section provides an example showing how to write the AFS
+descriptors of a fit to files and read them back for a later fit,
+and checks that the two ways of running the fit (classic vs.
+write/read of dumped descriptors) give the same result. The relevant
+files are provided in <code class="docutils literal notranslate"><span class="pre">examples/lml_afs_read_write_dump</span></code>.</p>
+<p>This example is run in three steps, each using a different <code class="docutils literal notranslate"><span class="pre">vacancy.ml*</span></code>
+file as the active <code class="docutils literal notranslate"><span class="pre">vacancy.ml</span></code> input, all in the same directory:</p>
+<ol class="arabic simple">
+<li><p><strong>classic fit</strong> — <code class="docutils literal notranslate"><span class="pre">vacancy.ml_classic</span></code>: perform the LML fit directly
+(<code class="docutils literal notranslate"><span class="pre">write_desc_dump=.false.</span></code>, <code class="docutils literal notranslate"><span class="pre">read_desc_dump=.false.</span></code>). Output
+is stored in <code class="docutils literal notranslate"><span class="pre">OUT_CLASSIC</span></code>.</p></li>
+<li><p><strong>write dump</strong> — <code class="docutils literal notranslate"><span class="pre">vacancy.ml_write_dump</span></code>: perform the same fit while
+writing the AFS descriptors to disk (<code class="docutils literal notranslate"><span class="pre">write_desc_dump=.true.</span></code>).
+Output is stored in <code class="docutils literal notranslate"><span class="pre">OUT_WRITE</span></code>.</p></li>
+<li><p><strong>read dump</strong> — <code class="docutils literal notranslate"><span class="pre">vacancy.ml_read_dump</span></code>: perform the fit by reading
+back the previously dumped descriptors instead of recomputing them
+(<code class="docutils literal notranslate"><span class="pre">read_desc_dump=.true.</span></code>). Output is stored in <code class="docutils literal notranslate"><span class="pre">OUT_READ</span></code>.</p></li>
+</ol>
+<p>The three outputs should agree up to numerical error. Before each
+step, copy the corresponding file onto <code class="docutils literal notranslate"><span class="pre">vacancy.ml</span></code>, e.g.:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>cp<span class="w"> </span>vacancy.ml_classic<span class="w"> </span>vacancy.ml
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>milady_main.exe<span class="w"> </span>&gt;<span class="w"> </span>OUT_CLASSIC
+</pre></div>
+</div>
+<p>Typical <code class="docutils literal notranslate"><span class="pre">vacancy.ml_classic</span></code> file:</p>
 <div class="highlight-fortran notranslate">
 <div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="c">!ML model</span>
+
+<span class="c">!ML mode</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 to perform the fit using basis functions</span>
-<span class="n">mld_order</span><span class="o">=</span><span class="mi">2</span><span class="w">               </span><span class="c">!set 2 for quadratic regression</span>
-<span class="n">mld_type_quadratic</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!set 1 for QNML; 2 for conventional QML</span>
-<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
-<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
+<span class="n">mld_order</span><span class="o">=</span><span class="mi">1</span><span class="w">                </span><span class="c">!set 1 for linear regression</span>
+<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">3</span><span class="w">             </span><span class="c">!lapack full ortho decomposition with rank estimation</span>
 
-<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">            </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">4</span><span class="w">       </span><span class="c">!number of chemical species in the system</span>
+<span class="c">!Writing/reading descriptors</span>
+<span class="n">write_desc</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces and stress</span>
 
-<span class="c">!system composition, ordered as in DB files</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Ta Ti V W "</span>
+<span class="n">write_desc_dump</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">    </span><span class="c">!set true to dump the descriptors to disk</span>
+<span class="n">read_desc_dump</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">     </span><span class="c">!set true to read previously dumped descriptors</span>
 
-<span class="c">!weights applied for each element. Keep close to 1</span>
-<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">" 1.56 0.41 0.44 1.59 "</span>
+<span class="n">selection_type</span><span class="o">=</span><span class="mi">1</span><span class="w">           </span><span class="c">!1 selects the first N_train elements of the database</span>
+
+<span class="c">!Define your system</span>
+<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!set true for multicomponent systems</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Fe "</span><span class="w">   </span><span class="c">!provide the system composition</span>
 
 <span class="c">!Descriptor settings</span>
-<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
-<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">9</span><span class="w">          </span><span class="c">!set 9 for bispectrum SO4</span>
-<span class="n">j_max</span><span class="o">=</span><span class="mf">3.5</span><span class="w">                  </span><span class="c">!angular moment for bispectrum SO4</span>
+<span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distance Rc</span>
+<span class="n">descriptor_type</span><span class="o">=</span><span class="mi">4</span><span class="w">          </span><span class="c">!set 4 for AFS</span>
+<span class="n">afs_type</span><span class="o">=</span><span class="mi">1</span><span class="w">                 </span><span class="c">!1 for standard AFS, 2 for modified AFS</span>
+<span class="n">n_rbf</span><span class="o">=</span><span class="mi">12</span><span class="w">                   </span><span class="c">!Number of radial channels</span>
+<span class="n">n_cheb</span><span class="o">=</span><span class="mi">8</span><span class="w">                   </span><span class="c">!Number of Chebyshev polynomials</span>
+
 <span class="p">&amp;</span><span class="k">end</span>
 </pre></div>
 </div>
+<p>For the write/read steps, only <code class="docutils literal notranslate"><span class="pre">write_desc_dump</span></code>/<code class="docutils literal notranslate"><span class="pre">read_desc_dump</span></code>
+change (set the relevant one to <code class="docutils literal notranslate"><span class="pre">.true.</span></code>), see
+<code class="docutils literal notranslate"><span class="pre">examples/lml_afs_read_write_dump/vacancy.ml_write_dump</span></code> and
+<code class="docutils literal notranslate"><span class="pre">vacancy.ml_read_dump</span></code>.</p>
 </section>
 
 
@@ -158,8 +188,8 @@ uses SVD with rank estimation. Other available settings for
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02_ex_lmlfe.html" class="btn btn-neutral float-left" title="LML fit in bcc Fe with AFS descriptor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_ex_kernel.html" class="btn btn-neutral float-right" title="Kernel regression using polynomial kernel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05_ex_kernel_random.html" class="btn btn-neutral float-left" title="Kernel regression using a random kernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07_ex_lml_zbl.html" class="btn btn-neutral float-right" title="LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

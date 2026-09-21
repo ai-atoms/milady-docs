@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QNML fit in HEA with BSO4 descriptor &mdash; Milady Docs</title>
+  <title>LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core &mdash; Milady Docs</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Kernel regression using polynomial kernel" href="04_ex_kernel.html" />
-    <link rel="prev" title="LML fit in bcc Fe with AFS descriptor" href="02_ex_lmlfe.html" /> 
+    <link rel="next" title="LML fit in HEA with kACE descriptor" href="08_ex_lml_hea_kace.html" />
+    <link rel="prev" title="LML fit in bcc Fe with AFS descriptor, dump/read" href="06_ex_lml_afs_dump.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +74,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="01_ex_write.html">Compute and write descriptors without further fit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">QNML fit in HEA with BSO4 descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_ex_lml_hea_kace.html">LML fit in HEA with kACE descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
 </ul>
@@ -106,9 +106,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">QNML fit in HEA with BSO4 descriptor</li>
+      <li class="breadcrumb-item active">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/contents/examples/03_ex_qnmlhea.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/contents/examples/07_ex_lml_zbl.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -116,38 +116,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="qnml-fit-in-hea-with-bso4-descriptor">
-<span id="ex-qnml-hae"></span><h1>QNML fit in HEA with BSO4 descriptor<a class="headerlink" href="#qnml-fit-in-hea-with-bso4-descriptor" title="Permalink to this heading"></a>
+  <section id="lml-fit-in-bcc-fe-with-bso4-descriptor-2-body-zbl-core">
+<span id="ex-lml-zbl"></span><h1>LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core<a class="headerlink" href="#lml-fit-in-bcc-fe-with-bso4-descriptor-2-body-zbl-core" title="Permalink to this heading"></a>
 </h1>
-<p>Here we provide an example of input file to perform quadratic noise ML
-(QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files
-are provided in <code class="docutils literal notranslate"><span class="pre">examples/qnml_hea_bso4</span></code>.</p>
-<p>For the models like QNML we recommend setting <code class="docutils literal notranslate"><span class="pre">mld_fit_type=4</span></code>, which
-uses SVD with rank estimation. Other available settings for
-<code class="docutils literal notranslate"><span class="pre">mld_fit_type</span></code> can be found in Section <a class="reference external" href="#sec:keywords">3.1</a>.</p>
+<p>This section provides an example input file for performing a linear
+ML (LML) fit with a BSO4 descriptor for bcc Fe, combined with a
+short-range 2-body (K2B) correction and a ZBL repulsive core for
+close interatomic distances. The relevant files are provided in
+<code class="docutils literal notranslate"><span class="pre">examples/lml_fe_bso4_zbl</span></code>.</p>
+<p>The ZBL potential takes over the many-body ML description below
+<code class="docutils literal notranslate"><span class="pre">r1_zbl</span></code>, with a smooth transition handled by K2B between
+<code class="docutils literal notranslate"><span class="pre">r1_zbl</span></code> and the inner many-body cutoff <code class="docutils literal notranslate"><span class="pre">r_cut_in</span></code>.</p>
 <div class="highlight-fortran notranslate">
 <div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">input_ml</span>
 <span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="c">!ML model</span>
+
+<span class="c">!ML mode</span>
 <span class="n">ml_type</span><span class="o">=</span><span class="mi">0</span><span class="w">                  </span><span class="c">!set 0 to perform the fit using basis functions</span>
-<span class="n">mld_order</span><span class="o">=</span><span class="mi">2</span><span class="w">               </span><span class="c">!set 2 for quadratic regression</span>
-<span class="n">mld_type_quadratic</span><span class="o">=</span><span class="mi">1</span><span class="w">       </span><span class="c">!set 1 for QNML; 2 for conventional QML</span>
-<span class="n">mld_fit_type</span><span class="o">=</span><span class="mi">4</span><span class="w">            </span><span class="c">!lapack full SVD with rank estimation</span>
+<span class="n">mld_order</span><span class="o">=</span><span class="mi">1</span><span class="w">                </span><span class="c">!set 1 for linear regression</span>
+
+<span class="n">write_desc</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <span class="n">desc_forces</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">         </span><span class="c">!set true to fit the forces</span>
 
-<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">            </span><span class="c">!set true for multicomponent systems</span>
-<span class="n">fix_no_of_elements</span><span class="o">=</span><span class="mi">4</span><span class="w">       </span><span class="c">!number of chemical species in the system</span>
-
-<span class="c">!system composition, ordered as in DB files</span>
-<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Ta Ti V W "</span>
-
-<span class="c">!weights applied for each element. Keep close to 1</span>
-<span class="n">weight_per_element</span><span class="o">=</span><span class="s2">" 1.56 0.41 0.44 1.59 "</span>
+<span class="c">!Define your system</span>
+<span class="n">weighted</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!set true for multicomponent systems</span>
+<span class="n">chemical_elements</span><span class="o">=</span><span class="s2">" Fe "</span><span class="w">   </span><span class="c">!provide the system composition</span>
 
 <span class="c">!Descriptor settings</span>
 <span class="n">r_cut</span><span class="o">=</span><span class="mf">4.7d0</span><span class="w">                </span><span class="c">!set the cutoff distace Rc</span>
 <span class="n">descriptor_type</span><span class="o">=</span><span class="mi">9</span><span class="w">          </span><span class="c">!set 9 for bispectrum SO4</span>
-<span class="n">j_max</span><span class="o">=</span><span class="mf">3.5</span><span class="w">                  </span><span class="c">!angular moment for bispectrum SO4</span>
+<span class="n">j_max</span><span class="o">=</span><span class="mi">4</span><span class="w">                    </span><span class="c">!angular moment for bispectrum SO4</span>
+
+<span class="c">!2-body (K2B) settings</span>
+<span class="n">activate_k2b</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="n">sigma_2b</span><span class="o">=</span><span class="mf">0.3d0</span><span class="w">              </span><span class="c">!controls the smoothness of the interaction</span>
+<span class="n">delta_2b</span><span class="o">=</span><span class="mf">1.d0</span><span class="w">                </span><span class="c">!controls the magnitude (in eV) of a typical 2-body interaction</span>
+<span class="n">np_radial_2b</span><span class="o">=</span><span class="mi">40</span><span class="w">              </span><span class="c">!number of radial points in the 2-body grid</span>
+<span class="n">r_cut_in</span><span class="o">=</span><span class="mf">1.5d0</span><span class="w">                </span><span class="c">!many-body interaction is shut down below this distance (Ang)</span>
+<span class="n">r_cut_width_in</span><span class="o">=</span><span class="mf">0.3d0</span><span class="w">           </span><span class="c">!controls the smoothness of the inner cutoff</span>
+<span class="n">type_fcut</span><span class="o">=</span><span class="mi">3</span><span class="w">                     </span><span class="c">!type of cutoff function</span>
+
+<span class="c">!ZBL settings</span>
+<span class="n">zbl_potential</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">        </span><span class="c">!activate the ZBL repulsive core</span>
+<span class="n">r1_zbl</span><span class="o">=</span><span class="mf">1.0d0</span><span class="w">                 </span><span class="c">!below this distance, only ZBL is used</span>
+<span class="n">r2_zbl</span><span class="o">=</span><span class="mf">2.2d0</span><span class="w">                  </span><span class="c">!controls the smoothness of ZBL</span>
+
 <span class="p">&amp;</span><span class="k">end</span>
 </pre></div>
 </div>
@@ -158,8 +171,8 @@ uses SVD with rank estimation. Other available settings for
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02_ex_lmlfe.html" class="btn btn-neutral float-left" title="LML fit in bcc Fe with AFS descriptor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_ex_kernel.html" class="btn btn-neutral float-right" title="Kernel regression using polynomial kernel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06_ex_lml_afs_dump.html" class="btn btn-neutral float-left" title="LML fit in bcc Fe with AFS descriptor, dump/read" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08_ex_lml_hea_kace.html" class="btn btn-neutral float-right" title="LML fit in HEA with kACE descriptor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

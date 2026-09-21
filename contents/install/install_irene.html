@@ -77,9 +77,14 @@
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/01_ex_write.html">Compute and write descriptors without further fit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/02_ex_lmlfe.html">LML fit in bcc Fe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/03_ex_qnmlhea.html">QNML fit in HEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/08_ex_lml_hea_kace.html">LML fit in HEA with kACE descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Publications</span></p>
 <ul>
@@ -187,7 +192,7 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_ROOT</span><span class="o">=</span>/ccc/products/openmpi-4.1.1/intel--20.0.0/default
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">MLD_SETENV</span><span class="o">=</span>ON
 <span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/ccc/products/mkl-21.3.0/system/default/21.3.0/lib/intel64/:<span class="nv">$LD_LIBRARY_PATH</span>
-<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/src/scripts:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -202,7 +207,7 @@ of your <code class="docutils literal notranslate"><span class="pre">${HOME}/.ba
 <p>Charge the <code class="docutils literal notranslate"><span class="pre">MILADY</span></code> bash environment (do not forget to source your <code class="docutils literal notranslate"><span class="pre">$HOME/.bashrc</span></code> file before it):</p>
 <div class="highlight-bash notranslate">
 <div class="highlight"><pre><span></span>f_setenv_milady
-<span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>/MILADY/scripts/compile_milady.bash
+<span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD</span><span class="si">}</span>/MILADY/src/scripts/compile_milady.bash
 </pre></div>
 </div>
 <div class="admonition note">
@@ -235,7 +240,7 @@ make<span class="w"> </span>-j4
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, MCM, AMG, AZ &amp; more.</p>
+    <p>&#169; Copyright 2026, MCM, AMG, AZ &amp; more.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

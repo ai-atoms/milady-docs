@@ -607,8 +607,6 @@ The parameters of the descriptors are controlled by the options below.
 
    - ``ace_radial_chem=1``: Ralf version, classical ACE polynomial radial basis
      (one radial pair function per ordered species pair, no contraction).
-   - ``ace_radial_chem=2``: HOME / TS version. Block-diagonal HSVD variant, kept
-     automatically in sync with ``ace_chem=2``.
    - ``ace_radial_chem=3``: HSVD, i.e. k-ACE version with tensor contraction. The
      radial--chemical channels are contracted through a truncated SVD of the
      sampled radial matrix :math:`\mathbf{G}^{l,\mu_a,\mu_j}` (see above). This is

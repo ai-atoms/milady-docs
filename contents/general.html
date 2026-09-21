@@ -71,9 +71,14 @@
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/01_ex_write.html">Compute and write descriptors without further fit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/02_ex_lmlfe.html">LML fit in bcc Fe</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/03_ex_qnmlhea.html">QNML fit in HEA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/02_ex_lmlfe.html">LML fit in bcc Fe with AFS descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/03_ex_qnmlhea.html">QNML fit in HEA with BSO4 descriptor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/04_ex_kernel.html">Kernel regression using polynomial kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/05_ex_kernel_random.html">Kernel regression using a random kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/06_ex_lml_afs_dump.html">LML fit in bcc Fe with AFS descriptor, dump/read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/07_ex_lml_zbl.html">LML fit in bcc Fe with BSO4 descriptor, 2-body ZBL core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/08_ex_lml_hea_kace.html">LML fit in HEA with kACE descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/09_ex_qnml_hea_ace.html">QNML fit in HEA with ACE descriptor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Publications</span></p>
 <ul>
@@ -156,7 +161,7 @@ that avoids storing the full design matrix.</p></li>
 place (a Fortran compiler, <code class="docutils literal notranslate"><span class="pre">MKL</span></code> / <code class="docutils literal notranslate"><span class="pre">ScaLapack</span></code> and an <code class="docutils literal notranslate"><span class="pre">MPI</span></code> library), the
 build boils down to:</p>
 <div class="highlight-bash notranslate">
-<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/scripts/compile_milady.bash
+<div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">MLD_SRCDIR</span><span class="si">}</span>/src/scripts/compile_milady.bash
 f_compile_milady_mix<span class="w">   </span><span class="c1"># or f_compile_milady_intel / f_compile_milady_gnu</span>
 make<span class="w"> </span>-j6
 </pre></div>
@@ -181,13 +186,13 @@ Makefile-based way is kept for reference on the
 <div class="line">
 <strong>Main contributors</strong> in chronological order, all current or former members of SRMP, CEA Saclay:</div>
 <div class="line">M.-C. Marinica     (2015-present)</div>
+<div class="line">A. Zhong           (2022-present)</div>
+<div class="line">C. Lapointe        (2018-present)</div>
 <div class="line">W. Unn-Toc         (2015-2017)</div>
 <div class="line">A. M. Goryaeva     (2018-2024)</div>
-<div class="line">C. Lapointe        (2018-2021)</div>
 <div class="line">J. Deres           (2019-2021)</div>
 <div class="line">J. Baima           (2020-2022)</div>
 <div class="line">A. Allera          (2022-2024)</div>
-<div class="line">A. Zhong           (2022-present)</div>
 </div>
 <div class="line-block">
 <div class="line">
@@ -236,7 +241,7 @@ We will be happy to answer!</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, MCM, AMG, AZ &amp; more.</p>
+    <p>&#169; Copyright 2026, MCM, AMG, AZ &amp; more.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
