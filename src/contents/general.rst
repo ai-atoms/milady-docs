@@ -49,7 +49,7 @@ build boils down to:
 
 .. code-block:: bash
 
-  source ${MLD_SRCDIR}/scripts/compile_milady.bash
+  source ${MLD_SRCDIR}/src/scripts/compile_milady.bash
   f_compile_milady_mix   # or f_compile_milady_intel / f_compile_milady_gnu
   make -j6
 
@@ -69,13 +69,13 @@ Contributors
 
 | **Main contributors** in chronological order, all current or former members of SRMP, CEA Saclay:
 | M.-C. Marinica     (2015-present)
+| A. Zhong           (2022-present)
+| C. Lapointe        (2018-present)
 | W. Unn-Toc         (2015-2017)
 | A. M. Goryaeva     (2018-2024)
-| C. Lapointe        (2018-2021)
 | J. Deres           (2019-2021)
 | J. Baima           (2020-2022)
 | A. Allera          (2022-2024)
-| A. Zhong           (2022-present)
 
 | **Software development support** is provided by:
 | Anida Khizar (LGLS, CEA Saclay),

@@ -1,8 +1,8 @@
 
 .. _`ex:QNML-HAE`:
 
-QNML fit in HEA
----------------
+QNML fit in HEA with BSO4 descriptor
+--------------------------------------
 
 Here we provide an example of input file to perform quadratic noise ML
 (QNML) fit for Ta-Ti-V-W high entropy alloy (HEA). The relevant files

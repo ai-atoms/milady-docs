@@ -54,6 +54,11 @@
    contents/examples/02_ex_lmlfe
    contents/examples/03_ex_qnmlhea
    contents/examples/04_ex_kernel
+   contents/examples/05_ex_kernel_random
+   contents/examples/06_ex_lml_afs_dump
+   contents/examples/07_ex_lml_zbl
+   contents/examples/08_ex_lml_hea_kace
+   contents/examples/09_ex_qnml_hea_ace
 
 .. toctree::
    :caption: Publications

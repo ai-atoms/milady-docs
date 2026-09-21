@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Milady'
-copyright = '2022, MCM, AMG, AZ & more'
+copyright = '2026, MCM, AMG, AZ & more'
 author = 'MCM, AMG, AZ & more'
 
 

@@ -69,7 +69,7 @@ directories as in previous examples.
         export OMP_ROOT=/ccc/products/openmpi-4.1.1/intel--20.0.0/default
         export MLD_SETENV=ON
         export LD_LIBRARY_PATH=/ccc/products/mkl-21.3.0/system/default/21.3.0/lib/intel64/:$LD_LIBRARY_PATH
-        export PATH=${MLD_SRCDIR}/scripts:${PATH}
+        export PATH=${MLD_SRCDIR}/src/scripts:${PATH}
       }
 
 Step 2: Installation  
@@ -80,7 +80,7 @@ Step 2: Installation
     .. code-block:: bash
 
       f_setenv_milady
-      source ${MLD}/MILADY/scripts/compile_milady.bash
+      source ${MLD}/MILADY/src/scripts/compile_milady.bash
 
 
     .. note::

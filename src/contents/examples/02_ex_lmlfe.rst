@@ -1,8 +1,8 @@
 
 .. _`ex:LML-Fe`:
 
-LML fit in bcc Fe
------------------
+LML fit in bcc Fe with AFS descriptor
+--------------------------------------
 
 This section provides an example input an input file for performing
 linear ML (LML) fit with AFS descriptors for bcc Fe. The relevant files

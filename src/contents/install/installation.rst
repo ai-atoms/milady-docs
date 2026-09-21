@@ -84,7 +84,7 @@ Local build
    ``MILADY`` is built with **CMake** (≥ 3.24). The CMake workflow described on
    this page is the **only supported and tested** way to compile the code: the
    compilers and the ``MKL`` / ``ScaLapack`` / ``MPI`` libraries are detected
-   automatically through the ``scripts/compile_milady.bash`` helper functions,
+   automatically through the ``src/scripts/compile_milady.bash`` helper functions,
    so there is no ``Makefile`` to edit by hand.
 
    The former, Makefile-based procedure is kept for reference on the
@@ -182,7 +182,7 @@ In the following, ``MILADY`` refers to the github repository.
       export MKL_ROOT=${MKLROOT}
       export OMP_INSDIR=/usr/local/iopenmpi
       export OMP_ROOT=${OMP_INSDIR}
-      export PATH=${MLD_ROODIR}/MILADY/scripts:${PATH}
+      export PATH=${MLD_ROODIR}/MILADY/src/scripts:${PATH}
 
     ``MKL_ROOT`` and ``OMP_INSDIR`` should contain the installation path to ``MKL`` and ``openMPI``, respectively.
 
@@ -213,7 +213,7 @@ In the following, ``MILADY`` refers to the github repository.
           export MLD_MPI_INSDIR=/usr/local/iopenmpi/
           export MLD_MKL_LIB=${MKLROOT}
         
-          export PATH=${MLD_SRCDIR}/scripts:${PATH}
+          export PATH=${MLD_SRCDIR}/src/scripts:${PATH}
         
           export MLD_SETENV=ON
           
@@ -226,7 +226,7 @@ Step 2: Compilation
 
     .. code-block:: bash
 
-      source ${MLD_SRCDIR}/scripts/compile_milady.bash
+      source ${MLD_SRCDIR}/src/scripts/compile_milady.bash
 
     with a typical output:
 
