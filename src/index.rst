@@ -12,14 +12,7 @@
 
 
 .. toctree::
-   :caption: Installation with Docker
-   :maxdepth: 2
-   :hidden:
-
-   contents/install/docker
-
-.. toctree::
-   :caption: Build Milady
+   :caption: Installation
    :maxdepth: 2
    :hidden:
 
