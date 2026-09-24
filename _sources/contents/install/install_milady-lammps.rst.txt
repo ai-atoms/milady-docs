@@ -94,7 +94,7 @@ If you have already ``Lammps`` installed, you can add ``MILADY`` library to your
    
 .. code:: bash
 
-  git clone --recursive git@github.com:mcmarinica/milady_lammps.git milady_lammps.git
+  git clone --recursive https://github.com/ai-atoms/MLD-Lammps.git milady_lammps.git
 
 
 2. You will find the ``MILADY`` library ``milady_lammps.git/lib/milady``.

@@ -81,7 +81,7 @@ Contributors
 | Anida Khizar (LGLS, CEA Saclay),
 | Christian Van Wambeke (LGLS, CEA Saclay).
 
-The `coupling of MILADY and LAMMPS <https://github.com/ai-atoms/Lammps-MiLaDy>`_ was developed by
+The `coupling of MILADY and LAMMPS <https://github.com/ai-atoms/MLD-Lammps>`_ was developed by
 `Thomas D. Swinburne <https://tomswinburne.github.io/>`_ (CINaM, Marseille).
 
 Contact 

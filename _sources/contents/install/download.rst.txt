@@ -4,8 +4,17 @@
 Download sources
 ----------------
 
-The open source Machine Learning Dynamics software can be downloaded 
-through a GitHub repository. 
-The repository is private but in order to have access 
-just :email:`send us an email<ai.unseen.group@gmail.com>` to let us know from which GitHub 
-account you intend to download ``Milady``. That’s all!!! 
+The open source Machine Learning Dynamics software is publicly available on GitHub:
+
+- ``MILADY`` sources: https://github.com/ai-atoms/MLD
+- ``milady_lammps`` (``Lammps`` with the ``MILADY`` library): https://github.com/ai-atoms/MLD-Lammps
+
+To get the ``MILADY`` sources, simply clone the repository:
+
+.. code-block:: bash
+
+  git clone https://github.com/ai-atoms/MLD.git MILADY
+
+For the ``Lammps`` coupling, see :ref:`MILADY potentials in Lammps <sec:insta_lammps>`.
+
+If you have any question, just :email:`send us an email<ai.unseen.group@gmail.com>`.
